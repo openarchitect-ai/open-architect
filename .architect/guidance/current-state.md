@@ -64,12 +64,23 @@ capability container, including:
   - `skills/`
   - `templates/`
 - Added role starter documents:
+  - chief architect
+  - business architect
   - enterprise architect
   - solution architect
-- Added method starter documents:
+  - data architect
+  - integration architect
+  - domain architect
+  - security architect
+  - technology architect
+  - architecture governance lead
+- Added method starter documents and reorganized method structure:
   - project method
   - ADM reference
   - transition architecture reference
+- Split project method from future flow execution:
+  - `.architect/method/` for selected project method and references
+  - `.architect/flows/` for future visual or executable flows
 - Added flow placeholders:
   - architecture development
   - transition architecture
@@ -91,10 +102,24 @@ Key folders:
 - `.architect/roles/`
 - `.architect/skills/`
 
+Current role library:
+
+- chief architect
+- business architect
+- enterprise architect
+- solution architect
+- data architect
+- integration architect
+- domain architect
+- security architect
+- technology architect
+- architecture governance lead
+
 ## Recommended Next Steps
 
 High priority:
 
+- Populate `skills/` with reusable architecture skills aligned to the role model
 - Add validation or schema support
   - e.g. `.architect/schemas/` or `.architect/validation/`
 - Create a worked example under `.architect/architecture/`
@@ -123,9 +148,9 @@ Future direction:
 
 If work resumes later, the best next task is:
 
-1. create a small worked example in `.architect/architecture/`
-2. add glossary and stronger conventions
-3. add schema or validation support
+1. populate `skills/` based on the current role model
+2. create a small worked example in `.architect/architecture/`
+3. add glossary, stronger conventions, and schema or validation support
 
 ## Notes
 
