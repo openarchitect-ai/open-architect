@@ -6,6 +6,7 @@ Use it to clarify responsibilities, accountabilities, and expected outputs for
 roles such as:
 
 - chief architect
+- business analyst
 - business architect
 - enterprise architect
 - solution architect
@@ -19,6 +20,7 @@ roles such as:
 Current role set:
 
 - `chief-architect.md`
+- `business-analyst.md`
 - `business-architect.md`
 - `enterprise-architect.md`
 - `solution-architect.md`
@@ -38,6 +40,7 @@ Use these role descriptions to:
 Suggested role positioning:
 
 - `chief-architect`: overall architecture capability, coherence, and delivery ownership
+- `business-analyst`: stakeholder needs, business rules, requirement quality, and traceability
 - `business-architect`: business strategy, capability, process, and operating model alignment
 - `enterprise-architect`: target state, business alignment, standards, and roadmap direction
 - `solution-architect`: bounded solution architecture and delivery alignment
