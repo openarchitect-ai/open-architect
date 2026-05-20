@@ -65,6 +65,7 @@ capability container, including:
   - `templates/`
 - Added role starter documents:
   - chief architect
+  - business analyst
   - business architect
   - enterprise architect
   - solution architect
@@ -84,6 +85,9 @@ capability container, including:
 - Added project-level architecture configuration:
   - `.architect/project-config.yaml`
   - selects active roles, templates, flows, and method references for a project
+- Added guidance for project configuration:
+  - `.architect/guidance/project-configuration.md`
+  - explains how to tailor `project-config.yaml`
 - Added flow placeholders:
   - architecture development
   - transition architecture
