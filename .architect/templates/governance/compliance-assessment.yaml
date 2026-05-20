@@ -1,0 +1,130 @@
+template:
+  kind: compliance-assessment
+  version: 1.0
+  schema_version: 1.0
+  description: Template for a single architecture compliance assessment entry in the enterprise architecture metamodel.
+
+spec:
+  id: CMP-0001
+  name: customer-sync-wave-1-compliance
+  display_name: Customer Sync Wave 1 Compliance Assessment
+  aliases:
+    - Wave 1 Compliance Review
+  summary: Assessment of whether the customer synchronization design and delivery conform to approved architecture guidance.
+  description: >
+    Compliance assessment recording architecture review findings, conformance
+    status, exceptions, waivers, and remediation actions for a solution,
+    transition architecture, or delivery increment.
+
+  classification:
+    assessment_type: architecture-compliance
+    scope: solution-delivery
+    severity: medium # low | medium | high | critical
+    criticality: high
+
+  status:
+    lifecycle: active # planned | active | closed | archived
+    assessment_status: open # planned | open | in-review | closed
+    conformance_status: conditional-pass # pass | conditional-pass | fail | waived
+
+  ownership:
+    assessment_owner: Enterprise Architecture
+    assessed_owner: Solution Architecture
+    remediation_owner: Integration Delivery Lead
+
+  metadata:
+    source_of_truth:
+      system: Architecture Governance Register
+      record_locator: CMP-0001
+      owner: Enterprise Architecture
+    last_reviewed: 2026-05-20
+    review_owner: Enterprise Architecture
+    confidence: medium
+    references:
+      - type: confluence
+        title: Customer Sync Wave 1 Compliance Assessment
+        url: https://confluence.example.com/display/EA/customer-sync-wave-1-compliance
+      - type: review
+        title: Architecture Review Record
+        url: https://example.com/reviews/customer-sync-wave-1
+    change_log:
+      - date: 2026-05-20
+        summary: Initial compliance assessment template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: assesses-solution
+      target_kind: solution
+      target_id: SOL-0001
+      strength: primary
+      confidence: high
+    - type: assesses-transition-architecture
+      target_kind: transition-architecture
+      target_id: TA-0001
+      strength: primary
+      confidence: high
+    - type: assesses-work-package
+      target_kind: work-package
+      target_id: WP-0001
+      strength: supporting
+      confidence: medium
+    - type: checks-requirement
+      target_kind: requirement
+      target_id: REQ-0001
+      strength: primary
+      confidence: high
+    - type: checks-principle
+      target_kind: principle
+      target_id: PRN-0001
+      strength: primary
+      confidence: high
+    - type: checks-standard
+      target_kind: technology-standard
+      target_id: TS-0001
+      strength: supporting
+      confidence: medium
+    - type: raises-risk
+      target_kind: risk
+      target_id: RSK-0001
+      strength: informational
+      confidence: low
+
+  assessment:
+    review_date: 2026-10-15
+    assessment_method:
+      - architecture-review-board
+      - document-review
+      - design-walkthrough
+    overall_finding: Design aligns with target principles and standards, with minor remediation required before production approval.
+
+  findings:
+    compliant_items:
+      - Canonical customer model is used for new integration design.
+      - Approved integration platform is selected.
+    non_compliant_items:
+      - Monitoring evidence is incomplete for operational handover.
+    waivers_required:
+      - Temporary tolerance for legacy feed coexistence during cutover period.
+
+  remediation:
+    required_actions:
+      - Complete operational monitoring evidence.
+      - Document coexistence control measures for legacy feed retirement.
+    due_date: 2026-11-10
+
+  governance:
+    review_forum: Architecture Review Board
+    escalation_path: Enterprise Architecture Lead
+    waiver_process: Formal exception approval required for conditional pass.
+
+  tags:
+    - compliance
+    - governance
+    - transition
+    - adm
+
+  notes:
+    assumptions:
+      - Assessed design documents remain current through final production review.
+    risks:
+      - Conditional findings may be overlooked if delivery timelines tighten.

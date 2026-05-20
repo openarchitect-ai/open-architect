@@ -1,0 +1,183 @@
+template:
+  kind: interface
+  version: 1.1
+  schema_version: 1.1
+  description: Template for a single interface catalogue entry in the enterprise architecture metamodel.
+
+spec:
+  id: IF-0001
+  name: customer-master-sync-api
+  display_name: Customer Master Synchronization
+  aliases:
+    - Customer Sync API
+    - Customer Master Feed
+  summary: Interface for synchronizing customer master data from the system of record to approved consumers.
+  description: >
+    Synchronizes customer master data from the system of record to approved
+    consuming platforms.
+
+  classification:
+    type: application
+    pattern: request-response
+    style: synchronous
+    exposure: internal
+    direction: outbound
+    criticality: high
+
+  status:
+    lifecycle: production
+    operational_status: active # active | degraded | sunsetting | retired
+    architecture_approval: approved
+
+  ownership:
+    business_owner: Customer Operations
+    technical_owner: Integration Team
+    support_team: Enterprise Platforms
+
+  metadata:
+    source_of_truth:
+      system: API Catalog
+      record_locator: IF-0001
+      owner: Integration Team
+    last_reviewed: 2026-05-20
+    review_owner: Integration Team
+    confidence: high
+    references:
+      - type: confluence
+        title: Customer Master Synchronization
+        url: https://confluence.example.com/display/EA/customer-master-sync
+      - type: api-spec
+        title: Customer Master OpenAPI Specification
+        url: https://example.com/apis/customer-master/openapi.yaml
+    change_log:
+      - date: 2026-05-20
+        summary: Initial interface template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: source-application
+      target_kind: application
+      target_id: APP-0001
+      strength: primary
+      confidence: high
+    - type: target-application
+      target_kind: application
+      target_id: APP-0002
+      strength: primary
+      confidence: high
+    - type: realizes-service
+      target_kind: application-service
+      target_id: AS-0001
+      strength: primary
+      confidence: high
+    - type: exchanges-data-object
+      target_kind: data-object
+      target_id: DO-0001
+      strength: primary
+      confidence: high
+    - type: supports-process
+      target_kind: business-process
+      target_id: BP-0001
+      strength: supporting
+      confidence: medium
+    - type: hosted-on
+      target_kind: technology-component
+      target_id: TC-0001
+      strength: supporting
+      confidence: medium
+    - type: owned-by
+      target_kind: organization
+      target_id: ORG-0001
+      strength: supporting
+      confidence: medium
+
+  source:
+    system_id: APP-0001
+    system_name: Salesforce CRM
+    capability: Customer Management
+
+  target:
+    system_id: APP-0002
+    system_name: SAP S/4HANA
+    capability: Order Management
+
+  contract:
+    interaction_name: customer-master-sync
+    business_purpose: Share customer master updates with downstream consumers.
+    payload_type: JSON
+    canonical_model: Customer
+    operations:
+      - name: upsertCustomer
+        description: Create or update a customer record in the target platform.
+      - name: getCustomer
+        description: Retrieve a customer record by enterprise identifier.
+
+  connectivity:
+    protocol: HTTPS
+    transport: REST
+    endpoint:
+      environment: production
+      url: https://api.example.com/customer-master/v1/customers
+    trigger:
+      type: event
+      schedule: null
+      event_name: customer.updated
+
+  data:
+    entities:
+      - Customer
+      - Address
+      - Contact
+    frequency: near-real-time
+    expected_volume: medium
+    data_classification:
+      - internal
+      - pii
+    retention_policy: Managed by source and target applications according to enterprise policy.
+
+  security:
+    authentication: OAuth2 client credentials
+    authorization: RBAC
+    encryption_in_transit: TLS 1.2+
+    encryption_at_rest: platform-managed
+    compliance:
+      - GDPR
+      - ISO27001
+
+  service_levels:
+    availability_target: 99.9%
+    response_time_target_ms: 2000
+    recovery_time_objective: 4h
+    recovery_point_objective: 15m
+
+  observability:
+    logging: centralized
+    monitoring: platform dashboard
+    alerting: on-call integration support
+    traceability: correlation-id
+
+  dependencies:
+    upstream_interfaces:
+      - IF-0000
+    downstream_interfaces:
+      - IF-0002
+    technologies:
+      - MuleSoft
+      - Azure API Management
+
+  governance:
+    version: v1
+    change_management: Architecture review required for breaking changes.
+    deprecation_policy: 12 months notice before retirement.
+
+  tags:
+    - customer
+    - master-data
+    - integration
+    - api
+
+  notes:
+    assumptions:
+      - Source system remains the system of record for customer master data.
+    risks:
+      - Downstream consumers may not support full customer payload on initial rollout.

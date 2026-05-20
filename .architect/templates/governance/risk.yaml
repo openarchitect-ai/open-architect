@@ -1,0 +1,125 @@
+template:
+  kind: risk
+  version: 1.0
+  schema_version: 1.0
+  description: Template for a single architecture risk entry in the enterprise architecture metamodel.
+
+spec:
+  id: RSK-0001
+  name: delayed-canonical-model-adoption
+  display_name: Delayed Canonical Model Adoption
+  aliases:
+    - Canonical Adoption Risk
+  summary: Risk that inconsistent or delayed adoption of the canonical customer model undermines transition outcomes.
+  description: >
+    Architecture risk describing an uncertainty that could negatively affect
+    target-state realization, transition success, compliance, delivery timing,
+    or operational stability.
+
+  classification:
+    risk_type: architecture-delivery
+    category: transition
+    impact_level: high # low | medium | high | critical
+    criticality: high
+
+  status:
+    lifecycle: active # identified | active | retired | archived
+    treatment_status: mitigation-planned # identified | mitigation-planned | mitigation-in-progress | accepted | closed
+    trend: increasing # decreasing | stable | increasing
+
+  ownership:
+    risk_owner: Solution Architecture
+    mitigation_owner: Program Manager
+    escalation_owner: Enterprise Architecture
+
+  metadata:
+    source_of_truth:
+      system: Architecture Risk Register
+      record_locator: RSK-0001
+      owner: Enterprise Architecture
+    last_reviewed: 2026-05-20
+    review_owner: Enterprise Architecture
+    confidence: medium
+    references:
+      - type: confluence
+        title: Delayed Canonical Model Adoption
+        url: https://confluence.example.com/display/EA/delayed-canonical-model-adoption
+      - type: risk-register
+        title: Customer Modernization Risk Register
+        url: https://example.com/risk/customer-modernization
+    change_log:
+      - date: 2026-05-20
+        summary: Initial risk template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: threatens-objective
+      target_kind: objective
+      target_id: OBJ-0001
+      strength: primary
+      confidence: high
+    - type: threatens-solution
+      target_kind: solution
+      target_id: SOL-0001
+      strength: primary
+      confidence: high
+    - type: threatens-transition-architecture
+      target_kind: transition-architecture
+      target_id: TA-0001
+      strength: primary
+      confidence: high
+    - type: threatens-roadmap
+      target_kind: roadmap
+      target_id: RMP-0001
+      strength: supporting
+      confidence: medium
+    - type: informed-by-gap
+      target_kind: gap
+      target_id: GAP-0001
+      strength: supporting
+      confidence: medium
+    - type: surfaced-in-compliance-assessment
+      target_kind: compliance-assessment
+      target_id: CMP-0001
+      strength: informational
+      confidence: low
+
+  statement:
+    cause: Adoption of the canonical customer model may be delayed by competing delivery priorities and inconsistent cross-team alignment.
+    event: In-scope teams fail to align designs and implementation to the canonical model on schedule.
+    effect: Transition benefits are delayed, integration complexity remains high, and roadmap milestones slip.
+
+  analysis:
+    likelihood: medium
+    impact: high
+    exposure: significant
+    early_indicators:
+      - Repeated exceptions to canonical model usage
+      - Delayed sign-off on data mappings
+      - Growth in bespoke interface transformations
+
+  treatment:
+    strategy: mitigate
+    mitigation_actions:
+      - Establish explicit canonical model approval checkpoints.
+      - Require architecture review for new interface designs.
+      - Track adoption metrics in roadmap governance.
+    contingency_actions:
+      - Prioritize high-value consumer integrations first.
+      - Escalate repeated exceptions to architecture governance board.
+
+  governance:
+    review_cadence: monthly
+    escalation_threshold: repeated architecture exceptions or milestone slippage
+
+  tags:
+    - risk
+    - transition
+    - governance
+    - adm
+
+  notes:
+    assumptions:
+      - Risk scoring will be reviewed as more delivery evidence becomes available.
+    risks:
+      - If untreated, local optimizations may become entrenched and harder to unwind.

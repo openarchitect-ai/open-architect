@@ -1,0 +1,194 @@
+template:
+  kind: transition-architecture
+  version: 1.0
+  schema_version: 1.0
+  description: Template for a single transition architecture state or rollout plateau in the enterprise architecture metamodel.
+
+spec:
+  id: TA-0001
+  name: customer-modernization-wave-1
+  display_name: Customer Modernization Wave 1
+  aliases:
+    - Wave 1 Transition State
+  summary: First transition state for moving customer onboarding and synchronization to the canonical customer model.
+  description: >
+    Time-bounded transition architecture describing the interim operating
+    state, scoped changes, and exit criteria between baseline and target
+    architecture.
+
+  classification:
+    architecture_state: transition # baseline | transition | target
+    transition_type: rollout-wave
+    scope: domain
+    criticality: high
+
+  status:
+    lifecycle: in-flight # planned | in-flight | completed | retired | archived
+    planning_status: approved # draft | proposed | approved | rejected | superseded
+    delivery_status: amber # green | amber | red | complete | on-hold
+
+  ownership:
+    architecture_owner: Solution Architecture
+    delivery_owner: Program Manager
+    business_owner: Customer Operations
+
+  metadata:
+    source_of_truth:
+      system: Transition Architecture Repository
+      record_locator: TA-0001
+      owner: Solution Architecture
+    last_reviewed: 2026-05-20
+    review_owner: Solution Architecture
+    confidence: medium
+    references:
+      - type: confluence
+        title: Customer Modernization Wave 1
+        url: https://confluence.example.com/display/EA/customer-modernization-wave-1
+      - type: roadmap
+        title: Transition Roadmap
+        url: https://example.com/roadmap/customer-wave-1
+    change_log:
+      - date: 2026-05-20
+        summary: Initial transition architecture template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: driven-by
+      target_kind: initiative
+      target_id: INI-0001
+      strength: primary
+      confidence: high
+    - type: constrained-by
+      target_kind: decision
+      target_id: DEC-0001
+      strength: primary
+      confidence: high
+    - type: changes-capability
+      target_kind: business-capability
+      target_id: BC-0001
+      strength: primary
+      confidence: high
+    - type: changes-application
+      target_kind: application
+      target_id: APP-0001
+      strength: primary
+      confidence: high
+    - type: changes-interface
+      target_kind: interface
+      target_id: IF-0001
+      strength: primary
+      confidence: high
+    - type: changes-data-object
+      target_kind: data-object
+      target_id: DO-0001
+      strength: primary
+      confidence: high
+    - type: executed-by
+      target_kind: work-package
+      target_id: WP-0001
+      strength: supporting
+      confidence: medium
+    - type: resolves-gap
+      target_kind: gap
+      target_id: GAP-0001
+      strength: supporting
+      confidence: medium
+
+  timeframe:
+    valid_from: 2026-07-01
+    valid_to: 2027-03-31
+    milestone: wave-1-go-live
+
+  baseline:
+    reference_state: baseline
+    architecture_scope:
+      applications:
+        - APP-0001
+        - APP-0002
+      interfaces:
+        - IF-0001
+        - IF-0002
+      data_objects:
+        - DO-0001
+
+  target:
+    reference_state: target
+    architecture_scope:
+      applications:
+        - APP-0001
+        - APP-0003
+      interfaces:
+        - IF-0001
+        - IF-0004
+      data_objects:
+        - DO-0001
+
+  changes:
+    introduced:
+      - kind: application-service
+        id: AS-0003
+        change_type: introduce
+        rationale: Introduce a canonical customer service facade.
+      - kind: interface
+        id: IF-0004
+        change_type: introduce
+        rationale: Introduce event-driven customer synchronization.
+    modified:
+      - kind: application
+        id: APP-0001
+        change_type: modify
+        rationale: Align CRM integration contracts to canonical model.
+      - kind: data-object
+        id: DO-0001
+        change_type: modify
+        rationale: Add governed canonical customer attributes.
+    retained:
+      - kind: application
+        id: APP-0002
+        change_type: retain
+        rationale: ERP remains in scope during the transition period.
+    retired:
+      - kind: interface
+        id: IF-0002
+        change_type: retire
+        rationale: Legacy batch feed is decommissioned after cutover.
+
+  dependencies:
+    predecessor_transition_architectures:
+      - TA-0000
+    dependent_work_packages:
+      - WP-0001
+      - WP-0002
+    blocking_risks:
+      - Data mapping approval must be completed before cutover.
+      - Legacy ERP constraints may delay event adoption.
+
+  outcomes:
+    business_outcomes:
+      - Customer onboarding uses the canonical customer model.
+      - Downstream customer synchronization is standardized.
+    architecture_outcomes:
+      - Legacy batch customer feed is retired.
+      - Customer integration patterns move to governed service contracts.
+
+  exit_criteria:
+    - New customer synchronization interface is live in production.
+    - Canonical customer model is adopted by in-scope integrations.
+    - Legacy batch interface is decommissioned.
+
+  governance:
+    approval_forum: Architecture Review Board
+    review_cadence: monthly
+    exception_process: Formal architecture waiver required for deviations.
+
+  tags:
+    - transition
+    - architecture
+    - customer
+    - wave-1
+
+  notes:
+    assumptions:
+      - The target canonical model is approved before build starts.
+    risks:
+      - Parallel operation of old and new interfaces may increase reconciliation effort.

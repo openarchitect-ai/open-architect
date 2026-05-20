@@ -1,0 +1,117 @@
+template:
+  kind: stakeholder
+  version: 1.0
+  schema_version: 1.0
+  description: Template for a single stakeholder entry in the enterprise architecture metamodel.
+
+spec:
+  id: STK-0001
+  name: chief-customer-officer
+  display_name: Chief Customer Officer
+  aliases:
+    - CCO
+  summary: Executive stakeholder accountable for customer outcomes and sponsor of customer architecture change.
+  description: >
+    Stakeholder representing a person, role, group, or external party with
+    interests, concerns, influence, or decision rights over the architecture.
+
+  classification:
+    stakeholder_type: executive
+    scope: enterprise
+    influence_level: high # low | medium | high
+    criticality: high
+
+  status:
+    lifecycle: active # identified | active | inactive | retired | archived
+    engagement_status: engaged # not-engaged | engaged | consulted | blocked
+    decision_authority: high # low | medium | high
+
+  ownership:
+    stakeholder_owner: Enterprise Architecture
+    relationship_owner: Solution Architecture
+    business_contact: Customer Operations
+
+  metadata:
+    source_of_truth:
+      system: Stakeholder Register
+      record_locator: STK-0001
+      owner: Enterprise Architecture
+    last_reviewed: 2026-05-20
+    review_owner: Enterprise Architecture
+    confidence: medium
+    references:
+      - type: confluence
+        title: Chief Customer Officer Stakeholder Profile
+        url: https://confluence.example.com/display/EA/chief-customer-officer
+      - type: org-chart
+        title: Executive Leadership Org Chart
+        url: https://example.com/org/executive-leadership
+    change_log:
+      - date: 2026-05-20
+        summary: Initial stakeholder template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: owns-organization
+      target_kind: organization
+      target_id: ORG-0001
+      strength: primary
+      confidence: high
+    - type: sponsors-initiative
+      target_kind: initiative
+      target_id: INI-0001
+      strength: primary
+      confidence: high
+    - type: approves-architecture-vision
+      target_kind: architecture-vision
+      target_id: VIS-0001
+      strength: primary
+      confidence: medium
+    - type: concerned-with-objective
+      target_kind: objective
+      target_id: OBJ-0001
+      strength: supporting
+      confidence: medium
+    - type: reviews-compliance-assessment
+      target_kind: compliance-assessment
+      target_id: CMP-0001
+      strength: informational
+      confidence: low
+    - type: monitors-risk
+      target_kind: risk
+      target_id: RSK-0001
+      strength: informational
+      confidence: low
+
+  concerns:
+    business_concerns:
+      - Customer experience consistency across channels
+      - Quality and timeliness of customer data updates
+    architecture_concerns:
+      - Alignment of delivery to target customer operating model
+      - Avoidance of duplicate investments and fragmented platforms
+    success_criteria:
+      - Improved customer onboarding lead time
+      - Higher trust in enterprise customer data
+
+  engagement:
+    preferred_engagement_model: steering-forum
+    communication_cadence: monthly
+    escalation_role: sponsor
+
+  governance:
+    decision_rights:
+      - Approve strategic customer transformation priorities
+      - Endorse customer-related architecture direction
+
+  tags:
+    - stakeholder
+    - executive
+    - customer
+    - adm
+
+  notes:
+    assumptions:
+      - Stakeholder priorities remain aligned with the customer transformation roadmap.
+    risks:
+      - Competing strategic priorities may reduce active engagement at critical milestones.

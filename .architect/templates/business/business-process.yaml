@@ -1,0 +1,150 @@
+template:
+  kind: business-process
+  version: 1.1
+  schema_version: 1.1
+  description: Template for a single business process entry in the enterprise architecture metamodel.
+
+spec:
+  id: BP-0001
+  name: onboard-customer
+  display_name: Onboard Customer
+  aliases:
+    - Customer Onboarding
+  summary: Operational process for validating and activating new customers in enterprise systems.
+  description: >
+    Business process for capturing, validating, approving, and activating a
+    new customer in enterprise systems.
+
+  classification:
+    domain: customer
+    process_type: operational
+    frequency: daily
+    criticality: high
+
+  status:
+    lifecycle: active
+    automation_level: semi-automated
+    improvement_status: under-review
+
+  ownership:
+    process_owner: Head of Customer Operations
+    operational_owner: Customer Onboarding Team
+    architecture_owner: Business Architecture
+
+  metadata:
+    source_of_truth:
+      system: Process Repository
+      record_locator: BP-0001
+      owner: Business Architecture
+    last_reviewed: 2026-05-20
+    review_owner: Business Architecture
+    confidence: medium
+    references:
+      - type: confluence
+        title: Onboard Customer Process
+        url: https://confluence.example.com/display/EA/onboard-customer-process
+      - type: bpm
+        title: BPMN Onboarding Model
+        url: https://example.com/bpmn/onboard-customer
+    change_log:
+      - date: 2026-05-20
+        summary: Initial business process template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: realizes-capability
+      target_kind: business-capability
+      target_id: BC-0001
+      strength: primary
+      confidence: high
+    - type: uses-application
+      target_kind: application
+      target_id: APP-0001
+      strength: primary
+      confidence: high
+    - type: uses-service
+      target_kind: application-service
+      target_id: AS-0001
+      strength: primary
+      confidence: high
+    - type: exchanges-through
+      target_kind: interface
+      target_id: IF-0001
+      strength: supporting
+      confidence: medium
+    - type: creates-or-updates
+      target_kind: data-object
+      target_id: DO-0001
+      strength: primary
+      confidence: high
+    - type: owned-by
+      target_kind: organization
+      target_id: ORG-0001
+      strength: primary
+      confidence: high
+
+  business_alignment:
+    capabilities_realized:
+      - BC-0001
+    triggers:
+      - New customer request submitted
+    outcomes:
+      - Customer record created and approved
+      - Customer ready for order capture and billing
+
+  flow:
+    inputs:
+      - Customer registration request
+      - Compliance verification data
+    outputs:
+      - Approved customer master
+      - Customer onboarding confirmation
+    key_steps:
+      - Capture request
+      - Validate data
+      - Perform compliance checks
+      - Approve record
+      - Activate downstream systems
+
+  enablement:
+    applications:
+      - APP-0001
+      - APP-0002
+    application_services:
+      - AS-0001
+    interfaces:
+      - IF-0001
+      - IF-0002
+    data_objects:
+      - DO-0001
+      - DO-0003
+
+  controls:
+    policy_controls:
+      - Know Your Customer review
+      - Segregation of duties for approval
+    service_level_targets:
+      cycle_time: 1d
+      first_time_right: 95%
+
+  improvement:
+    pain_points:
+      - Manual validation steps delay activation
+      - Duplicate data checks are not consistently automated
+    opportunities:
+      - Increase straight-through processing
+      - Introduce rules-based validation and enrichment
+
+  governance:
+    process_standard: BPMN-aligned modeling required for controlled process changes.
+
+  tags:
+    - process
+    - customer
+    - onboarding
+
+  notes:
+    assumptions:
+      - Compliance checks are performed by an approved external service.
+    risks:
+      - Process variants across regions may reduce standardization.

@@ -1,0 +1,129 @@
+template:
+  kind: technology-component
+  version: 1.1
+  schema_version: 1.1
+  description: Template for a single technology component entry in the enterprise architecture metamodel.
+
+spec:
+  id: TC-0001
+  name: mulesoft-runtime
+  display_name: MuleSoft Runtime
+  aliases:
+    - Integration Runtime
+  summary: Shared integration runtime platform used to host and operate enterprise APIs and mediation services.
+  description: >
+    Integration runtime platform used to host and operate enterprise APIs,
+    events, and mediation services.
+
+  classification:
+    technology_domain: integration
+    component_type: runtime-platform
+    vendor: MuleSoft
+    deployment_model: managed-cloud
+    criticality: high
+
+  status:
+    lifecycle: production
+    standard_position: strategic
+    support_status: active # active | limited-support | end-of-life | retired
+
+  ownership:
+    technical_owner: Integration Platform Team
+    service_owner: Enterprise Platforms
+    vendor_owner: MuleSoft Account Team
+
+  metadata:
+    source_of_truth:
+      system: Technology Portfolio Repository
+      record_locator: TC-0001
+      owner: Enterprise Platforms
+    last_reviewed: 2026-05-20
+    review_owner: Integration Platform Team
+    confidence: high
+    references:
+      - type: confluence
+        title: MuleSoft Runtime
+        url: https://confluence.example.com/display/EA/mulesoft-runtime
+      - type: standard
+        title: Integration Platform Standard
+        url: https://example.com/standards/integration-platform
+    change_log:
+      - date: 2026-05-20
+        summary: Initial technology component template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: hosts-interface
+      target_kind: interface
+      target_id: IF-0001
+      strength: primary
+      confidence: high
+    - type: supports-application
+      target_kind: application
+      target_id: APP-0001
+      strength: supporting
+      confidence: medium
+    - type: enables-initiative
+      target_kind: initiative
+      target_id: INI-0001
+      strength: supporting
+      confidence: medium
+    - type: governed-by-organization
+      target_kind: organization
+      target_id: ORG-0001
+      strength: supporting
+      confidence: medium
+
+  usage:
+    supported_applications:
+      - APP-0001
+      - APP-0002
+    supported_interfaces:
+      - IF-0001
+      - IF-0002
+    workloads:
+      - API mediation
+      - system integration
+      - event orchestration
+
+  deployment:
+    environments:
+      - development
+      - test
+      - production
+    hosting_location: eu-central
+    resilience_pattern: multi-zone
+
+  dependencies:
+    upstream_components:
+      - TC-0003
+    downstream_components:
+      - TC-0004
+    standards:
+      - TS-0001
+
+  security:
+    identity_integration: enterprise-iam
+    logging: centralized
+    secrets_management: platform-managed
+    compliance:
+      - ISO27001
+
+  service_levels:
+    availability_target: 99.95%
+    patching_window: monthly
+    recovery_time_objective: 4h
+
+  governance:
+    lifecycle_policy: Review quarterly for patching, capacity, and vendor roadmap alignment.
+
+  tags:
+    - technology
+    - integration
+    - platform
+
+  notes:
+    assumptions:
+      - Shared runtime remains approved for enterprise integration patterns.
+    risks:
+      - Platform contention may affect performance for peak workloads.

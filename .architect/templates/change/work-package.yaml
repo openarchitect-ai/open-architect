@@ -1,0 +1,158 @@
+template:
+  kind: work-package
+  version: 1.0
+  schema_version: 1.0
+  description: Template for a single work package or delivery increment in the enterprise architecture metamodel.
+
+spec:
+  id: WP-0001
+  name: implement-customer-sync-wave-1
+  display_name: Implement Customer Sync Wave 1
+  aliases:
+    - Customer Sync Delivery Pack
+  summary: Delivery work package for implementing the first wave of canonical customer synchronization changes.
+  description: >
+    Executable delivery increment that realizes part of a transition
+    architecture through concrete build, migration, testing, and cutover work.
+
+  classification:
+    work_package_type: delivery-increment
+    architecture_state: transition # baseline | transition | target
+    priority: high # low | medium | high | critical
+    criticality: high
+
+  status:
+    lifecycle: in-flight # planned | in-flight | completed | cancelled | archived
+    delivery_status: amber # green | amber | red | complete | on-hold
+    readiness_status: ready-for-build # identified | planned | ready-for-build | in-build | ready-for-release | done
+
+  ownership:
+    initiative_owner: Program Manager
+    delivery_owner: Integration Delivery Lead
+    architecture_owner: Solution Architecture
+
+  metadata:
+    source_of_truth:
+      system: Delivery Portfolio Repository
+      record_locator: WP-0001
+      owner: Program Management Office
+    last_reviewed: 2026-05-20
+    review_owner: Integration Delivery Lead
+    confidence: medium
+    references:
+      - type: confluence
+        title: Implement Customer Sync Wave 1
+        url: https://confluence.example.com/display/EA/implement-customer-sync-wave-1
+      - type: backlog
+        title: Delivery Backlog Epic
+        url: https://example.com/backlog/customer-sync-wave-1
+    change_log:
+      - date: 2026-05-20
+        summary: Initial work package template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: realizes-transition-architecture
+      target_kind: transition-architecture
+      target_id: TA-0001
+      strength: primary
+      confidence: high
+    - type: part-of-initiative
+      target_kind: initiative
+      target_id: INI-0001
+      strength: primary
+      confidence: high
+    - type: constrained-by
+      target_kind: decision
+      target_id: DEC-0001
+      strength: supporting
+      confidence: medium
+    - type: changes-application
+      target_kind: application
+      target_id: APP-0001
+      strength: primary
+      confidence: high
+    - type: changes-interface
+      target_kind: interface
+      target_id: IF-0001
+      strength: primary
+      confidence: high
+    - type: changes-data-object
+      target_kind: data-object
+      target_id: DO-0001
+      strength: supporting
+      confidence: medium
+    - type: addresses-gap
+      target_kind: gap
+      target_id: GAP-0001
+      strength: supporting
+      confidence: medium
+
+  planning:
+    start_date: 2026-07-15
+    target_end_date: 2026-11-30
+    delivery_method: agile
+    funding_status: funded
+    milestone: wave-1-cutover
+
+  scope:
+    objectives:
+      - Build canonical customer synchronization service.
+      - Implement new customer event interface.
+      - Retire legacy batch synchronization.
+    in_scope:
+      applications:
+        - APP-0001
+        - APP-0002
+      application_services:
+        - AS-0001
+        - AS-0003
+      interfaces:
+        - IF-0001
+        - IF-0004
+      data_objects:
+        - DO-0001
+    out_of_scope:
+      - Regional customer onboarding variants
+      - Non-customer master integrations
+
+  deliverables:
+    architecture_deliverables:
+      - Updated solution design
+      - Approved integration contract
+      - Cutover plan
+    implementation_deliverables:
+      - Deployed customer synchronization service
+      - Production-ready interface configuration
+      - Monitoring and alerting setup
+
+  dependencies:
+    predecessor_work_packages:
+      - WP-0000
+    successor_work_packages:
+      - WP-0002
+    blockers:
+      - Canonical customer attribute mapping sign-off
+      - Target event platform capacity approval
+
+  acceptance_criteria:
+    - Customer synchronization service passes integration testing.
+    - Legacy batch customer feed is disabled after cutover validation.
+    - Monitoring and operational handover are complete.
+
+  governance:
+    decision_log_required: true
+    reporting_cadence: fortnightly
+    architecture_checkpoint: required-before-production
+
+  tags:
+    - work-package
+    - transition
+    - delivery
+    - customer
+
+  notes:
+    assumptions:
+      - Delivery team has access to target integration environments on schedule.
+    risks:
+      - Integration test data quality may delay production readiness.

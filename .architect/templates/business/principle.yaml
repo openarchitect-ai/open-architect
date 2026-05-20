@@ -1,0 +1,113 @@
+template:
+  kind: principle
+  version: 1.0
+  schema_version: 1.0
+  description: Template for a single architecture principle entry in the enterprise architecture metamodel.
+
+spec:
+  id: PRN-0001
+  name: canonical-data-first
+  display_name: Canonical Data First
+  aliases:
+    - Canonical Model Principle
+  summary: Architecture principle requiring shared canonical data definitions for reusable cross-system integration and reporting.
+  description: >
+    Architecture principle expressing a durable design rule that guides
+    enterprise and solution architecture decisions across domains and changes.
+
+  classification:
+    principle_type: data
+    scope: enterprise
+    criticality: high
+    priority: high # low | medium | high | critical
+
+  status:
+    lifecycle: active # draft | active | retired | archived
+    approval_status: approved # draft | proposed | approved | rejected | superseded
+    enforcement_status: guided # advisory | guided | enforced
+
+  ownership:
+    principle_owner: Enterprise Architecture
+    approver: Architecture Review Board
+    steward: Data Architecture
+
+  metadata:
+    source_of_truth:
+      system: Architecture Principles Repository
+      record_locator: PRN-0001
+      owner: Enterprise Architecture
+    last_reviewed: 2026-05-20
+    review_owner: Enterprise Architecture
+    confidence: high
+    references:
+      - type: confluence
+        title: Canonical Data First
+        url: https://confluence.example.com/display/EA/canonical-data-first
+      - type: policy
+        title: Data Interoperability Policy
+        url: https://example.com/policies/data-interoperability
+    change_log:
+      - date: 2026-05-20
+        summary: Initial principle template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: guides-solution
+      target_kind: solution
+      target_id: SOL-0001
+      strength: primary
+      confidence: high
+    - type: guides-decision
+      target_kind: decision
+      target_id: DEC-0001
+      strength: primary
+      confidence: high
+    - type: informs-standard
+      target_kind: technology-standard
+      target_id: TS-0001
+      strength: supporting
+      confidence: medium
+    - type: shapes-data-object
+      target_kind: data-object
+      target_id: DO-0001
+      strength: primary
+      confidence: high
+    - type: shapes-interface
+      target_kind: interface
+      target_id: IF-0001
+      strength: supporting
+      confidence: medium
+
+  principle:
+    statement: Shared enterprise data exchanged across systems should use governed canonical definitions by default.
+    rationale:
+      - Reduces semantic inconsistency between systems.
+      - Increases reuse across interfaces and services.
+      - Supports more reliable analytics and AI reasoning.
+    implications:
+      - Delivery teams must align new integrations to canonical data definitions.
+      - Exceptions require explicit approval and compensating controls.
+
+  evaluation:
+    compliance_questions:
+      - Does the design use an approved canonical model for cross-system data exchange?
+      - Are deviations documented and approved?
+    success_measure:
+      - name: canonical-adoption-rate
+        target: 90%
+
+  governance:
+    application_guidance: Apply by default to new integrations, major redesigns, and transition architectures.
+    exception_process: Formal architecture waiver required for exceptions.
+
+  tags:
+    - principle
+    - architecture
+    - data
+    - governance
+
+  notes:
+    assumptions:
+      - Canonical definitions are maintained in a governed enterprise glossary.
+    risks:
+      - Principle may be interpreted inconsistently if examples and standards are not maintained.

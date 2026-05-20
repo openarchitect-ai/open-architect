@@ -1,0 +1,134 @@
+template:
+  kind: application-service
+  version: 1.1
+  schema_version: 1.1
+  description: Template for a single application service entry in the enterprise architecture metamodel.
+
+spec:
+  id: AS-0001
+  name: customer-master-service
+  display_name: Customer Master Service
+  aliases:
+    - Customer API Service
+  summary: Logical service for creating, updating, and retrieving customer master information.
+  description: >
+    Logical application service that manages creation, update, and retrieval
+    of customer master information.
+
+  classification:
+    domain: customer
+    service_type: business-supporting
+    exposure: internal
+    criticality: high
+
+  status:
+    lifecycle: production
+    operational_status: active # active | degraded | sunsetting | retired
+    version: v1
+
+  ownership:
+    owning_application: APP-0001
+    business_owner: Customer Operations
+    technical_owner: CRM Platform Team
+
+  metadata:
+    source_of_truth:
+      system: Application Portfolio Repository
+      record_locator: AS-0001
+      owner: CRM Platform Team
+    last_reviewed: 2026-05-20
+    review_owner: CRM Platform Team
+    confidence: high
+    references:
+      - type: confluence
+        title: Customer Master Service
+        url: https://confluence.example.com/display/EA/customer-master-service
+      - type: api-catalog
+        title: Customer Service Product Entry
+        url: https://example.com/catalog/customer-master-service
+    change_log:
+      - date: 2026-05-20
+        summary: Initial application service template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: realized-by
+      target_kind: application
+      target_id: APP-0001
+      strength: primary
+      confidence: high
+    - type: supports-capability
+      target_kind: business-capability
+      target_id: BC-0001
+      strength: primary
+      confidence: high
+    - type: supports-process
+      target_kind: business-process
+      target_id: BP-0001
+      strength: primary
+      confidence: high
+    - type: exposed-through
+      target_kind: interface
+      target_id: IF-0001
+      strength: primary
+      confidence: high
+    - type: manages-data-object
+      target_kind: data-object
+      target_id: DO-0001
+      strength: primary
+      confidence: high
+    - type: owned-by
+      target_kind: organization
+      target_id: ORG-0001
+      strength: primary
+      confidence: high
+
+  business_alignment:
+    capabilities_supported:
+      - BC-0001
+    processes_supported:
+      - BP-0001
+      - BP-0002
+
+  contract:
+    responsibilities:
+      - Create customer record
+      - Update customer attributes
+      - Retrieve customer master details
+    service_policies:
+      - All updates require enterprise customer identifier validation.
+      - Sensitive fields must be masked in non-production contexts.
+
+  realization:
+    interfaces:
+      - IF-0001
+      - IF-0002
+    data_objects:
+      - DO-0001
+      - DO-0002
+
+  consumers:
+    applications:
+      - APP-0002
+      - APP-0003
+    organizations:
+      - ORG-0002
+
+  service_levels:
+    availability_target: 99.9%
+    response_time_target_ms: 2000
+    support_model: on-call
+
+  governance:
+    versioning_policy: Service contracts are versioned independently from transport protocols.
+
+  tags:
+    - service
+    - customer
+    - application
+
+  notes:
+    assumptions:
+      - Service contracts are versioned independently from interface transport details.
+    risks:
+      - Logical service boundaries may drift if multiple teams expose overlapping functions.

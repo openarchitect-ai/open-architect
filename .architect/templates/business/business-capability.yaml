@@ -1,0 +1,139 @@
+template:
+  kind: business-capability
+  version: 1.1
+  schema_version: 1.1
+  description: Template for a single business capability entry in the enterprise architecture metamodel.
+
+spec:
+  id: BC-0001
+  name: customer-management
+  display_name: Customer Management
+  aliases:
+    - Customer Lifecycle Management
+  summary: Business ability to manage customer relationships and trusted customer information across the enterprise.
+  description: >
+    Ability to create, maintain, and govern customer relationships and
+    customer master information across the enterprise.
+
+  classification:
+    domain: customer
+    level: level-1
+    capability_type: core
+    criticality: high
+
+  status:
+    lifecycle: active
+    target_state: modernize
+    maturity: managed # initial | emerging | defined | managed | optimized
+
+  ownership:
+    executive_owner: Chief Customer Officer
+    business_owner: Head of Customer Operations
+    architecture_owner: Enterprise Architecture
+
+  metadata:
+    source_of_truth:
+      system: Business Capability Map
+      record_locator: BC-0001
+      owner: Enterprise Architecture
+    last_reviewed: 2026-05-20
+    review_owner: Enterprise Architecture
+    confidence: medium
+    references:
+      - type: confluence
+        title: Customer Management Capability
+        url: https://confluence.example.com/display/EA/customer-management-capability
+      - type: strategy
+        title: Customer Transformation Strategy
+        url: https://example.com/strategy/customer-transformation
+    change_log:
+      - date: 2026-05-20
+        summary: Initial business capability template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: enabled-by
+      target_kind: application
+      target_id: APP-0001
+      strength: primary
+      confidence: high
+    - type: realized-by
+      target_kind: business-process
+      target_id: BP-0001
+      strength: primary
+      confidence: high
+    - type: uses-data-object
+      target_kind: data-object
+      target_id: DO-0001
+      strength: primary
+      confidence: high
+    - type: owned-by
+      target_kind: organization
+      target_id: ORG-0001
+      strength: primary
+      confidence: high
+    - type: changed-by
+      target_kind: initiative
+      target_id: INI-0001
+      strength: supporting
+      confidence: medium
+    - type: guided-by
+      target_kind: decision
+      target_id: DEC-0001
+      strength: supporting
+      confidence: medium
+
+  hierarchy:
+    parent_capability: null
+    child_capabilities:
+      - BC-0002
+      - BC-0003
+
+  business_context:
+    value_streams:
+      - Lead to Cash
+      - Service to Retain
+    outcomes:
+      - Single trusted customer view across channels
+      - Faster onboarding and update of customer records
+    measures:
+      - name: customer-data-completeness
+        target: 98%
+      - name: onboarding-cycle-time
+        target: 1d
+
+  enablement:
+    processes:
+      - BP-0001
+      - BP-0002
+    applications:
+      - APP-0001
+      - APP-0002
+    data_objects:
+      - DO-0001
+      - DO-0002
+
+  strategy:
+    drivers:
+      - Improve customer experience
+      - Reduce duplicate customer records
+    pain_points:
+      - Fragmented customer data ownership
+      - Duplicate data entry across applications
+    target_maturity: optimized # initial | emerging | defined | managed | optimized
+
+  governance:
+    policy_references:
+      - Operating Model Standard
+      - Customer Data Governance Policy
+
+  tags:
+    - business
+    - capability
+    - customer
+
+  notes:
+    assumptions:
+      - Capability definitions remain stable across organizational changes.
+    risks:
+      - Capability scope may overlap with adjacent service functions if not governed.

@@ -1,0 +1,123 @@
+template:
+  kind: technology-standard
+  version: 1.0
+  schema_version: 1.0
+  description: Template for a single technology standard entry in the enterprise architecture metamodel.
+
+spec:
+  id: TS-0001
+  name: integration-platform-standard
+  display_name: Integration Platform Standard
+  aliases:
+    - Approved Integration Runtime Standard
+  summary: Enterprise standard defining the approved technology direction for integration runtime and API mediation capabilities.
+  description: >
+    Technology standard describing approved, tolerated, sunset, or prohibited
+    technology choices and the rules that govern their selection and use.
+
+  classification:
+    standard_type: platform
+    technology_domain: integration
+    standard_position: strategic # strategic | tactical | contain | retire
+    criticality: high
+
+  status:
+    lifecycle: active # draft | active | retired | archived
+    approval_status: approved # draft | proposed | approved | rejected | superseded
+    enforcement_status: enforced # advisory | guided | enforced
+
+  ownership:
+    standard_owner: Enterprise Architecture
+    technical_owner: Enterprise Platforms
+    approver: Architecture Review Board
+
+  metadata:
+    source_of_truth:
+      system: Technology Standards Catalog
+      record_locator: TS-0001
+      owner: Enterprise Architecture
+    last_reviewed: 2026-05-20
+    review_owner: Enterprise Architecture
+    confidence: high
+    references:
+      - type: confluence
+        title: Integration Platform Standard
+        url: https://confluence.example.com/display/EA/integration-platform-standard
+      - type: policy
+        title: Technology Selection Policy
+        url: https://example.com/policies/technology-selection
+    change_log:
+      - date: 2026-05-20
+        summary: Initial technology standard template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: governs-technology-component
+      target_kind: technology-component
+      target_id: TC-0001
+      strength: primary
+      confidence: high
+    - type: constrains-solution
+      target_kind: solution
+      target_id: SOL-0001
+      strength: supporting
+      confidence: medium
+    - type: guides-transition-architecture
+      target_kind: transition-architecture
+      target_id: TA-0001
+      strength: supporting
+      confidence: medium
+    - type: derived-from-principle
+      target_kind: principle
+      target_id: PRN-0001
+      strength: supporting
+      confidence: medium
+    - type: referenced-by-decision
+      target_kind: decision
+      target_id: DEC-0001
+      strength: informational
+      confidence: low
+
+  standard:
+    statement: Enterprise integrations must use approved managed integration runtime capabilities unless an exception is granted.
+    rationale:
+      - Reduces platform sprawl and support complexity.
+      - Improves operational consistency and security posture.
+    applicability:
+      - APIs
+      - System integration
+      - Event mediation
+    exceptions:
+      - Temporary exceptions may be granted for legacy decommissioning periods.
+
+  preferred_technologies:
+    approved:
+      - MuleSoft Runtime
+      - Azure API Management
+    tolerated:
+      - Legacy ESB during retirement period
+    prohibited:
+      - New unmanaged point-to-point middleware
+
+  enforcement:
+    review_gate: architecture-review
+    waiver_process: Standards exception approval required.
+    compliance_measure:
+      - name: approved-platform-adoption
+        target: 95%
+
+  governance:
+    review_frequency: quarterly
+    expiry_review_date: 2027-05-20
+
+  tags:
+    - standard
+    - technology
+    - integration
+    - governance
+
+  notes:
+    assumptions:
+      - Approved platform capabilities satisfy most enterprise integration needs.
+    risks:
+      - Overly rigid enforcement may slow pragmatic modernization in edge cases.

@@ -1,0 +1,123 @@
+template:
+  kind: organization
+  version: 1.1
+  schema_version: 1.1
+  description: Template for a single organization or team entry in the enterprise architecture metamodel.
+
+spec:
+  id: ORG-0001
+  name: customer-operations
+  display_name: Customer Operations
+  aliases:
+    - Customer Ops
+  summary: Business organization responsible for customer onboarding, stewardship, and operational support.
+  description: >
+    Business organization responsible for managing customer onboarding,
+    customer data stewardship, and operational customer support processes.
+
+  classification:
+    organization_type: business-function
+    operating_model: centralized
+    scope: global
+
+  status:
+    lifecycle: active
+    organizational_status: operating
+
+  ownership:
+    executive_lead: Chief Customer Officer
+    manager: Head of Customer Operations
+    architecture_contact: Lead Enterprise Architect
+
+  metadata:
+    source_of_truth:
+      system: Operating Model Repository
+      record_locator: ORG-0001
+      owner: HR and Operating Model Office
+    last_reviewed: 2026-05-20
+    review_owner: Lead Enterprise Architect
+    confidence: medium
+    references:
+      - type: confluence
+        title: Customer Operations
+        url: https://confluence.example.com/display/EA/customer-operations
+      - type: org-chart
+        title: Customer Operations Org Chart
+        url: https://example.com/org/customer-operations
+    change_log:
+      - date: 2026-05-20
+        summary: Initial organization template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: owns-capability
+      target_kind: business-capability
+      target_id: BC-0001
+      strength: primary
+      confidence: high
+    - type: owns-process
+      target_kind: business-process
+      target_id: BP-0001
+      strength: primary
+      confidence: high
+    - type: owns-application
+      target_kind: application
+      target_id: APP-0001
+      strength: supporting
+      confidence: medium
+    - type: stewards-data-object
+      target_kind: data-object
+      target_id: DO-0001
+      strength: primary
+      confidence: high
+    - type: sponsors-initiative
+      target_kind: initiative
+      target_id: INI-0001
+      strength: supporting
+      confidence: medium
+
+  structure:
+    parent_organization: ORG-0000
+    child_organizations:
+      - ORG-0002
+      - ORG-0003
+    roles:
+      - Customer Operations Analyst
+      - Data Steward
+      - Process Owner
+
+  responsibilities:
+    business_capabilities:
+      - BC-0001
+    business_processes:
+      - BP-0001
+      - BP-0002
+    owned_applications:
+      - APP-0001
+    owned_data_objects:
+      - DO-0001
+
+  engagement:
+    stakeholders:
+      - Sales
+      - Finance
+      - Compliance
+    service_consumers:
+      - Customer Success
+      - Billing Operations
+
+  governance:
+    decision_rights:
+      - Customer master data policy
+      - Onboarding process changes
+
+  tags:
+    - organization
+    - customer
+    - operations
+
+  notes:
+    assumptions:
+      - Roles and responsibilities are defined through the enterprise operating model.
+    risks:
+      - Accountability gaps may emerge if ownership overlaps with regional teams.

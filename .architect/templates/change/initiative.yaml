@@ -1,0 +1,140 @@
+template:
+  kind: initiative
+  version: 1.1
+  schema_version: 1.1
+  description: Template for a single transformation, program, or project initiative entry in the enterprise architecture metamodel.
+
+spec:
+  id: INI-0001
+  name: customer-master-modernization
+  display_name: Customer Master Modernization
+  aliases:
+    - Customer 360 Program
+  summary: Transformation initiative to modernize customer master management and simplify downstream integration.
+  description: >
+    Initiative to modernize customer master management, improve data quality,
+    and simplify downstream integration patterns.
+
+  classification:
+    initiative_type: transformation-program
+    investment_theme: modernization
+    priority: high # low | medium | high | critical
+
+  status:
+    lifecycle: in-flight # proposed | in-flight | completed | on-hold | cancelled | archived
+    delivery_status: amber # green | amber | red | complete | on-hold
+    architecture_status: approved # draft | proposed | approved | rejected | superseded
+
+  ownership:
+    sponsor: Chief Customer Officer
+    delivery_owner: Program Manager
+    architecture_owner: Solution Architecture
+
+  metadata:
+    source_of_truth:
+      system: Portfolio Management Repository
+      record_locator: INI-0001
+      owner: Program Management Office
+    last_reviewed: 2026-05-20
+    review_owner: Solution Architecture
+    confidence: medium
+    references:
+      - type: confluence
+        title: Customer Master Modernization
+        url: https://confluence.example.com/display/EA/customer-master-modernization
+      - type: roadmap
+        title: Customer Transformation Roadmap
+        url: https://example.com/roadmap/customer-master-modernization
+    change_log:
+      - date: 2026-05-20
+        summary: Initial initiative template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: changes-capability
+      target_kind: business-capability
+      target_id: BC-0001
+      strength: primary
+      confidence: high
+    - type: changes-application
+      target_kind: application
+      target_id: APP-0001
+      strength: primary
+      confidence: high
+    - type: changes-data-object
+      target_kind: data-object
+      target_id: DO-0001
+      strength: primary
+      confidence: high
+    - type: changes-interface
+      target_kind: interface
+      target_id: IF-0001
+      strength: supporting
+      confidence: medium
+    - type: enabled-by-decision
+      target_kind: decision
+      target_id: DEC-0001
+      strength: supporting
+      confidence: medium
+    - type: sponsored-by
+      target_kind: organization
+      target_id: ORG-0001
+      strength: supporting
+      confidence: medium
+
+  planning:
+    start_date: 2026-01-15
+    target_end_date: 2026-12-18
+    funding_status: funded
+    delivery_method: hybrid
+
+  scope:
+    capabilities:
+      - BC-0001
+    processes:
+      - BP-0001
+    applications:
+      - APP-0001
+      - APP-0002
+    data_objects:
+      - DO-0001
+    interfaces:
+      - IF-0001
+      - IF-0002
+    technology_components:
+      - TC-0001
+
+  outcomes:
+    business_outcomes:
+      - Improve customer data quality
+      - Reduce onboarding lead time
+      - Increase reuse of standardized services
+    success_measures:
+      - name: duplicate-customer-reduction
+        target: 50%
+      - name: onboarding-time-reduction
+        target: 30%
+
+  dependencies:
+    predecessor_initiatives:
+      - INI-0000
+    related_decisions:
+      - DEC-0001
+    delivery_risks:
+      - Regional process variance may slow standardization.
+      - Legacy application constraints may limit automation.
+
+  governance:
+    steering_forum: Customer Transformation Board
+    reporting_cadence: monthly
+
+  tags:
+    - initiative
+    - transformation
+    - customer
+
+  notes:
+    assumptions:
+      - Funding remains available for the full roadmap period.
+    risks:
+      - Benefits realization may lag if downstream systems do not adopt the new model promptly.

@@ -1,0 +1,136 @@
+template:
+  kind: decision
+  version: 1.1
+  schema_version: 1.1
+  description: Template for a single architecture decision entry in the enterprise architecture metamodel.
+
+spec:
+  id: DEC-0001
+  name: adopt-canonical-customer-model
+  display_name: Adopt Canonical Customer Model
+  aliases:
+    - Canonical Customer ADR
+  summary: Decision to use a canonical customer model for new integration and data exchange scenarios.
+  description: >
+    Architecture decision to use a canonical customer model across
+    integration and data exchange scenarios.
+
+  classification:
+    decision_type: architecture
+    scope: enterprise
+    criticality: high
+
+  status:
+    lifecycle: approved # draft | proposed | approved | rejected | superseded | retired
+    decision_state: accepted
+    effective_date: 2026-05-20
+
+  ownership:
+    decision_owner: Lead Enterprise Architect
+    approver: Architecture Review Board
+    contributors:
+      - Customer Data Architect
+      - Integration Architect
+      - CRM Product Owner
+
+  metadata:
+    source_of_truth:
+      system: Architecture Decision Repository
+      record_locator: DEC-0001
+      owner: Enterprise Architecture
+    last_reviewed: 2026-05-20
+    review_owner: Lead Enterprise Architect
+    confidence: high
+    references:
+      - type: confluence
+        title: Adopt Canonical Customer Model
+        url: https://confluence.example.com/display/EA/adopt-canonical-customer-model
+      - type: glossary
+        title: Customer Canonical Glossary
+        url: https://example.com/glossary/customer-canonical
+    change_log:
+      - date: 2026-05-20
+        summary: Initial decision template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: governs-capability
+      target_kind: business-capability
+      target_id: BC-0001
+      strength: supporting
+      confidence: medium
+    - type: constrains-application
+      target_kind: application
+      target_id: APP-0001
+      strength: supporting
+      confidence: medium
+    - type: standardizes-data-object
+      target_kind: data-object
+      target_id: DO-0001
+      strength: primary
+      confidence: high
+    - type: constrains-interface
+      target_kind: interface
+      target_id: IF-0001
+      strength: primary
+      confidence: high
+    - type: linked-to-initiative
+      target_kind: initiative
+      target_id: INI-0001
+      strength: supporting
+      confidence: medium
+
+  context:
+    problem_statement: >
+      Customer data is exchanged between multiple systems using inconsistent
+      schemas, creating duplication, transformation complexity, and reporting
+      inconsistency.
+    drivers:
+      - Improve interoperability
+      - Reduce point-to-point transformations
+      - Enable trusted enterprise reporting
+
+  decision:
+    statement: Canonical customer model will be the default contract for new integrations and data pipelines.
+    rationale:
+      - Supports reuse across interfaces and services
+      - Reduces semantic ambiguity
+      - Improves agent reasoning over architecture knowledge
+
+  options_considered:
+    - option: Maintain source-system-specific schemas
+      outcome: rejected
+      reason: Increases long-term complexity and inconsistency.
+    - option: Canonical model for new integrations only
+      outcome: accepted
+      reason: Balances modernization with pragmatic migration.
+
+  impact:
+    affected_capabilities:
+      - BC-0001
+    affected_applications:
+      - APP-0001
+      - APP-0002
+    affected_data_objects:
+      - DO-0001
+    affected_interfaces:
+      - IF-0001
+      - IF-0002
+    consequences:
+      - New delivery teams must align designs to canonical definitions.
+      - Existing interfaces may require phased remediation.
+
+  governance:
+    supersedes: null
+    review_date: 2027-05-20
+
+  tags:
+    - decision
+    - canonical-model
+    - customer
+
+  notes:
+    assumptions:
+      - A governed enterprise glossary exists to support canonical definitions.
+    risks:
+      - Adoption may be uneven without enforcement in delivery governance.

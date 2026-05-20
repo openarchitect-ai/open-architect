@@ -1,0 +1,137 @@
+template:
+  kind: gap
+  version: 1.0
+  schema_version: 1.0
+  description: Template for a single architecture gap between baseline, transition, and target states in the enterprise architecture metamodel.
+
+spec:
+  id: GAP-0001
+  name: missing-canonical-customer-sync
+  display_name: Missing Canonical Customer Synchronization
+  aliases:
+    - Customer Sync Gap
+  summary: Gap describing the absence of a standardized canonical customer synchronization capability in the baseline estate.
+  description: >
+    Architecture gap capturing a missing, weak, or non-compliant capability,
+    service, interface, data construct, or technology element that must be
+    addressed during transition.
+
+  classification:
+    gap_type: integration
+    architecture_state: transition # baseline | transition | target
+    severity: high # low | medium | high | critical
+    criticality: high
+
+  status:
+    lifecycle: active # identified | active | resolved | retired | archived
+    remediation_status: planned # identified | planned | in-progress | blocked | complete
+    urgency: high # low | medium | high | critical
+
+  ownership:
+    gap_owner: Solution Architecture
+    remediation_owner: Integration Delivery Lead
+    business_owner: Customer Operations
+
+  metadata:
+    source_of_truth:
+      system: Architecture Gap Register
+      record_locator: GAP-0001
+      owner: Enterprise Architecture
+    last_reviewed: 2026-05-20
+    review_owner: Solution Architecture
+    confidence: medium
+    references:
+      - type: confluence
+        title: Missing Canonical Customer Synchronization
+        url: https://confluence.example.com/display/EA/missing-canonical-customer-sync
+      - type: assessment
+        title: Current State Integration Assessment
+        url: https://example.com/assessment/customer-sync-gap
+    change_log:
+      - date: 2026-05-20
+        summary: Initial gap template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: identified-in
+      target_kind: transition-architecture
+      target_id: TA-0001
+      strength: primary
+      confidence: high
+    - type: addressed-by
+      target_kind: work-package
+      target_id: WP-0001
+      strength: primary
+      confidence: high
+    - type: driven-by
+      target_kind: initiative
+      target_id: INI-0001
+      strength: supporting
+      confidence: medium
+    - type: constrained-by
+      target_kind: decision
+      target_id: DEC-0001
+      strength: supporting
+      confidence: medium
+    - type: affects-application
+      target_kind: application
+      target_id: APP-0001
+      strength: primary
+      confidence: high
+    - type: affects-interface
+      target_kind: interface
+      target_id: IF-0001
+      strength: primary
+      confidence: high
+    - type: affects-data-object
+      target_kind: data-object
+      target_id: DO-0001
+      strength: supporting
+      confidence: medium
+
+  context:
+    baseline_condition: Customer synchronization relies on legacy point-to-point and batch-oriented integration patterns.
+    target_condition: Customer synchronization uses a governed canonical model and standardized integration service.
+    problem_statement: Baseline architecture lacks a consistent, reusable synchronization pattern for customer master data.
+
+  impact:
+    business_impact:
+      - Delayed onboarding and downstream updates
+      - Higher reconciliation effort between systems
+    architecture_impact:
+      - Duplicate transformations across interfaces
+      - Weak control over customer data semantics
+    risk_if_unresolved:
+      - Target architecture benefits cannot be realized on schedule.
+
+  remediation:
+    remediation_strategy: Introduce canonical customer service and event-driven synchronization pattern.
+    change_type: introduce
+    target_resolution_date: 2026-11-30
+    success_criteria:
+      - Canonical customer synchronization pattern is implemented in production.
+      - Legacy batch synchronization is retired.
+
+  dependencies:
+    blockers:
+      - Canonical data model approval
+      - Event platform provisioning
+    related_gaps:
+      - GAP-0002
+
+  governance:
+    escalation_path: Architecture Review Board
+    review_cadence: monthly
+    waiver_allowed: false
+
+  tags:
+    - gap
+    - transition
+    - integration
+    - customer
+
+  notes:
+    assumptions:
+      - The gap remains valid until the replacement pattern is live in production.
+    risks:
+      - Local workarounds may proliferate if remediation is delayed.

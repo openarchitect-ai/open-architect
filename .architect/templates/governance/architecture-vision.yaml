@@ -1,0 +1,118 @@
+template:
+  kind: architecture-vision
+  version: 1.0
+  schema_version: 1.0
+  description: Template for a single architecture vision entry in the enterprise architecture metamodel.
+
+spec:
+  id: VIS-0001
+  name: customer-modernization-vision
+  display_name: Customer Modernization Architecture Vision
+  aliases:
+    - Customer Architecture Vision
+  summary: High-level architecture vision for modernizing customer data, services, and integration patterns.
+  description: >
+    Architecture vision capturing the desired direction, value proposition,
+    scope, and stakeholder alignment before detailed target and solution
+    architecture is developed.
+
+  classification:
+    vision_type: transformation
+    architecture_state: target # baseline | transition | target
+    scope: cross-domain
+    criticality: high
+
+  status:
+    lifecycle: active # draft | active | retired | archived
+    approval_status: approved # draft | proposed | approved | rejected | superseded
+    communication_status: published # draft | published | withdrawn | superseded
+
+  ownership:
+    vision_owner: Enterprise Architecture
+    sponsor: Customer Operations
+    lead_architect: Lead Enterprise Architect
+
+  metadata:
+    source_of_truth:
+      system: Architecture Vision Repository
+      record_locator: VIS-0001
+      owner: Enterprise Architecture
+    last_reviewed: 2026-05-20
+    review_owner: Lead Enterprise Architect
+    confidence: medium
+    references:
+      - type: confluence
+        title: Customer Modernization Architecture Vision
+        url: https://confluence.example.com/display/EA/customer-modernization-vision
+      - type: presentation
+        title: Vision Deck
+        url: https://example.com/presentations/customer-modernization-vision
+    change_log:
+      - date: 2026-05-20
+        summary: Initial architecture vision template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: supported-by-stakeholder
+      target_kind: stakeholder
+      target_id: STK-0001
+      strength: primary
+      confidence: medium
+    - type: articulates-objective
+      target_kind: objective
+      target_id: OBJ-0001
+      strength: primary
+      confidence: high
+    - type: guides-solution
+      target_kind: solution
+      target_id: SOL-0001
+      strength: primary
+      confidence: high
+    - type: informs-transition-architecture
+      target_kind: transition-architecture
+      target_id: TA-0001
+      strength: supporting
+      confidence: medium
+    - type: enabled-by-initiative
+      target_kind: initiative
+      target_id: INI-0001
+      strength: supporting
+      confidence: medium
+
+  vision:
+    problem_statement: Customer capabilities are constrained by fragmented data ownership, inconsistent integration, and weak reuse of standards.
+    future_state: A governed customer architecture with canonical data, reusable services, standardized interfaces, and clear transition sequencing.
+    value_proposition:
+      - Faster customer onboarding and change propagation
+      - Improved trust in customer data and reporting
+      - Lower integration complexity and delivery cost
+
+  scope:
+    in_scope:
+      - Customer master data
+      - Customer synchronization services
+      - CRM and ERP integration patterns
+    out_of_scope:
+      - Customer service case management redesign
+      - Sales channel front-end replacement
+
+  principles:
+    - Canonical data first
+    - Reuse before bespoke integration
+    - Govern transition through incremental delivery
+
+  governance:
+    approval_forum: Architecture Review Board
+    communication_cadence: milestone-based
+
+  tags:
+    - architecture-vision
+    - target
+    - customer
+    - adm
+
+  notes:
+    assumptions:
+      - Stakeholders align on the target customer operating model.
+    risks:
+      - Vision may lose clarity if later solution work drifts from agreed outcomes.

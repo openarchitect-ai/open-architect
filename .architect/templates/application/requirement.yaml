@@ -1,0 +1,131 @@
+template:
+  kind: requirement
+  version: 1.0
+  schema_version: 1.0
+  description: Template for a single architecture requirement entry in the enterprise architecture metamodel.
+
+spec:
+  id: REQ-0001
+  name: customer-sync-availability
+  display_name: Customer Synchronization Availability Requirement
+  aliases:
+    - Customer Sync NFR
+  summary: Non-functional requirement defining availability and recovery expectations for customer synchronization services.
+  description: >
+    Requirement capturing a business, functional, non-functional, security,
+    regulatory, or operational constraint that must be satisfied by a solution
+    or target architecture.
+
+  classification:
+    requirement_type: non-functional
+    category: availability
+    priority: high # low | medium | high | critical
+    criticality: high
+
+  status:
+    lifecycle: active # proposed | active | satisfied | retired | archived
+    approval_status: approved # draft | proposed | approved | rejected | superseded
+    verification_status: planned # not-planned | planned | in-progress | verified | failed
+
+  ownership:
+    business_owner: Customer Operations
+    requirement_owner: Solution Architecture
+    verification_owner: Integration Delivery Lead
+
+  metadata:
+    source_of_truth:
+      system: Requirements Repository
+      record_locator: REQ-0001
+      owner: Solution Architecture
+    last_reviewed: 2026-05-20
+    review_owner: Solution Architecture
+    confidence: high
+    references:
+      - type: confluence
+        title: Customer Synchronization Requirements
+        url: https://confluence.example.com/display/EA/customer-sync-requirements
+      - type: standard
+        title: Availability and Resilience Standard
+        url: https://example.com/standards/availability-resilience
+    change_log:
+      - date: 2026-05-20
+        summary: Initial requirement template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: constrains-solution
+      target_kind: solution
+      target_id: SOL-0001
+      strength: primary
+      confidence: high
+    - type: constrains-transition-architecture
+      target_kind: transition-architecture
+      target_id: TA-0001
+      strength: supporting
+      confidence: medium
+    - type: constrains-application-service
+      target_kind: application-service
+      target_id: AS-0001
+      strength: primary
+      confidence: high
+    - type: constrains-interface
+      target_kind: interface
+      target_id: IF-0001
+      strength: primary
+      confidence: high
+    - type: traced-to-decision
+      target_kind: decision
+      target_id: DEC-0001
+      strength: supporting
+      confidence: medium
+    - type: delivered-by-work-package
+      target_kind: work-package
+      target_id: WP-0001
+      strength: supporting
+      confidence: medium
+
+  intent:
+    statement: Customer synchronization services must meet enterprise availability and recovery expectations.
+    rationale:
+      - Customer onboarding and downstream updates are business-critical.
+      - Prolonged synchronization outages create operational and reporting issues.
+    success_measure:
+      - name: availability_target
+        target: 99.9%
+      - name: recovery_time_objective
+        target: 4h
+
+  specification:
+    fit_criteria:
+      - Service availability must be at least 99.9 percent per calendar month.
+      - Recovery time after a severe incident must not exceed 4 hours.
+      - Recovery point must not exceed 15 minutes of customer data changes.
+    constraints:
+      - Must use approved enterprise monitoring and alerting standards.
+      - Must support operational handover to the integration support team.
+    assumptions:
+      - Underlying hosting platforms provide resilient infrastructure services.
+
+  verification:
+    verification_method:
+      - production-readiness review
+      - operational resilience test
+      - service monitoring evidence
+    acceptance_owner: Customer Operations
+    target_verification_date: 2026-11-15
+
+  governance:
+    source_priority: authoritative # informational | preferred | authoritative
+    waiver_process: Formal exception approval required for non-compliance.
+
+  tags:
+    - requirement
+    - non-functional
+    - availability
+    - customer
+
+  notes:
+    assumptions:
+      - Monthly availability is measured excluding approved maintenance windows.
+    risks:
+      - Manual fallback processes may be insufficient during a long outage.

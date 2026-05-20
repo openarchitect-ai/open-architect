@@ -1,0 +1,121 @@
+template:
+  kind: environment
+  version: 1.0
+  schema_version: 1.0
+  description: Template for a single environment entry in the enterprise architecture metamodel.
+
+spec:
+  id: ENV-0001
+  name: production-eu-central
+  display_name: Production EU Central
+  aliases:
+    - Prod EU Central
+  summary: Production deployment environment for in-scope customer integration services in the EU Central region.
+  description: >
+    Environment definition describing a runtime boundary such as development,
+    test, production, or regional deployment context, including operational,
+    security, and residency constraints.
+
+  classification:
+    environment_type: production
+    region: eu-central
+    hosting_model: cloud
+    criticality: high
+
+  status:
+    lifecycle: active
+    operational_status: live # planned | live | degraded | retired
+    compliance_status: compliant # compliant | conditional | non-compliant
+
+  ownership:
+    environment_owner: Enterprise Platforms
+    operations_owner: Integration Operations
+    security_owner: Cyber Security
+
+  metadata:
+    source_of_truth:
+      system: Environment Catalog
+      record_locator: ENV-0001
+      owner: Enterprise Platforms
+    last_reviewed: 2026-05-20
+    review_owner: Enterprise Platforms
+    confidence: high
+    references:
+      - type: confluence
+        title: Production EU Central
+        url: https://confluence.example.com/display/EA/production-eu-central
+      - type: network
+        title: Environment Network Model
+        url: https://example.com/network/production-eu-central
+    change_log:
+      - date: 2026-05-20
+        summary: Initial environment template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: hosts-solution
+      target_kind: solution
+      target_id: SOL-0001
+      strength: supporting
+      confidence: medium
+    - type: hosts-application
+      target_kind: application
+      target_id: APP-0001
+      strength: supporting
+      confidence: medium
+    - type: hosts-technology-component
+      target_kind: technology-component
+      target_id: TC-0001
+      strength: primary
+      confidence: high
+    - type: used-by-transition-architecture
+      target_kind: transition-architecture
+      target_id: TA-0001
+      strength: supporting
+      confidence: medium
+    - type: constrained-by-requirement
+      target_kind: requirement
+      target_id: REQ-0001
+      strength: supporting
+      confidence: medium
+
+  runtime:
+    availability_tier: tier-1
+    network_zone: private
+    deployment_pattern: multi-zone
+    support_window: 24x7
+
+  constraints:
+    residency:
+      - Customer data must remain within approved EU hosting boundaries.
+    security:
+      - Production access requires privileged identity management approval.
+      - Secrets must be managed using approved enterprise controls.
+    operational:
+      - Changes require approved production release management.
+
+  connectivity:
+    ingress_patterns:
+      - managed-api-gateway
+      - approved-private-connectivity
+    egress_patterns:
+      - controlled-outbound-integration
+    restricted_patterns:
+      - unmanaged-public-endpoints
+
+  governance:
+    change_control: production-change-board
+    review_frequency: quarterly
+    compliance_evidence_required: true
+
+  tags:
+    - environment
+    - production
+    - eu-central
+    - runtime
+
+  notes:
+    assumptions:
+      - Regional production controls remain aligned with enterprise cloud policy.
+    risks:
+      - Cross-region dependency changes may introduce unplanned residency issues.

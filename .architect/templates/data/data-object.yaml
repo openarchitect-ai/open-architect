@@ -1,0 +1,213 @@
+template:
+  kind: data-object
+  version: 1.1
+  schema_version: 1.1
+  description: Template for a single data object entry in the enterprise architecture metamodel.
+
+spec:
+  id: DO-0001
+  name: customer
+  display_name: Customer Master
+  aliases:
+    - Customer Record
+    - Customer Entity
+  summary: Canonical enterprise data object representing a person or organization that buys products or services.
+  description: >
+    Core enterprise data object representing an individual or organization
+    that purchases products or services from the company.
+
+  classification:
+    domain: customer
+    object_type: master-data
+    status: active
+    criticality: high
+    confidentiality: confidential
+
+  ownership:
+    business_owner: Customer Operations
+    data_owner: Head of Customer Data
+    data_steward: Customer Data Steward
+    technical_owner: Enterprise Data Platform
+
+  metadata:
+    source_of_truth:
+      system: Enterprise Data Catalog
+      record_locator: DO-0001
+      owner: Enterprise Data Platform
+    last_reviewed: 2026-05-20
+    review_owner: Customer Data Steward
+    confidence: high
+    references:
+      - type: confluence
+        title: Customer Master
+        url: https://confluence.example.com/display/EA/customer-master
+      - type: glossary
+        title: Customer Glossary Definition
+        url: https://example.com/glossary/customer
+    change_log:
+      - date: 2026-05-20
+        summary: Initial data object template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: system-of-record-in
+      target_kind: application
+      target_id: APP-0001
+      strength: primary
+      confidence: high
+    - type: managed-by
+      target_kind: application-service
+      target_id: AS-0001
+      strength: primary
+      confidence: high
+    - type: exchanged-through
+      target_kind: interface
+      target_id: IF-0001
+      strength: primary
+      confidence: high
+    - type: enables-capability
+      target_kind: business-capability
+      target_id: BC-0001
+      strength: primary
+      confidence: high
+    - type: used-in-process
+      target_kind: business-process
+      target_id: BP-0001
+      strength: primary
+      confidence: high
+    - type: stewarded-by
+      target_kind: organization
+      target_id: ORG-0001
+      strength: primary
+      confidence: medium
+    - type: standardized-by
+      target_kind: decision
+      target_id: DEC-0001
+      strength: supporting
+      confidence: medium
+
+  lifecycle:
+    state_model:
+      - prospect
+      - active
+      - inactive
+      - archived
+    system_of_record:
+      system_id: APP-0001
+      system_name: Salesforce CRM
+    creation_rule: Created when a new customer is onboarded through an approved channel.
+    archival_rule: Archived after retention and legal hold requirements are satisfied.
+
+  structure:
+    canonical_name: Customer
+    primary_identifier: customer_id
+    alternate_identifiers:
+      - crm_customer_id
+      - erp_customer_number
+    key_attributes:
+      - name: customer_id
+        type: string
+        required: true
+        description: Enterprise-unique customer identifier.
+      - name: customer_type
+        type: string
+        required: true
+        description: Indicates whether the customer is a person or organization.
+      - name: legal_name
+        type: string
+        required: true
+        description: Registered name of the customer.
+      - name: status
+        type: string
+        required: true
+        description: Current lifecycle status of the customer.
+      - name: primary_email
+        type: string
+        required: false
+        description: Preferred contact email for the customer.
+
+  relationships_model:
+    parent_objects:
+      - Party
+    child_objects:
+      - Address
+      - Contact
+      - Account
+    related_objects:
+      - Order
+      - Contract
+
+  usage:
+    producing_systems:
+      - Salesforce CRM
+    consuming_systems:
+      - SAP S/4HANA
+      - Customer Data Platform
+      - Billing Platform
+    business_capabilities:
+      - Customer Management
+      - Order Management
+      - Billing
+
+  quality:
+    quality_dimensions:
+      - completeness
+      - accuracy
+      - uniqueness
+      - timeliness
+    quality_rules:
+      - Customer record must have a unique enterprise customer identifier.
+      - Active customers must have a valid legal name.
+      - Duplicate customer records must be flagged for stewardship review.
+    quality_thresholds:
+      completeness: 98%
+      accuracy: 95%
+      uniqueness: 99.5%
+
+  security:
+    data_classification:
+      - pii
+      - internal
+    lawful_basis: contract
+    access_model: role-based
+    encryption_at_rest: required
+    encryption_in_transit: required
+    masking_rules:
+      - Mask personal contact details in non-production environments.
+    compliance:
+      - GDPR
+      - ISO27001
+
+  retention:
+    retention_period: 7y
+    archival_strategy: Archive to governed enterprise data store.
+    disposal_rule: Secure deletion after retention period unless legal hold applies.
+
+  lineage:
+    upstream_sources:
+      - Web Customer Onboarding
+      - CRM Manual Entry
+    downstream_consumers:
+      - ERP Customer Replication
+      - Billing Customer Feed
+      - Analytics Customer Dimension
+    synchronization_pattern: event-driven with scheduled reconciliation
+
+  governance:
+    glossary_term: Customer
+    policy_references:
+      - Data Classification Policy
+      - Master Data Management Standard
+    change_management: Data governance review required for structural changes.
+
+  tags:
+    - customer
+    - master-data
+    - pii
+    - enterprise
+
+  notes:
+    assumptions:
+      - Salesforce CRM remains the primary system of record for customer master data.
+    risks:
+      - Identifier mapping between CRM and ERP may require ongoing stewardship.

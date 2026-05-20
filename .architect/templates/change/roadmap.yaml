@@ -1,0 +1,127 @@
+template:
+  kind: roadmap
+  version: 1.0
+  schema_version: 1.0
+  description: Template for a single architecture roadmap entry in the enterprise architecture metamodel.
+
+spec:
+  id: RMP-0001
+  name: customer-modernization-roadmap
+  display_name: Customer Modernization Roadmap
+  aliases:
+    - Customer Transformation Roadmap
+  summary: Sequenced roadmap of transition states, initiatives, and work packages for customer architecture change.
+  description: >
+    Roadmap describing the phased sequencing of objectives, initiatives,
+    transition architectures, dependencies, and delivery increments over time.
+
+  classification:
+    roadmap_type: transformation
+    scope: enterprise
+    planning_horizon: multi-year
+    criticality: high
+
+  status:
+    lifecycle: active # draft | active | retired | archived
+    approval_status: approved # draft | proposed | approved | rejected | superseded
+    progress_status: in-progress # not-started | in-progress | at-risk | complete | blocked
+
+  ownership:
+    roadmap_owner: Enterprise Architecture
+    portfolio_owner: Program Management Office
+    business_owner: Customer Operations
+
+  metadata:
+    source_of_truth:
+      system: Architecture Roadmap Repository
+      record_locator: RMP-0001
+      owner: Enterprise Architecture
+    last_reviewed: 2026-05-20
+    review_owner: Enterprise Architecture
+    confidence: medium
+    references:
+      - type: confluence
+        title: Customer Modernization Roadmap
+        url: https://confluence.example.com/display/EA/customer-modernization-roadmap
+      - type: roadmap
+        title: Portfolio Roadmap
+        url: https://example.com/roadmap/customer-modernization
+    change_log:
+      - date: 2026-05-20
+        summary: Initial roadmap template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: sequences-objective
+      target_kind: objective
+      target_id: OBJ-0001
+      strength: primary
+      confidence: high
+    - type: sequences-initiative
+      target_kind: initiative
+      target_id: INI-0001
+      strength: primary
+      confidence: high
+    - type: sequences-transition-architecture
+      target_kind: transition-architecture
+      target_id: TA-0001
+      strength: primary
+      confidence: high
+    - type: includes-work-package
+      target_kind: work-package
+      target_id: WP-0001
+      strength: supporting
+      confidence: medium
+    - type: informed-by-risk
+      target_kind: risk
+      target_id: RSK-0001
+      strength: informational
+      confidence: low
+    - type: aligned-to-architecture-vision
+      target_kind: architecture-vision
+      target_id: VIS-0001
+      strength: supporting
+      confidence: medium
+
+  timeline:
+    planning_start: 2026-01-01
+    planning_end: 2027-12-31
+    milestones:
+      - name: wave-1-go-live
+        target_date: 2026-11-30
+      - name: legacy-feed-retirement
+        target_date: 2027-03-31
+
+  phases:
+    - phase: establish-foundation
+      objectives:
+        - Define canonical model
+        - Approve target integration patterns
+    - phase: deliver-wave-1
+      objectives:
+        - Deploy standardized customer synchronization
+        - Retire legacy batch customer feed
+
+  dependencies:
+    major_dependencies:
+      - Canonical data model approval
+      - Integration platform capacity
+      - Cross-team release coordination
+    constraints:
+      - Customer change windows are limited during peak business periods.
+
+  governance:
+    review_cadence: monthly
+    escalation_forum: Customer Transformation Board
+
+  tags:
+    - roadmap
+    - transition
+    - portfolio
+    - adm
+
+  notes:
+    assumptions:
+      - Funding and resource allocation remain stable across roadmap phases.
+    risks:
+      - Roadmap sequencing may become unrealistic if too many dependent initiatives slip.

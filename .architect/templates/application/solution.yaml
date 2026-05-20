@@ -1,0 +1,164 @@
+template:
+  kind: solution
+  version: 1.0
+  schema_version: 1.0
+  description: Template for a single solution architecture entry in the enterprise architecture metamodel.
+
+spec:
+  id: SOL-0001
+  name: customer-master-modernization-solution
+  display_name: Customer Master Modernization Solution
+  aliases:
+    - Customer 360 Solution
+  summary: End-to-end solution architecture for canonical customer mastering and synchronization across in-scope platforms.
+  description: >
+    Solution architecture describing the bounded end-to-end design that
+    realizes business outcomes through applications, services, interfaces,
+    data, technology, requirements, and decisions.
+
+  classification:
+    solution_type: target-solution
+    architecture_state: transition # baseline | transition | target
+    scope: cross-domain
+    criticality: high
+
+  status:
+    lifecycle: in-flight
+    architecture_status: approved # draft | proposed | approved | rejected | superseded
+    delivery_status: amber # green | amber | red | complete | on-hold
+
+  ownership:
+    solution_owner: Solution Architecture
+    business_owner: Customer Operations
+    technical_owner: CRM Platform Team
+
+  metadata:
+    source_of_truth:
+      system: Solution Architecture Repository
+      record_locator: SOL-0001
+      owner: Solution Architecture
+    last_reviewed: 2026-05-20
+    review_owner: Solution Architecture
+    confidence: medium
+    references:
+      - type: confluence
+        title: Customer Master Modernization Solution
+        url: https://confluence.example.com/display/EA/customer-master-modernization-solution
+      - type: diagram
+        title: Solution Context Diagram
+        url: https://example.com/diagrams/customer-master-modernization-solution
+    change_log:
+      - date: 2026-05-20
+        summary: Initial solution template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: realizes-capability
+      target_kind: business-capability
+      target_id: BC-0001
+      strength: primary
+      confidence: high
+    - type: supports-process
+      target_kind: business-process
+      target_id: BP-0001
+      strength: primary
+      confidence: high
+    - type: includes-application
+      target_kind: application
+      target_id: APP-0001
+      strength: primary
+      confidence: high
+    - type: includes-application-service
+      target_kind: application-service
+      target_id: AS-0001
+      strength: primary
+      confidence: high
+    - type: includes-interface
+      target_kind: interface
+      target_id: IF-0001
+      strength: primary
+      confidence: high
+    - type: includes-data-object
+      target_kind: data-object
+      target_id: DO-0001
+      strength: primary
+      confidence: high
+    - type: uses-technology-component
+      target_kind: technology-component
+      target_id: TC-0001
+      strength: supporting
+      confidence: medium
+    - type: constrained-by-requirement
+      target_kind: requirement
+      target_id: REQ-0001
+      strength: primary
+      confidence: high
+    - type: governed-by-principle
+      target_kind: principle
+      target_id: PRN-0001
+      strength: supporting
+      confidence: medium
+    - type: constrained-by-standard
+      target_kind: technology-standard
+      target_id: TS-0001
+      strength: supporting
+      confidence: medium
+    - type: deployed-to-environment
+      target_kind: environment
+      target_id: ENV-0001
+      strength: supporting
+      confidence: medium
+    - type: realized-through-transition-architecture
+      target_kind: transition-architecture
+      target_id: TA-0001
+      strength: supporting
+      confidence: medium
+
+  scope:
+    business_outcomes:
+      - Standardize customer synchronization across systems.
+      - Improve customer data quality and governance.
+    in_scope_domains:
+      - Customer
+      - Sales
+      - Order Management
+    out_of_scope:
+      - Regional customer service case management
+      - Non-customer master integrations
+
+  architecture:
+    context: Customer master data originates in CRM and is synchronized through governed services to downstream platforms.
+    logical_components:
+      - CRM application
+      - Customer master service
+      - Integration runtime
+      - ERP consumer
+    integration_patterns:
+      - request-response
+      - event-driven synchronization
+    data_patterns:
+      - canonical customer model
+      - mastered system-of-record ownership
+
+  quality_attributes:
+    availability: 99.9%
+    resilience: multi-zone recovery
+    security: role-based access and encrypted transport
+    observability: centralized logging and alerting
+
+  governance:
+    approval_forum: Architecture Review Board
+    review_cadence: milestone-based
+    deviation_process: Formal design waiver required for exceptions.
+
+  tags:
+    - solution
+    - transition
+    - customer
+    - architecture
+
+  notes:
+    assumptions:
+      - In-scope teams adopt the canonical customer model for new integrations.
+    risks:
+      - Cross-team dependency coordination may delay solution rollout.

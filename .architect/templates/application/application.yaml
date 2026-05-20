@@ -1,0 +1,164 @@
+template:
+  kind: application
+  version: 1.1
+  schema_version: 1.1
+  description: Template for a single application catalogue entry in the enterprise architecture metamodel.
+
+spec:
+  id: APP-0001
+  name: customer-relationship-management
+  display_name: Customer Relationship Management
+  aliases:
+    - CRM
+    - Salesforce CRM
+  summary: Primary system for managing customer interactions and customer master workflows.
+  description: >
+    Enterprise application that manages customer records, sales interactions,
+    and customer lifecycle workflows.
+
+  classification:
+    domain: customer
+    application_type: saas
+    architectural_tier: system-of-engagement
+    deployment_model: vendor-hosted
+    criticality: high
+
+  status:
+    lifecycle: production
+    operational_status: active # active | degraded | sunsetting | retired
+    investment_status: invest # invest | tolerate | migrate | eliminate
+
+  ownership:
+    business_owner: Sales Operations
+    technical_owner: CRM Platform Team
+    product_owner: CRM Product Manager
+    vendor: Salesforce
+
+  metadata:
+    source_of_truth:
+      system: ServiceNow CMDB
+      record_locator: APP-0001
+      owner: CRM Platform Team
+    last_reviewed: 2026-05-20
+    review_owner: CRM Platform Team
+    confidence: high
+    references:
+      - type: confluence
+        title: Customer Relationship Management
+        url: https://confluence.example.com/display/EA/customer-relationship-management
+      - type: vendor
+        title: Salesforce Service Description
+        url: https://example.com/vendor/salesforce-service-description
+    change_log:
+      - date: 2026-05-20
+        summary: Initial application template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: realizes-capability
+      target_kind: business-capability
+      target_id: BC-0001
+      strength: primary
+      confidence: high
+    - type: supports-process
+      target_kind: business-process
+      target_id: BP-0001
+      strength: primary
+      confidence: high
+    - type: exposes-service
+      target_kind: application-service
+      target_id: AS-0001
+      strength: primary
+      confidence: high
+    - type: exposes-interface
+      target_kind: interface
+      target_id: IF-0001
+      strength: primary
+      confidence: high
+    - type: owns-data-object
+      target_kind: data-object
+      target_id: DO-0001
+      strength: primary
+      confidence: high
+    - type: runs-on
+      target_kind: technology-component
+      target_id: TC-0001
+      strength: supporting
+      confidence: medium
+    - type: owned-by
+      target_kind: organization
+      target_id: ORG-0001
+      strength: primary
+      confidence: high
+
+  business_alignment:
+    capabilities_supported:
+      - BC-0001
+      - BC-0002
+    processes_supported:
+      - BP-0001
+      - BP-0002
+    primary_users:
+      - Sales Team
+      - Customer Service Team
+
+  services:
+    application_services:
+      - AS-0001
+      - AS-0002
+    exposed_interfaces:
+      - IF-0001
+    consumed_interfaces:
+      - IF-0003
+
+  data:
+    authoritative_data_objects:
+      - DO-0001
+    consumed_data_objects:
+      - DO-0004
+      - DO-0005
+
+  technology:
+    technology_components:
+      - TC-0001
+      - TC-0002
+    hosting_platform: Salesforce Cloud
+    integration_platform: MuleSoft
+
+  dependencies:
+    upstream_applications:
+      - APP-0004
+    downstream_applications:
+      - APP-0002
+      - APP-0003
+
+  security:
+    identity_provider: Enterprise SSO
+    authentication: SAML
+    authorization: role-based
+    data_classification:
+      - confidential
+      - pii
+
+  service_levels:
+    availability_target: 99.9%
+    support_model: business-hours-plus-on-call
+    recovery_time_objective: 8h
+    recovery_point_objective: 1h
+
+  governance:
+    standards_compliance:
+      - Customer Data Policy
+      - Application Security Standard
+
+  tags:
+    - application
+    - crm
+    - customer
+    - saas
+
+  notes:
+    assumptions:
+      - Vendor roadmap remains aligned to core CRM capability needs.
+    risks:
+      - Heavy customization may increase upgrade complexity.

@@ -1,0 +1,121 @@
+template:
+  kind: objective
+  version: 1.0
+  schema_version: 1.0
+  description: Template for a single architecture objective entry in the enterprise architecture metamodel.
+
+spec:
+  id: OBJ-0001
+  name: improve-customer-data-quality
+  display_name: Improve Customer Data Quality
+  aliases:
+    - Customer Data Quality Objective
+  summary: Strategic objective to improve the quality, consistency, and trustworthiness of customer master data.
+  description: >
+    Objective representing a measurable business or architecture outcome that
+    guides target-state design, prioritization, and transition planning.
+
+  classification:
+    objective_type: strategic
+    scope: enterprise
+    time_horizon: medium-term
+    criticality: high
+
+  status:
+    lifecycle: active # proposed | active | achieved | retired | archived
+    approval_status: approved # draft | proposed | approved | rejected | superseded
+    progress_status: in-progress # not-started | in-progress | at-risk | achieved | blocked
+
+  ownership:
+    objective_owner: Customer Operations
+    architecture_owner: Enterprise Architecture
+    measurement_owner: Data Governance Office
+
+  metadata:
+    source_of_truth:
+      system: Strategy and Objectives Register
+      record_locator: OBJ-0001
+      owner: Enterprise Architecture
+    last_reviewed: 2026-05-20
+    review_owner: Enterprise Architecture
+    confidence: medium
+    references:
+      - type: confluence
+        title: Improve Customer Data Quality
+        url: https://confluence.example.com/display/EA/improve-customer-data-quality
+      - type: strategy
+        title: Customer Transformation Strategy
+        url: https://example.com/strategy/customer-transformation
+    change_log:
+      - date: 2026-05-20
+        summary: Initial objective template created for the AI-native workspace.
+        author: Enterprise Architecture
+
+  relationships:
+    - type: pursued-by-capability
+      target_kind: business-capability
+      target_id: BC-0001
+      strength: primary
+      confidence: high
+    - type: realized-by-solution
+      target_kind: solution
+      target_id: SOL-0001
+      strength: primary
+      confidence: high
+    - type: articulated-in-architecture-vision
+      target_kind: architecture-vision
+      target_id: VIS-0001
+      strength: primary
+      confidence: medium
+    - type: delivered-through-initiative
+      target_kind: initiative
+      target_id: INI-0001
+      strength: supporting
+      confidence: medium
+    - type: sequenced-in-roadmap
+      target_kind: roadmap
+      target_id: RMP-0001
+      strength: supporting
+      confidence: medium
+    - type: threatened-by-risk
+      target_kind: risk
+      target_id: RSK-0001
+      strength: informational
+      confidence: low
+
+  intent:
+    statement: Increase trust in customer master data across the enterprise.
+    rationale:
+      - Better data quality reduces operational friction and rework.
+      - Trusted customer data improves reporting and customer outcomes.
+    success_measures:
+      - name: customer-data-completeness
+        target: 98%
+      - name: duplicate-customer-rate
+        target: below-1%
+
+  scope:
+    affected_domains:
+      - Customer
+      - Sales
+      - Order Management
+    affected_artifacts:
+      - applications
+      - interfaces
+      - data-objects
+
+  governance:
+    reporting_cadence: monthly
+    review_forum: Customer Transformation Board
+
+  tags:
+    - objective
+    - strategy
+    - customer
+    - adm
+
+  notes:
+    assumptions:
+      - Data quality metrics can be measured consistently across in-scope systems.
+    risks:
+      - Poor metric quality may hide progress or overstate benefits.
