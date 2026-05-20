@@ -48,6 +48,7 @@ These objects are linked using typed `relationships`, which makes the workspace 
   flows/
   guidance/
   method/
+  project-config.yaml
   roles/
   skills/
   templates/
@@ -66,6 +67,7 @@ Folder intent:
 - `flows/`: visual or executable architecture workflows
 - `guidance/`: conventions, glossary, and local architecture guidance
 - `method/`: the selected project architecture method plus reference methods
+- `project-config.yaml`: project-level selection of roles, templates, skills, method, and flows
 - `roles/`: role descriptions and responsibilities
 - `skills/`: agent or reusable architecture skill instructions
 - `templates/`: starter metamodel templates grouped by architecture concern
@@ -117,6 +119,7 @@ Treat `.architect` as the place that answers five questions for the project:
 
 In practical terms:
 
+- use `project-config.yaml` to declare what this project will actually use
 - use `templates/` to define the metamodel
 - use `architecture/` to store actual project instances
 - use `flows/` for visual or executable workflow definitions
@@ -126,6 +129,19 @@ In practical terms:
 - use `skills/` for AI or reusable playbooks
 
 ## How To Use The Templates
+
+Before creating architecture content, tailor [`.architect/project-config.yaml`](project-config.yaml) so the project explicitly selects:
+
+- active roles
+- in-scope templates
+- chosen method and reference methods
+- enabled flows
+- future skills
+
+This keeps the workspace intentional and avoids treating every project as if it
+must use the full capability set.
+
+Guidance for this file is in [`.architect/guidance/project-configuration.md`](guidance/project-configuration.md).
 
 ### For Enterprise Architecture
 

@@ -2,8 +2,13 @@
 
 Use this file to describe the architecture method chosen for this project.
 
+Before tailoring the method, align it with `.architect/project-config.yaml` so
+the selected method, roles, templates, flows, and governance expectations are
+explicit for the project.
+
 Suggested coverage:
 
+- project scope and selected architecture capability configuration
 - preliminary setup and scope
 - stakeholder and objective definition
 - architecture vision

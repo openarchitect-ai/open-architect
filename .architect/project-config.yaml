@@ -1,0 +1,74 @@
+project:
+  name: Open Architect # replace with the project or workspace name if needed
+  architecture_scope: enterprise-and-solution # enterprise | solution | enterprise-and-solution
+  architecture_mode: project-local # project-local
+  primary_method: .architect/method/project-method.md # selected project method
+  reference_methods:
+    - .architect/method/references/adm.md
+    - .architect/method/references/transition-architecture.md
+
+roles:
+  enabled:
+    # Enable only the roles that are active for this project.
+    - chief-architect
+    - business-analyst
+    - business-architect
+    - enterprise-architect
+    - solution-architect
+    - data-architect
+    - integration-architect
+    - domain-architect
+    - security-architect
+    - technology-architect
+    - architecture-governance-lead
+
+templates:
+  enabled:
+    # Enable only the template kinds that are in scope for the project.
+    - stakeholder
+    - objective
+    - business-capability
+    - business-process
+    - organization
+    - architecture-vision
+    - principle
+    - application
+    - application-service
+    - interface
+    - data-object
+    - technology-component
+    - technology-standard
+    - environment
+    - requirement
+    - solution
+    - initiative
+    - roadmap
+    - transition-architecture
+    - work-package
+    - gap
+    - decision
+    - compliance-assessment
+    - risk
+
+skills:
+  # Add skills here once the project defines reusable architecture skills.
+  enabled: []
+
+flows:
+  enabled:
+    # Enable only the flows used by this project.
+    - architecture-development
+    - transition-architecture
+
+conventions:
+  # Project-wide controls that can later be validated automatically.
+  id_prefix_mode: standard
+  traceability_required: true
+  compliance_reviews_required: true
+  architecture_reviews_required: true
+
+governance:
+  # Assign role-level ownership for architecture, requirements, and reviews.
+  architecture_owner_role: chief-architect
+  requirement_steward_role: business-analyst
+  review_role: architecture-governance-lead

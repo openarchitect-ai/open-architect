@@ -81,6 +81,9 @@ capability container, including:
 - Split project method from future flow execution:
   - `.architect/method/` for selected project method and references
   - `.architect/flows/` for future visual or executable flows
+- Added project-level architecture configuration:
+  - `.architect/project-config.yaml`
+  - selects active roles, templates, flows, and method references for a project
 - Added flow placeholders:
   - architecture development
   - transition architecture
@@ -99,12 +102,14 @@ Key folders:
 - `.architect/guidance/`
 - `.architect/method/`
 - `.architect/flows/`
+- `.architect/project-config.yaml`
 - `.architect/roles/`
 - `.architect/skills/`
 
 Current role library:
 
 - chief architect
+- business analyst
 - business architect
 - enterprise architect
 - solution architect
