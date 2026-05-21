@@ -88,6 +88,16 @@ supports. In practice, that means:
 - avoid artificial scarcity when multiple sensible follow-ups are already clear
 - keep the task list prioritized so it still feels actionable
 
+If `architect_work_auto_capture` is enabled:
+
+- treat `architect-work/` as the default destination for project-local follow-up material
+- identify candidate updates for open questions, confirmations, evidence requests, and architect tasks as part of normal work
+
+If `architect_work_auto_update_mode` is `approval-before-write`:
+
+- prepare or suggest `architect-work/` updates when they are useful
+- wait for the architect's confirmation before writing them
+
 When possible, present architect tasks in this shape:
 
 - ask

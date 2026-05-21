@@ -122,6 +122,9 @@ conventions:
   response_status_labels: true
   response_task_grouping: ask-confirm-request-decide # ask-confirm-request-decide | flat
   response_bottom_line: true
+  architect_work_auto_capture: true
+  architect_work_auto_update_mode: approval-before-write # suggest-only | approval-before-write | auto-update
+  architect_work_auto_update_scope: architect-work-only # architect-work-only | broader
   artifact_creation_requires_explicit_request: true
   next_step_recommendations_only: true
   auto_progression: false

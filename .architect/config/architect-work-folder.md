@@ -230,3 +230,18 @@ That keeps:
 - human judgment visible
 - clarifications close to the project
 - uncertain context separate from formal architecture artifacts
+
+## Automation Rule
+
+Recommended default:
+
+- `architect_work_auto_capture: true`
+- `architect_work_auto_update_mode: approval-before-write`
+- `architect_work_auto_update_scope: architect-work-only`
+
+This means:
+
+- the assistant should notice follow-up material as part of normal work
+- the assistant may suggest or prepare updates for the files in `architect-work/`
+- the assistant should only write those updates after the architect confirms
+- this behavior should not spill into formal architecture artifacts unless explicitly requested

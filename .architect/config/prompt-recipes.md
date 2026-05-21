@@ -19,6 +19,12 @@ If you want the follow-up tasks grouped in a practical way, add:
 Group my tasks as ask / confirm / request / decide.
 ```
 
+If you want the assistant to prepare `architect-work/` updates but wait for your approval, add:
+
+```text
+Suggest updates for the `architect-work/` folder, but do not write them until I confirm.
+```
+
 ## Inventory Mode
 
 Use when you want source-first extraction only.

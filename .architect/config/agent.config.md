@@ -146,6 +146,9 @@ Suggested architect-assist conventions:
 - `response_status_labels: true`
 - `response_task_grouping: ask-confirm-request-decide`
 - `response_bottom_line: true`
+- `architect_work_auto_capture: true`
+- `architect_work_auto_update_mode: approval-before-write`
+- `architect_work_auto_update_scope: architect-work-only`
 - `artifact_creation_requires_explicit_request: true`
 - `next_step_recommendations_only: true`
 - `auto_progression: false`
@@ -297,6 +300,23 @@ If `conventions.response_task_grouping` is `ask-confirm-request-decide`:
 If `conventions.response_bottom_line` is `true`:
 
 - include a short `Bottom Line` takeaway at the end of substantial responses
+
+If `conventions.architect_work_auto_capture` is `true`:
+
+- identify follow-up material that belongs in `architect-work/`
+- classify it into the appropriate working files
+- surface those proposed updates as part of the response when useful
+
+If `conventions.architect_work_auto_update_mode` is `approval-before-write`:
+
+- the assistant may prepare `architect-work/` updates automatically
+- it must not write those updates until the architect confirms
+- confirmation may be explicit in the current exchange or via a clear user instruction to update the files
+
+If `conventions.architect_work_auto_update_scope` is `architect-work-only`:
+
+- apply this automation only to the project-local `architect-work/` folder
+- do not extend the same writeback behavior to formal architecture artifacts unless the user asks for it
 
 See [`.architect/config/response-display.md`](./response-display.md) for the display pattern.
 
