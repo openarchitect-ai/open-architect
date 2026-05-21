@@ -240,26 +240,22 @@ Current role library:
 High priority:
 
 - Turn the most valuable playbooks into executable agent instructions
-- Apply the new operationalization pack before broad multi-agent rollout:
-  - use handoff contracts
-  - use traceability and ID rules
-  - use the review packet format
-  - use the test scenarios and role boundary guidance
-- Extend validation and schema support
+- Run the new agent test scenarios against those executable instructions
+- Extend live-project validation and operational use under `.architect/architecture/`
+  - validate real project artifact folders, not only the worked example
+  - use the review packet format and role-boundary guidance during real project handoffs
+- Deepen validation and schema-driven enforcement
   - keep growing `.architect/validation/`
   - deepen schema precision for covered kinds and broaden direct enforcement of conditional schema rules
-  - deepen schema-aware validation once a fuller YAML parsing strategy is chosen
-- Extend template validation coverage
-  - add full schema-level YAML parsing when or if a dependency strategy is chosen
+  - add fuller schema-level YAML parsing when or if a dependency strategy is chosen
+- Extend template and artifact validation depth
   - validate cross-artifact approval/evidence rules beyond the worked example set
+  - add richer warning rules for evidence, confidence, and approval quality
 - Extend artifact-folder validation coverage
   - validate live project artifacts under `.architect/architecture/`
-  - add richer warning rules for evidence and approval quality
-- Extend the focused guidance set with:
-  - ID generation rules
-  - traceability expectations
-  - review/governance cadence
-  - validation expectations for evidence and confidence
+  - add stronger review-gate checks during active project execution
+- Add explicit review/governance cadence guidance
+  - define the recurring review rhythm for ongoing architecture projects
 - Add validation for human review controls
   - e.g. prevent agent-generated approval states without explicit review evidence
 - Add more worked diagram examples under `.architect/examples/`
@@ -285,7 +281,7 @@ If work resumes later, the best next task is:
 
 1. turn the strongest playbooks into executable agent instructions using the new handoff, traceability, and review guidance
 2. run the new agent test scenarios against those executable instructions
-3. extend live-project validation and deepen schema-aware enforcement further
+3. extend live-project validation and deepen schema precision and enforcement further
 
 ## Notes
 
