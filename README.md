@@ -50,6 +50,7 @@ The main workspace documentation is here:
 .architect/
   architecture/
   examples/
+  validation/
   config/
   flows/
   guidance/
@@ -63,6 +64,7 @@ High-level intent:
 
 - `architecture/`: real architecture artifacts created for a project
 - `examples/`: worked examples and reference projects separated from live project artifacts
+- `validation/`: lightweight validators for templates and architecture artifact folders
 - `flows/`: future visual or executable architecture workflows
 - `config/`: configuration guidance for agent and workspace behavior
 - `guidance/`: conventions, glossary, and local rules

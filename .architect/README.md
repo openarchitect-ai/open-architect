@@ -46,6 +46,7 @@ These objects are linked using typed `relationships`, which makes the workspace 
     governance/
     technology/
   examples/
+  validation/
   config/
   flows/
   guidance/
@@ -67,6 +68,7 @@ Folder intent:
 
 - `architecture/`: actual project architecture objects created from templates
 - `examples/`: worked examples and reference projects kept separate from live project work
+- `validation/`: executable checks for templates and architecture artifact folders
 - `config/`: configuration guidance for agent and workspace behavior
 - `flows/`: visual or executable architecture workflows
 - `guidance/`: conventions, glossary, and local architecture guidance
@@ -127,6 +129,7 @@ In practical terms:
 - use `templates/` to define the metamodel
 - use `architecture/` to store actual project instances
 - use `examples/` for reference implementations and sample views
+- use `validation/` to check template quality and project artifact consistency
 - use `config/` to explain how project and agent configuration should work
 - use `flows/` for visual or executable workflow definitions
 - use `guidance/` to explain local rules

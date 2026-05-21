@@ -21,6 +21,7 @@ Recommended files:
 - `diagram-conventions.md`
 - `glossary.md`
 - `governance.md`
+- `../validation/README.md`
 - domain or platform guidance notes as needed
 
 Configuration-specific guidance belongs in `../config/`.

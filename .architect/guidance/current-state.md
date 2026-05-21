@@ -123,6 +123,14 @@ capability container, including:
 - Added a shared terminology glossary:
   - `.architect/guidance/glossary.md`
   - defines core workspace terms across artifacts, skills, flows, governance, and evidence
+- Added initial template validation support:
+  - `.architect/validation/README.md`
+  - `.architect/validation/Validate-Templates.ps1`
+  - validates template structure, required keys, core enums, and common date fields
+- Extended validation beyond the baseline template contract:
+  - `.architect/validation/Validate-Templates.ps1`
+  - `.architect/validation/Validate-ArchitectureArtifacts.ps1`
+  - adds template-specific enum checks, relationship target-kind validation, reusable artifact-folder validation, local reference checks, and error vs warning severity handling
 - Added human-in-the-loop governance controls:
   - `.architect/project-config.yaml`
   - `.architect/guidance/conventions.md`
@@ -161,6 +169,7 @@ Key folders:
 - `.architect/architecture/`
 - `.architect/architecture/views/`
 - `.architect/examples/`
+- `.architect/validation/`
 - `.architect/config/`
 - `.architect/guidance/`
 - `.architect/method/`
@@ -188,9 +197,15 @@ Current role library:
 High priority:
 
 - Turn the most valuable playbooks into executable agent instructions
-- Validate the worked example against relationship, enum, and required-field checks
-- Add validation or schema support
-  - e.g. `.architect/schemas/` or `.architect/validation/`
+- Extend validation and schema support
+  - keep growing `.architect/validation/`
+  - optionally add `.architect/schemas/` if a schema-based approach is adopted
+- Extend template validation coverage
+  - add full schema-level YAML parsing when or if a dependency strategy is chosen
+  - validate cross-artifact approval/evidence rules beyond the worked example set
+- Extend artifact-folder validation coverage
+  - validate live project artifacts under `.architect/architecture/`
+  - add richer warning rules for evidence and approval quality
 - Extend the focused guidance set with:
   - ID generation rules
   - traceability expectations
@@ -220,8 +235,8 @@ Future direction:
 If work resumes later, the best next task is:
 
 1. turn the strongest playbooks into executable agent instructions and real flows
-2. validate the worked example and tighten guidance for IDs, traceability, and evidence quality
-3. add glossary, stronger conventions, and schema or validation support
+2. extend live-project validation and tighten guidance for IDs, traceability, and evidence quality
+3. add stronger schema support and stricter governance-oriented validation
 
 ## Notes
 
