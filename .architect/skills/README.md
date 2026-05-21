@@ -1,7 +1,7 @@
 # Skills
 
 This folder contains the reusable skills that architecture agents can apply when
-delivering a new architecture project.
+supporting an architecture project.
 
 Templates are the reference model. Skills are how agents use that model to do
 real work in a project.
@@ -13,7 +13,7 @@ Use this folder for:
 - agent instructions that describe repeatable architecture work
 - role-supporting playbooks that can be reused across projects
 - modeling, review, transition, and governance accelerators
-- team-level skill definitions that can later be orchestrated through flows
+- team-level skill definitions that can later be orchestrated through flows when explicitly needed
 
 ## How To Think About Skills
 
@@ -27,6 +27,10 @@ Use this folder for:
 
 Skills should focus on implementation work such as discovery, framing,
 modeling, linking, decision-making, transition planning, and review.
+
+In the default `architect-assist` model, skills are on-demand utilities. They
+should help the architect complete the current task, not assume that the
+workspace should advance into the next lifecycle step automatically.
 
 The reusable pattern library under `../patterns/` should be treated as normal
 working context across modeling, decision, review, risk/compliance,
@@ -68,34 +72,68 @@ Supporting documents:
 - `roadmap.md`
 - `role-skill-matrix.md`
 
+## Levels
+
+### Core
+
+Most projects can start with a small set:
+
+- `baseline-discovery`
+- `architecture-review`
+- `requirement-normalizer`
+- `solution-modeler`
+- `transition-planner`
+
+### Optional
+
+Add these when the project needs more structured modeling or richer delivery support:
+
+- `stakeholder-objective-framer`
+- `application-interface-modeler`
+- `data-modeler`
+- `technology-environment-modeler`
+- `decision-recorder`
+- `option-evaluator`
+- `architecture-documenter`
+- `diagram-author`
+
+### Advanced
+
+Use these only when the project explicitly wants coordination-heavy, review-heavy, or upkeep-heavy behavior:
+
+- `architecture-coordinator`
+- `requirements-follow-up`
+- `relationship-mapper`
+- `change-coordinator`
+- `risk-compliance-assessor`
+- `review-pack-builder`
+- `delivery-handover-packager`
+- `evidence-curator`
+- `artifact-maintainer`
+- `communication-packager`
+
 ## Recommended Use
 
 For a new project, start with:
 
-1. `architecture-coordinator`
-2. `project-bootstrapper`
-3. `stakeholder-objective-framer`
-4. `baseline-discovery`
-5. `requirement-normalizer`
-6. `requirements-follow-up`
-7. `solution-modeler`
-8. `relationship-mapper`
-9. `decision-recorder`
-10. `transition-planner`
-11. `architecture-review`
-12. output-oriented delivery skills such as `architecture-documenter` and `diagram-author`
+1. `baseline-discovery`
+2. `architecture-review`
+3. `requirement-normalizer`
+4. `solution-modeler`
+5. `transition-planner`
+6. output-oriented skills such as `architecture-documenter` and `diagram-author`
 
-If the project uses a coordinating operating model, `architecture-coordinator`
-should remain the default routing point across those steps. Specialist skills
-should not choose the next major skill or role on their own unless the user
-explicitly directs it.
+Add `architecture-coordinator` only when the project explicitly wants a
+coordinating operating model. Specialist skills should not choose the next major
+skill or role on their own unless the user explicitly directs it.
 
 ## Execution Note
 
 Skills alone do not create true multi-agent execution.
 
-Without `../agents/` and `../runtime/`, a project is still effectively
-coordinator-led single-agent work that simulates role behavior.
+Without `../agents/` and `../runtime/`, a project should normally be treated as
+architect-led single-agent work that can switch among specialist roles and
+skills on demand.
 
 Use the execution model in `../agents/execution-model.md` when you want skills
 to be run by separate bounded agents with real task and handoff artifacts.
@@ -103,8 +141,9 @@ to be run by separate bounded agents with real task and handoff artifacts.
 ## Next Step
 
 Wave 1 skills now include concrete playbook steps and an execution scaffold.
-The next step is to prove those playbooks through real agent tasks, handoffs,
-runtime queue state, and review gates.
+The next step is to prove those playbooks through real work. In most projects,
+that should begin with source-first discovery and analysis before any runtime
+queue state, review gates, or formal handoff artifacts are introduced.
 
 Before broad team operationalization, use the guidance set for:
 

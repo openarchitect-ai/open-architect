@@ -75,8 +75,8 @@ Folder intent:
 - `examples/`: worked examples and reference projects kept separate from live project work
 - `patterns/`: reusable architecture patterns and reference solution approaches
 - `compliance/`: compliance-aware reference material for jurisdictions, sectors, and control obligations
-- `agents/`: executable agent profiles, runtime contracts, and task/handoff payloads for multi-agent execution
-- `runtime/`: live queue, gate, and active-work state for coordinator-led multi-agent execution
+- `agents/`: executable agent profiles, runtime contracts, and task/handoff payloads for optional multi-agent execution
+- `runtime/`: live queue, gate, and active-work state when a project explicitly uses orchestration
 - `schemas/`: formal structural contracts for artifact documents
 - `validation/`: executable checks for templates and architecture artifact folders
 - `config/`: configuration guidance for agent and workspace behavior
@@ -141,8 +141,8 @@ In practical terms:
 - use `examples/` for reference implementations and sample views
 - use `patterns/` for reusable architectural approaches and design guidance
 - use `compliance/` to scope jurisdiction, sector, privacy, AI, cyber-resilience, and payment/security obligations that should shape the architecture
-- use `agents/` to define the executable runtime profiles for roles that should operate as real agents
-- use `runtime/` to hold the active queue, handoff state, and review gate state when the project uses true multi-agent execution
+- use `agents/` to define executable runtime profiles when you explicitly want specialist agents
+- use `runtime/` only when the project intentionally uses orchestration, queue state, handoffs, and review gates
 - use `schemas/` to define formal machine-readable contracts for artifact structure
 - use `validation/` to check template quality and project artifact consistency
 - use `config/` to explain how project and agent configuration should work
@@ -164,11 +164,81 @@ These three layers are related, but not the same:
   Describe executable runtime profiles that bind a role to allowed skills, write
   scope, validation, and handoff behavior.
 
-Without `agents/` and `runtime/`, the workspace should be treated as
-coordinator-led single-agent execution that simulates specialist roles.
+Without `agents/` and `runtime/`, the workspace should normally be treated as
+architect-led single-agent execution that can switch among specialist roles and
+skills on demand.
 
 With `agents/` and `runtime/`, the workspace can support actual multi-agent
 orchestration with bounded specialists and explicit handoffs.
+
+## Recommended Default Style
+
+For most real projects, start in an `architect-assist` style:
+
+- the architect remains the primary driver
+- agents help with bounded tasks such as extraction, analysis, review, and drafting
+- inventory and analysis come before modeling
+- architecture artifacts are created only when explicitly requested
+- multi-agent orchestration is opt-in, not assumed
+
+## Workspace Levels
+
+Think of the workspace in three levels:
+
+### Core
+
+Use these first in most projects:
+
+- `project-config.yaml`
+- `architecture/`
+- `config/`
+- `guidance/`
+- `templates/`
+- a small working subset of `roles/` and `skills/`
+
+This is the normal architect-assist layer.
+
+### Optional
+
+Bring these in when the project becomes more structured:
+
+- broader `roles/`
+- broader `skills/`
+- `flows/`
+- `compliance/`
+- richer template coverage
+
+This is the layer for projects that need more explicit structure, but not full orchestration.
+
+### Advanced
+
+Use these only when you explicitly want a managed architecture system:
+
+- `agents/`
+- `runtime/`
+- `schemas/`
+- `validation/`
+
+This is the layer for multi-agent execution, stronger automation, and deeper formal controls.
+
+## Quick Start
+
+If you want the lightest useful setup:
+
+1. create a folder under [`.architect/architecture/`](./architecture/)
+2. add a `docs/` folder with your source material
+3. optionally add a short `notes.md` with context and questions
+4. start in `inventory` or `analysis` mode
+5. create architecture artifacts only when you explicitly want them
+
+Useful guides:
+
+- [starter-project.md](./config/starter-project.md)
+  Minimal project shape with no runtime state and no required YAML artifacts up front.
+- [prompt-recipes.md](./config/prompt-recipes.md)
+  Practical prompts for inventory, analysis, review, decision, and modeling work.
+- [agent.config.md](./config/agent.config.md)
+  Operating style, approval thresholds, work modes, and runtime guidance.
 
 ## How To Use The Templates
 

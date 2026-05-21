@@ -6,6 +6,7 @@
 .architect/architecture/governance/*
 .architect/architecture/technology/*
 .architect/architecture/views/*
+.architect/architecture/my-test-project
 
 # Keep folder guidance files tracked.
 !.architect/architecture/application/README.md

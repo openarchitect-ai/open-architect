@@ -3,6 +3,24 @@
 This file captures the current state of the Open Architect workspace so work can
 resume quickly in a later session.
 
+## Level
+
+`current-state.md` is `Advanced` maintainer content.
+
+It is useful for:
+
+- repo maintainers
+- long-running workspace evolution
+- understanding how the capability was built over time
+
+It is not the best starting point for normal architect-assist use. For normal
+project work, prefer:
+
+- [`.architect/README.md`](../README.md)
+- [`.architect/config/README.md`](../config/README.md)
+- [starter-project.md](../config/starter-project.md)
+- [prompt-recipes.md](../config/prompt-recipes.md)
+
 ## Purpose
 
 Open Architect is being shaped as an open source, AI-native architecture

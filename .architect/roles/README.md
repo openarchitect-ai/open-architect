@@ -31,14 +31,51 @@ Current role set:
 - `technology-architect.md`
 - `architecture-governance-lead.md`
 
+## Levels
+
+### Core
+
+Most projects only need a small working role set:
+
+- `chief-architect`
+- `business-analyst`
+- `solution-architect`
+- `integration-architect`
+- `security-architect`
+
+### Optional
+
+Bring these in when the project needs broader business, enterprise, or technical structure:
+
+- `business-architect`
+- `enterprise-architect`
+- `data-architect`
+- `technology-architect`
+- `domain-architect`
+
+### Advanced
+
+Use these when the project needs stronger governance machinery or explicit runtime coordination:
+
+- `architecture-governance-lead`
+- any role being bound to a real agent profile under `agents/`
+
 Use these role descriptions to:
 
 - define who owns which architecture artifacts
 - clarify collaboration between architecture disciplines
+- give the architect clear specialist lenses to pull in on demand
 - guide how methods, templates, and flows are applied in practice
 - ground role behavior in the reusable pattern library when shaping, reviewing, or governing architecture work
 
 Role descriptions are not, by themselves, executable agents.
+
+In the normal `architect-assist` model:
+
+- the architect remains the primary driver
+- role files are perspective lenses, not workflow owners
+- an agent may switch into one of these roles to help with a bounded task
+- the workspace should not assume that role changes mean automatic process progression
 
 For real multi-agent execution:
 

@@ -2,6 +2,7 @@ project:
   name: Open Architect # replace with the project or workspace name if needed
   architecture_scope: enterprise-and-solution # enterprise | solution | enterprise-and-solution
   architecture_mode: project-local # project-local
+  operating_style: architect-assist # architect-assist | coordinator-led | external-orchestrated
   primary_method: .architect/method/project-method.md # selected project method
   reference_methods:
     - .architect/method/references/adm.md
@@ -53,15 +54,10 @@ roles:
     # Enable only the roles that are active for this project.
     - chief-architect
     - business-analyst
-    - business-architect
-    - enterprise-architect
     - solution-architect
     - data-architect
     - integration-architect
-    - domain-architect
     - security-architect
-    - technology-architect
-    - architecture-governance-lead
 
 templates:
   enabled:
@@ -69,24 +65,17 @@ templates:
     - stakeholder
     - objective
     - business-capability
-    - business-process
-    - organization
     - architecture-vision
-    - principle
     - application
     - application-service
     - interface
     - data-object
     - technology-component
-    - technology-standard
     - environment
     - requirement
     - solution
-    - initiative
     - roadmap
     - transition-architecture
-    - work-package
-    - gap
     - decision
     - compliance-assessment
     - risk
@@ -94,19 +83,17 @@ templates:
 skills:
   # Enable the reusable skills that are active for this project.
   enabled:
-    - architecture-coordinator
+    - baseline-discovery
     - project-bootstrapper
     - stakeholder-objective-framer
-    - baseline-discovery
     - requirement-normalizer
-    - requirements-follow-up
     - solution-modeler
-    - relationship-mapper
     - decision-recorder
     - transition-planner
-    - architecture-review
+    - architecture-coordinator
     - architecture-documenter
-    - diagram-author
+    - architecture-review
+    - risk-compliance-assessor
 
 flows:
   enabled:
@@ -121,6 +108,16 @@ conventions:
   compliance_reviews_required: true
   architecture_reviews_required: true
   human_review_required: true
+  user_is_primary_driver: true
+  default_work_mode: inventory # inventory | analysis | modeling | review | decision
+  artifact_creation_requires_explicit_request: true
+  next_step_recommendations_only: true
+  auto_progression: false
+  ask_before_scope_changes: true
+  ask_before_status_changes: true
+  ask_before_owner_creation: true
+  ask_user_on_blocking_open_questions: true
+  allow_progress_on_non_blocking_open_questions: true
   allow_agent_auto_approval: false
   default_agent_output_status: draft
   stop_on_decision_changes: true
@@ -131,13 +128,12 @@ governance:
   # Assign role-level ownership for architecture, requirements, and reviews.
   architecture_owner_role: chief-architect
   requirement_steward_role: business-analyst
-  review_role: architecture-governance-lead
+  review_role: chief-architect
   coordinator_role: chief-architect
   coordinator_skill: architecture-coordinator
-  coordinator_auto_route: true
+  coordinator_auto_route: false
   human_approval_roles:
     - chief-architect
-    - architecture-governance-lead
   review_checkpoints:
     - project-bootstrap
     - requirement-baseline
@@ -147,10 +143,10 @@ governance:
     - transition-plan
 
 runtime:
-  execution_mode: coordinator-led-multi-agent # single-agent-guided | coordinator-led-multi-agent | external-orchestrated
+  execution_mode: single-agent-guided # single-agent-guided | coordinator-led-multi-agent | external-orchestrated
   coordinator_agent_profile: .architect/agents/chief-architect.md
   state_root: .architect/runtime
   task_artifact: .architect/agents/artifacts/agent-task.yaml
   handoff_artifact: .architect/agents/artifacts/agent-handoff.yaml
-  allow_parallel_specialists: true
+  allow_parallel_specialists: false
   require_validation_before_handoff: true

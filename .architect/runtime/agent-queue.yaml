@@ -4,4 +4,4 @@ queue:
   blocked_tasks: []
   completed_tasks: []
   cancelled_tasks: []
-  last_updated: 2026-05-21
+  last_updated:

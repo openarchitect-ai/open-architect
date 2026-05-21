@@ -2,6 +2,12 @@
 
 This folder holds the live execution state for coordinator-led multi-agent work.
 
+## Level
+
+`runtime/` is an `Advanced` part of the workspace.
+
+Most projects do not need it.
+
 ## Purpose
 
 Use `runtime/` when the project wants more than role simulation.
@@ -12,6 +18,9 @@ These files let the coordinator and specialist agents share:
 - task queue
 - handoff sequence
 - gate status
+
+If the project is operating in the normal `architect-assist` style, these files
+should stay in their neutral template state.
 
 ## Files
 

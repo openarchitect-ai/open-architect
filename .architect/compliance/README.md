@@ -2,6 +2,20 @@
 
 This folder contains compliance-aware reference material for Open Architect.
 
+## Level
+
+`compliance/` is usually `Optional`.
+
+Use it when the project is:
+
+- regulated
+- cross-jurisdiction
+- sector-sensitive
+- handling sensitive data, payments, AI, or resilience obligations
+
+For many projects, this folder can stay mostly untouched until scope or sector
+evidence says it matters.
+
 Use it to capture the external legal, regulatory, and standards obligations
 that architecture work must account for, especially when projects cross
 jurisdictions, operate in regulated sectors, or handle sensitive data and AI.
@@ -51,6 +65,12 @@ change control, and vendor portability.
   modeling, and technology/environment modeling
 - use patterns and regulation profiles together: regulations explain
   obligations, patterns explain reusable solution responses
+
+Recommended working order:
+
+1. identify whether compliance is actually in scope
+2. activate only the jurisdictions, sectors, and profiles that matter
+3. keep the project config narrow instead of loading the full library by default
 
 ## Starter Regulation Set
 

@@ -13,7 +13,7 @@ review_gates:
     owner: chief-architect
   - gate: governance-review
     status: not-started
-    owner: architecture-governance-lead
+    owner: chief-architect
   - gate: transition-plan
     status: not-started
     owner: chief-architect

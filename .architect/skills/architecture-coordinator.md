@@ -53,9 +53,16 @@ work coherent.
    Make sure stakeholder, objective, requirement, solution, decision, and change links remain visible enough for review.
 6. Trigger validation and review at the right time.
    Require validation after meaningful modeling changes and stop at the configured human review gates.
-7. Maintain a coordination summary.
+7. Classify open questions.
+   Distinguish `blocking` open questions from `non-blocking` ones.
+   A blocking question changes whether the next step can be taken safely or honestly.
+   A non-blocking question matters, but the next bounded step can still proceed without pretending the answer is known.
+8. Ask the user when blocking open questions require it.
+   If project configuration says to ask on blocking open questions, pause and ask the user directly when the next safe step depends on an unresolved answer.
+   Do not let those questions stay buried only in summaries if they materially affect routing or design.
+9. Maintain a coordination summary.
    Keep one concise view of current stage, completed artifacts, open questions, blockers, pending reviews, and next recommended action.
-8. Escalate when needed.
+10. Escalate when needed.
    Route unresolved conflicts, approval ambiguity, or role-boundary tension to `chief-architect` or `architecture-governance-lead`.
 
 ## Outputs
@@ -85,6 +92,8 @@ work coherent.
 - traceability gaps are called out
 - blockers and unknowns are explicit
 - no approval state is implied without review evidence
+- blocking open questions are surfaced to the user when configured rather than only logged silently
+- non-blocking open questions are carried forward explicitly without stalling safe bounded work
 
 ## Typical Collaboration
 
@@ -100,3 +109,5 @@ work coherent.
 - Do not skip validation after meaningful artifact changes.
 - Do not allow review gates to become implicit.
 - Do not hide ambiguity; surface it in the coordination summary.
+- Do not keep materially blocking questions inside artifacts only when the project configuration says the user should be asked directly.
+- Do not let non-blocking questions silently mutate into assumed facts just to keep the flow moving.

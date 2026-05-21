@@ -1,0 +1,98 @@
+project:
+  name: Solution Design Project
+  architecture_scope: solution
+  architecture_mode: project-local
+  operating_style: architect-assist
+  primary_method: .architect/method/project-method.md
+  reference_methods: []
+
+compliance:
+  jurisdictions: []
+  industry_sectors: []
+  applicable_regulations: []
+  control_frameworks: []
+  data_residency_requirements: []
+  ai_regulated_use: false
+  incident_reporting_requirements: false
+
+roles:
+  enabled:
+    - chief-architect
+    - business-analyst
+    - solution-architect
+    - integration-architect
+    - security-architect
+    - data-architect
+
+templates:
+  enabled:
+    - stakeholder
+    - objective
+    - architecture-vision
+    - application
+    - application-service
+    - interface
+    - data-object
+    - technology-component
+    - environment
+    - requirement
+    - solution
+    - decision
+    - risk
+
+skills:
+  enabled:
+    - baseline-discovery
+    - requirement-normalizer
+    - solution-modeler
+    - decision-recorder
+    - architecture-review
+
+flows:
+  enabled:
+    - architecture-development
+
+conventions:
+  id_prefix_mode: standard
+  traceability_required: true
+  compliance_reviews_required: false
+  architecture_reviews_required: true
+  human_review_required: true
+  user_is_primary_driver: true
+  default_work_mode: modeling
+  artifact_creation_requires_explicit_request: true
+  next_step_recommendations_only: true
+  auto_progression: false
+  ask_before_scope_changes: true
+  ask_before_status_changes: true
+  ask_before_owner_creation: true
+  ask_user_on_blocking_open_questions: true
+  allow_progress_on_non_blocking_open_questions: true
+  allow_agent_auto_approval: false
+  default_agent_output_status: draft
+  stop_on_decision_changes: true
+  stop_on_governance_status_changes: true
+  evidence_required_for_approval: true
+
+governance:
+  architecture_owner_role: chief-architect
+  requirement_steward_role: business-analyst
+  review_role: chief-architect
+  coordinator_role: chief-architect
+  coordinator_skill: architecture-coordinator
+  coordinator_auto_route: false
+  human_approval_roles:
+    - chief-architect
+  review_checkpoints:
+    - requirement-baseline
+    - solution-direction
+    - decision-approval
+
+runtime:
+  execution_mode: single-agent-guided
+  coordinator_agent_profile: .architect/agents/chief-architect.md
+  state_root: .architect/runtime
+  task_artifact: .architect/agents/artifacts/agent-task.yaml
+  handoff_artifact: .architect/agents/artifacts/agent-handoff.yaml
+  allow_parallel_specialists: false
+  require_validation_before_handoff: true
