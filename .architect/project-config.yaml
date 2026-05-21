@@ -51,8 +51,20 @@ templates:
     - risk
 
 skills:
-  # Add skills here once the project defines reusable architecture skills.
-  enabled: []
+  # Enable the reusable skills that are active for this project.
+  enabled:
+    - project-bootstrapper
+    - stakeholder-objective-framer
+    - baseline-discovery
+    - requirement-normalizer
+    - requirements-follow-up
+    - solution-modeler
+    - relationship-mapper
+    - decision-recorder
+    - transition-planner
+    - architecture-review
+    - architecture-documenter
+    - diagram-author
 
 flows:
   enabled:
@@ -66,9 +78,25 @@ conventions:
   traceability_required: true
   compliance_reviews_required: true
   architecture_reviews_required: true
+  human_review_required: true
+  allow_agent_auto_approval: false
+  default_agent_output_status: draft
+  stop_on_decision_changes: true
+  stop_on_governance_status_changes: true
+  evidence_required_for_approval: true
 
 governance:
   # Assign role-level ownership for architecture, requirements, and reviews.
   architecture_owner_role: chief-architect
   requirement_steward_role: business-analyst
   review_role: architecture-governance-lead
+  human_approval_roles:
+    - chief-architect
+    - architecture-governance-lead
+  review_checkpoints:
+    - project-bootstrap
+    - requirement-baseline
+    - solution-direction
+    - decision-approval
+    - governance-review
+    - transition-plan

@@ -114,6 +114,12 @@ capability container, including:
 - Added anti-hallucination modeling conventions:
   - `.architect/guidance/conventions.md`
   - defines evidence, confidence, unknown, assumption, open-question, and partial-artifact rules
+- Added human-in-the-loop governance controls:
+  - `.architect/project-config.yaml`
+  - `.architect/guidance/conventions.md`
+  - `.architect/flows/architecture-development.flow.md`
+  - `.architect/flows/requirements-change-coordination.flow.md`
+  - defines review gates, approval roles, and default agent stop points
 - Added a worked example architecture project:
   - `.architect/examples/customer-onboarding-modernization/README.md`
   - linked business, application, data, technology, governance, and change artifacts
@@ -182,6 +188,8 @@ High priority:
   - traceability expectations
   - review/governance cadence
   - validation expectations for evidence and confidence
+- Add validation for human review controls
+  - e.g. prevent agent-generated approval states without explicit review evidence
 - Add more worked diagram examples under `.architect/examples/`
 
 Open source hygiene:
