@@ -15,6 +15,8 @@ traceability, and governance readiness.
 
 - `.architect/project-config.yaml`
 - `.architect/guidance/conventions.md`
+- `.architect/guidance/evidence-and-quality.md`
+- `.architect/guidance/governance-conventions.md`
 - `.architect/guidance/diagram-conventions.md`
 - `.architect/examples/customer-onboarding-modernization/README.md`
 

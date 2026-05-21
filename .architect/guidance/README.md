@@ -14,6 +14,10 @@ including:
 Recommended files:
 
 - `conventions.md`
+- `modeling-conventions.md`
+- `evidence-and-quality.md`
+- `governance-conventions.md`
+- `lifecycle-and-dates.md`
 - `diagram-conventions.md`
 - `glossary.md`
 - `governance.md`

@@ -1,9 +1,8 @@
 # Conventions
 
-This guide defines the default modeling conventions for Open Architect projects.
-Its main purpose is to help humans and agents produce architecture artifacts
-that are traceable, honest about uncertainty, and safe from speculative
-completion.
+This file is the entry point for the Open Architect guidance set. It keeps the
+top-level principles short and points people and agents to the more focused
+rules they need for a specific task.
 
 ## Core Rule
 
@@ -12,273 +11,28 @@ Do not invent architecture facts to make a template look complete.
 If the information is not known, not evidenced, or not yet agreed, record that
 state explicitly instead of filling the gap with plausible-sounding detail.
 
-## Modeling Posture
+## Guidance Map
 
-Use progressive elaboration rather than forced completeness:
+Use these files as the detailed rule set:
 
-- create partial but truthful artifacts early
-- add detail only when evidence or explicit decisions exist
-- prefer a thin, reliable artifact over a rich, speculative one
+- [`modeling-conventions.md`](modeling-conventions.md): facts, assumptions, open questions, partial artifacts, and relationship rules
+- [`evidence-and-quality.md`](evidence-and-quality.md): references, confidence, anti-hallucination discipline, and minimum quality checks
+- [`governance-conventions.md`](governance-conventions.md): human-in-the-loop, approval gates, escalation triggers, and review summaries
+- [`lifecycle-and-dates.md`](lifecycle-and-dates.md): status rules, date policy, and update expectations
+- [`diagram-conventions.md`](diagram-conventions.md): notation selection and diagram authoring rules
+- [`glossary.md`](glossary.md): shared workspace vocabulary
 
-## Information Types
+## Quick Principles
 
-Agents and architects should separate four kinds of content:
+- Prefer progressive elaboration over forced completeness.
+- Keep facts, assumptions, decisions, and open questions distinct.
+- Treat references, confidence, and dates as part of the evidence model.
+- Default agent output to `draft` or `proposed` until human review confirms stronger states.
+- Prefer a smaller number of strong, meaningful relationships over decorative linkage.
 
-- `fact`: supported by source evidence, an authoritative artifact, or an explicit stakeholder statement
-- `assumption`: plausible working hypothesis that is not yet confirmed
-- `decision`: an intentional choice that has been made and should be recorded as such
-- `open question`: unresolved point that needs clarification before stronger modeling is possible
+## Project-Specific Extensions
 
-Do not store assumptions or open questions as if they were settled facts.
-
-## Missing Information Policy
-
-When information is incomplete:
-
-- use `unknown` or `tbd` where a field needs an explicit placeholder
-- leave optional fields empty if no reliable value exists
-- keep the artifact in `draft` or `proposed` status until evidence improves
-- add follow-up items instead of guessing the answer
-
-Never infer owners, environments, interfaces, constraints, dates, or governance
-status purely to satisfy a template.
-
-## Evidence Rules
-
-Every non-obvious claim should be supportable by evidence.
-
-Expected evidence sources include:
-
-- stakeholder interviews or workshop outputs
-- existing architecture artifacts
-- delivery documents or backlog items
-- standards, policies, or regulatory sources
-- diagrams or system inventories
-- explicit user instructions in the working session
-
-Use `metadata.references` to point to the strongest available source.
-
-If no evidence exists yet:
-
-- lower the confidence level
-- mark the item as an assumption or open question
-- avoid presenting it as finalized architecture fact
-
-## Confidence Rules
-
-Use `metadata.confidence` deliberately:
-
-- `low`: inferred working position, partial evidence, or unresolved ambiguity
-- `medium`: reasonable evidence exists, but some important detail is still unconfirmed
-- `high`: supported by authoritative evidence or explicit owner confirmation
-
-Do not use `high` confidence when the content is based on agent inference alone.
-
-Relationship confidence should follow the same rule. If a relationship is
-possible but not evidenced, either lower confidence or do not model it yet.
-
-## Assumptions And Open Questions
-
-Use these patterns consistently:
-
-- store assumptions under `notes.assumptions`
-- store unresolved gaps under `notes.open_questions`
-- store notable evidence gaps under `notes.data_gaps` when helpful
-
-Recommended example:
-
-```yaml
-notes:
-  assumptions:
-    - Customer onboarding remains the initiating business event.
-  open_questions:
-    - Which team owns end-to-end replay operations after go-live?
-  data_gaps:
-    - No confirmed production SLA document was available at the time of modeling.
-```
-
-These local extensions are allowed even if they are not yet formalized in every
-template.
-
-## Status Rules
-
-Use lifecycle and approval fields to reflect certainty honestly:
-
-- early or partial artifacts should normally remain `draft`, `proposed`, or equivalent
-- do not mark architecture content as `approved` unless the relevant authority has actually approved it
-- do not mark requirements as `verified` unless verification evidence exists
-
-Status must reflect reality, not intent.
-
-## Date Rules
-
-Artifacts should carry dates, but only the dates that are meaningful for that
-artifact type.
-
-Use dates to express:
-
-- stewardship and review timing
-- decision effectiveness
-- planned delivery timing
-- target verification or resolution timing
-
-Do not add dates only for symmetry if the date has no real architectural
-meaning.
-
-### Dates Expected On Most Artifacts
-
-Most artifacts should include:
-
-- `metadata.last_reviewed`
-- one or more `metadata.change_log.date` entries
-
-These support stewardship, auditability, and recency checks.
-
-### Dates Used Selectively By Artifact Type
-
-Use additional dates where they matter:
-
-- `effective_date` for decisions or standards that become active at a known point
-- `review_date` for decisions, standards, or assessments that require later reconsideration
-- `start_date` and `target_end_date` for initiatives and work packages
-- `target_resolution_date` for gaps
-- `target_verification_date` for requirements
-- milestone or target dates inside roadmaps where sequencing matters
-
-### Date Quality Rules
-
-- Dates should reflect real review, approval, or planning intent.
-- Do not present guessed dates as committed dates.
-- If a date is provisional, keep the surrounding status consistent with that uncertainty.
-- If an artifact changes materially, update `metadata.last_reviewed` and add a change log entry.
-- If a review or approval date is no longer trustworthy, revise or remove it rather than leaving stale metadata behind.
-
-### Human And Agent Expectations
-
-When creating or updating artifacts:
-
-- agents should preserve valid historical dates unless the change really supersedes them
-- agents should not fabricate approval, review, or delivery dates
-- humans should confirm important planning or approval dates at review gates
-
-Dates are part of the evidence model. They should help explain when something
-was reviewed, decided, planned, or verified, not create false precision.
-
-## Relationship Rules
-
-Only create typed relationships that you can justify from evidence, architecture
-intent, or an explicit decision.
-
-Prefer:
-
-- a smaller set of strong, meaningful links
-- explicit confidence on weaker links
-- follow-up actions when the relationship is suspected but unconfirmed
-
-Avoid generic or decorative links that exist only to make the model look
-connected.
-
-## Agent Behavior Rules
-
-When an agent creates or updates artifacts, it should:
-
-1. Prefer minimal truthful output over speculative completion.
-2. Use source-backed facts first.
-3. Put uncertainty into assumptions or open questions.
-4. Lower confidence when evidence is weak.
-5. Ask for clarification through follow-up artifacts or notes rather than inventing answers.
-6. Keep decisions separate from requirements and separate both from assumptions.
-
-Good default instruction:
-
-```text
-Do not fill missing architecture information by inference unless the inference
-is explicitly marked as an assumption with low confidence. If evidence is
-missing, record the gap and the follow-up needed instead of inventing content.
-```
-
-## Human In The Loop Rules
-
-Open Architect should operate on the principle:
-
-- agents may draft
-- humans approve
-
-Agents can propose:
-
-- new or updated artifacts
-- relationships
-- diagrams
-- requirement clarifications
-- draft decisions
-- draft transition changes
-
-Agents should not silently finalize:
-
-- approval status changes to `approved`, `accepted`, or equivalent
-- governance position changes
-- major scope changes
-- key ownership assignments
-- material decision outcomes
-- verification or compliance status claims without evidence
-
-## Human Review Gates
-
-Human review should normally occur at these checkpoints:
-
-- project bootstrap and scope alignment
-- first requirement baseline
-- first coherent solution direction
-- every major architecture decision
-- governance or review-pack submission
-- transition architecture and roadmap approval
-
-If the work touches one of these gates, agents should stop and present a review
-summary rather than continue as if approval already exists.
-
-## Review Summary Pattern
-
-Before handoff to a human reviewer, the agent should summarize:
-
-- what changed
-- which artifacts were added or updated
-- what is evidenced
-- what is assumed
-- what remains unknown
-- what requires approval or rejection
-- recommended next action
-
-This keeps the human review focused on meaningful deltas rather than forcing a
-full re-read of every artifact.
-
-## Approval And Status Rules
-
-Unless a project explicitly overrides the rule:
-
-- agent-created artifacts should default to `draft` or `proposed`
-- only a human approver should move critical artifacts to `approved`, `accepted`, or `verified`
-- if evidence weakens or scope changes materially, approval status should be reconsidered
-
-An agent may prepare the status recommendation, but a human should confirm the
-state transition at the checkpoint.
-
-## Escalation Triggers
-
-Agents should pause for human input when:
-
-- a new decision materially changes scope or architecture direction
-- two plausible interpretations exist and the difference matters
-- a required owner or approver is unknown
-- evidence conflicts across sources
-- a requirement, risk, or compliance issue could materially affect delivery
-- approval would be needed to continue safely
-
-When one of these triggers occurs, the agent should record the issue explicitly
-instead of choosing a path silently.
-
-## Naming And ID Guidance
-
-Document project-specific conventions here as needed, including:
+Document local project conventions as needed, including:
 
 - naming conventions
 - ID patterns
@@ -286,15 +40,5 @@ Document project-specific conventions here as needed, including:
 - relationship patterns
 - approved terminology
 
-## Minimum Quality Check
-
-Before considering an artifact usable, confirm:
-
-- the core fact statements are evidenced or explicitly marked as assumptions
-- confidence is realistic
-- important claims have references where possible
-- unresolved gaps are visible
-- status does not overstate certainty or approval
-
-If those checks fail, the artifact should be treated as exploratory rather than
-authoritative.
+When a task depends on detailed rules, reference the focused guidance files
+above instead of relying on this summary alone.

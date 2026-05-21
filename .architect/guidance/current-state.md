@@ -114,6 +114,12 @@ capability container, including:
 - Added anti-hallucination modeling conventions:
   - `.architect/guidance/conventions.md`
   - defines evidence, confidence, unknown, assumption, open-question, and partial-artifact rules
+- Split general conventions into focused guidance files:
+  - `.architect/guidance/modeling-conventions.md`
+  - `.architect/guidance/evidence-and-quality.md`
+  - `.architect/guidance/governance-conventions.md`
+  - `.architect/guidance/lifecycle-and-dates.md`
+  - kept `.architect/guidance/conventions.md` as the short guidance entry point
 - Added a shared terminology glossary:
   - `.architect/guidance/glossary.md`
   - defines core workspace terms across artifacts, skills, flows, governance, and evidence
@@ -185,7 +191,7 @@ High priority:
 - Validate the worked example against relationship, enum, and required-field checks
 - Add validation or schema support
   - e.g. `.architect/schemas/` or `.architect/validation/`
-- Extend `guidance/conventions.md` with:
+- Extend the focused guidance set with:
   - ID generation rules
   - traceability expectations
   - review/governance cadence
@@ -214,7 +220,7 @@ Future direction:
 If work resumes later, the best next task is:
 
 1. turn the strongest playbooks into executable agent instructions and real flows
-2. validate the worked example and tighten conventions for IDs, traceability, and evidence quality
+2. validate the worked example and tighten guidance for IDs, traceability, and evidence quality
 3. add glossary, stronger conventions, and schema or validation support
 
 ## Notes

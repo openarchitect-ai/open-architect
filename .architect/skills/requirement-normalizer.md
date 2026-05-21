@@ -15,6 +15,9 @@ constraints, assumptions, and quality expectations.
 
 - `.architect/templates/application/requirement.yaml`
 - `.architect/guidance/conventions.md`
+- `.architect/guidance/modeling-conventions.md`
+- `.architect/guidance/evidence-and-quality.md`
+- `.architect/guidance/lifecycle-and-dates.md`
 - `.architect/examples/customer-onboarding-modernization/application/req-1001-customer-activation-reliability.yaml`
 
 ## Inputs

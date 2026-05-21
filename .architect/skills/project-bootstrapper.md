@@ -17,6 +17,7 @@ scope, roles, templates, conventions, and delivery expectations.
 - `.architect/config/agent.config.md`
 - `.architect/method/project-method.md`
 - `.architect/guidance/conventions.md`
+- `.architect/guidance/governance-conventions.md`
 - `.architect/examples/customer-onboarding-modernization/README.md`
 
 ## Inputs
