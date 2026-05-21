@@ -114,6 +114,9 @@ capability container, including:
 - Added anti-hallucination modeling conventions:
   - `.architect/guidance/conventions.md`
   - defines evidence, confidence, unknown, assumption, open-question, and partial-artifact rules
+- Added a shared terminology glossary:
+  - `.architect/guidance/glossary.md`
+  - defines core workspace terms across artifacts, skills, flows, governance, and evidence
 - Added human-in-the-loop governance controls:
   - `.architect/project-config.yaml`
   - `.architect/guidance/conventions.md`
@@ -182,7 +185,6 @@ High priority:
 - Validate the worked example against relationship, enum, and required-field checks
 - Add validation or schema support
   - e.g. `.architect/schemas/` or `.architect/validation/`
-- Add a glossary in `.architect/guidance/glossary.md`
 - Extend `guidance/conventions.md` with:
   - ID generation rules
   - traceability expectations
