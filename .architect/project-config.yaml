@@ -110,6 +110,18 @@ conventions:
   human_review_required: true
   user_is_primary_driver: true
   default_work_mode: inventory # inventory | analysis | modeling | review | decision
+  guided_mode_support: true
+  guided_mode_depth: standard # concise | standard | detailed
+  clarify_operating_context_first: true
+  include_architect_tasks_in_all_modes: true
+  maximize_followup_task_capture: true
+  announce_active_role_and_skill: true
+  response_display_style: architect-friendly # architect-friendly | minimal
+  response_display_enforcement: strict # strict | preferred
+  response_session_banner: table # table | compact
+  response_status_labels: true
+  response_task_grouping: ask-confirm-request-decide # ask-confirm-request-decide | flat
+  response_bottom_line: true
   artifact_creation_requires_explicit_request: true
   next_step_recommendations_only: true
   auto_progression: false

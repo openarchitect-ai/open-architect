@@ -22,7 +22,10 @@ The default direction is now:
 
 - `agent.config.md`
 - `cheat-sheet.md`
+- `architect-work-folder.md`
+- `response-display.md`
 - `starter-project.md`
+- `test-the-workspace.md`
 - `prompt-recipes.md`
 - `worked-examples.md`
 - `presets/`
@@ -57,8 +60,14 @@ runtime files should stay in their neutral template state.
   Main guidance for project config, operating style, runtime mode, and approval thresholds.
 - [cheat-sheet.md](./cheat-sheet.md)
   Fast reference for modes, defaults, and prompt habits.
+- [architect-work-folder.md](./architect-work-folder.md)
+  Project-local place for architect-owned questions, answers, evidence requests, and next tasks.
+- [response-display.md](./response-display.md)
+  Recommended response structure, labels, and optional UI color suggestions.
 - [starter-project.md](./starter-project.md)
   Lightweight project setup for architect-led work.
+- [test-the-workspace.md](./test-the-workspace.md)
+  Small retest flow for checking that the workspace stays source-first and light.
 - [prompt-recipes.md](./prompt-recipes.md)
   Practical prompts for inventory, analysis, review, and modeling tasks.
 - [worked-examples.md](./worked-examples.md)

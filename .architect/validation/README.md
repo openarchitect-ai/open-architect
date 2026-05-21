@@ -55,6 +55,9 @@ VALIDATION_SUMMARY validator=<name> status=<status> checked=<n> errors=<n> warni
   For live project artifacts under `.architect/architecture/`, it also warns
   when ownership fields look speculative instead of using explicit
   `confirmed:`, `role-placeholder:`, `tbd`, or `unknown` values.
+  It also warns when `.architect/project-config.yaml` still declares
+  `runtime.execution_mode: single-agent-guided` but `.architect/runtime/`
+  appears to contain active orchestration state instead of neutral templates.
 
 Schema contracts live under `../schemas/` and are intended to complement, not
 replace, these validators.

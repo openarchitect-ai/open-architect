@@ -227,9 +227,10 @@ If you want the lightest useful setup:
 
 1. create a folder under [`.architect/architecture/`](./architecture/)
 2. add a `docs/` folder with your source material
-3. optionally add a short `notes.md` with context and questions
-4. start in `inventory` or `analysis` mode
-5. create architecture artifacts only when you explicitly want them
+3. optionally add an `architect-work/` folder for architect-owned questions, answers, and task lists
+4. optionally add a short `notes.md` with context and questions
+5. start in `inventory` or `analysis` mode
+6. create architecture artifacts only when you explicitly want them
 
 Useful guides:
 

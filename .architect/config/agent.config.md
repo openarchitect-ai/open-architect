@@ -134,6 +134,18 @@ Suggested architect-assist conventions:
 
 - `user_is_primary_driver: true`
 - `default_work_mode: inventory`
+- `guided_mode_support: true`
+- `guided_mode_depth: standard`
+- `clarify_operating_context_first: true`
+- `include_architect_tasks_in_all_modes: true`
+- `maximize_followup_task_capture: true`
+- `announce_active_role_and_skill: true`
+- `response_display_style: architect-friendly`
+- `response_display_enforcement: strict`
+- `response_session_banner: table`
+- `response_status_labels: true`
+- `response_task_grouping: ask-confirm-request-decide`
+- `response_bottom_line: true`
 - `artifact_creation_requires_explicit_request: true`
 - `next_step_recommendations_only: true`
 - `auto_progression: false`
@@ -149,6 +161,20 @@ Suggested ownership convention for live project artifacts:
 
 This keeps architecture stewardship honest and prevents plausible-sounding but
 invented ownership from becoming accidental truth.
+
+Use context clarification as a first-class behavior, not as an afterthought.
+
+Recommended convention:
+
+- `clarify_operating_context_first: true`
+
+Use this when the assistant should assume that the project or task context may
+be incomplete until it has been made explicit. In practice, that means:
+
+- state the current working interpretation of the task
+- distinguish source facts from inferred context
+- call out the minimum context questions that would materially change the work
+- avoid silently acting as if the project goal, state, or scope is already known
 
 You can also express how the agent should handle unresolved questions.
 
@@ -191,6 +217,88 @@ Recommended modes:
 
 See [`.architect/guidance/work-modes.md`](../guidance/work-modes.md) for the
 full behavior guidance.
+
+When `guided_mode_support: true`, the agent should not just perform the task. It
+should also help the architect move forward by making the current situation
+clear.
+
+Recommended guided output elements:
+
+- active role and skill
+  - which role lens and which skill or playbook are being used for this task
+- what is known
+- the current working interpretation
+- what matters most
+- what remains unclear
+- what the result means
+- the next sensible move
+- architect tasks
+  - the concrete things the architect should now do, ask, confirm, or review
+- bottom line
+  - a short closing takeaway or decision boundary
+
+Use `guided_mode_depth` to tune how much of that guidance is included:
+
+- `concise`
+  - short orientation and next step
+- `standard`
+  - orientation, key gaps, and next-step guidance
+- `detailed`
+  - fuller coaching and explicit decision support
+
+If `conventions.include_architect_tasks_in_all_modes` is `true`:
+
+- every mode should leave the architect with concrete next actions
+- those actions may include questions to ask, evidence to collect, people to
+  confirm with, decisions to prepare, or artifacts to review
+- the task list should stay mode-appropriate and should not force modeling or
+  orchestration when the user did not ask for it
+
+If `conventions.maximize_followup_task_capture` is `true`:
+
+- do not stop at a single next step when several useful follow-ups are already
+  visible
+- capture the architect's likely next tasks in batches when the source supports
+  it
+- prefer short, practical task lists over repeated one-question-at-a-time
+  follow-ups
+- separate high-confidence tasks from lower-confidence suggestions when needed
+
+If `conventions.announce_active_role_and_skill` is `true`:
+
+- say which role lens is active for the current task
+- say which skill or playbook is being used, if any
+- do this near the start of the response so the architect can see the working stance
+- if no named skill is being used, say that the assistant is working without an explicit skill
+
+If `conventions.response_display_style` is `architect-friendly`:
+
+- responses should follow the architect-friendly display contract by default
+
+If `conventions.response_display_enforcement` is `strict`:
+
+- responses must begin with a `Session` block unless the task is trivially short
+- responses must use the standard section order unless the user explicitly asks for a different format
+- responses must use grouped architect tasks when a task bundle is present
+- responses must end with a short `Bottom Line` when the answer is more than a quick one-liner
+
+If `conventions.response_session_banner` is `table`:
+
+- the `Session` block should be rendered as a two-column table with `Field` and `Value`
+
+If `conventions.response_status_labels` is `true`:
+
+- use status labels such as `CONFIRMED`, `PROVISIONAL`, `OPEN`, `BLOCKER`, `ACTION`, `REQUEST`, and `DECISION` where they improve scanability
+
+If `conventions.response_task_grouping` is `ask-confirm-request-decide`:
+
+- group architect tasks as `Ask`, `Confirm`, `Request`, and `Decide` unless the task list is too small to benefit
+
+If `conventions.response_bottom_line` is `true`:
+
+- include a short `Bottom Line` takeaway at the end of substantial responses
+
+See [`.architect/config/response-display.md`](./response-display.md) for the display pattern.
 
 ### `governance`
 
@@ -273,6 +381,13 @@ In an architect-assist project, agents should default to:
   - change scope assumptions
   - change statuses or approvals
   - introduce owners or stakeholders not grounded in source evidence
+
+If `conventions.clarify_operating_context_first` is `true`:
+
+- assume the operating context may still need clarification
+- make the current interpretation explicit before leaning into conclusions
+- keep a visible boundary between source evidence and inferred framing
+- surface the smallest context questions that would change the next step
 
 ## Open Question Behavior
 

@@ -24,3 +24,19 @@ Reference projects and worked examples live under `../examples/`.
 For larger or parallel efforts, it is also acceptable to create a project
 subfolder under `architecture/` and mirror the same category structure inside
 that project folder.
+
+For lighter architect-assist work, a project subfolder may also start with:
+
+```text
+architecture/<project-name>/
+  docs/
+  architect-work/
+  notes.md
+```
+
+Use:
+
+- `docs/` for source material and evidence
+- `architect-work/` for architect-owned questions, answers, evidence requests, and
+  next tasks
+- `notes.md` for short context or assignment framing

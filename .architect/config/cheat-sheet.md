@@ -44,6 +44,8 @@ Add one of these when you want a specific answer shape:
 - `Only show findings.`
 - `Do not create files.`
 - `Create files.`
+- `Use the architect-friendly display style.`
+- `Group my tasks as ask / confirm / request / decide.`
 
 ## Safe Defaults
 

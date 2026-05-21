@@ -13,10 +13,12 @@ forcing runtime orchestration or early artifact creation.
 ```text
 .architect/architecture/<project-name>/
   docs/
+  architect-work/  # optional but recommended
   notes.md          # optional
 ```
 
-That is enough to begin.
+That is enough to begin, and `architect-work/` is the best place to capture the
+answers and evidence that come back as discovery progresses.
 
 ## What To Put In `docs/`
 
@@ -44,6 +46,34 @@ Good contents:
 - known stakeholders
 - known constraints
 - questions you want the agent to help answer
+
+## Recommended `architect-work/` Folder
+
+Use `architect-work/` as the architect-owned working area inside the project.
+
+Recommended contents:
+
+- `open-questions.md`
+  Questions that still need answers from stakeholders, delivery teams, or vendors.
+- `answers-and-confirmations.md`
+  Confirmed answers, clarifications, and decisions you have received.
+- `evidence-requests.md`
+  Missing inputs you need such as API specs, file samples, mappings, or ownership details.
+- `architect-task-list.md`
+  Your practical follow-up tasks from each working session.
+
+You do not have to fill them all immediately, but creating the files early
+usually makes the project feel more tangible and easier to maintain.
+
+Use this folder when you want one place to capture:
+
+- what still needs to be asked
+- what has now been confirmed
+- what evidence is still missing
+- what the architect needs to do next
+
+This keeps follow-up work local to the project without forcing early YAML
+artifacts or runtime state.
 
 ## What You Do Not Need Up Front
 

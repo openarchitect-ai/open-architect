@@ -58,6 +58,106 @@ $ownershipValidationExcludedKeys = @(
     'vendor'
 )
 
+function Get-FileScalarValue {
+    param(
+        [string]$Path,
+        [string]$Key
+    )
+
+    if (-not (Test-Path $Path -PathType Leaf)) {
+        return $null
+    }
+
+    $line = Get-Content $Path | Where-Object { $_ -match ('^\s*' + [regex]::Escape($Key) + ':\s*(.*?)\s*(#.*)?$') } | Select-Object -First 1
+    if (-not $line) {
+        return $null
+    }
+
+    return Get-ScalarValue -Line $line -KeyName $Key
+}
+
+function Test-RuntimeStateLooksPopulated {
+    param(
+        [string]$RuntimeRoot
+    )
+
+    if (-not (Test-Path $RuntimeRoot -PathType Container)) {
+        return $false
+    }
+
+    $activeWorkPath = Join-Path $RuntimeRoot 'active-work.yaml'
+    $queuePath = Join-Path $RuntimeRoot 'agent-queue.yaml'
+    $reviewGatesPath = Join-Path $RuntimeRoot 'review-gates.yaml'
+
+    $activeProjectRoot = Get-FileScalarValue -Path $activeWorkPath -Key 'active_project_root'
+    $coordinatorAgent = Get-FileScalarValue -Path $activeWorkPath -Key 'coordinator_agent'
+    $activeStage = Get-FileScalarValue -Path $activeWorkPath -Key 'active_stage'
+    $activeTaskId = Get-FileScalarValue -Path $activeWorkPath -Key 'active_task_id'
+    $activeReviewGate = Get-FileScalarValue -Path $activeWorkPath -Key 'active_review_gate'
+    $activeLastUpdated = Get-FileScalarValue -Path $activeWorkPath -Key 'last_updated'
+
+    if ($activeProjectRoot -or $coordinatorAgent -or $activeTaskId -or $activeReviewGate -or $activeLastUpdated) {
+        return $true
+    }
+
+    if ($activeStage -and $activeStage -ne 'idle') {
+        return $true
+    }
+
+    if (Test-Path $queuePath -PathType Leaf) {
+        $queueLines = Get-Content $queuePath
+        if ($queueLines | Where-Object {
+            $_ -match '^\s*(queued_tasks|active_tasks|blocked_tasks|completed_tasks|cancelled_tasks):\s*\[(.+)\]\s*$'
+        }) {
+            return $true
+        }
+
+        $queueLastUpdated = Get-FileScalarValue -Path $queuePath -Key 'last_updated'
+        if ($queueLastUpdated) {
+            return $true
+        }
+    }
+
+    if (Test-Path $reviewGatesPath -PathType Leaf) {
+        $gateStatusLines = Get-Content $reviewGatesPath | Where-Object { $_ -match '^\s*status:\s*(.+?)\s*(#.*)?$' }
+        foreach ($line in $gateStatusLines) {
+            $status = Get-ScalarValue -Line $line -KeyName 'status'
+            if ($status -and $status -ne 'not-started') {
+                return $true
+            }
+        }
+    }
+
+    return $false
+}
+
+function Test-RuntimeDriftAgainstExecutionMode {
+    param(
+        [string]$ProjectConfigPath
+    )
+
+    if (-not (Test-Path $ProjectConfigPath -PathType Leaf)) {
+        return
+    }
+
+    $executionMode = Get-FileScalarValue -Path $ProjectConfigPath -Key 'execution_mode'
+    if ($executionMode -ne 'single-agent-guided') {
+        return
+    }
+
+    $runtimeRootValue = Get-FileScalarValue -Path $ProjectConfigPath -Key 'state_root'
+    if ([string]::IsNullOrWhiteSpace($runtimeRootValue)) {
+        $runtimeRootValue = '.architect/runtime'
+    }
+
+    $runtimeRoot = Join-Path $repoRoot ($runtimeRootValue -replace '/', '\')
+    if (-not (Test-RuntimeStateLooksPopulated -RuntimeRoot $runtimeRoot)) {
+        return
+    }
+
+    Add-Warning $ProjectConfigPath ("runtime state under '{0}' appears populated while runtime.execution_mode is 'single-agent-guided'; reset runtime files or switch execution_mode if orchestration is intentional" -f $runtimeRootValue)
+}
+
 function Add-Error {
     param(
         [string]$Path,
@@ -996,6 +1096,8 @@ foreach ($artifact in $artifactInventory.Values) {
         Add-Error $artifact.Path 'metadata.confidence is high but metadata.references does not contain any entries'
     }
 }
+
+Test-RuntimeDriftAgainstExecutionMode -ProjectConfigPath (Join-Path $repoRoot '.architect\project-config.yaml')
 
 $warnings = @($issues | Where-Object { $_.Severity -eq 'warning' })
 $errors = @($issues | Where-Object { $_.Severity -eq 'error' })
