@@ -17,12 +17,16 @@ that shape the solution and its operational boundaries.
 - `.architect/templates/technology/technology-standard.yaml`
 - `.architect/templates/technology/environment.yaml`
 - `.architect/patterns/technology/secrets-and-configuration-management.md`
+- `.architect/patterns/technology/secrets-rotation.md`
 - `.architect/patterns/technology/environment-promotion.md`
 - `.architect/patterns/technology/blue-green-canary-deployment.md`
 - `.architect/patterns/technology/observability-by-design.md`
+- `.architect/patterns/technology/active-active-vs-active-passive.md`
+- `.architect/patterns/technology/multi-region-failover.md`
 - `.architect/patterns/security/layered-security-controls.md`
 - `.architect/patterns/security/identity-federation.md`
 - `.architect/patterns/security/service-to-service-identity.md`
+- `.architect/patterns/security/audit-and-tamper-evident-logging.md`
 
 ## Inputs
 
@@ -42,10 +46,13 @@ that shape the solution and its operational boundaries.
 ## Pattern Guidance
 
 - use `secrets-and-configuration-management` when runtime secrets and environment-specific configuration must be controlled deliberately
+- use `secrets-rotation` when credential lifecycle and compromise response matter materially
 - use `environment-promotion` when disciplined movement across dev, test, and production boundaries matters
 - use `blue-green-canary-deployment` when risk-managed deployment and rollback patterns are important
+- use `active-active-vs-active-passive` when resilience posture and failover design materially affect the architecture
+- use `multi-region-failover` when regional outage resilience is an explicit requirement
 - use `observability-by-design` when supportability, diagnostics, and runtime governance should be first-class architecture concerns
-- use `layered-security-controls`, `identity-federation`, and `service-to-service-identity` for cross-cutting security and trust concerns
+- use `layered-security-controls`, `identity-federation`, `service-to-service-identity`, and `audit-and-tamper-evident-logging` for cross-cutting security and trust concerns
 
 ## Outputs
 
@@ -62,6 +69,8 @@ that shape the solution and its operational boundaries.
 - chosen technology patterns match the operational and risk context
 - security, promotion, and deployment assumptions are not hidden in prose
 - observability and machine-identity assumptions are explicit where relevant
+- resilience posture and audit expectations are explicit where relevant
+- secret lifecycle and regional failover expectations are explicit where relevant
 
 ## Quality Checks
 

@@ -308,9 +308,10 @@ More detailed authoring guidance is in [agents.md](templates/agents.md).
 To make this workspace operational, the next best additions are:
 
 1. Add additional worked examples under `examples/`.
-2. Deepen schema precision and schema-aware validation behavior.
-3. Add project-specific guidance extensions under `guidance/` where needed.
-4. Add automation for ID generation, relationship checks, broken reference detection, and approval-quality validation.
+2. Turn the strongest playbooks into executable agent instructions.
+3. Deepen schema precision and schema-aware validation behavior.
+4. Prove the expanded pattern library through real project use and executable agent scenarios.
+5. Add automation for ID generation, relationship checks, broken reference detection, and approval-quality validation.
 
 ## Starting Small
 

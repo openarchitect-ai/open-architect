@@ -21,6 +21,8 @@ intermediate states and delivery increments.
 - `.architect/patterns/transition/coexistence-data-migration.md`
 - `.architect/patterns/transition/feature-toggle-rollout.md`
 - `.architect/patterns/transition/parallel-run.md`
+- `.architect/patterns/transition/phased-decommissioning.md`
+- `.architect/patterns/transition/cutover-rehearsal.md`
 - `.architect/patterns/technology/environment-promotion.md`
 - `.architect/patterns/technology/blue-green-canary-deployment.md`
 
@@ -44,6 +46,8 @@ intermediate states and delivery increments.
 - use `coexistence-data-migration` when old and new data states must coexist during transition
 - use `feature-toggle-rollout` when exposure should be controlled separately from deployment timing
 - use `parallel-run` when old and new paths must coexist temporarily for confidence-building or reconciliation
+- use `phased-decommissioning` when legacy assets should be retired deliberately after migration or coexistence phases
+- use `cutover-rehearsal` when the production transition is risky enough to justify practice before the real event
 - use `environment-promotion` and `blue-green-canary-deployment` when rollout risk and release control matter
 
 ## Outputs
@@ -60,6 +64,8 @@ intermediate states and delivery increments.
 - gaps and work packages are linked to real architecture movement
 - dependencies, risks, and review points are visible
 - cutover, coexistence, or exposure-control assumptions are explicit where relevant
+- decommissioning expectations are explicit where target-state simplification depends on them
+- rehearsal expectations are explicit where cutover confidence depends on them
 
 ## Quality Checks
 

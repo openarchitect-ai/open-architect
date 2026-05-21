@@ -147,6 +147,7 @@ The structure, templates, and operating model are in place, but the repository s
 
 - deeper schema precision and fuller schema-aware enforcement
 - richer examples
+- real-project proving of the expanded pattern and skill library
 - contribution standards
 - contribution and project-governance details
 

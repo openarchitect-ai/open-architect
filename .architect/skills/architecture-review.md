@@ -21,6 +21,16 @@ traceability, governance readiness, and pattern fit.
 - `.architect/patterns/README.md`
 - `.architect/patterns/governance/architecture-decision-lifecycle.md`
 - `.architect/patterns/governance/standards-exception-management.md`
+- `.architect/patterns/governance/governance-review-gate.md`
+- `.architect/patterns/security/audit-and-tamper-evident-logging.md`
+- `.architect/patterns/data/reference-data-management.md`
+- `.architect/patterns/data/data-replication-and-cache-invalidation.md`
+- `.architect/patterns/data/archival-and-retention.md`
+- `.architect/patterns/technology/active-active-vs-active-passive.md`
+- `.architect/patterns/technology/secrets-rotation.md`
+- `.architect/patterns/technology/multi-region-failover.md`
+- `.architect/patterns/transition/phased-decommissioning.md`
+- `.architect/patterns/transition/cutover-rehearsal.md`
 - `.architect/examples/customer-onboarding-modernization/README.md`
 
 ## Inputs

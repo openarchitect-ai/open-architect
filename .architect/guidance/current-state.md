@@ -185,7 +185,7 @@ capability container, including:
   - three example views under `.architect/examples/customer-onboarding-modernization/views/`
 - Added a reusable architecture pattern library:
   - `.architect/patterns/README.md`
-  - starter patterns across application, integration, transition, data, and security concerns
+  - initial reusable patterns across application, integration, transition, data, security, governance, and technology concerns
   - provides reusable solution guidance distinct from templates and project artifacts
 - Expanded the reusable architecture pattern library:
   - added request-response, batch, anti-corruption, and outbox integration patterns
@@ -201,6 +201,12 @@ capability container, including:
   - added service-to-service identity and observability-by-design patterns
   - added feature-toggle rollout and parallel-run transition patterns
   - broadens reusable coverage for governance control, runtime trust, operations, and controlled rollout
+- Expanded the reusable architecture pattern library once more:
+  - added audit and tamper-evident logging, reference-data management, active-active vs active-passive, and phased decommissioning patterns
+  - broadens reusable coverage for auditability, shared classifications, resilience posture, and legacy retirement
+- Expanded the reusable architecture pattern library yet again:
+  - added governance review gate, cutover rehearsal, data replication/cache invalidation, archival/retention, secrets rotation, and multi-region failover patterns
+  - broadens reusable coverage for review checkpoints, cutover confidence, data lifecycle, credential hygiene, and regional resilience
 - Wired reusable patterns into core delivery skills:
   - `solution-modeler`
   - `application-interface-modeler`
@@ -217,6 +223,16 @@ capability container, including:
   - `technology-environment-modeler` now includes observability and service-identity usage
   - `transition-planner` now includes feature-toggle and parallel-run usage
   - `architecture-review` now reads governance patterns directly during review
+- Extended pattern-aware skill guidance again:
+  - `data-modeler` now includes reference-data management usage
+  - `technology-environment-modeler` now includes resilience posture and audit logging usage
+  - `transition-planner` now includes phased-decommissioning usage
+  - `architecture-review` now reads the new audit, reference-data, resilience, and decommissioning patterns directly
+- Extended pattern-aware skill guidance once more:
+  - `data-modeler` now includes replication/cache and archival/retention usage
+  - `technology-environment-modeler` now includes secrets-rotation and multi-region failover usage
+  - `transition-planner` now includes cutover-rehearsal usage
+  - `architecture-review` now reads the new review-gate, data-lifecycle, credential, and failover patterns directly
 - Turned Wave 1 skills into concrete playbooks:
   - `project-bootstrapper`
   - `stakeholder-objective-framer`
@@ -294,9 +310,9 @@ High priority:
 - Add validation for human review controls
   - e.g. prevent agent-generated approval states without explicit review evidence
 - Add more worked diagram examples under `.architect/examples/`
-- Expand the reusable pattern library
-  - add more domain-specific and technology-specific architecture patterns
-  - link patterns more explicitly to templates, decisions, and example diagrams
+- Expand the reusable pattern library only where real usage shows clear gaps
+  - add more patterns when live project use or executable agents expose missing guidance
+  - link patterns more explicitly to templates, decisions, skills, and example diagrams
 
 Open source hygiene:
 
