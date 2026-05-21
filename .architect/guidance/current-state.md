@@ -183,66 +183,18 @@ capability container, including:
   - `.architect/examples/customer-onboarding-modernization/README.md`
   - linked business, application, data, technology, governance, and change artifacts
   - three example views under `.architect/examples/customer-onboarding-modernization/views/`
-- Added a reusable architecture pattern library:
+- Added a compliance-aware reference layer:
+  - `.architect/compliance/README.md`
+  - starter regulation profiles for GDPR, EU AI Act, NIS2, DORA, HIPAA Security Rule, FTC Safeguards Rule, SEC cyber disclosure rules, PCI DSS, and CCPA/CPRA
+  - adds jurisdiction, sector, and control-obligation context for architecture work in regulated settings
+- Expanded the compliance layer further:
+  - added Cyber Resilience Act, EU Data Act, eIDAS / European Digital Identity Framework, MiCA, COPPA, and FERPA
+  - broadens coverage for product cybersecurity, data-sharing obligations, digital identity trust, crypto regulation, children's privacy, and education-record controls
+- Added and then substantially expanded the reusable architecture pattern library:
   - `.architect/patterns/README.md`
-  - initial reusable patterns across application, integration, transition, data, security, governance, and technology concerns
-  - provides reusable solution guidance distinct from templates and project artifacts
-- Expanded the reusable architecture pattern library:
-  - added request-response, batch, anti-corruption, and outbox integration patterns
-  - added backend-for-frontend and identity federation patterns
-  - broadens reusable coverage for common enterprise solution and modernization choices
-- Expanded the reusable architecture pattern library further:
-  - added master data stewardship and CQRS/read-model data patterns
-  - added secrets/configuration, environment promotion, and blue-green/canary technology patterns
-  - added coexistence data migration as a transition pattern
-  - broadens reusable coverage for data governance, operational rollout, and transition execution
-- Expanded the reusable architecture pattern library again:
-  - added governance patterns for decision lifecycle and standards exception management
-  - added service-to-service identity and observability-by-design patterns
-  - added feature-toggle rollout and parallel-run transition patterns
-  - broadens reusable coverage for governance control, runtime trust, operations, and controlled rollout
-- Expanded the reusable architecture pattern library once more:
-  - added audit and tamper-evident logging, reference-data management, active-active vs active-passive, and phased decommissioning patterns
-  - broadens reusable coverage for auditability, shared classifications, resilience posture, and legacy retirement
-- Expanded the reusable architecture pattern library yet again:
-  - added governance review gate, cutover rehearsal, data replication/cache invalidation, archival/retention, secrets rotation, and multi-region failover patterns
-  - broadens reusable coverage for review checkpoints, cutover confidence, data lifecycle, credential hygiene, and regional resilience
-- Expanded the reusable architecture pattern library further again:
-  - added capability-based planning, architecture principle lifecycle, data reconciliation, privileged-access segregation, graceful degradation, and rollback/recovery patterns
-  - broadens reusable coverage for business planning anchors, enduring governance, discrepancy handling, privileged operations, continuity design, and recovery readiness
-- Expanded the reusable architecture pattern library once again:
-  - added value-stream-to-capability mapping, waiver expiry/remediation, data classification/handling, zero-trust segmentation, platform tenancy isolation, and pilot-then-scale patterns
-  - broadens reusable coverage for business-value framing, governance follow-through, data sensitivity, trust boundaries, shared-platform isolation, and staged adoption
-- Expanded the reusable architecture pattern library again:
-  - added reference-architecture adoption, break-glass access, master-data synchronization, capacity/scaling guardrails, branch-by-abstraction, and post-cutover hypercare patterns
-  - broadens reusable coverage for reusable reference alignment, emergency operations, synchronized master data, load guardrails, seam-based migration, and early-life stabilization
-- Expanded the reusable architecture pattern library further:
-  - added operating-model segmentation, architecture-board decision escalation, event-carried state transfer, historical replay/rebuild, cost-optimized environment tiering, and legacy-interface sunset patterns
-  - broadens reusable coverage for business operating variance, governance escalation, event propagation, recovery/rebuild, cost-aware platform design, and controlled interface retirement
-- Expanded the reusable architecture pattern library again:
-  - added business-capability heatmap, reference-architecture variance management, identity proofing and joiner-mover-leaver, golden-record resolution, platform observability operating model, and dual-write containment patterns
-  - broadens reusable coverage for capability prioritization, controlled standards variance, identity lifecycle governance, trusted record resolution, platform operations ownership, and transition write containment
-- Expanded the reusable architecture pattern library once more:
-  - added product-vs-platform boundary, control-objective-to-pattern mapping, cross-boundary data-sharing controls, data lineage/provenance, ephemeral environment strategy, and canary-then-expand patterns
-  - broadens reusable coverage for shared-platform ownership, governance traceability, regulated data exchange, data trust, temporary runtime strategy, and progressive rollout control
-- Expanded the reusable architecture pattern library further again:
-  - added application invest/tolerate/migrate/eliminate, decision evidence packaging, workload identity federation, data quality rule governance, shared-platform guardrail model, and release-train coordination patterns
-  - broadens reusable coverage for portfolio action planning, decision rigor, machine identity trust, governed data quality, platform operating boundaries, and multi-team release orchestration
-- Expanded the reusable architecture pattern library yet again:
-  - added data-contract governance, event-schema evolution, cost-allocation/showback, architecture-standard waiver board, rollback-readiness gate, and regulated data retention/legal-hold patterns
-  - broadens reusable coverage for governed exchange contracts, event compatibility discipline, platform economics visibility, formal standards exception review, recovery gates, and regulated retention control
-- Expanded the reusable architecture pattern library further once more:
-  - added reference-architecture conformance review, secrets-breach response, data-domain ownership, environment-drift detection, legacy-batch sunset, and transition-hypercare exit-criteria patterns
-  - broadens reusable coverage for reference-alignment assurance, secret incident response, explicit data stewardship, environment hygiene, batch retirement, and stabilized transition closure
-- Expanded the reusable architecture pattern library again:
-  - added capability-funding alignment, decision-review and sunset, security-control inheritance, data-sharing-agreement governance, multi-tenancy data isolation, and cutover-command-center patterns
-  - broadens reusable coverage for investment alignment, decision lifecycle closure, shared-control responsibility, governed data exchange, tenant separation, and coordinated cutover execution
-- Expanded the reusable architecture pattern library once more:
-  - added business-capability roadmapping, policy-to-control traceability, privileged-session monitoring, regulated-data access approval, shared-service SLO operating model, and rollback-decision thresholds patterns
-  - broadens reusable coverage for long-horizon capability planning, governance traceability, elevated-access oversight, regulated data approval, shared-service reliability ownership, and operational rollback triggers
-- Expanded the reusable architecture pattern library further again:
-  - added product-operating-model alignment, architecture-assurance evidence trail, decision-authority matrix, master-reference-data synchronization, runtime-policy enforcement, and parallel-operations closure patterns
-  - broadens reusable coverage for delivery-model alignment, assurance traceability, explicit decision rights, enterprise data synchronization, runtime guardrails, and closure of temporary operating modes
+  - now covers a broad cross-section of business, application, integration, data, governance, security, technology, and transition concerns
+  - includes patterns for business framing and funding, decision and assurance governance, data ownership and contract control, identity and security controls, platform and runtime operating models, and staged transition and cutover management
+  - provides reusable architecture guidance distinct from templates and project artifacts, and is now a first-class working context for many skills
 - Wired reusable patterns into core delivery skills:
   - `solution-modeler`
   - `application-interface-modeler`
@@ -289,6 +241,32 @@ capability container, including:
   - `technology-environment-modeler` now includes capacity-and-scaling-guardrails usage
   - `transition-planner` now includes branch-by-abstraction and post-cutover-hypercare usage
   - `architecture-review` now reads the new reference-alignment, emergency-access, synchronization, scaling, seam-based migration, and hypercare patterns directly
+- Refreshed the most pattern-heavy skills to match the expanded pattern library:
+  - updated `stakeholder-objective-framer`, `data-modeler`, `decision-recorder`, `risk-compliance-assessor`, `technology-environment-modeler`, `transition-planner`, and `architecture-review`
+  - widened their read-first context, pattern guidance, and output checks so newer business, governance, data, technology, security, and transition patterns are part of normal use
+- Extended the remaining key skill and workspace docs to reflect the larger pattern model:
+  - updated `solution-modeler`, `application-interface-modeler`, and `risk-compliance-assessor` again where older pattern subsets still lingered
+  - updated `skills/README.md` and `roles/README.md` so patterns are treated as normal working context across delivery and role behavior, not just a side reference set
+- Wired the compliance layer into configuration and core skills:
+  - updated `project-config.yaml` with jurisdictions, sectors, applicable regulations, control frameworks, data residency, AI-regulated use, and incident-reporting flags
+  - updated `project-bootstrapper`, `risk-compliance-assessor`, `data-modeler`, and `technology-environment-modeler` so regulation scope is part of normal architecture work
+  - updated readmes and glossary so regulation concepts are part of the workspace vocabulary and structure
+- Turned the regulation subfolders into working guidance layers:
+  - added jurisdiction profiles for `eu-eea`, `united-states`, and `california`
+  - added sector profiles for `financial-services`, `healthcare`, and `education`
+  - added control guides for privacy, identity and access, incident response, and audit/evidence translation
+- Expanded the regulation guidance model further:
+  - added a `united-kingdom` jurisdiction profile and a `payments` sector profile
+  - added control guides for third-party risk, data residency and cross-border transfer, AI governance and model risk, business continuity and resilience, and payment security
+- Expanded the regulation sectors and controls again:
+  - added sector profiles for `public-sector`, `critical-infrastructure`, and `software-products`
+  - added control guides for records retention and legal hold, access recertification and segregation of duties, data sharing and disclosure governance, and accessibility/inclusive service design
+- Expanded the regulation model once more:
+  - added a `canada` jurisdiction profile and sector profiles for `consumer-digital` and `life-sciences-and-pharma`
+  - added control guides for model validation and AI assurance, change control and release assurance, and vendor exit and portability
+- Expanded the root regulation profile set further:
+  - added `uk-gdpr`, `european-accessibility-act`, `glba`, `fedramp`, `cmmc`, `cjis-security-policy`, and `lgpd`
+  - updated the sample regulation configuration to surface the broader profile set and added `accessibility` as a control framework example
 - Turned Wave 1 skills into concrete playbooks:
   - `project-bootstrapper`
   - `stakeholder-objective-framer`

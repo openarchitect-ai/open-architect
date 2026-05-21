@@ -51,6 +51,7 @@ The main workspace documentation is here:
   architecture/
   examples/
   patterns/
+  compliance/
   schemas/
   validation/
   config/
@@ -67,6 +68,7 @@ High-level intent:
 - `architecture/`: real architecture artifacts created for a project
 - `examples/`: worked examples and reference projects separated from live project artifacts
 - `patterns/`: reusable architecture patterns and reference solution approaches
+- `compliance/`: compliance-aware reference material for jurisdiction, sector, and control obligations
 - `schemas/`: formal JSON Schema contracts for artifact document structure
 - `validation/`: lightweight validators for templates and architecture artifact folders
 - `flows/`: future visual or executable architecture workflows
@@ -96,6 +98,10 @@ The project already includes templates for:
 - technology component, technology standard, environment
 - decision, compliance assessment, risk, architecture vision
 - initiative, roadmap, transition architecture, work package, gap
+
+It also now includes a growing compliance layer for privacy, AI,
+cybersecurity, financial resilience, health security, public-company cyber
+disclosure, payment security, and consumer privacy obligations.
 
 ## Getting Started
 

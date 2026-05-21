@@ -16,6 +16,11 @@ that participate in a solution.
 - `.architect/templates/application/application.yaml`
 - `.architect/templates/application/application-service.yaml`
 - `.architect/templates/application/interface.yaml`
+- `.architect/patterns/application/README.md`
+- `.architect/patterns/integration/README.md`
+- `.architect/patterns/data/README.md`
+- `.architect/patterns/security/README.md`
+- `.architect/patterns/transition/README.md`
 - `.architect/patterns/integration/event-driven-integration.md`
 - `.architect/patterns/integration/request-response-integration.md`
 - `.architect/patterns/integration/batch-integration.md`
@@ -23,6 +28,12 @@ that participate in a solution.
 - `.architect/patterns/integration/outbox-pattern.md`
 - `.architect/patterns/application/api-facade.md`
 - `.architect/patterns/application/backend-for-frontend.md`
+- `.architect/patterns/data/data-contract-governance.md`
+- `.architect/patterns/data/data-sharing-agreement-governance.md`
+- `.architect/patterns/data/data-classification-and-handling.md`
+- `.architect/patterns/security/cross-boundary-data-sharing-controls.md`
+- `.architect/patterns/transition/incremental-contract-migration.md`
+- `.architect/patterns/transition/legacy-interface-sunset.md`
 - `.architect/examples/customer-onboarding-modernization/application/if-1001-customer-activation-event-api.yaml`
 
 ## Inputs
@@ -48,6 +59,10 @@ that participate in a solution.
 - use `anti-corruption-layer` when legacy or external semantics should not leak directly into the target domain
 - use `outbox-pattern` when reliable event publication is needed from a transactional source
 - use `api-facade` or `backend-for-frontend` when consumer-facing contracts should be stabilized or optimized
+- use `data-contract-governance` when producer-consumer semantics, compatibility, and ownership must be explicit
+- use `data-sharing-agreement-governance`, `data-classification-and-handling`, and `cross-boundary-data-sharing-controls` when interface obligations go beyond technical transport
+- use `incremental-contract-migration` when contract change should happen through compatibility-preserving stages
+- use `legacy-interface-sunset` when the target-state value depends on retiring older interfaces after migration
 
 ## Outputs
 
@@ -62,6 +77,8 @@ that participate in a solution.
 - application and service ownership are explicit
 - interfaces have a clear purpose and contract direction
 - chosen interaction patterns match the business and operational need
+- contract-governance, cross-boundary sharing, and sensitivity assumptions are explicit where relevant
+- migration and sunset expectations are explicit where interface change happens over time
 - related solution, requirement, decision, and data-object links are present
 
 ## Quality Checks

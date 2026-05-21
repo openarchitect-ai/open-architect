@@ -1,9 +1,11 @@
 # Flows
 
-This folder is reserved for executable or visual architecture flows.
+This folder contains the current flow definitions for architecture work and is
+expected to evolve further into richer executable or visual workflows over time.
 
 Use it for:
 
+- current markdown flow definitions
 - visual editor flow definitions
 - architecture workflow automations
 - guided architecture playbooks
@@ -15,6 +17,10 @@ Recommended examples:
 - `requirements-change-coordination.flow`
 - `transition-architecture.flow`
 - `solution-design.flow`
+
+Current markdown flows should also reflect human review gates, handoff
+expectations, and the reusable pattern library where those materially shape how
+work proceeds.
 
 Reference method content belongs in `../method/`.
 Project-specific architecture instances belong in `../architecture/`.

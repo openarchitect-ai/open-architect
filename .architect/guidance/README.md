@@ -27,6 +27,7 @@ Recommended files:
 - `role-boundaries.md`
 - `glossary.md`
 - `governance.md`
+- `../compliance/README.md`
 - `../validation/README.md`
 - domain or platform guidance notes as needed
 

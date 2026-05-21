@@ -13,6 +13,7 @@ architecture projects in a structured, reviewable, and traceable way.
 - Skills should use templates as reference, not replace them.
 - Skills should produce real artifacts in `.architect/architecture/`.
 - Skills should reinforce typed relationships, governance, and transition thinking.
+- Skills should use the pattern library as normal decision and modeling context rather than treating patterns as optional extras.
 - Skills should be small enough to compose into later agentic flows.
 
 ## Wave 1
@@ -71,6 +72,13 @@ These support delivery execution, evidence, and ongoing upkeep:
 9. `architecture-documenter`
 10. `diagram-author`
 11. remaining specialist and upkeep skills
+
+## Operationalization Guidance
+
+- turn executable skill instructions into pattern-aware playbooks, not template-only checklists
+- make pattern selection, pattern rejection, and justified deviation part of the normal skill output where relevant
+- use validation, human review packets, and handoff contracts as part of the executable skill boundary
+- prove the strongest skills against worked examples and real project slices before broad team rollout
 
 ## Outcome
 

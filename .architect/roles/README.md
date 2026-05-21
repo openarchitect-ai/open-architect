@@ -36,6 +36,7 @@ Use these role descriptions to:
 - define who owns which architecture artifacts
 - clarify collaboration between architecture disciplines
 - guide how methods, templates, and flows are applied in practice
+- ground role behavior in the reusable pattern library when shaping, reviewing, or governing architecture work
 
 Use [`.architect/guidance/role-boundaries.md`](../guidance/role-boundaries.md)
 alongside these role files when operationalizing a multi-agent team.

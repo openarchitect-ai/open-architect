@@ -19,35 +19,64 @@ traceability, governance readiness, and pattern fit.
 - `.architect/guidance/governance-conventions.md`
 - `.architect/guidance/diagram-conventions.md`
 - `.architect/patterns/README.md`
+- `.architect/patterns/business/README.md`
+- `.architect/patterns/data/README.md`
+- `.architect/patterns/governance/README.md`
+- `.architect/patterns/security/README.md`
+- `.architect/patterns/technology/README.md`
+- `.architect/patterns/transition/README.md`
 - `.architect/patterns/governance/architecture-decision-lifecycle.md`
 - `.architect/patterns/governance/architecture-principle-lifecycle.md`
+- `.architect/patterns/governance/architecture-assurance-evidence-trail.md`
+- `.architect/patterns/governance/decision-authority-matrix.md`
+- `.architect/patterns/governance/decision-review-and-sunset.md`
+- `.architect/patterns/governance/reference-architecture-conformance-review.md`
 - `.architect/patterns/governance/standards-exception-management.md`
 - `.architect/patterns/governance/governance-review-gate.md`
 - `.architect/patterns/governance/waiver-expiry-and-remediation.md`
 - `.architect/patterns/governance/reference-architecture-adoption.md`
 - `.architect/patterns/business/capability-based-planning.md`
+- `.architect/patterns/business/business-capability-roadmapping.md`
+- `.architect/patterns/business/capability-funding-alignment.md`
 - `.architect/patterns/business/value-stream-to-capability-mapping.md`
 - `.architect/patterns/security/audit-and-tamper-evident-logging.md`
+- `.architect/patterns/security/security-control-inheritance.md`
+- `.architect/patterns/security/secrets-breach-response.md`
+- `.architect/patterns/security/privileged-session-monitoring.md`
 - `.architect/patterns/security/privileged-access-segregation.md`
 - `.architect/patterns/security/zero-trust-network-segmentation.md`
 - `.architect/patterns/security/break-glass-access.md`
+- `.architect/patterns/data/data-contract-governance.md`
+- `.architect/patterns/data/data-lineage-and-provenance.md`
+- `.architect/patterns/data/data-domain-ownership.md`
 - `.architect/patterns/data/reference-data-management.md`
 - `.architect/patterns/data/data-replication-and-cache-invalidation.md`
 - `.architect/patterns/data/archival-and-retention.md`
 - `.architect/patterns/data/data-reconciliation.md`
 - `.architect/patterns/data/data-classification-and-handling.md`
 - `.architect/patterns/data/master-data-synchronization.md`
+- `.architect/patterns/data/regulated-data-access-approval.md`
+- `.architect/patterns/data/regulated-data-retention-and-legal-hold.md`
 - `.architect/patterns/technology/active-active-vs-active-passive.md`
+- `.architect/patterns/technology/environment-drift-detection.md`
+- `.architect/patterns/technology/runtime-policy-enforcement.md`
+- `.architect/patterns/technology/shared-service-slo-operating-model.md`
+- `.architect/patterns/technology/shared-platform-guardrail-model.md`
 - `.architect/patterns/technology/secrets-rotation.md`
 - `.architect/patterns/technology/graceful-degradation.md`
 - `.architect/patterns/technology/multi-region-failover.md`
 - `.architect/patterns/technology/platform-tenancy-isolation.md`
 - `.architect/patterns/technology/capacity-and-scaling-guardrails.md`
+- `.architect/patterns/transition/cutover-command-center.md`
 - `.architect/patterns/transition/phased-decommissioning.md`
 - `.architect/patterns/transition/cutover-rehearsal.md`
 - `.architect/patterns/transition/rollback-and-recovery.md`
+- `.architect/patterns/transition/rollback-readiness-gate.md`
+- `.architect/patterns/transition/rollback-decision-thresholds.md`
 - `.architect/patterns/transition/pilot-then-scale.md`
 - `.architect/patterns/transition/branch-by-abstraction.md`
+- `.architect/patterns/transition/parallel-operations-closure.md`
+- `.architect/patterns/transition/transition-hypercare-exit-criteria.md`
 - `.architect/patterns/transition/post-cutover-hypercare.md`
 - `.architect/examples/customer-onboarding-modernization/README.md`
 
@@ -86,6 +115,9 @@ traceability, governance readiness, and pattern fit.
 - findings are specific and anchored in artifacts
 - missing links and missing evidence are called out
 - unjustified pattern deviations are called out
+- stale decisions, weak assurance traceability, or unclear decision authority are called out
+- weak data-governance, access-approval, or retention-control coverage is called out
+- weak runtime-policy, environment-hygiene, or transition-command expectations are called out
 - governance blockers are explicit
 - the review leaves a clearer next action, not just a critique
 

@@ -47,6 +47,7 @@ These objects are linked using typed `relationships`, which makes the workspace 
     technology/
   examples/
   patterns/
+  compliance/
   schemas/
   validation/
   config/
@@ -71,6 +72,7 @@ Folder intent:
 - `architecture/`: actual project architecture objects created from templates
 - `examples/`: worked examples and reference projects kept separate from live project work
 - `patterns/`: reusable architecture patterns and reference solution approaches
+- `compliance/`: compliance-aware reference material for jurisdictions, sectors, and control obligations
 - `schemas/`: formal structural contracts for artifact documents
 - `validation/`: executable checks for templates and architecture artifact folders
 - `config/`: configuration guidance for agent and workspace behavior
@@ -134,6 +136,7 @@ In practical terms:
 - use `architecture/` to store actual project instances
 - use `examples/` for reference implementations and sample views
 - use `patterns/` for reusable architectural approaches and design guidance
+- use `compliance/` to scope jurisdiction, sector, privacy, AI, cyber-resilience, and payment/security obligations that should shape the architecture
 - use `schemas/` to define formal machine-readable contracts for artifact structure
 - use `validation/` to check template quality and project artifact consistency
 - use `config/` to explain how project and agent configuration should work
@@ -152,6 +155,7 @@ Before creating architecture content, tailor [`.architect/project-config.yaml`](
 - chosen method and reference methods
 - enabled flows
 - enabled skills
+- applicable jurisdictions, sectors, and regulations
 
 This keeps the workspace intentional and avoids treating every project as if it
 must use the full capability set.

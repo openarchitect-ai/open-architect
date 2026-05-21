@@ -7,6 +7,47 @@ project:
     - .architect/method/references/adm.md
     - .architect/method/references/transition-architecture.md
 
+compliance:
+  # Tailor these to the jurisdictions, sectors, and obligations that matter.
+  jurisdictions:
+    - eu-eea
+    - united-states
+  industry_sectors:
+    - cross-industry
+  applicable_regulations:
+    - gdpr
+    - uk-gdpr
+    - eu-ai-act
+    - european-accessibility-act
+    - nis2
+    - dora
+    - cyber-resilience-act
+    - eu-data-act
+    - eidas-digital-identity
+    - mica
+    - glba
+    - fedramp
+    - cmmc
+    - cjis-security-policy
+    - hipaa-security-rule
+    - ftc-safeguards-rule
+    - sec-cyber-disclosure-rules
+    - pci-dss
+    - ccpa-cpra
+    - coppa
+    - ferpa
+    - lgpd
+  control_frameworks:
+    - privacy
+    - cybersecurity
+    - operational-resilience
+    - payment-security
+    - ai-governance
+    - accessibility
+  data_residency_requirements: []
+  ai_regulated_use: false
+  incident_reporting_requirements: true
+
 roles:
   enabled:
     # Enable only the roles that are active for this project.

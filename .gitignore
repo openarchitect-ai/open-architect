@@ -1,17 +1,17 @@
 # Ignore project-specific architecture artifacts inside workspace subfolders.
-# .architect/architecture/application/*
-# .architect/architecture/business/*
-# .architect/architecture/change/*
-# .architect/architecture/data/*
-# .architect/architecture/governance/*
-# .architect/architecture/technology/*
-# .architect/architecture/views/*
+.architect/architecture/application/*
+.architect/architecture/business/*
+.architect/architecture/change/*
+.architect/architecture/data/*
+.architect/architecture/governance/*
+.architect/architecture/technology/*
+.architect/architecture/views/*
 
 # Keep folder guidance files tracked.
-# !.architect/architecture/application/README.md
-# !.architect/architecture/business/README.md
-# !.architect/architecture/change/README.md
-# !.architect/architecture/data/README.md
-# !.architect/architecture/governance/README.md
-# !.architect/architecture/technology/README.md
-# !.architect/architecture/views/README.md
+!.architect/architecture/application/README.md
+!.architect/architecture/business/README.md
+!.architect/architecture/change/README.md
+!.architect/architecture/data/README.md
+!.architect/architecture/governance/README.md
+!.architect/architecture/technology/README.md
+!.architect/architecture/views/README.md

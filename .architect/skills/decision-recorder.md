@@ -14,8 +14,14 @@ Capture architecture decisions in a structured, reviewable, and traceable form.
 
 - `.architect/templates/governance/decision.yaml`
 - `.architect/patterns/README.md`
+- `.architect/patterns/governance/README.md`
 - `.architect/patterns/governance/architecture-decision-lifecycle.md`
 - `.architect/patterns/governance/architecture-principle-lifecycle.md`
+- `.architect/patterns/governance/architecture-assurance-evidence-trail.md`
+- `.architect/patterns/governance/decision-authority-matrix.md`
+- `.architect/patterns/governance/decision-evidence-packaging.md`
+- `.architect/patterns/governance/decision-review-and-sunset.md`
+- `.architect/patterns/governance/reference-architecture-conformance-review.md`
 - `.architect/patterns/governance/standards-exception-management.md`
 - `.architect/patterns/integration/event-driven-integration.md`
 - `.architect/patterns/integration/request-response-integration.md`
@@ -41,6 +47,11 @@ Capture architecture decisions in a structured, reviewable, and traceable form.
 
 - use `architecture-decision-lifecycle` when a decision needs explicit review, supersession, or retirement handling
 - use `architecture-principle-lifecycle` when the decision interprets, refines, supersedes, or challenges an enduring principle
+- use `decision-evidence-packaging` when the decision needs a stronger reviewable option set and evidence pack
+- use `decision-review-and-sunset` when the decision should carry an explicit reassessment or retirement expectation
+- use `decision-authority-matrix` when the decision rights or escalation path are not local or obvious
+- use `reference-architecture-conformance-review` when the decision should record whether it aligns to or varies from a reference architecture
+- use `architecture-assurance-evidence-trail` when evidence and review traceability must be explicit for governance or audit reasons
 - use `standards-exception-management` when the decision records a controlled deviation from a principle or standard
 
 ## Steps
@@ -66,7 +77,8 @@ Capture architecture decisions in a structured, reviewable, and traceable form.
 - the decision can be understood without reopening the whole meeting history
 - rejected options are visible
 - the relevant pattern choices or deviations are visible
-- exception handling or review timing is visible when governance requires it
+- exception handling, review timing, or decision-sunset expectations are visible when governance requires them
+- decision authority and evidence-pack expectations are explicit where escalation or assurance depends on them
 - affected artifacts are linked
 - consequences are actionable rather than generic
 

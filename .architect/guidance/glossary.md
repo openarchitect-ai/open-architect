@@ -61,6 +61,11 @@ usually captured through `metadata.confidence` or relationship-level
 An architecture governance artifact that records conformance findings,
 exceptions, remediation expectations, and review outcomes.
 
+### Controller
+
+In privacy regulation, the party that determines the purposes and means of
+processing personal data.
+
 ## D
 
 ### Decision
@@ -78,6 +83,11 @@ for approval. Agents should usually create artifacts in draft form first.
 
 A canonical business data object that is important enough to be modeled
 explicitly across applications, interfaces, and governance concerns.
+
+### Data Residency
+
+A constraint or obligation that affects where data may be stored, processed, or
+replicated geographically.
 
 ## E
 
@@ -116,6 +126,11 @@ through change, transition planning, or delivery work.
 A formal or semi-formal checkpoint where architecture content is reviewed for
 quality, risk, compliance, traceability, and decision readiness.
 
+### High-Risk AI System
+
+An AI system category under the EU AI Act that carries specific obligations and
+stronger governance expectations.
+
 ## H
 
 ### Human Review Gate
@@ -134,6 +149,13 @@ for architecture work.
 
 A concrete integration point or API contract through which applications or
 services exchange information or invoke behavior.
+
+## L
+
+### Legal Hold
+
+A requirement to preserve data and suspend normal deletion or disposal because
+of investigation, dispute, or legal obligation.
 
 ## O
 
@@ -169,12 +191,27 @@ review, but not yet approved or accepted.
 A durable architecture rule or design guardrail that shapes solution and
 technology choices over time.
 
+### Processor
+
+In privacy regulation, a party that processes personal data on behalf of a
+controller.
+
 ## R
 
 ### Reference
 
 A link to supporting evidence, such as a document, diagram, standard, or other
 source recorded in `metadata.references`.
+
+### Regulated Data
+
+Data whose storage, access, transfer, retention, or use is materially affected
+by legal, regulatory, contractual, or policy obligations.
+
+### Regulation Profile
+
+A workspace reference note under `.architect/compliance/` that summarizes why
+an external law, regulation, or standard matters to architecture work.
 
 ### Relationship
 
