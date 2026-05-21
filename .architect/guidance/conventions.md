@@ -11,6 +11,11 @@ Do not invent architecture facts to make a template look complete.
 If the information is not known, not evidenced, or not yet agreed, record that
 state explicitly instead of filling the gap with plausible-sounding detail.
 
+By default, the originating role is responsible for recording the uncertainty
+honestly, the `architecture-governance-lead` is responsible for reviewing that
+the gap is explicit and not overstated, and the `chief-architect` is the
+escalation point if the ambiguity materially affects scope or direction.
+
 ## Guidance Map
 
 Use these files as the detailed rule set:
