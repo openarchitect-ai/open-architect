@@ -49,6 +49,7 @@ The main workspace documentation is here:
 ```text
 .architect/
   architecture/
+  config/
   flows/
   guidance/
   method/
@@ -61,6 +62,7 @@ High-level intent:
 
 - `architecture/`: real architecture artifacts created for a project
 - `flows/`: future visual or executable architecture workflows
+- `config/`: configuration guidance for agent and workspace behavior
 - `guidance/`: conventions, glossary, and local rules
 - `method/`: the chosen project method and reference methods such as ADM
 - `roles/`: role descriptions and responsibilities

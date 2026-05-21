@@ -1,11 +1,13 @@
-# Project Configuration
+# Agent Config
 
-This guide explains how to use `.architect/project-config.yaml`.
+This guide explains how to use `.architect/project-config.yaml` as the
+project-local agent and workspace configuration file for Open Architect.
 
 ## Purpose
 
 `project-config.yaml` defines which parts of the Open Architect capability are
-active for a specific project.
+active for a specific project and which architecture context an agent should
+assume by default.
 
 Use it to decide:
 

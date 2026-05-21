@@ -14,6 +14,9 @@ including:
 Recommended files:
 
 - `conventions.md`
+- `diagram-conventions.md`
 - `glossary.md`
 - `governance.md`
 - domain or platform guidance notes as needed
+
+Configuration-specific guidance belongs in `../config/`.

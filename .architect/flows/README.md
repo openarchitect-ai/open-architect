@@ -12,6 +12,7 @@ Use it for:
 Recommended examples:
 
 - `architecture-development.flow`
+- `requirements-change-coordination.flow`
 - `transition-architecture.flow`
 - `solution-design.flow`
 

@@ -13,6 +13,8 @@ architecture/
   data/
   governance/
   technology/
+  views/
 ```
 
 Store concrete project architecture objects here rather than in `templates`.
+Store project-specific diagram sources and visual views in `views/`.

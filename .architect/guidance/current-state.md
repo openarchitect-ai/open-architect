@@ -11,6 +11,7 @@ workspace for enterprise architects and solution architects.
 The `.architect` folder is intended to act as the project-local architecture
 capability container, including:
 
+- config
 - guidance
 - method definition
 - reference methods
@@ -57,6 +58,7 @@ capability container, including:
 - Reorganized templates into domain subfolders
 - Expanded `.architect` into a broader capability structure:
   - `architecture/`
+  - `config/`
   - `flows/`
   - `guidance/`
   - `method/`
@@ -85,11 +87,33 @@ capability container, including:
 - Added project-level architecture configuration:
   - `.architect/project-config.yaml`
   - selects active roles, templates, flows, and method references for a project
-- Added guidance for project configuration:
-  - `.architect/guidance/project-configuration.md`
+- Added configuration guidance for project and agent setup:
+  - `.architect/config/agent.config.md`
   - explains how to tailor `project-config.yaml`
+- Added an initial architecture delivery skill taxonomy:
+  - `.architect/skills/README.md`
+  - `.architect/skills/roadmap.md`
+  - `.architect/skills/role-skill-matrix.md`
+  - one markdown file per proposed delivery skill
+- Added coordination-focused architecture assets:
+  - `.architect/skills/requirements-follow-up.md`
+  - `.architect/skills/change-coordinator.md`
+  - `.architect/flows/requirements-change-coordination.flow.md`
+- Added delivery-output architecture skills:
+  - `.architect/skills/architecture-documenter.md`
+  - `.architect/skills/diagram-author.md`
+  - `.architect/skills/review-pack-builder.md`
+  - `.architect/skills/delivery-handover-packager.md`
+  - `.architect/skills/evidence-curator.md`
+  - `.architect/skills/artifact-maintainer.md`
+  - narrowed `.architect/skills/communication-packager.md` to stakeholder communication
+- Added diagram governance guidance:
+  - `.architect/guidance/diagram-conventions.md`
+  - `.architect/architecture/views/README.md`
+  - defines notation selection, storage conventions, and diagram creation rules
 - Added flow placeholders:
   - architecture development
+  - requirements and change coordination
   - transition architecture
 - Added `.architect/README.md` as the internal workspace guide
 - Added root `README.md` as the open source project README
@@ -103,6 +127,8 @@ Key folders:
 
 - `.architect/templates/`
 - `.architect/architecture/`
+- `.architect/architecture/views/`
+- `.architect/config/`
 - `.architect/guidance/`
 - `.architect/method/`
 - `.architect/flows/`
@@ -128,7 +154,7 @@ Current role library:
 
 High priority:
 
-- Populate `skills/` with reusable architecture skills aligned to the role model
+- Turn the initial `skills/` taxonomy into fuller reusable agent instructions
 - Add validation or schema support
   - e.g. `.architect/schemas/` or `.architect/validation/`
 - Create a worked example under `.architect/architecture/`
@@ -137,6 +163,7 @@ High priority:
   - ID generation rules
   - traceability expectations
   - review/governance cadence
+- Add worked diagram examples under `.architect/architecture/views/`
 
 Open source hygiene:
 
@@ -157,7 +184,7 @@ Future direction:
 
 If work resumes later, the best next task is:
 
-1. populate `skills/` based on the current role model
+1. turn the defined `skills/` taxonomy into executable agent playbooks
 2. create a small worked example in `.architect/architecture/`
 3. add glossary, stronger conventions, and schema or validation support
 

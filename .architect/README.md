@@ -45,6 +45,7 @@ These objects are linked using typed `relationships`, which makes the workspace 
     data/
     governance/
     technology/
+  config/
   flows/
   guidance/
   method/
@@ -64,6 +65,7 @@ These objects are linked using typed `relationships`, which makes the workspace 
 Folder intent:
 
 - `architecture/`: actual project architecture objects created from templates
+- `config/`: configuration guidance for agent and workspace behavior
 - `flows/`: visual or executable architecture workflows
 - `guidance/`: conventions, glossary, and local architecture guidance
 - `method/`: the selected project architecture method plus reference methods
@@ -122,6 +124,7 @@ In practical terms:
 - use `project-config.yaml` to declare what this project will actually use
 - use `templates/` to define the metamodel
 - use `architecture/` to store actual project instances
+- use `config/` to explain how project and agent configuration should work
 - use `flows/` for visual or executable workflow definitions
 - use `guidance/` to explain local rules
 - use `method/` to describe the chosen project method and its tailoring
@@ -141,7 +144,7 @@ Before creating architecture content, tailor [`.architect/project-config.yaml`](
 This keeps the workspace intentional and avoids treating every project as if it
 must use the full capability set.
 
-Guidance for this file is in [`.architect/guidance/project-configuration.md`](guidance/project-configuration.md).
+Guidance for this file is in [`.architect/config/agent.config.md`](config/agent.config.md).
 
 ### For Enterprise Architecture
 
