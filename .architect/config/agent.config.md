@@ -17,6 +17,7 @@ Use it to decide:
 - which flows are active
 - which method and reference methods guide the work
 - which governance expectations apply
+- which execution model and runtime state the agents should use
 
 This prevents every project from inheriting the full architecture capability by
 default.
@@ -34,6 +35,7 @@ Recommended approach:
 7. Confirm governance roles and review expectations.
 8. If you want one default orchestrating agent, set the coordinator role and skill.
 9. Keep ownership truthful; do not let agents guess named owners to make artifacts look complete.
+10. If the project will use real multi-agent execution, configure the runtime section and agent profiles explicitly.
 
 ## Field Guidance
 
@@ -131,6 +133,40 @@ Suggested default:
 - `coordinator_role: chief-architect`
 - `coordinator_skill: architecture-coordinator`
 - `coordinator_auto_route: true`
+
+### `runtime`
+
+Use this section when the project wants actual multi-agent execution rather than
+only role-guided single-agent work.
+
+Suggested fields:
+
+- `execution_mode`
+  - `single-agent-guided`
+  - `coordinator-led-multi-agent`
+  - `external-orchestrated`
+- `coordinator_agent_profile`
+  - path to the coordinating runtime profile under `agents/`
+- `state_root`
+  - path to the live runtime state folder
+- `task_artifact`
+  - standard task payload used for assignments
+- `handoff_artifact`
+  - standard handoff payload used between agents
+- `allow_parallel_specialists`
+  - whether multiple specialist agents may run at once
+- `require_validation_before_handoff`
+  - whether a specialist agent must validate before completing a handoff
+
+Recommended first runtime:
+
+- `execution_mode: coordinator-led-multi-agent`
+- `coordinator_agent_profile: .architect/agents/chief-architect.md`
+- `state_root: .architect/runtime`
+
+Without this runtime layer, the workspace should be treated as coordinator-led
+single-agent execution that simulates roles and skills rather than instantiating
+separate live agents.
 
 ## Suggested Defaults
 

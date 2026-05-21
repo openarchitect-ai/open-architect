@@ -1,0 +1,7 @@
+queue:
+  queued_tasks: []
+  active_tasks: []
+  blocked_tasks: []
+  completed_tasks: []
+  cancelled_tasks: []
+  last_updated: 2026-05-21

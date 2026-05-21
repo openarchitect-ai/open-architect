@@ -1,0 +1,47 @@
+task:
+  id: AGT-TSK-0001
+  status: queued # queued | active | blocked | completed | cancelled
+  created_at: 2026-05-21
+  coordinator_agent: chief-architect
+  assigned_agent: solution-architect
+  role: solution-architect
+  skill: solution-modeler
+
+  scope:
+    project_root: .architect/architecture/example-project
+    artifact_paths:
+      - application/sol-0001-example-solution.yaml
+      - application/req-0001-example-requirement.yaml
+
+  input_artifacts:
+    - .architect/project-config.yaml
+    - .architect/flows/architecture-development.flow.md
+    - .architect/guidance/handoff-contracts.md
+
+  writable_paths:
+    - application/
+    - technology/
+    - governance/
+
+  expected_outputs:
+    - updated solution artifact
+    - related application or interface artifacts
+    - validation summary
+    - agent handoff back to coordinator
+
+  validation:
+    required: true
+    command: powershell -ExecutionPolicy Bypass -File .architect\validation\Validate-ArchitectureArtifacts.ps1 -ArtifactRoot .architect\architecture\example-project
+
+  review_gate:
+    gate: solution-direction
+    pause_before_gate: true
+
+  stop_conditions:
+    - unresolved requirement ambiguity changes the solution shape materially
+    - a major decision needs human review
+    - validation errors remain unresolved
+
+  notes:
+    assumptions: []
+    open_questions: []

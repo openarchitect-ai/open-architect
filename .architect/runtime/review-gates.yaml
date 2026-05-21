@@ -1,0 +1,19 @@
+review_gates:
+  - gate: project-bootstrap
+    status: not-started # not-started | pending-review | approved | rejected | blocked
+    owner: chief-architect
+  - gate: requirement-baseline
+    status: not-started
+    owner: chief-architect
+  - gate: solution-direction
+    status: not-started
+    owner: chief-architect
+  - gate: decision-approval
+    status: not-started
+    owner: chief-architect
+  - gate: governance-review
+    status: not-started
+    owner: architecture-governance-lead
+  - gate: transition-plan
+    status: not-started
+    owner: chief-architect

@@ -38,6 +38,15 @@ Use these role descriptions to:
 - guide how methods, templates, and flows are applied in practice
 - ground role behavior in the reusable pattern library when shaping, reviewing, or governing architecture work
 
+Role descriptions are not, by themselves, executable agents.
+
+For real multi-agent execution:
+
+- keep `roles/` as the accountability layer
+- use `skills/` as the procedure layer
+- use `agents/` as the runtime execution layer
+- use `runtime/` for queue, gate, and handoff state
+
 Use [`.architect/guidance/role-boundaries.md`](../guidance/role-boundaries.md)
 alongside these role files when operationalizing a multi-agent team.
 

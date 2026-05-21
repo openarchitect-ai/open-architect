@@ -276,6 +276,11 @@ capability container, including:
 - Made the single-coordinator operating model explicit:
   - added `coordinator_role`, `coordinator_skill`, and `coordinator_auto_route` to `project-config.yaml`
   - updated agent config, role boundaries, handoff contracts, and skill guidance so one coordinating role can route the next skill or role by default unless the user overrides it
+- Added the first executable multi-agent runtime scaffold:
+  - `.architect/agents/`
+  - `.architect/runtime/`
+  - execution model, agent profiles, task and handoff payloads, and runtime queue/gate state
+  - makes the distinction between roles, skills, and actual multi-agent execution explicit
 - Turned Wave 1 skills into concrete playbooks:
   - `project-bootstrapper`
   - `stakeholder-objective-framer`
@@ -304,7 +309,9 @@ Key folders:
 - `.architect/architecture/`
 - `.architect/architecture/views/`
 - `.architect/examples/`
+- `.architect/agents/`
 - `.architect/patterns/`
+- `.architect/runtime/`
 - `.architect/schemas/`
 - `.architect/validation/`
 - `.architect/config/`
@@ -333,8 +340,10 @@ Current role library:
 
 High priority:
 
-- Turn the most valuable playbooks into executable agent instructions
-- Run the new agent test scenarios against those executable instructions
+- Prove the new multi-agent execution scaffold in real use
+  - run task and handoff artifacts through a live project slice
+  - confirm that coordinator routing, bounded write scopes, and review gates work as intended
+- Run the new agent test scenarios against the runtime execution model and executable instructions
 - Extend live-project validation and operational use under `.architect/architecture/`
   - validate real project artifact folders, not only the worked example
   - use the review packet format and role-boundary guidance during real project handoffs
@@ -363,10 +372,10 @@ The largest remaining gaps are no longer in baseline coverage. They are in
 operational use, proof, and automation.
 
 - Executable agent behavior
-  - most skills are still high-quality playbooks rather than truly executable
-    agent instructions
-  - the workspace still needs a stronger operational contract for agent inputs,
-    stop conditions, and validation behavior
+  - the workspace now has an execution scaffold, but it still needs proving in
+    practice
+  - task, handoff, and runtime-state files need to be exercised by real project
+    slices rather than only existing as structure
 - Real-project proving
   - the structure is broad and mature, but it still needs proving against live
     work under `.architect/architecture/`, not only examples and scaffolding
@@ -419,7 +428,7 @@ Future direction:
 If work resumes later, the best next task is:
 
 1. turn the strongest playbooks into executable agent instructions using the new handoff, traceability, and review guidance
-2. run the new agent test scenarios against those executable instructions
+2. run the new agent test scenarios against the execution scaffold and those executable instructions
 3. extend live-project validation and deepen schema precision and enforcement further
 
 ## Notes

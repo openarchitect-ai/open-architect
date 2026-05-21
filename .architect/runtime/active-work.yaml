@@ -1,0 +1,10 @@
+runtime:
+  execution_mode: coordinator-led-multi-agent
+  state_root: .architect/runtime
+  active_project_root: null
+  coordinator_agent: chief-architect
+  coordinator_profile: .architect/agents/chief-architect.md
+  active_stage: idle
+  active_task_id: null
+  active_review_gate: null
+  last_updated: 2026-05-21

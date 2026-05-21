@@ -1,0 +1,40 @@
+handoff:
+  id: AGT-HOF-0001
+  status: ready # ready | blocked | superseded | closed
+  created_at: 2026-05-21
+  from_agent: solution-architect
+  to_agent: chief-architect
+  from_task_id: AGT-TSK-0001
+
+  scope:
+    project_root: .architect/architecture/example-project
+    summary: bounded solution direction prepared for review
+
+  changed_artifacts:
+    - application/sol-0001-example-solution.yaml
+    - application/app-0001-example-application.yaml
+    - application/if-0001-example-interface.yaml
+
+  evidence_summary:
+    - based on REQ-0001 and architecture vision VIS-0001
+    - validated against the artifact validator
+
+  assumptions:
+    - external channel choice remains deferred
+
+  open_questions:
+    - final attachment storage boundary
+
+  validation_summary:
+    validator: artifacts
+    result: VALIDATION_SUMMARY validator=artifacts status=passed checked=8 errors=0 warnings=1
+
+  requested_action:
+    type: review-gate
+    gate: solution-direction
+    next_recommended_agent: security-architect
+    next_recommended_skill: risk-compliance-assessor
+
+  notes:
+    reviewer_attention:
+      - confirm whether deferred design choices are acceptable for continued work

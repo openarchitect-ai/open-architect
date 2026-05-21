@@ -20,7 +20,9 @@ Use this folder for:
 - `templates/` define the canonical shapes of architecture objects
 - `roles/` define perspective, accountability, and ownership
 - `skills/` define reusable capabilities that role-based agents can apply
+- `agents/` define the executable runtime profiles that may invoke those skills
 - `flows/` define orchestration across multiple skills and steps
+- `runtime/` stores live queue and gate state when multi-agent execution is enabled
 - `architecture/` contains the actual project artifacts produced by people or agents
 
 Skills should focus on implementation work such as discovery, framing,
@@ -88,11 +90,21 @@ should remain the default routing point across those steps. Specialist skills
 should not choose the next major skill or role on their own unless the user
 explicitly directs it.
 
+## Execution Note
+
+Skills alone do not create true multi-agent execution.
+
+Without `../agents/` and `../runtime/`, a project is still effectively
+coordinator-led single-agent work that simulates role behavior.
+
+Use the execution model in `../agents/execution-model.md` when you want skills
+to be run by separate bounded agents with real task and handoff artifacts.
+
 ## Next Step
 
-Wave 1 skills now include concrete playbook steps and a linked worked example.
-The next step is to turn the most valuable playbooks into executable agent
-instructions or orchestrated flows.
+Wave 1 skills now include concrete playbook steps and an execution scaffold.
+The next step is to prove those playbooks through real agent tasks, handoffs,
+runtime queue state, and review gates.
 
 Before broad team operationalization, use the guidance set for:
 

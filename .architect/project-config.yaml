@@ -94,6 +94,7 @@ templates:
 skills:
   # Enable the reusable skills that are active for this project.
   enabled:
+    - architecture-coordinator
     - project-bootstrapper
     - stakeholder-objective-framer
     - baseline-discovery
@@ -144,3 +145,12 @@ governance:
     - decision-approval
     - governance-review
     - transition-plan
+
+runtime:
+  execution_mode: coordinator-led-multi-agent # single-agent-guided | coordinator-led-multi-agent | external-orchestrated
+  coordinator_agent_profile: .architect/agents/chief-architect.md
+  state_root: .architect/runtime
+  task_artifact: .architect/agents/artifacts/agent-task.yaml
+  handoff_artifact: .architect/agents/artifacts/agent-handoff.yaml
+  allow_parallel_specialists: true
+  require_validation_before_handoff: true

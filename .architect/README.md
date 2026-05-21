@@ -46,8 +46,10 @@ These objects are linked using typed `relationships`, which makes the workspace 
     governance/
     technology/
   examples/
+  agents/
   patterns/
   compliance/
+  runtime/
   schemas/
   validation/
   config/
@@ -73,6 +75,8 @@ Folder intent:
 - `examples/`: worked examples and reference projects kept separate from live project work
 - `patterns/`: reusable architecture patterns and reference solution approaches
 - `compliance/`: compliance-aware reference material for jurisdictions, sectors, and control obligations
+- `agents/`: executable agent profiles, runtime contracts, and task/handoff payloads for multi-agent execution
+- `runtime/`: live queue, gate, and active-work state for coordinator-led multi-agent execution
 - `schemas/`: formal structural contracts for artifact documents
 - `validation/`: executable checks for templates and architecture artifact folders
 - `config/`: configuration guidance for agent and workspace behavior
@@ -137,6 +141,8 @@ In practical terms:
 - use `examples/` for reference implementations and sample views
 - use `patterns/` for reusable architectural approaches and design guidance
 - use `compliance/` to scope jurisdiction, sector, privacy, AI, cyber-resilience, and payment/security obligations that should shape the architecture
+- use `agents/` to define the executable runtime profiles for roles that should operate as real agents
+- use `runtime/` to hold the active queue, handoff state, and review gate state when the project uses true multi-agent execution
 - use `schemas/` to define formal machine-readable contracts for artifact structure
 - use `validation/` to check template quality and project artifact consistency
 - use `config/` to explain how project and agent configuration should work
@@ -145,6 +151,24 @@ In practical terms:
 - use `method/` to describe the chosen project method and its tailoring
 - use `roles/` to clarify who does what
 - use `skills/` for AI or reusable playbooks
+
+## Roles, Skills, And Agents
+
+These three layers are related, but not the same:
+
+- `roles/`
+  Describe perspective, accountability, and ownership boundaries.
+- `skills/`
+  Describe reusable procedures for doing architecture work.
+- `agents/`
+  Describe executable runtime profiles that bind a role to allowed skills, write
+  scope, validation, and handoff behavior.
+
+Without `agents/` and `runtime/`, the workspace should be treated as
+coordinator-led single-agent execution that simulates specialist roles.
+
+With `agents/` and `runtime/`, the workspace can support actual multi-agent
+orchestration with bounded specialists and explicit handoffs.
 
 ## How To Use The Templates
 
