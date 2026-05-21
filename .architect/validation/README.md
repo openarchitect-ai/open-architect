@@ -52,6 +52,9 @@ VALIDATION_SUMMARY validator=<name> status=<status> checked=<n> errors=<n> warni
   patterns, and stronger approval/evidence gating.
   Conditional `if`/`then` rules from the schemas are now interpreted directly
   for the supported subset used by this workspace.
+  For live project artifacts under `.architect/architecture/`, it also warns
+  when ownership fields look speculative instead of using explicit
+  `confirmed:`, `role-placeholder:`, `tbd`, or `unknown` values.
 
 Schema contracts live under `../schemas/` and are intended to complement, not
 replace, these validators.
@@ -100,6 +103,8 @@ replace, these validators.
 - relationship target existence across live artifacts
 - full artifact approval-state validation across every conditional path in the schemas
 - human-review gate enforcement
+- perfect semantic detection of speculative ownership beyond the current
+  ownership-value convention
 
 ## How To Run
 

@@ -32,6 +32,8 @@ Recommended approach:
 5. Enable flows that match the chosen method.
 6. Add skills later as the project matures.
 7. Confirm governance roles and review expectations.
+8. If you want one default orchestrating agent, set the coordinator role and skill.
+9. Keep ownership truthful; do not let agents guess named owners to make artifacts look complete.
 
 ## Field Guidance
 
@@ -102,10 +104,33 @@ Examples:
 Use this section to declare project-wide expectations that may later be
 validated automatically.
 
+Suggested ownership convention for live project artifacts:
+
+- use `confirmed:<owner>` when ownership is actually confirmed
+- use `role-placeholder:<role>` when only the responsibility shape is known
+- use `tbd` or `unknown` when ownership is not yet known
+
+This keeps architecture stewardship honest and prevents plausible-sounding but
+invented ownership from becoming accidental truth.
+
 ### `governance`
 
 Use this section to declare the roles that own architecture, requirements, and
 review responsibility for the project.
+
+Recommended coordinator fields:
+
+- `coordinator_role`: the default coordinating role for the project
+- `coordinator_skill`: the default orchestration skill used to route the next
+  step
+- `coordinator_auto_route`: when `true`, the coordinator should choose the next
+  role or skill unless the user explicitly overrides it
+
+Suggested default:
+
+- `coordinator_role: chief-architect`
+- `coordinator_skill: architecture-coordinator`
+- `coordinator_auto_route: true`
 
 ## Suggested Defaults
 
@@ -123,3 +148,5 @@ If you are unsure, start with:
 - review it when the project scope changes
 - align it to the chosen project method
 - treat it as the control point for future automation and validation
+- if one coordinating role should route the rest of the work, make that explicit
+  in `governance` so agents do not guess differently

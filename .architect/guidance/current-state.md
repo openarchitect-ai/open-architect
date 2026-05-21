@@ -267,6 +267,15 @@ capability container, including:
 - Expanded the root regulation profile set further:
   - added `uk-gdpr`, `european-accessibility-act`, `glba`, `fedramp`, `cmmc`, `cjis-security-policy`, and `lgpd`
   - updated the sample regulation configuration to surface the broader profile set and added `accessibility` as a control framework example
+- Seeded the first live pilot under `.architect/architecture/`:
+  - added `pilot-digital-referral-intake` as a compact regulated greenfield scenario
+  - included a scenario brief, starter artifacts across business, application, governance, and data, and an explicit proving sequence for Wave 1 agent execution
+- Added a dedicated coordination skill for end-to-end pilot and project orchestration:
+  - `architecture-coordinator`
+  - positions `chief-architect` as the coordinating role for skill sequencing, handoffs, validation timing, and human review gates
+- Made the single-coordinator operating model explicit:
+  - added `coordinator_role`, `coordinator_skill`, and `coordinator_auto_route` to `project-config.yaml`
+  - updated agent config, role boundaries, handoff contracts, and skill guidance so one coordinating role can route the next skill or role by default unless the user overrides it
 - Turned Wave 1 skills into concrete playbooks:
   - `project-bootstrapper`
   - `stakeholder-objective-framer`
@@ -347,6 +356,48 @@ High priority:
 - Expand the reusable pattern library only where real usage shows clear gaps
   - add more patterns when live project use or executable agents expose missing guidance
   - link patterns more explicitly to templates, decisions, skills, and example diagrams
+
+## Remaining Gaps
+
+The largest remaining gaps are no longer in baseline coverage. They are in
+operational use, proof, and automation.
+
+- Executable agent behavior
+  - most skills are still high-quality playbooks rather than truly executable
+    agent instructions
+  - the workspace still needs a stronger operational contract for agent inputs,
+    stop conditions, and validation behavior
+- Real-project proving
+  - the structure is broad and mature, but it still needs proving against live
+    work under `.architect/architecture/`, not only examples and scaffolding
+  - handoff, review, validation, and compliance guidance should be exercised in
+    real project use
+- Repeatable agent testing
+  - agent test scenarios exist, but the project still needs a repeatable way to
+    run and evaluate agents against them
+  - this includes checking traceability, stop conditions, evidence handling,
+    and review-gate behavior
+- Deeper validation and enforcement
+  - validators and schemas exist, but more cross-artifact, governance-aware,
+    and compliance-aware checks should become automatic
+  - the strongest gaps are around approval controls, evidence sufficiency, and
+    review-state enforcement
+- Example depth
+  - the worked example is useful, but the project would benefit from more
+    varied examples across enterprise, regulated, public-sector, and
+    product-oriented scenarios
+- Flow and diagram maturity
+  - the flow layer is useful, but still lighter than the patterns, skills,
+    compliance, and validation layers
+  - more executable flow behavior and more worked diagram examples would
+    improve operational readiness
+- Open source contributor readiness
+  - the repo still needs stronger contribution standards, contributor guidance,
+    and project-governance details for broader community use
+- Compliance-to-control traceability in practice
+  - the compliance library is now broad, but the next step is tighter linkage
+    from compliance profiles to artifacts, assessments, review packets, and
+    validation behavior
 
 Open source hygiene:
 

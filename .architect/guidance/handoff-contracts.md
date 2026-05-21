@@ -20,6 +20,7 @@ Every handoff should make five things clear:
 
 Every handoff should include:
 
+- `coordinated_by`: the role or skill currently orchestrating the project slice
 - `handoff_from`: originating role or skill
 - `handoff_to`: receiving role or skill
 - `scope`: the bounded concern or work item being passed
@@ -40,10 +41,18 @@ Before handing work off, the originating agent should:
 - surface any warnings that still matter
 - stop if a human review gate has been reached
 
+If a project uses a default coordinator, the handoff should also make clear
+whether the next step was:
+
+- explicitly routed by the coordinator
+- explicitly requested by the user
+- blocked and waiting for coordinator or human direction
+
 ## Recommended Default Contracts
 
 ### Bootstrap To Framing
 
+- `coordinated_by`: `architecture-coordinator`
 - `from`: `project-bootstrapper`
 - `to`: `stakeholder-objective-framer`
 - required outputs:
@@ -54,6 +63,7 @@ Before handing work off, the originating agent should:
 
 ### Framing To Requirements
 
+- `coordinated_by`: `architecture-coordinator`
 - `from`: `stakeholder-objective-framer`
 - `to`: `requirement-normalizer`
 - required outputs:
@@ -64,6 +74,7 @@ Before handing work off, the originating agent should:
 
 ### Requirements To Solution Modeling
 
+- `coordinated_by`: `architecture-coordinator`
 - `from`: `requirement-normalizer`
 - `to`: `solution-modeler`
 - required outputs:
@@ -73,6 +84,7 @@ Before handing work off, the originating agent should:
 
 ### Solution Modeling To Review
 
+- `coordinated_by`: `architecture-coordinator`
 - `from`: `solution-modeler`
 - `to`: `architecture-review`
 - required outputs:
@@ -83,6 +95,7 @@ Before handing work off, the originating agent should:
 
 ### Review To Governance
 
+- `coordinated_by`: `architecture-coordinator`
 - `from`: `architecture-review`
 - `to`: `architecture-governance-lead`
 - required outputs:

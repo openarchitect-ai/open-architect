@@ -4,7 +4,7 @@ This matrix shows which skills are most relevant to each architecture role.
 
 | Role | Primary skills | Supporting skills |
 | --- | --- | --- |
-| `chief-architect` | `project-bootstrapper`, `option-evaluator`, `change-coordinator`, `architecture-review` | `review-pack-builder`, `communication-packager`, `decision-recorder`, `transition-planner` |
+| `chief-architect` | `architecture-coordinator`, `project-bootstrapper`, `option-evaluator`, `change-coordinator`, `architecture-review` | `review-pack-builder`, `communication-packager`, `decision-recorder`, `transition-planner` |
 | `business-analyst` | `stakeholder-objective-framer`, `baseline-discovery`, `requirement-normalizer`, `requirements-follow-up` | `communication-packager`, `evidence-curator`, `relationship-mapper` |
 | `business-architect` | `stakeholder-objective-framer`, `baseline-discovery`, `option-evaluator`, `architecture-documenter` | `transition-planner`, `architecture-review`, `diagram-author` |
 | `enterprise-architect` | `project-bootstrapper`, `option-evaluator`, `transition-planner`, `architecture-review` | `technology-environment-modeler`, `review-pack-builder`, `communication-packager` |

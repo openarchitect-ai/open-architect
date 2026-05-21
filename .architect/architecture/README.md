@@ -20,3 +20,7 @@ Store concrete project architecture objects here rather than in `templates`.
 Store project-specific diagram sources and visual views in `views/`.
 
 Reference projects and worked examples live under `../examples/`.
+
+For larger or parallel efforts, it is also acceptable to create a project
+subfolder under `architecture/` and mirror the same category structure inside
+that project folder.

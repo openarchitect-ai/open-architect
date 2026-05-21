@@ -41,6 +41,40 @@ When information is incomplete:
 Never infer owners, environments, interfaces, constraints, dates, or governance
 status purely to satisfy a template.
 
+## Ownership Truthfulness
+
+Ownership deserves an even stricter rule because guessed owners quickly turn
+into false governance.
+
+For live project artifacts:
+
+- use `confirmed:<owner>` when a user, source artifact, or explicit stakeholder statement confirms the owner
+- use `role-placeholder:<role>` when only the responsibility shape is known
+- use `tbd` or `unknown` when no reliable ownership answer exists yet
+
+Do not invent named teams, departments, or job titles just to avoid blank or
+incomplete ownership fields.
+
+Good examples:
+
+```yaml
+ownership:
+  business_owner: confirmed:director-of-care-coordination
+  technical_owner: role-placeholder:integration-platform-team
+  product_owner: tbd
+```
+
+Bad examples when not actually evidenced:
+
+```yaml
+ownership:
+  business_owner: Referral Operations Manager
+  technical_owner: Digital Health Platforms
+```
+
+If an ownership value is only a working placeholder, keep it visibly marked as
+such rather than letting it look like a settled fact.
+
 ## Assumptions And Open Questions
 
 Use these patterns consistently:

@@ -20,6 +20,7 @@ architecture projects in a structured, reviewable, and traceable way.
 
 These are the minimum viable skills for new project delivery:
 
+- `architecture-coordinator`
 - `project-bootstrapper`
 - `stakeholder-objective-framer`
 - `baseline-discovery`
@@ -72,6 +73,10 @@ These support delivery execution, evidence, and ongoing upkeep:
 9. `architecture-documenter`
 10. `diagram-author`
 11. remaining specialist and upkeep skills
+
+Use `architecture-coordinator` as the orchestration skill from the start so the
+project has one coordinating agent or lead role managing sequence, validation,
+handoff quality, and review gates across the other skills.
 
 ## Operationalization Guidance
 

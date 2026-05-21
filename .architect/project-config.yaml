@@ -131,6 +131,9 @@ governance:
   architecture_owner_role: chief-architect
   requirement_steward_role: business-analyst
   review_role: architecture-governance-lead
+  coordinator_role: chief-architect
+  coordinator_skill: architecture-coordinator
+  coordinator_auto_route: true
   human_approval_roles:
     - chief-architect
     - architecture-governance-lead

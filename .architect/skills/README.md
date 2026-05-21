@@ -36,6 +36,7 @@ security approaches, runtime controls, or rollout patterns.
 
 The initial delivery-oriented skill catalog is:
 
+- `architecture-coordinator.md`
 - `project-bootstrapper.md`
 - `stakeholder-objective-framer.md`
 - `baseline-discovery.md`
@@ -69,17 +70,23 @@ Supporting documents:
 
 For a new project, start with:
 
-1. `project-bootstrapper`
-2. `stakeholder-objective-framer`
-3. `baseline-discovery`
-4. `requirement-normalizer`
-5. `requirements-follow-up`
-6. `solution-modeler`
-7. `relationship-mapper`
-8. `decision-recorder`
-9. `transition-planner`
-10. `architecture-review`
-11. output-oriented delivery skills such as `architecture-documenter` and `diagram-author`
+1. `architecture-coordinator`
+2. `project-bootstrapper`
+3. `stakeholder-objective-framer`
+4. `baseline-discovery`
+5. `requirement-normalizer`
+6. `requirements-follow-up`
+7. `solution-modeler`
+8. `relationship-mapper`
+9. `decision-recorder`
+10. `transition-planner`
+11. `architecture-review`
+12. output-oriented delivery skills such as `architecture-documenter` and `diagram-author`
+
+If the project uses a coordinating operating model, `architecture-coordinator`
+should remain the default routing point across those steps. Specialist skills
+should not choose the next major skill or role on their own unless the user
+explicitly directs it.
 
 ## Next Step
 

@@ -46,6 +46,17 @@ $prefixToKind = @{}
 $artifactInventory = @{}
 $schemaRulesByKind = @{}
 $commonSchemaRoot = $null
+$liveArchitectureRoot = Resolve-Path (Join-Path $repoRoot '.architect\architecture')
+$ownershipTruthyPatterns = @(
+    '^(?i:tbd)$',
+    '^(?i:unknown)$',
+    '^confirmed:.+',
+    '^role-placeholder:.+'
+)
+$ownershipValidationExcludedKeys = @(
+    'owning_application',
+    'vendor'
+)
 
 function Add-Error {
     param(
@@ -188,6 +199,34 @@ function Get-StringArray {
     }
 
     return @($Value | ForEach-Object { [string]$_ })
+}
+
+function Test-IsUnderRoot {
+    param(
+        [string]$Path,
+        [string]$Root
+    )
+
+    return $Path.StartsWith($Root + [System.IO.Path]::DirectorySeparatorChar, [System.StringComparison]::OrdinalIgnoreCase) -or
+        $Path.Equals($Root, [System.StringComparison]::OrdinalIgnoreCase)
+}
+
+function Test-OwnershipValueIsExplicit {
+    param(
+        [string]$Value
+    )
+
+    if ([string]::IsNullOrWhiteSpace($Value)) {
+        return $false
+    }
+
+    foreach ($pattern in $ownershipTruthyPatterns) {
+        if ($Value -match $pattern) {
+            return $true
+        }
+    }
+
+    return $false
 }
 
 function Get-SchemaEnumValues {
@@ -736,6 +775,7 @@ foreach ($file in $artifactFiles) {
 foreach ($artifact in $artifactInventory.Values) {
     $lines = $artifact.Lines
     $specLines = Get-SectionLines -Lines $lines -SectionName 'spec'
+    $ownershipLines = Get-SectionLines -Lines $specLines -SectionName 'ownership'
     $metadataLines = Get-SectionLines -Lines $specLines -SectionName 'metadata'
     $relationshipsLines = Get-SectionLines -Lines $specLines -SectionName 'relationships'
 
@@ -748,6 +788,23 @@ foreach ($artifact in $artifactInventory.Values) {
     foreach ($key in $requiredMetadataKeys) {
         if (-not (Test-NestedKeyPresent -Lines $metadataLines -KeyName $key)) {
             Add-Error $artifact.Path ("missing spec.metadata.{0}" -f $key)
+        }
+    }
+
+    if ((Test-IsUnderRoot -Path $artifact.Path -Root $liveArchitectureRoot.Path) -and $ownershipLines.Count -gt 0) {
+        $ownershipValueLines = $ownershipLines | Where-Object { $_ -match '^\s{4}([A-Za-z0-9_]+):\s*(.+?)\s*(#.*)?$' }
+        foreach ($line in $ownershipValueLines) {
+            if ($line -match '^\s{4}([A-Za-z0-9_]+):\s*(.+?)\s*(#.*)?$') {
+                $ownershipKey = $Matches[1]
+                $ownershipValue = (Get-ScalarValue -Line $line -KeyName $ownershipKey).Trim()
+                if ($ownershipValidationExcludedKeys -contains $ownershipKey) {
+                    continue
+                }
+
+                if (-not (Test-OwnershipValueIsExplicit -Value $ownershipValue)) {
+                    Add-Warning $artifact.Path ("ownership field '{0}' uses '{1}'; for live project artifacts prefer 'confirmed:<owner>', 'role-placeholder:<role>', 'tbd', or 'unknown'" -f $ownershipKey, $ownershipValue)
+                }
+            }
         }
     }
 

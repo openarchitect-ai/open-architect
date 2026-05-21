@@ -21,6 +21,7 @@ Typical outputs:
 - `roadmap`
 - `compliance-assessment`
 - `risk`
+- coordination summaries, review-gate decisions, and cross-skill handoff direction
 
 Key collaboration points:
 
