@@ -37,6 +37,9 @@ Use these role descriptions to:
 - clarify collaboration between architecture disciplines
 - guide how methods, templates, and flows are applied in practice
 
+Use [`.architect/guidance/role-boundaries.md`](../guidance/role-boundaries.md)
+alongside these role files when operationalizing a multi-agent team.
+
 Suggested role positioning:
 
 - `chief-architect`: overall architecture capability, coherence, and delivery ownership

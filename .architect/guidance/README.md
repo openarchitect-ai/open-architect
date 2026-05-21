@@ -19,6 +19,12 @@ Recommended files:
 - `governance-conventions.md`
 - `lifecycle-and-dates.md`
 - `diagram-conventions.md`
+- `handoff-contracts.md`
+- `traceability-rules.md`
+- `id-and-naming-rules.md`
+- `human-review-packet.md`
+- `agent-test-scenarios.md`
+- `role-boundaries.md`
 - `glossary.md`
 - `governance.md`
 - `../validation/README.md`

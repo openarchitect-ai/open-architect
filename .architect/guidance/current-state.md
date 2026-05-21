@@ -162,6 +162,14 @@ capability container, including:
 - Moved conditional artifact rules toward schema-driven enforcement:
   - artifact validation now interprets supported `if` / `then` schema rules directly
   - requirement verification, approval evidence, and compliance review checks are no longer only hand-coded one-offs
+- Added operationalization guidance for multi-agent rollout:
+  - `.architect/guidance/handoff-contracts.md`
+  - `.architect/guidance/traceability-rules.md`
+  - `.architect/guidance/id-and-naming-rules.md`
+  - `.architect/guidance/human-review-packet.md`
+  - `.architect/guidance/agent-test-scenarios.md`
+  - `.architect/guidance/role-boundaries.md`
+  - defines handoffs, traceability, naming, review packets, test scenarios, and role boundaries before full team execution
 - Wired schema-aware validation into artifact checking:
   - `.architect/validation/Validate-ArchitectureArtifacts.ps1`
   - applies schema-derived required-section and enum checks for covered artifact kinds without replacing existing repo-aware validation
@@ -232,6 +240,11 @@ Current role library:
 High priority:
 
 - Turn the most valuable playbooks into executable agent instructions
+- Apply the new operationalization pack before broad multi-agent rollout:
+  - use handoff contracts
+  - use traceability and ID rules
+  - use the review packet format
+  - use the test scenarios and role boundary guidance
 - Extend validation and schema support
   - keep growing `.architect/validation/`
   - deepen schema precision for covered kinds and broaden direct enforcement of conditional schema rules
@@ -270,9 +283,9 @@ Future direction:
 
 If work resumes later, the best next task is:
 
-1. turn the strongest playbooks into executable agent instructions and real flows
-2. extend live-project validation and tighten guidance for IDs, traceability, and evidence quality
-3. deepen schema precision and integrate schema-aware validation more deeply
+1. turn the strongest playbooks into executable agent instructions using the new handoff, traceability, and review guidance
+2. run the new agent test scenarios against those executable instructions
+3. extend live-project validation and deepen schema-aware enforcement further
 
 ## Notes
 

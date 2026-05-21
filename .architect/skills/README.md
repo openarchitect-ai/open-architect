@@ -80,3 +80,12 @@ For a new project, start with:
 Wave 1 skills now include concrete playbook steps and a linked worked example.
 The next step is to turn the most valuable playbooks into executable agent
 instructions or orchestrated flows.
+
+Before broad team operationalization, use the guidance set for:
+
+- handoff contracts
+- traceability rules
+- ID and naming rules
+- human review packet structure
+- agent test scenarios
+- role boundaries
