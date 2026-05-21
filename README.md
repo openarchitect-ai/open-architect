@@ -1,20 +1,26 @@
 # Open Architect
 
-Open Architect is an open source, AI-native architecture workspace for enterprise architects and solution architects.
+Open Architect is an open source, AI-assisted workspace for enterprise
+architects and solution architects.
 
-It is designed to help teams capture architecture as structured, linked, machine-readable knowledge instead of disconnected documents, slide decks, and spreadsheets.
+It is designed to help practicing architects work from real project evidence,
+capture architecture as structured knowledge when useful, and bring AI support
+into architecture work without forcing heavy process or premature modeling.
 
 The core idea is simple:
 
 - keep architecture guidance close to the project
-- model architecture through reusable templates
-- make relationships between artifacts explicit
+- start from source material and explicit questions
+- move from inventory to analysis before modeling
+- create architecture artifacts only when they are actually useful
 - support both human architects and AI-assisted workflows
 
 ## Why Open Architect
 
-Most architecture work is fragmented across documents, diagrams, wikis, and delivery boards. That makes it hard to:
+Most architecture work is fragmented across documents, diagrams, wikis, and
+delivery boards. That makes it hard to:
 
+- understand the current estate clearly
 - maintain a coherent target state
 - trace requirements, decisions, and transition steps
 - govern change over time
@@ -23,21 +29,23 @@ Most architecture work is fragmented across documents, diagrams, wikis, and deli
 
 Open Architect treats architecture as a project-local capability with:
 
-- a shared metamodel
-- clear methods and roles
-- reusable guidance
-- real architecture instances
-- a path toward executable or visual flows
+- lightweight project startup
+- reusable templates and guidance
+- explicit roles, skills, and working modes
+- optional structured architecture artifacts
+- optional advanced orchestration when a project actually needs it
 
 ## What Is In This Repository
 
-This repository currently contains the `.architect` capability structure, including:
+This repository currently contains the `.architect` capability structure,
+including:
 
 - architecture templates for business, application, data, technology, governance, and change
 - project-local guidance and conventions
 - role definitions for architects
 - method and reference method content
-- markdown flow definitions for architecture development and coordination, with a path to richer visual or executable workflows
+- prompt recipes, starter-project guidance, and lightweight presets
+- markdown flow definitions for architecture development and coordination, with a path to richer visual or executable workflows when explicitly needed
 - architecture instance folders for real project artifacts
 
 The main workspace documentation is here:
@@ -71,13 +79,22 @@ High-level intent:
 - `compliance/`: compliance-aware reference material for jurisdiction, sector, and control obligations
 - `schemas/`: formal JSON Schema contracts for artifact document structure
 - `validation/`: lightweight validators for templates and architecture artifact folders
-- `flows/`: future visual or executable architecture workflows
+- `flows/`: optional guided workflows and, later, richer automations
 - `config/`: configuration guidance for agent and workspace behavior
 - `guidance/`: conventions, glossary, and local rules
 - `method/`: the chosen project method and reference methods such as ADM
 - `roles/`: role descriptions and responsibilities
 - `skills/`: AI or reusable architecture playbooks
 - `templates/`: the architecture metamodel and starter templates
+
+The workspace is now best understood in three levels:
+
+- `Core`
+  - everyday architect-assist use
+- `Optional`
+  - additional structure for more formal projects
+- `Advanced`
+  - orchestration, runtime state, schemas, and deeper automation
 
 ## Who It Is For
 
@@ -87,6 +104,10 @@ Open Architect is intended for:
 - solution architects defining bounded solutions, interfaces, environments, and transition plans
 - teams that want architecture to be versioned, reviewable, and automatable
 - organizations exploring AI-assisted architecture practices
+
+It works especially well when the architect wants to stay in control and use AI
+as a specialist helper for extraction, analysis, review, and selective
+modeling.
 
 ## Current Scope
 
@@ -106,32 +127,38 @@ consumer privacy concerns.
 
 ## Getting Started
 
+The lightest useful way to start is:
+
 1. Open [`.architect/README.md`](.architect/README.md).
-2. Review the templates under [`.architect/templates`](.architect/templates).
-3. Tailor the project method under [`.architect/method/project-method.md`](.architect/method/project-method.md).
-4. Add local conventions in [`.architect/guidance/conventions.md`](.architect/guidance/conventions.md).
-5. Start creating real architecture artifacts under [`.architect/architecture`](.architect/architecture).
+2. Create a small project folder under [`.architect/architecture`](.architect/architecture).
+3. Add a `docs/` folder with your source material.
+4. Optionally add a short `notes.md` with your business goal and questions.
+5. Start in `inventory` or `analysis` mode.
+6. Create architecture artifacts only when you explicitly want them.
 
-If you want a minimal first slice, start with:
+Best quick-start guides:
 
-- one stakeholder
-- one objective
-- one business capability
-- one application
-- one data object
-- one interface
-- one solution
-- one transition architecture
+- [starter-project.md](.architect/config/starter-project.md)
+- [prompt-recipes.md](.architect/config/prompt-recipes.md)
+- [cheat-sheet.md](.architect/config/cheat-sheet.md)
+- [agent.config.md](.architect/config/agent.config.md)
+
+If you already know you want a more formal setup, then review:
+
+- [`.architect/templates`](.architect/templates)
+- [`.architect/project-config.yaml`](.architect/project-config.yaml)
+- [`.architect/method/project-method.md`](.architect/method/project-method.md)
 
 ## Project Direction
 
 Open Architect is intended to evolve toward:
 
+- stronger architect-assist workflows and examples
 - deeper schema precision and richer validator enforcement
 - richer example architectures
 - reusable reference patterns
-- visual architecture flows
-- AI-native architecture assistants and automation
+- visual architecture flows where useful
+- AI-native architecture assistants and automation where explicitly helpful
 
 ## Contributing
 
@@ -140,6 +167,7 @@ Contributions are welcome.
 Useful contribution areas include:
 
 - improving templates and guidance
+- improving starter-project, prompt, and usability guidance
 - adding or extending schemas and validation rules
 - creating worked examples
 - refining method and role descriptions
@@ -150,12 +178,16 @@ Useful contribution areas include:
 
 This project is currently in a strong foundation stage.
 
-The structure, templates, patterns, skills, compliance guidance, and operating
-model are in place, but the repository still needs:
+The core workspace, templates, patterns, compliance layer, and architect-assist
+operating model are in place. The main remaining work is now less about adding
+structure and more about making the workspace easier to prove and use in real
+projects.
 
-- deeper schema precision and fuller schema-aware enforcement
+The repository still needs:
+
 - richer examples
-- real-project proving of the expanded pattern, skill, and compliance library
+- more real-project proving of the assistive workflows
+- deeper schema precision and fuller schema-aware enforcement where useful
 - contribution standards
 - contribution and project-governance details
 
