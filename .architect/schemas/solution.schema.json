@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/solution.schema.json",
+  "title": "Open Architect Solution Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "status",
+            "ownership",
+            "scope",
+            "architecture",
+            "quality_attributes",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^SOL-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": [
+                "solution_type",
+                "architecture_state",
+                "scope",
+                "criticality"
+              ],
+              "properties": {
+                "solution_type": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "architecture_state": {
+                  "type": "string",
+                  "enum": ["baseline", "transition", "target"]
+                },
+                "scope": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "criticality": {
+                  "$ref": "./common-definitions.schema.json#/$defs/criticality"
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "object",
+              "required": [
+                "lifecycle",
+                "architecture_status",
+                "delivery_status"
+              ],
+              "properties": {
+                "lifecycle": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "architecture_status": {
+                  "type": "string",
+                  "enum": ["draft", "proposed", "approved", "rejected", "superseded"]
+                },
+                "delivery_status": {
+                  "type": "string",
+                  "enum": ["green", "amber", "red", "complete", "on-hold"]
+                }
+              },
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": [
+                "solution_owner",
+                "business_owner",
+                "technical_owner"
+              ],
+              "properties": {
+                "solution_owner": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "business_owner": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "technical_owner": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "additionalProperties": true
+            },
+            "scope": {
+              "type": "object",
+              "required": ["business_outcomes"],
+              "properties": {
+                "business_outcomes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "in_scope_domains": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "out_of_scope": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "additionalProperties": true
+            },
+            "architecture": {
+              "type": "object",
+              "required": ["context"],
+              "properties": {
+                "context": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "logical_components": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "integration_patterns": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "data_patterns": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "additionalProperties": true
+            },
+            "quality_attributes": {
+              "type": "object",
+              "minProperties": 1,
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "governance": {
+              "type": "object",
+              "properties": {
+                "approval_forum": {
+                  "type": "string"
+                },
+                "review_cadence": {
+                  "type": "string"
+                },
+                "deviation_process": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+    ,
+    {
+      "if": {
+        "properties": {
+          "spec": {
+            "properties": {
+              "status": {
+                "properties": {
+                  "architecture_status": {
+                    "const": "approved"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "spec": {
+            "properties": {
+              "metadata": {
+                "properties": {
+                  "confidence": {
+                    "enum": ["medium", "high"]
+                  },
+                  "references": {
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

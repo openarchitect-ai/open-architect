@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/compliance-assessment.schema.json",
+  "title": "Open Architect Compliance Assessment Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "status",
+            "ownership",
+            "assessment",
+            "findings",
+            "remediation",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^CMP-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": ["assessment_type", "scope", "severity", "criticality"],
+              "properties": {
+                "severity": {
+                  "type": "string",
+                  "enum": ["low", "medium", "high", "critical"]
+                },
+                "criticality": {
+                  "$ref": "./common-definitions.schema.json#/$defs/criticality"
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "object",
+              "required": ["lifecycle", "assessment_status", "conformance_status"],
+              "properties": {
+                "lifecycle": {
+                  "type": "string",
+                  "enum": ["planned", "active", "closed", "archived"]
+                },
+                "assessment_status": {
+                  "type": "string",
+                  "enum": ["planned", "open", "in-review", "closed"]
+                },
+                "conformance_status": {
+                  "type": "string",
+                  "enum": ["pass", "conditional-pass", "fail", "waived"]
+                }
+              },
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": ["assessment_owner", "assessed_owner", "remediation_owner"],
+              "additionalProperties": true
+            },
+            "assessment": {
+              "type": "object",
+              "required": ["review_date", "assessment_method", "overall_finding"],
+              "properties": {
+                "review_date": {
+                  "$ref": "./common-definitions.schema.json#/$defs/date"
+                }
+              },
+              "additionalProperties": true
+            },
+            "findings": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "remediation": {
+              "type": "object",
+              "properties": {
+                "due_date": {
+                  "$ref": "./common-definitions.schema.json#/$defs/date"
+                }
+              },
+              "additionalProperties": true
+            },
+            "governance": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+    ,
+    {
+      "if": {
+        "properties": {
+          "spec": {
+            "properties": {
+              "status": {
+                "properties": {
+                  "conformance_status": {
+                    "enum": ["pass", "conditional-pass"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "spec": {
+            "properties": {
+              "metadata": {
+                "properties": {
+                  "references": {
+                    "minItems": 1
+                  }
+                }
+              },
+              "assessment": {
+                "required": ["review_date"]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

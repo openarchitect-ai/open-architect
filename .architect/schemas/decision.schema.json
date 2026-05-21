@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/decision.schema.json",
+  "title": "Open Architect Decision Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "status",
+            "ownership",
+            "context",
+            "decision",
+            "impact",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^DEC-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": ["decision_type", "scope", "criticality"],
+              "properties": {
+                "decision_type": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "scope": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "criticality": {
+                  "$ref": "./common-definitions.schema.json#/$defs/criticality"
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "object",
+              "required": ["lifecycle", "decision_state", "effective_date"],
+              "properties": {
+                "lifecycle": {
+                  "type": "string",
+                  "enum": ["draft", "proposed", "approved", "rejected", "superseded", "retired"]
+                },
+                "decision_state": {
+                  "type": "string",
+                  "enum": ["proposed", "accepted", "rejected", "deferred", "superseded", "retired"]
+                },
+                "effective_date": {
+                  "$ref": "./common-definitions.schema.json#/$defs/date"
+                }
+              },
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": ["decision_owner", "approver"],
+              "properties": {
+                "decision_owner": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "approver": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "contributors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "additionalProperties": true
+            },
+            "context": {
+              "type": "object",
+              "required": ["problem_statement"],
+              "properties": {
+                "problem_statement": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "drivers": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "additionalProperties": true
+            },
+            "decision": {
+              "type": "object",
+              "required": ["statement"],
+              "properties": {
+                "statement": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "rationale": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "additionalProperties": true
+            },
+            "options_considered": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["option", "outcome", "reason"],
+                "properties": {
+                  "option": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "outcome": {
+                    "type": "string",
+                    "enum": ["accepted", "rejected", "deferred"]
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "additionalProperties": true
+              }
+            },
+            "impact": {
+              "type": "object",
+              "properties": {
+                "affected_capabilities": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "affected_applications": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "affected_data_objects": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "affected_interfaces": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "consequences": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "additionalProperties": true
+            },
+            "governance": {
+              "type": "object",
+              "properties": {
+                "supersedes": {
+                  "type": ["string", "null"]
+                },
+                "review_date": {
+                  "$ref": "./common-definitions.schema.json#/$defs/date"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+    ,
+    {
+      "if": {
+        "anyOf": [
+          {
+            "properties": {
+              "spec": {
+                "properties": {
+                  "status": {
+                    "properties": {
+                      "lifecycle": {
+                        "const": "approved"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "spec": {
+                "properties": {
+                  "status": {
+                    "properties": {
+                      "decision_state": {
+                        "const": "accepted"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "then": {
+        "properties": {
+          "spec": {
+            "properties": {
+              "metadata": {
+                "properties": {
+                  "confidence": {
+                    "enum": ["medium", "high"]
+                  },
+                  "references": {
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

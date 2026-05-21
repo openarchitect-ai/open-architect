@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/business-capability.schema.json",
+  "title": "Open Architect Business Capability Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "status",
+            "ownership",
+            "hierarchy",
+            "business_context",
+            "enablement",
+            "strategy",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^BC-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": ["domain", "level", "capability_type", "criticality"],
+              "properties": {
+                "criticality": {
+                  "$ref": "./common-definitions.schema.json#/$defs/criticality"
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "object",
+              "required": ["lifecycle", "target_state", "maturity"],
+              "properties": {
+                "maturity": {
+                  "type": "string",
+                  "enum": ["initial", "emerging", "defined", "managed", "optimized"]
+                }
+              },
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": ["executive_owner", "business_owner", "architecture_owner"],
+              "additionalProperties": true
+            },
+            "hierarchy": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "business_context": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "enablement": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "strategy": {
+              "type": "object",
+              "required": ["target_maturity"],
+              "properties": {
+                "target_maturity": {
+                  "type": "string",
+                  "enum": ["initial", "emerging", "defined", "managed", "optimized"]
+                }
+              },
+              "additionalProperties": true
+            },
+            "governance": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/technology-standard.schema.json",
+  "title": "Open Architect Technology Standard Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "status",
+            "ownership",
+            "standard",
+            "preferred_technologies",
+            "enforcement",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^TS-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": ["standard_type", "technology_domain", "standard_position", "criticality"],
+              "properties": {
+                "standard_position": {
+                  "type": "string",
+                  "enum": ["strategic", "tactical", "contain", "retire"]
+                },
+                "criticality": {
+                  "$ref": "./common-definitions.schema.json#/$defs/criticality"
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "object",
+              "required": ["lifecycle", "approval_status", "enforcement_status"],
+              "properties": {
+                "lifecycle": {
+                  "type": "string",
+                  "enum": ["draft", "active", "retired", "archived"]
+                },
+                "approval_status": {
+                  "type": "string",
+                  "enum": ["draft", "proposed", "approved", "rejected", "superseded"]
+                },
+                "enforcement_status": {
+                  "type": "string",
+                  "enum": ["advisory", "guided", "enforced"]
+                }
+              },
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": ["standard_owner", "technical_owner", "approver"],
+              "additionalProperties": true
+            },
+            "standard": {
+              "type": "object",
+              "required": ["statement"],
+              "additionalProperties": true
+            },
+            "preferred_technologies": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "enforcement": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "governance": {
+              "type": "object",
+              "properties": {
+                "expiry_review_date": {
+                  "$ref": "./common-definitions.schema.json#/$defs/date"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+    ,
+    {
+      "if": {
+        "properties": {
+          "spec": {
+            "properties": {
+              "status": {
+                "properties": {
+                  "approval_status": {
+                    "const": "approved"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "spec": {
+            "properties": {
+              "metadata": {
+                "properties": {
+                  "references": {
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

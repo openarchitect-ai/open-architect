@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/roadmap.schema.json",
+  "title": "Open Architect Roadmap Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "status",
+            "ownership",
+            "timeline",
+            "phases",
+            "dependencies",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^RMP-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": ["roadmap_type", "scope", "planning_horizon", "criticality"],
+              "properties": {
+                "criticality": {
+                  "$ref": "./common-definitions.schema.json#/$defs/criticality"
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "object",
+              "required": ["lifecycle", "approval_status", "progress_status"],
+              "properties": {
+                "lifecycle": {
+                  "type": "string",
+                  "enum": ["draft", "active", "retired", "archived"]
+                },
+                "approval_status": {
+                  "type": "string",
+                  "enum": ["draft", "proposed", "approved", "rejected", "superseded"]
+                },
+                "progress_status": {
+                  "type": "string",
+                  "enum": ["not-started", "in-progress", "at-risk", "complete", "blocked"]
+                }
+              },
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": ["roadmap_owner", "portfolio_owner", "business_owner"],
+              "additionalProperties": true
+            },
+            "timeline": {
+              "type": "object",
+              "required": ["planning_start", "planning_end"],
+              "properties": {
+                "planning_start": {
+                  "$ref": "./common-definitions.schema.json#/$defs/date"
+                },
+                "planning_end": {
+                  "$ref": "./common-definitions.schema.json#/$defs/date"
+                },
+                "milestones": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["name", "target_date"],
+                    "properties": {
+                      "target_date": {
+                        "$ref": "./common-definitions.schema.json#/$defs/date"
+                      }
+                    },
+                    "additionalProperties": true
+                  }
+                }
+              },
+              "additionalProperties": true
+            },
+            "phases": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["phase", "objectives"],
+                "additionalProperties": true
+              }
+            },
+            "dependencies": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "governance": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+    ,
+    {
+      "if": {
+        "properties": {
+          "spec": {
+            "properties": {
+              "status": {
+                "properties": {
+                  "approval_status": {
+                    "const": "approved"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "spec": {
+            "properties": {
+              "metadata": {
+                "properties": {
+                  "references": {
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

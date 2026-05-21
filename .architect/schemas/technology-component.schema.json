@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/technology-component.schema.json",
+  "title": "Open Architect Technology Component Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "status",
+            "ownership",
+            "usage",
+            "deployment",
+            "dependencies",
+            "security",
+            "service_levels",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^TC-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": ["technology_domain", "component_type", "vendor", "deployment_model", "criticality"],
+              "properties": {
+                "criticality": {
+                  "$ref": "./common-definitions.schema.json#/$defs/criticality"
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "object",
+              "required": ["lifecycle", "standard_position", "support_status"],
+              "properties": {
+                "support_status": {
+                  "type": "string",
+                  "enum": ["active", "limited-support", "end-of-life", "retired"]
+                }
+              },
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": ["technical_owner", "service_owner"],
+              "additionalProperties": true
+            },
+            "usage": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "deployment": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "dependencies": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "security": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "service_levels": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "governance": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+  ]
+}

@@ -7,10 +7,20 @@ $ErrorActionPreference = 'Stop'
 $repoRoot = Resolve-Path (Join-Path $PSScriptRoot '..\..')
 $templatesRoot = Join-Path $repoRoot '.architect\templates'
 $templateGuidancePath = Join-Path $templatesRoot 'agents.md'
+$schemasRoot = Join-Path $repoRoot '.architect\schemas'
 
 $issues = New-Object System.Collections.Generic.List[object]
 $templateFiles = Get-ChildItem $templatesRoot -Recurse -File -Filter *.yaml | Sort-Object FullName
 $validTemplateKinds = $templateFiles | ForEach-Object { [System.IO.Path]::GetFileNameWithoutExtension($_.Name) }
+$schemaFiles = @()
+$schemaKinds = @()
+
+if (Test-Path $schemasRoot) {
+    $schemaFiles = Get-ChildItem $schemasRoot -File -Filter *.schema.json | Sort-Object Name
+    $schemaKinds = $schemaFiles | Where-Object { $_.Name -ne 'common-definitions.schema.json' } | ForEach-Object {
+        [System.IO.Path]::GetFileNameWithoutExtension($_.Name) -replace '\.schema$', ''
+    }
+}
 
 $requiredTemplateKeys = @('kind', 'version', 'schema_version', 'description')
 $requiredSpecKeys = @('id', 'name', 'display_name', 'aliases', 'summary', 'description', 'metadata', 'relationships')
@@ -168,6 +178,27 @@ if (Test-Path $templateGuidancePath) {
                 AllowedValues = $allowedValues
             }
         }
+    }
+}
+
+foreach ($schemaFile in $schemaFiles) {
+    try {
+        Get-Content $schemaFile.FullName -Raw | ConvertFrom-Json | Out-Null
+    }
+    catch {
+        Add-Error $schemaFile.FullName ("schema file is not valid JSON: {0}" -f $_.Exception.Message)
+    }
+}
+
+foreach ($kind in $validTemplateKinds) {
+    if ($schemaKinds -notcontains $kind) {
+        Add-Error $templateGuidancePath ("missing schema file for template kind '{0}' under .architect/schemas" -f $kind)
+    }
+}
+
+foreach ($schemaKind in $schemaKinds) {
+    if ($validTemplateKinds -notcontains $schemaKind) {
+        Add-Error (Join-Path $schemasRoot ($schemaKind + '.schema.json')) ("schema kind '{0}' does not have a matching template kind" -f $schemaKind)
     }
 }
 

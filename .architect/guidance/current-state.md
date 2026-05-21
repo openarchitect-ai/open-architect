@@ -131,6 +131,40 @@ capability container, including:
   - `.architect/validation/Validate-Templates.ps1`
   - `.architect/validation/Validate-ArchitectureArtifacts.ps1`
   - adds template-specific enum checks, relationship target-kind validation, reusable artifact-folder validation, local reference checks, and error vs warning severity handling
+- Added first-pass formal schema support:
+  - `.architect/schemas/README.md`
+  - `.architect/schemas/common-definitions.schema.json`
+  - `.architect/schemas/requirement.schema.json`
+  - `.architect/schemas/solution.schema.json`
+  - `.architect/schemas/decision.schema.json`
+  - defines a shared artifact contract plus initial high-value schemas for live architecture documents
+- Expanded schema coverage across the worked-example artifact set:
+  - application, application-service, interface, data-object
+  - environment, technology-component
+  - stakeholder, objective, business-capability, business-process
+  - architecture-vision, initiative, transition-architecture, work-package, risk
+  - gives schema-aware validation coverage across most core project-delivery artifacts already in use
+- Added schema coverage for the remaining core library kinds:
+  - organization, principle, technology-standard
+  - roadmap, gap, compliance-assessment
+  - gives the repo a broad first-pass schema layer across the full core template library
+- Deepened schema precision and template-schema integration:
+  - kind-specific artifact ID patterns
+  - stronger shared reference and uniqueness rules
+  - conditional approval/evidence expectations for governed artifact kinds
+  - template validation now checks schema coverage and schema JSON validity
+- Enforced deeper schema-aligned artifact rules in validation:
+  - schema-aware artifact validation now checks kind-specific ID patterns
+  - duplicate aliases and tags now fail validation
+  - invalid reference URL shapes now fail validation
+  - approval or verification signals without evidence now fail validation
+  - low-confidence approved artifacts now fail validation
+- Moved conditional artifact rules toward schema-driven enforcement:
+  - artifact validation now interprets supported `if` / `then` schema rules directly
+  - requirement verification, approval evidence, and compliance review checks are no longer only hand-coded one-offs
+- Wired schema-aware validation into artifact checking:
+  - `.architect/validation/Validate-ArchitectureArtifacts.ps1`
+  - applies schema-derived required-section and enum checks for covered artifact kinds without replacing existing repo-aware validation
 - Added human-in-the-loop governance controls:
   - `.architect/project-config.yaml`
   - `.architect/guidance/conventions.md`
@@ -169,6 +203,7 @@ Key folders:
 - `.architect/architecture/`
 - `.architect/architecture/views/`
 - `.architect/examples/`
+- `.architect/schemas/`
 - `.architect/validation/`
 - `.architect/config/`
 - `.architect/guidance/`
@@ -199,7 +234,8 @@ High priority:
 - Turn the most valuable playbooks into executable agent instructions
 - Extend validation and schema support
   - keep growing `.architect/validation/`
-  - optionally add `.architect/schemas/` if a schema-based approach is adopted
+  - deepen schema precision for covered kinds and broaden direct enforcement of conditional schema rules
+  - deepen schema-aware validation once a fuller YAML parsing strategy is chosen
 - Extend template validation coverage
   - add full schema-level YAML parsing when or if a dependency strategy is chosen
   - validate cross-artifact approval/evidence rules beyond the worked example set
@@ -236,7 +272,7 @@ If work resumes later, the best next task is:
 
 1. turn the strongest playbooks into executable agent instructions and real flows
 2. extend live-project validation and tighten guidance for IDs, traceability, and evidence quality
-3. add stronger schema support and stricter governance-oriented validation
+3. deepen schema precision and integrate schema-aware validation more deeply
 
 ## Notes
 

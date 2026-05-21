@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/business-process.schema.json",
+  "title": "Open Architect Business Process Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "status",
+            "ownership",
+            "business_alignment",
+            "flow",
+            "enablement",
+            "controls",
+            "improvement",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^BP-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": ["domain", "process_type", "frequency", "criticality"],
+              "properties": {
+                "criticality": {
+                  "$ref": "./common-definitions.schema.json#/$defs/criticality"
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "object",
+              "required": ["lifecycle", "automation_level", "improvement_status"],
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": ["process_owner", "operational_owner", "architecture_owner"],
+              "additionalProperties": true
+            },
+            "business_alignment": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "flow": {
+              "type": "object",
+              "required": ["inputs", "outputs", "key_steps"],
+              "additionalProperties": true
+            },
+            "enablement": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "controls": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "improvement": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "governance": {
+              "type": "object",
+              "required": ["process_standard"],
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+  ]
+}

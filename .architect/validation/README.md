@@ -38,11 +38,23 @@ VALIDATION_SUMMARY validator=<name> status=<status> checked=<n> errors=<n> warni
 - `Validate-Templates.ps1`
   Checks the template contract for the template library without requiring
   external dependencies.
+  It now also checks that every template kind has a matching schema file and
+  that schema files parse as valid JSON.
 - `Validate-ArchitectureArtifacts.ps1`
   Checks any architecture artifact folder for structural consistency, resolvable
   relationships, local references, and basic approval/evidence hygiene.
   It is intended for both reference projects under `.architect/examples/` and
   live project folders under `.architect/architecture/`.
+  For covered kinds, it now also loads JSON Schema contracts from
+  `../schemas/` and applies schema-derived required-section and enum checks.
+  It now also enforces selected deeper rules aligned to the schema layer,
+  including kind-specific ID patterns, alias/tag uniqueness, reference URL
+  patterns, and stronger approval/evidence gating.
+  Conditional `if`/`then` rules from the schemas are now interpreted directly
+  for the supported subset used by this workspace.
+
+Schema contracts live under `../schemas/` and are intended to complement, not
+replace, these validators.
 
 ## What The Template Validator Checks
 
@@ -83,10 +95,10 @@ VALIDATION_SUMMARY validator=<name> status=<status> checked=<n> errors=<n> warni
 
 ## What It Does Not Yet Check
 
-- all template-specific enum values
-- full YAML parsing and schema validation
+- every template-specific enum and semantic rule across the full template set
+- every artifact kind through equally deep schema-driven enforcement
 - relationship target existence across live artifacts
-- full artifact approval-state validation
+- full artifact approval-state validation across every conditional path in the schemas
 - human-review gate enforcement
 
 ## How To Run
@@ -133,6 +145,9 @@ A good default agent pattern is:
 In practice:
 
 - structural failures should block agent progression
+- schema-derived structural failures for covered kinds should be treated the same as handwritten validator failures
+- approval/evidence failures should block progression for governed artifacts, not just produce advisory warnings
+- conditional schema rules are now part of operational validation, not only documentation of intent
 - warnings should trigger disclosure and human review
 - `-FailOnWarning` is useful for stricter quality gates such as governance review or CI
 - the `VALIDATION_SUMMARY` line gives agents a stable parse target for counts and overall status

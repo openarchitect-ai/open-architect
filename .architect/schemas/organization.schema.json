@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/organization.schema.json",
+  "title": "Open Architect Organization Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "status",
+            "ownership",
+            "structure",
+            "responsibilities",
+            "engagement",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^ORG-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": ["organization_type", "operating_model", "scope"],
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "object",
+              "required": ["lifecycle", "organizational_status"],
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": ["executive_lead", "manager", "architecture_contact"],
+              "additionalProperties": true
+            },
+            "structure": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "responsibilities": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "engagement": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "governance": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+  ]
+}

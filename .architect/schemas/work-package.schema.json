@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/work-package.schema.json",
+  "title": "Open Architect Work Package Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "status",
+            "ownership",
+            "planning",
+            "scope",
+            "deliverables",
+            "dependencies",
+            "acceptance_criteria",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^WP-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": ["work_package_type", "architecture_state", "priority", "criticality"],
+              "properties": {
+                "architecture_state": {
+                  "type": "string",
+                  "enum": ["baseline", "transition", "target"]
+                },
+                "priority": {
+                  "type": "string",
+                  "enum": ["low", "medium", "high", "critical"]
+                },
+                "criticality": {
+                  "$ref": "./common-definitions.schema.json#/$defs/criticality"
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "object",
+              "required": ["lifecycle", "delivery_status", "readiness_status"],
+              "properties": {
+                "lifecycle": {
+                  "type": "string",
+                  "enum": ["planned", "in-flight", "completed", "cancelled", "archived"]
+                },
+                "delivery_status": {
+                  "type": "string",
+                  "enum": ["green", "amber", "red", "complete", "on-hold"]
+                },
+                "readiness_status": {
+                  "type": "string",
+                  "enum": ["identified", "planned", "ready-for-build", "in-build", "ready-for-release", "done"]
+                }
+              },
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": ["initiative_owner", "delivery_owner", "architecture_owner"],
+              "additionalProperties": true
+            },
+            "planning": {
+              "type": "object",
+              "required": ["start_date", "target_end_date"],
+              "additionalProperties": true
+            },
+            "scope": {
+              "type": "object",
+              "required": ["objectives", "in_scope"],
+              "additionalProperties": true
+            },
+            "deliverables": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "dependencies": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "acceptance_criteria": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "governance": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+  ]
+}

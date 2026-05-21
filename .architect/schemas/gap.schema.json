@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/gap.schema.json",
+  "title": "Open Architect Gap Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "status",
+            "ownership",
+            "context",
+            "impact",
+            "remediation",
+            "dependencies",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^GAP-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": ["gap_type", "architecture_state", "severity", "criticality"],
+              "properties": {
+                "architecture_state": {
+                  "type": "string",
+                  "enum": ["baseline", "transition", "target"]
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": ["low", "medium", "high", "critical"]
+                },
+                "criticality": {
+                  "$ref": "./common-definitions.schema.json#/$defs/criticality"
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "object",
+              "required": ["lifecycle", "remediation_status", "urgency"],
+              "properties": {
+                "lifecycle": {
+                  "type": "string",
+                  "enum": ["identified", "active", "resolved", "retired", "archived"]
+                },
+                "remediation_status": {
+                  "type": "string",
+                  "enum": ["identified", "planned", "in-progress", "blocked", "complete"]
+                },
+                "urgency": {
+                  "type": "string",
+                  "enum": ["low", "medium", "high", "critical"]
+                }
+              },
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": ["gap_owner", "remediation_owner", "business_owner"],
+              "additionalProperties": true
+            },
+            "context": {
+              "type": "object",
+              "required": ["baseline_condition", "target_condition", "problem_statement"],
+              "additionalProperties": true
+            },
+            "impact": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "remediation": {
+              "type": "object",
+              "required": ["remediation_strategy", "change_type"],
+              "properties": {
+                "target_resolution_date": {
+                  "$ref": "./common-definitions.schema.json#/$defs/date"
+                }
+              },
+              "additionalProperties": true
+            },
+            "dependencies": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "governance": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+  ]
+}

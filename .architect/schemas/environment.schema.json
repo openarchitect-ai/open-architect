@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/environment.schema.json",
+  "title": "Open Architect Environment Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "status",
+            "ownership",
+            "runtime",
+            "constraints",
+            "connectivity",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^ENV-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": ["environment_type", "region", "hosting_model", "criticality"],
+              "properties": {
+                "criticality": {
+                  "$ref": "./common-definitions.schema.json#/$defs/criticality"
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "object",
+              "required": ["lifecycle", "operational_status", "compliance_status"],
+              "properties": {
+                "operational_status": {
+                  "type": "string",
+                  "enum": ["planned", "live", "degraded", "retired"]
+                },
+                "compliance_status": {
+                  "type": "string",
+                  "enum": ["compliant", "conditional", "non-compliant"]
+                }
+              },
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": ["environment_owner", "operations_owner", "security_owner"],
+              "additionalProperties": true
+            },
+            "runtime": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "constraints": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "connectivity": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "governance": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+  ]
+}

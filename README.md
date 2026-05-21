@@ -37,7 +37,7 @@ This repository currently contains the `.architect` capability structure, includ
 - project-local guidance and conventions
 - role definitions for architects
 - method and reference method content
-- placeholder flow definitions for future visual workflows
+- markdown flow definitions for architecture development and coordination, with room to evolve into richer visual or executable workflows
 - architecture instance folders for real project artifacts
 
 The main workspace documentation is here:
@@ -50,6 +50,7 @@ The main workspace documentation is here:
 .architect/
   architecture/
   examples/
+  schemas/
   validation/
   config/
   flows/
@@ -64,6 +65,7 @@ High-level intent:
 
 - `architecture/`: real architecture artifacts created for a project
 - `examples/`: worked examples and reference projects separated from live project artifacts
+- `schemas/`: formal JSON Schema contracts for artifact document structure
 - `validation/`: lightweight validators for templates and architecture artifact folders
 - `flows/`: future visual or executable architecture workflows
 - `config/`: configuration guidance for agent and workspace behavior
@@ -116,7 +118,7 @@ If you want a minimal first slice, start with:
 
 Open Architect is intended to evolve toward:
 
-- stronger validation and schemas
+- deeper schema precision and richer validator enforcement
 - richer example architectures
 - reusable reference patterns
 - visual architecture flows
@@ -129,7 +131,7 @@ Contributions are welcome.
 Useful contribution areas include:
 
 - improving templates and guidance
-- adding schemas or validation rules
+- adding or extending schemas and validation rules
 - creating worked examples
 - refining method and role descriptions
 - designing flow definitions
@@ -141,10 +143,10 @@ This project is currently in an early framework stage.
 
 The structure, templates, and operating model are in place, but the repository still needs:
 
-- validation/schema support
+- deeper schema precision and fuller schema-aware enforcement
 - richer examples
 - contribution standards
-- licensing and governance details
+- contribution and project-governance details
 
 ## License
 

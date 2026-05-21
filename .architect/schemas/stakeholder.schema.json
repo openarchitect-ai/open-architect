@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/stakeholder.schema.json",
+  "title": "Open Architect Stakeholder Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "status",
+            "ownership",
+            "concerns",
+            "engagement",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^STK-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": ["stakeholder_type", "scope", "influence_level", "criticality"],
+              "properties": {
+                "influence_level": {
+                  "type": "string",
+                  "enum": ["low", "medium", "high"]
+                },
+                "criticality": {
+                  "$ref": "./common-definitions.schema.json#/$defs/criticality"
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "object",
+              "required": ["lifecycle", "engagement_status", "decision_authority"],
+              "properties": {
+                "lifecycle": {
+                  "type": "string",
+                  "enum": ["identified", "active", "inactive", "retired", "archived"]
+                },
+                "engagement_status": {
+                  "type": "string",
+                  "enum": ["not-engaged", "engaged", "consulted", "blocked"]
+                },
+                "decision_authority": {
+                  "type": "string",
+                  "enum": ["low", "medium", "high"]
+                }
+              },
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": ["stakeholder_owner", "relationship_owner", "business_contact"],
+              "additionalProperties": true
+            },
+            "concerns": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "engagement": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "governance": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+  ]
+}

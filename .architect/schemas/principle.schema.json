@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/principle.schema.json",
+  "title": "Open Architect Principle Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "status",
+            "ownership",
+            "principle",
+            "evaluation",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^PRN-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": ["principle_type", "scope", "criticality", "priority"],
+              "properties": {
+                "criticality": {
+                  "$ref": "./common-definitions.schema.json#/$defs/criticality"
+                },
+                "priority": {
+                  "type": "string",
+                  "enum": ["low", "medium", "high", "critical"]
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "object",
+              "required": ["lifecycle", "approval_status", "enforcement_status"],
+              "properties": {
+                "lifecycle": {
+                  "type": "string",
+                  "enum": ["draft", "active", "retired", "archived"]
+                },
+                "approval_status": {
+                  "type": "string",
+                  "enum": ["draft", "proposed", "approved", "rejected", "superseded"]
+                },
+                "enforcement_status": {
+                  "type": "string",
+                  "enum": ["advisory", "guided", "enforced"]
+                }
+              },
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": ["principle_owner", "approver", "steward"],
+              "additionalProperties": true
+            },
+            "principle": {
+              "type": "object",
+              "required": ["statement"],
+              "additionalProperties": true
+            },
+            "evaluation": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "governance": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+    ,
+    {
+      "if": {
+        "properties": {
+          "spec": {
+            "properties": {
+              "status": {
+                "properties": {
+                  "approval_status": {
+                    "const": "approved"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "spec": {
+            "properties": {
+              "metadata": {
+                "properties": {
+                  "references": {
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

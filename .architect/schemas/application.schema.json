@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/application.schema.json",
+  "title": "Open Architect Application Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "status",
+            "ownership",
+            "business_alignment",
+            "services",
+            "data",
+            "technology",
+            "dependencies",
+            "security",
+            "service_levels",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^APP-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": ["domain", "application_type", "architectural_tier", "deployment_model", "criticality"],
+              "properties": {
+                "criticality": {
+                  "$ref": "./common-definitions.schema.json#/$defs/criticality"
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "object",
+              "required": ["lifecycle", "operational_status", "investment_status"],
+              "properties": {
+                "operational_status": {
+                  "type": "string",
+                  "enum": ["active", "degraded", "sunsetting", "retired"]
+                },
+                "investment_status": {
+                  "type": "string",
+                  "enum": ["invest", "tolerate", "migrate", "eliminate"]
+                }
+              },
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": ["business_owner", "technical_owner", "product_owner"],
+              "additionalProperties": true
+            },
+            "business_alignment": {
+              "type": "object",
+              "required": ["capabilities_supported"],
+              "additionalProperties": true
+            },
+            "services": {
+              "type": "object",
+              "required": ["application_services"],
+              "additionalProperties": true
+            },
+            "data": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "technology": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "dependencies": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "security": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "service_levels": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "governance": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+  ]
+}

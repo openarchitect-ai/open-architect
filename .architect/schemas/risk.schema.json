@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/risk.schema.json",
+  "title": "Open Architect Risk Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "status",
+            "ownership",
+            "statement",
+            "analysis",
+            "treatment",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^RSK-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": ["risk_type", "category", "impact_level", "criticality"],
+              "properties": {
+                "impact_level": {
+                  "type": "string",
+                  "enum": ["low", "medium", "high", "critical"]
+                },
+                "criticality": {
+                  "$ref": "./common-definitions.schema.json#/$defs/criticality"
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "object",
+              "required": ["lifecycle", "treatment_status", "trend"],
+              "properties": {
+                "lifecycle": {
+                  "type": "string",
+                  "enum": ["identified", "active", "retired", "archived"]
+                },
+                "treatment_status": {
+                  "type": "string",
+                  "enum": ["identified", "mitigation-planned", "mitigation-in-progress", "accepted", "closed"]
+                },
+                "trend": {
+                  "type": "string",
+                  "enum": ["decreasing", "stable", "increasing"]
+                }
+              },
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": ["risk_owner", "mitigation_owner", "escalation_owner"],
+              "additionalProperties": true
+            },
+            "statement": {
+              "type": "object",
+              "required": ["cause", "event", "effect"],
+              "additionalProperties": true
+            },
+            "analysis": {
+              "type": "object",
+              "required": ["likelihood", "impact"],
+              "additionalProperties": true
+            },
+            "treatment": {
+              "type": "object",
+              "required": ["strategy"],
+              "additionalProperties": true
+            },
+            "governance": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/data-object.schema.json",
+  "title": "Open Architect Data Object Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "ownership",
+            "lifecycle",
+            "structure",
+            "relationships_model",
+            "usage",
+            "quality",
+            "security",
+            "retention",
+            "lineage",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^DO-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": ["domain", "object_type", "status", "criticality", "confidentiality"],
+              "properties": {
+                "criticality": {
+                  "$ref": "./common-definitions.schema.json#/$defs/criticality"
+                }
+              },
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": ["business_owner", "data_owner", "data_steward", "technical_owner"],
+              "additionalProperties": true
+            },
+            "lifecycle": {
+              "type": "object",
+              "required": ["state_model", "system_of_record"],
+              "additionalProperties": true
+            },
+            "structure": {
+              "type": "object",
+              "required": ["canonical_name", "primary_identifier", "key_attributes"],
+              "additionalProperties": true
+            },
+            "relationships_model": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "usage": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "quality": {
+              "type": "object",
+              "required": ["quality_dimensions"],
+              "additionalProperties": true
+            },
+            "security": {
+              "type": "object",
+              "required": ["data_classification"],
+              "additionalProperties": true
+            },
+            "retention": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "lineage": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "governance": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+  ]
+}

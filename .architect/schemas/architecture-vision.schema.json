@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/architecture-vision.schema.json",
+  "title": "Open Architect Architecture Vision Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "status",
+            "ownership",
+            "vision",
+            "scope",
+            "principles",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^VIS-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": ["vision_type", "architecture_state", "scope", "criticality"],
+              "properties": {
+                "architecture_state": {
+                  "type": "string",
+                  "enum": ["baseline", "transition", "target"]
+                },
+                "criticality": {
+                  "$ref": "./common-definitions.schema.json#/$defs/criticality"
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "object",
+              "required": ["lifecycle", "approval_status", "communication_status"],
+              "properties": {
+                "lifecycle": {
+                  "type": "string",
+                  "enum": ["draft", "active", "retired", "archived"]
+                },
+                "approval_status": {
+                  "type": "string",
+                  "enum": ["draft", "proposed", "approved", "rejected", "superseded"]
+                },
+                "communication_status": {
+                  "type": "string",
+                  "enum": ["draft", "published", "withdrawn", "superseded"]
+                }
+              },
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": ["vision_owner", "sponsor", "lead_architect"],
+              "additionalProperties": true
+            },
+            "vision": {
+              "type": "object",
+              "required": ["problem_statement", "future_state"],
+              "additionalProperties": true
+            },
+            "scope": {
+              "type": "object",
+              "required": ["in_scope", "out_of_scope"],
+              "additionalProperties": true
+            },
+            "principles": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "governance": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+    ,
+    {
+      "if": {
+        "properties": {
+          "spec": {
+            "properties": {
+              "status": {
+                "properties": {
+                  "approval_status": {
+                    "const": "approved"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "spec": {
+            "properties": {
+              "metadata": {
+                "properties": {
+                  "references": {
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

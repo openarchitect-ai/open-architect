@@ -46,6 +46,7 @@ These objects are linked using typed `relationships`, which makes the workspace 
     governance/
     technology/
   examples/
+  schemas/
   validation/
   config/
   flows/
@@ -68,6 +69,7 @@ Folder intent:
 
 - `architecture/`: actual project architecture objects created from templates
 - `examples/`: worked examples and reference projects kept separate from live project work
+- `schemas/`: formal structural contracts for artifact documents
 - `validation/`: executable checks for templates and architecture artifact folders
 - `config/`: configuration guidance for agent and workspace behavior
 - `flows/`: visual or executable architecture workflows
@@ -129,6 +131,7 @@ In practical terms:
 - use `templates/` to define the metamodel
 - use `architecture/` to store actual project instances
 - use `examples/` for reference implementations and sample views
+- use `schemas/` to define formal machine-readable contracts for artifact structure
 - use `validation/` to check template quality and project artifact consistency
 - use `config/` to explain how project and agent configuration should work
 - use `flows/` for visual or executable workflow definitions
@@ -145,7 +148,7 @@ Before creating architecture content, tailor [`.architect/project-config.yaml`](
 - in-scope templates
 - chosen method and reference methods
 - enabled flows
-- future skills
+- enabled skills
 
 This keeps the workspace intentional and avoids treating every project as if it
 must use the full capability set.
@@ -302,9 +305,9 @@ More detailed authoring guidance is in [agents.md](templates/agents.md).
 To make this workspace operational, the next best additions are:
 
 1. Add additional worked examples under `examples/`.
-2. Add validation rules or JSON Schemas for the templates.
-3. Add project-specific conventions and glossary content under `guidance/`.
-4. Add automation for ID generation, relationship checks, and broken reference detection.
+2. Deepen schema precision and schema-aware validation behavior.
+3. Add project-specific guidance extensions under `guidance/` where needed.
+4. Add automation for ID generation, relationship checks, broken reference detection, and approval-quality validation.
 
 ## Starting Small
 

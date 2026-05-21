@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/application-service.schema.json",
+  "title": "Open Architect Application Service Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "status",
+            "ownership",
+            "business_alignment",
+            "contract",
+            "realization",
+            "consumers",
+            "service_levels",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^AS-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": ["domain", "service_type", "exposure", "criticality"],
+              "properties": {
+                "criticality": {
+                  "$ref": "./common-definitions.schema.json#/$defs/criticality"
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "object",
+              "required": ["lifecycle", "operational_status", "version"],
+              "properties": {
+                "operational_status": {
+                  "type": "string",
+                  "enum": ["active", "degraded", "sunsetting", "retired"]
+                }
+              },
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": ["owning_application", "business_owner", "technical_owner"],
+              "additionalProperties": true
+            },
+            "business_alignment": {
+              "type": "object",
+              "required": ["capabilities_supported"],
+              "additionalProperties": true
+            },
+            "contract": {
+              "type": "object",
+              "required": ["responsibilities"],
+              "additionalProperties": true
+            },
+            "realization": {
+              "type": "object",
+              "required": ["interfaces"],
+              "additionalProperties": true
+            },
+            "consumers": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "service_levels": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "governance": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+  ]
+}

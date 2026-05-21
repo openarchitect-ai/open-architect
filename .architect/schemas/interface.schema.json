@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/interface.schema.json",
+  "title": "Open Architect Interface Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "status",
+            "ownership",
+            "source",
+            "target",
+            "contract",
+            "connectivity",
+            "data",
+            "security",
+            "service_levels",
+            "observability",
+            "dependencies",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^IF-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": ["type", "pattern", "style", "exposure", "direction", "criticality"],
+              "properties": {
+                "criticality": {
+                  "$ref": "./common-definitions.schema.json#/$defs/criticality"
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "object",
+              "required": ["lifecycle", "operational_status", "architecture_approval"],
+              "properties": {
+                "operational_status": {
+                  "type": "string",
+                  "enum": ["active", "degraded", "sunsetting", "retired"]
+                },
+                "architecture_approval": {
+                  "type": "string",
+                  "enum": ["draft", "proposed", "approved", "rejected", "superseded"]
+                }
+              },
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": ["business_owner", "technical_owner", "support_team"],
+              "additionalProperties": true
+            },
+            "source": {
+              "type": "object",
+              "required": ["system_id", "system_name"],
+              "additionalProperties": true
+            },
+            "target": {
+              "type": "object",
+              "required": ["system_id", "system_name"],
+              "additionalProperties": true
+            },
+            "contract": {
+              "type": "object",
+              "required": ["interaction_name", "business_purpose", "payload_type"],
+              "additionalProperties": true
+            },
+            "connectivity": {
+              "type": "object",
+              "required": ["protocol", "transport", "endpoint", "trigger"],
+              "additionalProperties": true
+            },
+            "data": {
+              "type": "object",
+              "required": ["entities"],
+              "additionalProperties": true
+            },
+            "security": {
+              "type": "object",
+              "required": ["authentication", "authorization"],
+              "additionalProperties": true
+            },
+            "service_levels": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "observability": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "dependencies": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "governance": {
+              "type": "object",
+              "required": ["version"],
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+    ,
+    {
+      "if": {
+        "properties": {
+          "spec": {
+            "properties": {
+              "status": {
+                "properties": {
+                  "architecture_approval": {
+                    "const": "approved"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "spec": {
+            "properties": {
+              "metadata": {
+                "properties": {
+                  "references": {
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchitect.local/schemas/initiative.schema.json",
+  "title": "Open Architect Initiative Artifact",
+  "allOf": [
+    {
+      "$ref": "./common-definitions.schema.json#/$defs/artifactDocument"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "classification",
+            "status",
+            "ownership",
+            "planning",
+            "scope",
+            "outcomes",
+            "dependencies",
+            "governance"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^INI-\\d+$"
+            },
+            "classification": {
+              "type": "object",
+              "required": ["initiative_type", "investment_theme", "priority"],
+              "properties": {
+                "priority": {
+                  "type": "string",
+                  "enum": ["low", "medium", "high", "critical"]
+                }
+              },
+              "additionalProperties": true
+            },
+            "status": {
+              "type": "object",
+              "required": ["lifecycle", "delivery_status", "architecture_status"],
+              "properties": {
+                "lifecycle": {
+                  "type": "string",
+                  "enum": ["proposed", "in-flight", "completed", "on-hold", "cancelled", "archived"]
+                },
+                "delivery_status": {
+                  "type": "string",
+                  "enum": ["green", "amber", "red", "complete", "on-hold"]
+                },
+                "architecture_status": {
+                  "type": "string",
+                  "enum": ["draft", "proposed", "approved", "rejected", "superseded"]
+                }
+              },
+              "additionalProperties": true
+            },
+            "ownership": {
+              "type": "object",
+              "required": ["sponsor", "delivery_owner", "architecture_owner"],
+              "additionalProperties": true
+            },
+            "planning": {
+              "type": "object",
+              "required": ["start_date", "target_end_date"],
+              "additionalProperties": true
+            },
+            "scope": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "outcomes": {
+              "type": "object",
+              "required": ["business_outcomes"],
+              "additionalProperties": true
+            },
+            "dependencies": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "governance": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+    ,
+    {
+      "if": {
+        "properties": {
+          "spec": {
+            "properties": {
+              "status": {
+                "properties": {
+                  "architecture_status": {
+                    "const": "approved"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "spec": {
+            "properties": {
+              "metadata": {
+                "properties": {
+                  "references": {
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
