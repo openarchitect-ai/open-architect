@@ -37,7 +37,7 @@ This repository currently contains the `.architect` capability structure, includ
 - project-local guidance and conventions
 - role definitions for architects
 - method and reference method content
-- markdown flow definitions for architecture development and coordination, with room to evolve into richer visual or executable workflows
+- markdown flow definitions for architecture development and coordination, with a path to richer visual or executable workflows
 - architecture instance folders for real project artifacts
 
 The main workspace documentation is here:
@@ -99,9 +99,10 @@ The project already includes templates for:
 - decision, compliance assessment, risk, architecture vision
 - initiative, roadmap, transition architecture, work package, gap
 
-It also now includes a growing compliance layer for privacy, AI,
+It also now includes a substantial compliance layer for privacy, AI,
 cybersecurity, financial resilience, health security, public-company cyber
-disclosure, payment security, and consumer privacy obligations.
+disclosure, payment security, public-sector and product obligations, and
+consumer privacy concerns.
 
 ## Getting Started
 
@@ -147,13 +148,14 @@ Useful contribution areas include:
 
 ## Status
 
-This project is currently in an early framework stage.
+This project is currently in a strong foundation stage.
 
-The structure, templates, and operating model are in place, but the repository still needs:
+The structure, templates, patterns, skills, compliance guidance, and operating
+model are in place, but the repository still needs:
 
 - deeper schema precision and fuller schema-aware enforcement
 - richer examples
-- real-project proving of the expanded pattern and skill library
+- real-project proving of the expanded pattern, skill, and compliance library
 - contribution standards
 - contribution and project-governance details
 
