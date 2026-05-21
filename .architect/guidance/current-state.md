@@ -183,6 +183,40 @@ capability container, including:
   - `.architect/examples/customer-onboarding-modernization/README.md`
   - linked business, application, data, technology, governance, and change artifacts
   - three example views under `.architect/examples/customer-onboarding-modernization/views/`
+- Added a reusable architecture pattern library:
+  - `.architect/patterns/README.md`
+  - starter patterns across application, integration, transition, data, and security concerns
+  - provides reusable solution guidance distinct from templates and project artifacts
+- Expanded the reusable architecture pattern library:
+  - added request-response, batch, anti-corruption, and outbox integration patterns
+  - added backend-for-frontend and identity federation patterns
+  - broadens reusable coverage for common enterprise solution and modernization choices
+- Expanded the reusable architecture pattern library further:
+  - added master data stewardship and CQRS/read-model data patterns
+  - added secrets/configuration, environment promotion, and blue-green/canary technology patterns
+  - added coexistence data migration as a transition pattern
+  - broadens reusable coverage for data governance, operational rollout, and transition execution
+- Expanded the reusable architecture pattern library again:
+  - added governance patterns for decision lifecycle and standards exception management
+  - added service-to-service identity and observability-by-design patterns
+  - added feature-toggle rollout and parallel-run transition patterns
+  - broadens reusable coverage for governance control, runtime trust, operations, and controlled rollout
+- Wired reusable patterns into core delivery skills:
+  - `solution-modeler`
+  - `application-interface-modeler`
+  - `decision-recorder`
+  - makes patterns part of normal agent read-first and modeling behavior
+- Wired reusable patterns into additional delivery skills:
+  - `data-modeler`
+  - `technology-environment-modeler`
+  - `transition-planner`
+  - `architecture-review`
+  - makes pattern selection and review part of normal data, technology, transition, and governance work
+- Extended pattern-aware skill guidance further:
+  - `decision-recorder` now includes governance-pattern usage
+  - `technology-environment-modeler` now includes observability and service-identity usage
+  - `transition-planner` now includes feature-toggle and parallel-run usage
+  - `architecture-review` now reads governance patterns directly during review
 - Turned Wave 1 skills into concrete playbooks:
   - `project-bootstrapper`
   - `stakeholder-objective-framer`
@@ -211,6 +245,7 @@ Key folders:
 - `.architect/architecture/`
 - `.architect/architecture/views/`
 - `.architect/examples/`
+- `.architect/patterns/`
 - `.architect/schemas/`
 - `.architect/validation/`
 - `.architect/config/`
@@ -259,6 +294,9 @@ High priority:
 - Add validation for human review controls
   - e.g. prevent agent-generated approval states without explicit review evidence
 - Add more worked diagram examples under `.architect/examples/`
+- Expand the reusable pattern library
+  - add more domain-specific and technology-specific architecture patterns
+  - link patterns more explicitly to templates, decisions, and example diagrams
 
 Open source hygiene:
 

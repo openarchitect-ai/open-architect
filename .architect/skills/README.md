@@ -26,6 +26,11 @@ Use this folder for:
 Skills should focus on implementation work such as discovery, framing,
 modeling, linking, decision-making, transition planning, and review.
 
+The reusable pattern library under `../patterns/` should be treated as normal
+working context for modeling and decision-oriented skills, especially when
+choosing interaction styles, solution shapes, modernization approaches, data
+ownership models, or security approaches.
+
 ## Initial Skill Set
 
 The initial delivery-oriented skill catalog is:

@@ -50,6 +50,7 @@ The main workspace documentation is here:
 .architect/
   architecture/
   examples/
+  patterns/
   schemas/
   validation/
   config/
@@ -65,6 +66,7 @@ High-level intent:
 
 - `architecture/`: real architecture artifacts created for a project
 - `examples/`: worked examples and reference projects separated from live project artifacts
+- `patterns/`: reusable architecture patterns and reference solution approaches
 - `schemas/`: formal JSON Schema contracts for artifact document structure
 - `validation/`: lightweight validators for templates and architecture artifact folders
 - `flows/`: future visual or executable architecture workflows

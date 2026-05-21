@@ -3,7 +3,7 @@
 ## Purpose
 
 Review the architecture set for completeness, coherence, consistency,
-traceability, and governance readiness.
+traceability, governance readiness, and pattern fit.
 
 ## Use When
 
@@ -18,6 +18,9 @@ traceability, and governance readiness.
 - `.architect/guidance/evidence-and-quality.md`
 - `.architect/guidance/governance-conventions.md`
 - `.architect/guidance/diagram-conventions.md`
+- `.architect/patterns/README.md`
+- `.architect/patterns/governance/architecture-decision-lifecycle.md`
+- `.architect/patterns/governance/standards-exception-management.md`
 - `.architect/examples/customer-onboarding-modernization/README.md`
 
 ## Inputs
@@ -36,22 +39,25 @@ traceability, and governance readiness.
    Do the artifacts tell one story, or are there contradictions?
 4. Check traceability.
    Can you follow the path from stakeholder and objective through requirement, solution, decision, and delivery?
-5. Check governance readiness.
+5. Check pattern fit.
+   Are important solution, data, security, technology, and transition choices aligned to known patterns or justified deviations?
+6. Check governance readiness.
    Are decisions, risks, exceptions, and review expectations visible?
-6. Check views and documentation.
+7. Check views and documentation.
    Are the important diagrams and written outputs aligned to the model?
-7. Publish findings in severity order and name the missing next actions.
+8. Publish findings in severity order and name the missing next actions.
 
 ## Outputs
 
 - structured findings
-- identified gaps in coverage, linkage, quality, or consistency
+- identified gaps in coverage, linkage, quality, consistency, or pattern fit
 - prioritized follow-up actions
 
 ## Output Checklist
 
 - findings are specific and anchored in artifacts
 - missing links and missing evidence are called out
+- unjustified pattern deviations are called out
 - governance blockers are explicit
 - the review leaves a clearer next action, not just a critique
 
@@ -63,5 +69,6 @@ traceability, and governance readiness.
 ## Quality Checks
 
 - Findings should prioritize risk and delivery impact over stylistic preference.
-- A review should not stop at “missing document” if the underlying model gap is the real issue.
+- A review should not stop at "missing document" if the underlying model gap is the real issue.
 - If no findings exist, say so explicitly and mention residual risks or evidence gaps.
+- Prefer reviewing whether patterns were applied thoughtfully over enforcing patterns mechanically.

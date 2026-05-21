@@ -46,6 +46,7 @@ These objects are linked using typed `relationships`, which makes the workspace 
     governance/
     technology/
   examples/
+  patterns/
   schemas/
   validation/
   config/
@@ -69,6 +70,7 @@ Folder intent:
 
 - `architecture/`: actual project architecture objects created from templates
 - `examples/`: worked examples and reference projects kept separate from live project work
+- `patterns/`: reusable architecture patterns and reference solution approaches
 - `schemas/`: formal structural contracts for artifact documents
 - `validation/`: executable checks for templates and architecture artifact folders
 - `config/`: configuration guidance for agent and workspace behavior
@@ -131,6 +133,7 @@ In practical terms:
 - use `templates/` to define the metamodel
 - use `architecture/` to store actual project instances
 - use `examples/` for reference implementations and sample views
+- use `patterns/` for reusable architectural approaches and design guidance
 - use `schemas/` to define formal machine-readable contracts for artifact structure
 - use `validation/` to check template quality and project artifact consistency
 - use `config/` to explain how project and agent configuration should work
