@@ -23,10 +23,14 @@ that shape the solution and its operational boundaries.
 - `.architect/patterns/technology/observability-by-design.md`
 - `.architect/patterns/technology/active-active-vs-active-passive.md`
 - `.architect/patterns/technology/multi-region-failover.md`
+- `.architect/patterns/technology/graceful-degradation.md`
+- `.architect/patterns/technology/platform-tenancy-isolation.md`
+- `.architect/patterns/technology/capacity-and-scaling-guardrails.md`
 - `.architect/patterns/security/layered-security-controls.md`
 - `.architect/patterns/security/identity-federation.md`
 - `.architect/patterns/security/service-to-service-identity.md`
 - `.architect/patterns/security/audit-and-tamper-evident-logging.md`
+- `.architect/patterns/security/zero-trust-network-segmentation.md`
 
 ## Inputs
 
@@ -51,8 +55,11 @@ that shape the solution and its operational boundaries.
 - use `blue-green-canary-deployment` when risk-managed deployment and rollback patterns are important
 - use `active-active-vs-active-passive` when resilience posture and failover design materially affect the architecture
 - use `multi-region-failover` when regional outage resilience is an explicit requirement
+- use `graceful-degradation` when partial service continuity is better than full failure and should be designed intentionally
+- use `platform-tenancy-isolation` when shared-platform separation, blast radius, or cost-versus-isolation tradeoffs matter materially
+- use `capacity-and-scaling-guardrails` when expected demand, bottlenecks, or protection thresholds should shape the architecture explicitly
 - use `observability-by-design` when supportability, diagnostics, and runtime governance should be first-class architecture concerns
-- use `layered-security-controls`, `identity-federation`, `service-to-service-identity`, and `audit-and-tamper-evident-logging` for cross-cutting security and trust concerns
+- use `layered-security-controls`, `identity-federation`, `service-to-service-identity`, `audit-and-tamper-evident-logging`, and `zero-trust-network-segmentation` for cross-cutting security and trust concerns
 
 ## Outputs
 
@@ -71,6 +78,9 @@ that shape the solution and its operational boundaries.
 - observability and machine-identity assumptions are explicit where relevant
 - resilience posture and audit expectations are explicit where relevant
 - secret lifecycle and regional failover expectations are explicit where relevant
+- degraded-mode behavior is explicit where continuity depends on it
+- tenancy-isolation and trust-boundary expectations are explicit where relevant
+- scaling assumptions and protection guardrails are explicit where relevant
 
 ## Quality Checks
 

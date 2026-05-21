@@ -15,6 +15,7 @@ Capture architecture decisions in a structured, reviewable, and traceable form.
 - `.architect/templates/governance/decision.yaml`
 - `.architect/patterns/README.md`
 - `.architect/patterns/governance/architecture-decision-lifecycle.md`
+- `.architect/patterns/governance/architecture-principle-lifecycle.md`
 - `.architect/patterns/governance/standards-exception-management.md`
 - `.architect/patterns/integration/event-driven-integration.md`
 - `.architect/patterns/integration/request-response-integration.md`
@@ -39,6 +40,7 @@ Capture architecture decisions in a structured, reviewable, and traceable form.
 ## Pattern Guidance
 
 - use `architecture-decision-lifecycle` when a decision needs explicit review, supersession, or retirement handling
+- use `architecture-principle-lifecycle` when the decision interprets, refines, supersedes, or challenges an enduring principle
 - use `standards-exception-management` when the decision records a controlled deviation from a principle or standard
 
 ## Steps

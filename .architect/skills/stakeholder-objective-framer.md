@@ -16,6 +16,8 @@ artifacts that anchor later architecture work.
 - `.architect/templates/business/stakeholder.yaml`
 - `.architect/templates/business/objective.yaml`
 - `.architect/templates/governance/architecture-vision.yaml`
+- `.architect/patterns/business/capability-based-planning.md`
+- `.architect/patterns/business/value-stream-to-capability-mapping.md`
 - `.architect/examples/customer-onboarding-modernization/README.md`
 
 ## Inputs
@@ -30,8 +32,14 @@ artifacts that anchor later architecture work.
 2. Capture the primary business concerns and architecture concerns separately.
 3. Convert desired outcomes into measurable objectives.
 4. Draft the architecture vision in problem, future-state, and value-proposition form.
-5. Link stakeholder, objective, and vision artifacts explicitly.
-6. Confirm what is in scope and out of scope before solution work starts.
+5. Use a capability lens when it helps anchor priorities and later roadmap choices.
+6. Link stakeholder, objective, and vision artifacts explicitly.
+7. Confirm what is in scope and out of scope before solution work starts.
+
+## Pattern Guidance
+
+- use `capability-based-planning` when business capabilities should anchor priorities, scope, or later roadmap choices
+- use `value-stream-to-capability-mapping` when end-to-end value flow should shape capability priorities or architecture framing
 
 ## Outputs
 
@@ -45,6 +53,8 @@ artifacts that anchor later architecture work.
 - at least one sponsor or accountable stakeholder is explicit
 - objectives are measurable rather than aspirational only
 - the vision names both the problem and the future state
+- capability anchors are explicit when the project needs a stable business-planning frame
+- value-stream context is explicit when the architecture should be framed around delivered value flow
 - stakeholder, objective, and vision artifacts are linked
 - in-scope and out-of-scope boundaries are visible
 

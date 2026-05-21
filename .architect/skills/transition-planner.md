@@ -23,6 +23,10 @@ intermediate states and delivery increments.
 - `.architect/patterns/transition/parallel-run.md`
 - `.architect/patterns/transition/phased-decommissioning.md`
 - `.architect/patterns/transition/cutover-rehearsal.md`
+- `.architect/patterns/transition/rollback-and-recovery.md`
+- `.architect/patterns/transition/pilot-then-scale.md`
+- `.architect/patterns/transition/branch-by-abstraction.md`
+- `.architect/patterns/transition/post-cutover-hypercare.md`
 - `.architect/patterns/technology/environment-promotion.md`
 - `.architect/patterns/technology/blue-green-canary-deployment.md`
 
@@ -48,6 +52,10 @@ intermediate states and delivery increments.
 - use `parallel-run` when old and new paths must coexist temporarily for confidence-building or reconciliation
 - use `phased-decommissioning` when legacy assets should be retired deliberately after migration or coexistence phases
 - use `cutover-rehearsal` when the production transition is risky enough to justify practice before the real event
+- use `rollback-and-recovery` when recovery paths and decision points need to be explicit before transition risk is acceptable
+- use `pilot-then-scale` when limited-scope rollout should generate evidence before wider adoption
+- use `branch-by-abstraction` when large internal replacement needs a stable migration seam
+- use `post-cutover-hypercare` when intensified early-life support should be planned explicitly after transition
 - use `environment-promotion` and `blue-green-canary-deployment` when rollout risk and release control matter
 
 ## Outputs
@@ -66,6 +74,9 @@ intermediate states and delivery increments.
 - cutover, coexistence, or exposure-control assumptions are explicit where relevant
 - decommissioning expectations are explicit where target-state simplification depends on them
 - rehearsal expectations are explicit where cutover confidence depends on them
+- rollback and forward-recovery expectations are explicit where transition risk depends on them
+- pilot scope and scale-out expectations are explicit where staged adoption is the safer path
+- abstraction-based migration and hypercare expectations are explicit where relevant
 
 ## Quality Checks
 

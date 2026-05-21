@@ -20,6 +20,9 @@ classification concerns that matter to the architecture.
 - `.architect/patterns/data/reference-data-management.md`
 - `.architect/patterns/data/data-replication-and-cache-invalidation.md`
 - `.architect/patterns/data/archival-and-retention.md`
+- `.architect/patterns/data/data-reconciliation.md`
+- `.architect/patterns/data/data-classification-and-handling.md`
+- `.architect/patterns/data/master-data-synchronization.md`
 - `.architect/examples/customer-onboarding-modernization/data/do-1001-customer-profile.yaml`
 
 ## Inputs
@@ -45,6 +48,9 @@ classification concerns that matter to the architecture.
 - use `reference-data-management` when shared codes, classifications, or lookup values must stay consistent across systems
 - use `data-replication-and-cache-invalidation` when copies or caches create freshness and correctness concerns
 - use `archival-and-retention` when lifecycle, retention, or disposal rules matter materially
+- use `data-reconciliation` when migration, coexistence, or replicated views need explicit comparison and discrepancy handling
+- use `data-classification-and-handling` when sensitivity levels should drive storage, access, movement, or retention choices
+- use `master-data-synchronization` when shared master entities must propagate reliably to multiple consuming systems
 
 ## Outputs
 
@@ -60,6 +66,9 @@ classification concerns that matter to the architecture.
 - chosen data patterns match the project need
 - reference-data governance is explicit where shared code sets or classifications matter
 - replication, freshness, retention, or disposal expectations are explicit where relevant
+- reconciliation expectations are explicit where multiple data states must align
+- data classification and handling expectations are explicit where risk or regulation depends on them
+- synchronization expectations are explicit where master data must remain aligned across systems
 - related applications, interfaces, requirements, and decisions are linked
 
 ## Quality Checks

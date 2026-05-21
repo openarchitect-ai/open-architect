@@ -207,6 +207,42 @@ capability container, including:
 - Expanded the reusable architecture pattern library yet again:
   - added governance review gate, cutover rehearsal, data replication/cache invalidation, archival/retention, secrets rotation, and multi-region failover patterns
   - broadens reusable coverage for review checkpoints, cutover confidence, data lifecycle, credential hygiene, and regional resilience
+- Expanded the reusable architecture pattern library further again:
+  - added capability-based planning, architecture principle lifecycle, data reconciliation, privileged-access segregation, graceful degradation, and rollback/recovery patterns
+  - broadens reusable coverage for business planning anchors, enduring governance, discrepancy handling, privileged operations, continuity design, and recovery readiness
+- Expanded the reusable architecture pattern library once again:
+  - added value-stream-to-capability mapping, waiver expiry/remediation, data classification/handling, zero-trust segmentation, platform tenancy isolation, and pilot-then-scale patterns
+  - broadens reusable coverage for business-value framing, governance follow-through, data sensitivity, trust boundaries, shared-platform isolation, and staged adoption
+- Expanded the reusable architecture pattern library again:
+  - added reference-architecture adoption, break-glass access, master-data synchronization, capacity/scaling guardrails, branch-by-abstraction, and post-cutover hypercare patterns
+  - broadens reusable coverage for reusable reference alignment, emergency operations, synchronized master data, load guardrails, seam-based migration, and early-life stabilization
+- Expanded the reusable architecture pattern library further:
+  - added operating-model segmentation, architecture-board decision escalation, event-carried state transfer, historical replay/rebuild, cost-optimized environment tiering, and legacy-interface sunset patterns
+  - broadens reusable coverage for business operating variance, governance escalation, event propagation, recovery/rebuild, cost-aware platform design, and controlled interface retirement
+- Expanded the reusable architecture pattern library again:
+  - added business-capability heatmap, reference-architecture variance management, identity proofing and joiner-mover-leaver, golden-record resolution, platform observability operating model, and dual-write containment patterns
+  - broadens reusable coverage for capability prioritization, controlled standards variance, identity lifecycle governance, trusted record resolution, platform operations ownership, and transition write containment
+- Expanded the reusable architecture pattern library once more:
+  - added product-vs-platform boundary, control-objective-to-pattern mapping, cross-boundary data-sharing controls, data lineage/provenance, ephemeral environment strategy, and canary-then-expand patterns
+  - broadens reusable coverage for shared-platform ownership, governance traceability, regulated data exchange, data trust, temporary runtime strategy, and progressive rollout control
+- Expanded the reusable architecture pattern library further again:
+  - added application invest/tolerate/migrate/eliminate, decision evidence packaging, workload identity federation, data quality rule governance, shared-platform guardrail model, and release-train coordination patterns
+  - broadens reusable coverage for portfolio action planning, decision rigor, machine identity trust, governed data quality, platform operating boundaries, and multi-team release orchestration
+- Expanded the reusable architecture pattern library yet again:
+  - added data-contract governance, event-schema evolution, cost-allocation/showback, architecture-standard waiver board, rollback-readiness gate, and regulated data retention/legal-hold patterns
+  - broadens reusable coverage for governed exchange contracts, event compatibility discipline, platform economics visibility, formal standards exception review, recovery gates, and regulated retention control
+- Expanded the reusable architecture pattern library further once more:
+  - added reference-architecture conformance review, secrets-breach response, data-domain ownership, environment-drift detection, legacy-batch sunset, and transition-hypercare exit-criteria patterns
+  - broadens reusable coverage for reference-alignment assurance, secret incident response, explicit data stewardship, environment hygiene, batch retirement, and stabilized transition closure
+- Expanded the reusable architecture pattern library again:
+  - added capability-funding alignment, decision-review and sunset, security-control inheritance, data-sharing-agreement governance, multi-tenancy data isolation, and cutover-command-center patterns
+  - broadens reusable coverage for investment alignment, decision lifecycle closure, shared-control responsibility, governed data exchange, tenant separation, and coordinated cutover execution
+- Expanded the reusable architecture pattern library once more:
+  - added business-capability roadmapping, policy-to-control traceability, privileged-session monitoring, regulated-data access approval, shared-service SLO operating model, and rollback-decision thresholds patterns
+  - broadens reusable coverage for long-horizon capability planning, governance traceability, elevated-access oversight, regulated data approval, shared-service reliability ownership, and operational rollback triggers
+- Expanded the reusable architecture pattern library further again:
+  - added product-operating-model alignment, architecture-assurance evidence trail, decision-authority matrix, master-reference-data synchronization, runtime-policy enforcement, and parallel-operations closure patterns
+  - broadens reusable coverage for delivery-model alignment, assurance traceability, explicit decision rights, enterprise data synchronization, runtime guardrails, and closure of temporary operating modes
 - Wired reusable patterns into core delivery skills:
   - `solution-modeler`
   - `application-interface-modeler`
@@ -233,6 +269,26 @@ capability container, including:
   - `technology-environment-modeler` now includes secrets-rotation and multi-region failover usage
   - `transition-planner` now includes cutover-rehearsal usage
   - `architecture-review` now reads the new review-gate, data-lifecycle, credential, and failover patterns directly
+- Extended pattern-aware skill guidance further again:
+  - `stakeholder-objective-framer` now includes capability-based planning usage
+  - `decision-recorder` now includes architecture-principle-lifecycle usage
+  - `data-modeler` now includes data-reconciliation usage
+  - `technology-environment-modeler` now includes graceful-degradation usage
+  - `transition-planner` now includes rollback-and-recovery usage
+  - `architecture-review` now reads the new business, governance, privileged-access, reconciliation, degradation, and recovery patterns directly
+- Extended pattern-aware skill guidance yet again:
+  - `stakeholder-objective-framer` now includes value-stream-to-capability mapping usage
+  - `data-modeler` now includes data-classification-and-handling usage
+  - `technology-environment-modeler` now includes zero-trust segmentation and platform-tenancy usage
+  - `transition-planner` now includes pilot-then-scale usage
+  - `risk-compliance-assessor` now includes waiver, governance-gate, control, and data-handling pattern usage
+  - `architecture-review` now reads the new value-stream, waiver, trust-boundary, tenancy, and staged-adoption patterns directly
+- Extended pattern-aware skill guidance once again:
+  - `risk-compliance-assessor` now includes reference-architecture and break-glass usage
+  - `data-modeler` now includes master-data-synchronization usage
+  - `technology-environment-modeler` now includes capacity-and-scaling-guardrails usage
+  - `transition-planner` now includes branch-by-abstraction and post-cutover-hypercare usage
+  - `architecture-review` now reads the new reference-alignment, emergency-access, synchronization, scaling, seam-based migration, and hypercare patterns directly
 - Turned Wave 1 skills into concrete playbooks:
   - `project-bootstrapper`
   - `stakeholder-objective-framer`
