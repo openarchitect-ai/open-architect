@@ -1,0 +1,138 @@
+spec:
+  id: APP-1001
+  name: customer-onboarding-portal
+  display_name: Customer Onboarding Portal
+  aliases:
+    - Onboarding Portal
+  summary: Digital application used by operations to capture and approve customer onboarding requests.
+  description: >
+    Enterprise application used by customer operations to manage onboarding
+    intake, validation, approval, and activation initiation.
+
+  classification:
+    domain: customer
+    application_type: custom
+    architectural_tier: system-of-engagement
+    deployment_model: cloud-hosted
+    criticality: high
+
+  status:
+    lifecycle: production
+    operational_status: active
+    investment_status: invest
+
+  ownership:
+    business_owner: Customer Operations
+    technical_owner: Digital Platforms
+    product_owner: Onboarding Product Manager
+    vendor: internal
+
+  metadata:
+    source_of_truth:
+      system: Open Architect Worked Example
+      record_locator: APP-1001
+      owner: Digital Platforms
+    last_reviewed: 2026-05-21
+    review_owner: Digital Platforms
+    confidence: high
+    references:
+      - type: diagram
+        title: Solution Context Diagram
+        url: .architect/examples/customer-onboarding-modernization/views/context-customer-onboarding-modernization.md
+    change_log:
+      - date: 2026-05-21
+        summary: Created worked example onboarding application.
+        author: Open Architect
+
+  relationships:
+    - type: realizes-capability
+      target_kind: business-capability
+      target_id: BC-1001
+      strength: primary
+      confidence: high
+    - type: supports-process
+      target_kind: business-process
+      target_id: BP-1001
+      strength: primary
+      confidence: high
+    - type: exposes-service
+      target_kind: application-service
+      target_id: AS-1001
+      strength: primary
+      confidence: high
+    - type: exposes-interface
+      target_kind: interface
+      target_id: IF-1001
+      strength: supporting
+      confidence: high
+    - type: owns-data-object
+      target_kind: data-object
+      target_id: DO-1001
+      strength: primary
+      confidence: high
+    - type: runs-on
+      target_kind: technology-component
+      target_id: TC-1001
+      strength: supporting
+      confidence: medium
+
+  business_alignment:
+    capabilities_supported:
+      - BC-1001
+    processes_supported:
+      - BP-1001
+    primary_users:
+      - Customer Operations
+
+  services:
+    application_services:
+      - AS-1001
+    exposed_interfaces:
+      - IF-1001
+    consumed_interfaces: []
+
+  data:
+    authoritative_data_objects:
+      - DO-1001
+    consumed_data_objects: []
+
+  technology:
+    technology_components:
+      - TC-1001
+    hosting_platform: Enterprise Kubernetes Platform
+    integration_platform: Integration Event Runtime
+
+  dependencies:
+    upstream_applications: []
+    downstream_applications:
+      - APP-1002
+
+  security:
+    identity_provider: Enterprise SSO
+    authentication: OpenID Connect
+    authorization: role-based
+    data_classification:
+      - confidential
+      - pii
+
+  service_levels:
+    availability_target: 99.5%
+    support_model: business-hours-plus-on-call
+    recovery_time_objective: 4h
+    recovery_point_objective: 30m
+
+  governance:
+    standards_compliance:
+      - Customer Activation Standard
+      - Application Security Standard
+
+  tags:
+    - application
+    - onboarding
+    - customer
+
+  notes:
+    assumptions:
+      - Operations use this portal as the primary activation initiation point.
+    risks:
+      - Local manual workarounds could bypass the governed activation flow if not controlled.

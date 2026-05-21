@@ -11,6 +11,14 @@ scope, roles, templates, conventions, and delivery expectations.
 - a project needs a smaller, intentional configuration
 - the team needs to align roles, method, and template scope before modeling
 
+## Read First
+
+- `.architect/project-config.yaml`
+- `.architect/config/agent.config.md`
+- `.architect/method/project-method.md`
+- `.architect/guidance/conventions.md`
+- `.architect/examples/customer-onboarding-modernization/README.md`
+
 ## Inputs
 
 - project name and scope
@@ -18,13 +26,44 @@ scope, roles, templates, conventions, and delivery expectations.
 - participating architecture roles
 - delivery or governance context
 
+## Steps
+
+1. Confirm the project boundary.
+   Record whether the project is mainly enterprise architecture, solution architecture, or both.
+2. Select the minimum useful role set.
+   Enable only the roles that will actively contribute.
+3. Select the minimum useful template set.
+   Prefer a narrow first slice rather than enabling the whole template library.
+4. Confirm method and governance expectations.
+   Align review cadence, ownership, and architecture checkpoints with the chosen method.
+5. Tailor `project-config.yaml`.
+   Update active roles, enabled templates, enabled flows, and governance ownership.
+6. Recommend the first artifact sequence.
+   Usually begin with stakeholders, objectives, vision, requirements, and the first solution boundary.
+7. Point the team to the worked example if context is still abstract.
+   Use the customer onboarding modernization example as a pattern, not a script.
+
 ## Outputs
 
 - tailored `project-config.yaml`
 - initial guidance on in-scope templates and roles
 - recommended first artifacts and working order
 
+## Output Checklist
+
+- project scope is explicit
+- enabled roles are intentional
+- enabled templates match expected deliverables
+- governance ownership is clear
+- first modeling sequence is known by the team
+
 ## Typical Collaboration
 
 - works closely with `chief-architect`, `enterprise-architect`, and `solution-architect`
 - hands off to `stakeholder-objective-framer` and `baseline-discovery`
+
+## Quality Checks
+
+- Avoid enabling templates with no likely use in the project.
+- Avoid assigning ownership roles that are not enabled in the configuration.
+- Make sure at least one review-owning role is active.

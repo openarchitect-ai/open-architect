@@ -45,6 +45,7 @@ These objects are linked using typed `relationships`, which makes the workspace 
     data/
     governance/
     technology/
+  examples/
   config/
   flows/
   guidance/
@@ -65,6 +66,7 @@ These objects are linked using typed `relationships`, which makes the workspace 
 Folder intent:
 
 - `architecture/`: actual project architecture objects created from templates
+- `examples/`: worked examples and reference projects kept separate from live project work
 - `config/`: configuration guidance for agent and workspace behavior
 - `flows/`: visual or executable architecture workflows
 - `guidance/`: conventions, glossary, and local architecture guidance
@@ -124,6 +126,7 @@ In practical terms:
 - use `project-config.yaml` to declare what this project will actually use
 - use `templates/` to define the metamodel
 - use `architecture/` to store actual project instances
+- use `examples/` for reference implementations and sample views
 - use `config/` to explain how project and agent configuration should work
 - use `flows/` for visual or executable workflow definitions
 - use `guidance/` to explain local rules
@@ -295,7 +298,7 @@ More detailed authoring guidance is in [agents.md](templates/agents.md).
 
 To make this workspace operational, the next best additions are:
 
-1. Create a small worked example with linked instances under `architecture/`.
+1. Add additional worked examples under `examples/`.
 2. Add validation rules or JSON Schemas for the templates.
 3. Add project-specific conventions and glossary content under `guidance/`.
 4. Add automation for ID generation, relationship checks, and broken reference detection.

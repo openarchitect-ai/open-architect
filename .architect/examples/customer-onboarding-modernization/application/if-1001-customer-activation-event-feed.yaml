@@ -1,0 +1,161 @@
+spec:
+  id: IF-1001
+  name: customer-activation-event-feed
+  display_name: Customer Activation Event Feed
+  aliases:
+    - Activation Event Feed
+  summary: Interface that propagates customer activation events from onboarding to policy administration.
+  description: >
+    Event-driven interface used to send approved customer activation updates to
+    downstream policy administration using the standardized activation profile.
+
+  classification:
+    type: application
+    pattern: event-driven
+    style: asynchronous
+    exposure: internal
+    direction: outbound
+    criticality: high
+
+  status:
+    lifecycle: production
+    operational_status: active
+    architecture_approval: approved
+
+  ownership:
+    business_owner: Customer Operations
+    technical_owner: Integration Team
+    support_team: Enterprise Platforms
+
+  metadata:
+    source_of_truth:
+      system: Open Architect Worked Example
+      record_locator: IF-1001
+      owner: Integration Team
+    last_reviewed: 2026-05-21
+    review_owner: Integration Team
+    confidence: high
+    references:
+      - type: diagram
+        title: Activation Sequence Diagram
+        url: .architect/examples/customer-onboarding-modernization/views/sequence-customer-activation-sync.puml
+    change_log:
+      - date: 2026-05-21
+        summary: Created worked example interface for customer activation events.
+        author: Open Architect
+
+  relationships:
+    - type: source-application
+      target_kind: application
+      target_id: APP-1001
+      strength: primary
+      confidence: high
+    - type: target-application
+      target_kind: application
+      target_id: APP-1002
+      strength: primary
+      confidence: high
+    - type: realizes-service
+      target_kind: application-service
+      target_id: AS-1001
+      strength: primary
+      confidence: high
+    - type: exchanges-data-object
+      target_kind: data-object
+      target_id: DO-1001
+      strength: primary
+      confidence: high
+    - type: supports-process
+      target_kind: business-process
+      target_id: BP-1001
+      strength: supporting
+      confidence: medium
+    - type: hosted-on
+      target_kind: technology-component
+      target_id: TC-1001
+      strength: primary
+      confidence: high
+
+  source:
+    system_id: APP-1001
+    system_name: Customer Onboarding Portal
+    capability: Customer Onboarding
+
+  target:
+    system_id: APP-1002
+    system_name: Policy Administration
+    capability: Customer Onboarding
+
+  contract:
+    interaction_name: customer-activation-event
+    business_purpose: Trigger downstream policy administration activation when onboarding approval is complete.
+    payload_type: JSON
+    canonical_model: CustomerActivationProfile
+    operations:
+      - name: customerActivated
+        description: Publish a customer activation event for downstream consumption.
+
+  connectivity:
+    protocol: HTTPS
+    transport: event-bus
+    endpoint:
+      environment: production
+      url: https://events.example.com/customer/activation/v1
+    trigger:
+      type: event
+      schedule: null
+      event_name: customer.activated
+
+  data:
+    entities:
+      - CustomerActivationProfile
+    frequency: near-real-time
+    expected_volume: medium
+    data_classification:
+      - internal
+      - pii
+    retention_policy: Event payload retention follows the enterprise observability retention standard.
+
+  security:
+    authentication: mutual TLS
+    authorization: RBAC
+    encryption_in_transit: TLS 1.2+
+    encryption_at_rest: platform-managed
+    compliance:
+      - GDPR
+      - ISO27001
+
+  service_levels:
+    availability_target: 99.5%
+    response_time_target_ms: 3000
+    recovery_time_objective: 4h
+    recovery_point_objective: 15m
+
+  observability:
+    logging: centralized
+    monitoring: event delivery dashboard
+    alerting: on-call integration support
+    traceability: correlation-id
+
+  dependencies:
+    upstream_interfaces: []
+    downstream_interfaces: []
+    technologies:
+      - Integration Event Runtime
+
+  governance:
+    version: v1
+    change_management: Architecture review required for breaking payload changes.
+    deprecation_policy: 6 months notice before retirement.
+
+  tags:
+    - customer
+    - activation
+    - integration
+    - event
+
+  notes:
+    assumptions:
+      - Policy Administration can consume the event within the agreed target window.
+    risks:
+      - Event replay strategy must be controlled to avoid duplicate downstream activation.

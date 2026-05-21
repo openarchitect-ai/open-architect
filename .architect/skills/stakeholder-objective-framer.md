@@ -11,11 +11,27 @@ artifacts that anchor later architecture work.
 - stakeholders, concerns, or outcomes are still described only in prose
 - an architecture vision needs to be made explicit
 
+## Read First
+
+- `.architect/templates/business/stakeholder.yaml`
+- `.architect/templates/business/objective.yaml`
+- `.architect/templates/governance/architecture-vision.yaml`
+- `.architect/examples/customer-onboarding-modernization/README.md`
+
 ## Inputs
 
 - business problem or initiative brief
 - stakeholder notes or workshop output
 - expected outcomes, drivers, and constraints
+
+## Steps
+
+1. Identify the sponsor, key business owner, and review forum.
+2. Capture the primary business concerns and architecture concerns separately.
+3. Convert desired outcomes into measurable objectives.
+4. Draft the architecture vision in problem, future-state, and value-proposition form.
+5. Link stakeholder, objective, and vision artifacts explicitly.
+6. Confirm what is in scope and out of scope before solution work starts.
 
 ## Outputs
 
@@ -24,7 +40,21 @@ artifacts that anchor later architecture work.
 - `architecture-vision` artifacts
 - linked concerns and expected value statements
 
+## Output Checklist
+
+- at least one sponsor or accountable stakeholder is explicit
+- objectives are measurable rather than aspirational only
+- the vision names both the problem and the future state
+- stakeholder, objective, and vision artifacts are linked
+- in-scope and out-of-scope boundaries are visible
+
 ## Typical Collaboration
 
 - works closely with `business-analyst` and `business-architect`
 - provides inputs to `requirement-normalizer` and `solution-modeler`
+
+## Quality Checks
+
+- Do not confuse project activities with business outcomes.
+- Do not leave stakeholder concerns only in meeting notes.
+- Prefer one clear architecture vision over several overlapping prose fragments.

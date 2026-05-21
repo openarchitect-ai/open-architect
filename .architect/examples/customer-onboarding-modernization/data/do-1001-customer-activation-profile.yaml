@@ -1,0 +1,188 @@
+spec:
+  id: DO-1001
+  name: customer-activation-profile
+  display_name: Customer Activation Profile
+  aliases:
+    - Activation Profile
+  summary: Governed data object representing the approved customer activation handoff for downstream systems.
+  description: >
+    Architecture-level data object representing the approved customer
+    activation payload used to update downstream policy administration.
+
+  classification:
+    domain: customer
+    object_type: master-data
+    status: active
+    criticality: high
+    confidentiality: confidential
+
+  ownership:
+    business_owner: Customer Operations
+    data_owner: Head of Customer Data
+    data_steward: Customer Data Steward
+    technical_owner: Enterprise Data Platform
+
+  metadata:
+    source_of_truth:
+      system: Open Architect Worked Example
+      record_locator: DO-1001
+      owner: Enterprise Data Platform
+    last_reviewed: 2026-05-21
+    review_owner: Customer Data Steward
+    confidence: high
+    references:
+      - type: diagram
+        title: Activation Sequence Diagram
+        url: .architect/examples/customer-onboarding-modernization/views/sequence-customer-activation-sync.puml
+    change_log:
+      - date: 2026-05-21
+        summary: Created worked example data object for customer activation profile.
+        author: Open Architect
+
+  relationships:
+    - type: system-of-record-in
+      target_kind: application
+      target_id: APP-1001
+      strength: primary
+      confidence: high
+    - type: managed-by
+      target_kind: application-service
+      target_id: AS-1001
+      strength: primary
+      confidence: high
+    - type: exchanged-through
+      target_kind: interface
+      target_id: IF-1001
+      strength: primary
+      confidence: high
+    - type: enables-capability
+      target_kind: business-capability
+      target_id: BC-1001
+      strength: primary
+      confidence: high
+    - type: used-in-process
+      target_kind: business-process
+      target_id: BP-1001
+      strength: primary
+      confidence: high
+    - type: standardized-by
+      target_kind: decision
+      target_id: DEC-1001
+      strength: primary
+      confidence: high
+
+  lifecycle:
+    state_model:
+      - pending-approval
+      - approved
+      - activated
+      - archived
+    system_of_record:
+      system_id: APP-1001
+      system_name: Customer Onboarding Portal
+    creation_rule: Created when onboarding approval is completed and activation is ready to propagate.
+    archival_rule: Archived according to customer data retention and audit policy.
+
+  structure:
+    canonical_name: CustomerActivationProfile
+    primary_identifier: activation_id
+    alternate_identifiers:
+      - customer_id
+      - onboarding_request_id
+    key_attributes:
+      - name: activation_id
+        type: string
+        required: true
+        description: Unique identifier for the activation handoff event.
+      - name: customer_id
+        type: string
+        required: true
+        description: Stable customer identifier.
+      - name: activation_status
+        type: string
+        required: true
+        description: Indicates approval and downstream activation state.
+      - name: approval_timestamp
+        type: datetime
+        required: true
+        description: Time at which onboarding approval was completed.
+      - name: correlation_id
+        type: string
+        required: true
+        description: End-to-end trace identifier used across the activation flow.
+
+  relationships_model:
+    parent_objects:
+      - Customer
+    child_objects: []
+    related_objects:
+      - Policy
+      - ActivationEvent
+
+  usage:
+    producing_systems:
+      - Customer Onboarding Portal
+    consuming_systems:
+      - Policy Administration
+    business_capabilities:
+      - Customer Onboarding
+
+  quality:
+    quality_dimensions:
+      - completeness
+      - accuracy
+      - timeliness
+      - traceability
+    quality_rules:
+      - Every activation profile must include a correlation identifier.
+      - Approved activation profiles must include a downstream target status.
+      - Activation profiles must not be duplicated for the same approved onboarding request.
+    quality_thresholds:
+      completeness: 99%
+      accuracy: 98%
+      timeliness: 95%
+
+  security:
+    data_classification:
+      - pii
+      - internal
+    lawful_basis: contract
+    access_model: role-based
+    encryption_at_rest: required
+    encryption_in_transit: required
+    masking_rules:
+      - Mask personal contact details in non-production environments.
+    compliance:
+      - GDPR
+      - ISO27001
+
+  retention:
+    retention_period: 7y
+    archival_strategy: Archive to the governed enterprise data store with audit trace.
+    disposal_rule: Secure deletion after retention period unless legal hold applies.
+
+  lineage:
+    upstream_sources:
+      - Customer onboarding approval
+    downstream_consumers:
+      - Policy Administration activation
+      - Activation operations dashboard
+    synchronization_pattern: event-driven with replay support
+
+  governance:
+    glossary_term: Customer Activation Profile
+    policy_references:
+      - Data Classification Policy
+      - Customer Activation Standard
+    change_management: Data governance review required for structural changes.
+
+  tags:
+    - customer
+    - activation
+    - master-data
+
+  notes:
+    assumptions:
+      - The activation profile is sufficient for Wave 1 downstream activation.
+    risks:
+      - Future downstream needs may pressure the profile to grow beyond its intended scope.

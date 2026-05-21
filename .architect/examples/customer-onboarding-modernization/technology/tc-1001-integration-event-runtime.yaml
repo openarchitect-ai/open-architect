@@ -1,0 +1,110 @@
+spec:
+  id: TC-1001
+  name: integration-event-runtime
+  display_name: Integration Event Runtime
+  aliases:
+    - Event Runtime
+  summary: Shared event and integration runtime used to host the customer activation event feed.
+  description: >
+    Shared integration runtime platform used to publish, route, and observe the
+    customer activation event feed in the onboarding modernization solution.
+
+  classification:
+    technology_domain: integration
+    component_type: runtime-platform
+    vendor: internal-platform
+    deployment_model: managed-cloud
+    criticality: high
+
+  status:
+    lifecycle: production
+    standard_position: strategic
+    support_status: active
+
+  ownership:
+    technical_owner: Integration Platform Team
+    service_owner: Enterprise Platforms
+    vendor_owner: Enterprise Platforms
+
+  metadata:
+    source_of_truth:
+      system: Open Architect Worked Example
+      record_locator: TC-1001
+      owner: Enterprise Platforms
+    last_reviewed: 2026-05-21
+    review_owner: Integration Platform Team
+    confidence: high
+    references:
+      - type: diagram
+        title: Activation Sequence Diagram
+        url: .architect/examples/customer-onboarding-modernization/views/sequence-customer-activation-sync.puml
+    change_log:
+      - date: 2026-05-21
+        summary: Created worked example technology component for the integration event runtime.
+        author: Open Architect
+
+  relationships:
+    - type: hosts-interface
+      target_kind: interface
+      target_id: IF-1001
+      strength: primary
+      confidence: high
+    - type: supports-application
+      target_kind: application
+      target_id: APP-1001
+      strength: supporting
+      confidence: medium
+    - type: enables-initiative
+      target_kind: initiative
+      target_id: INI-1001
+      strength: supporting
+      confidence: medium
+
+  usage:
+    supported_applications:
+      - APP-1001
+      - APP-1002
+    supported_interfaces:
+      - IF-1001
+    workloads:
+      - event propagation
+      - activation trace logging
+      - retry orchestration
+
+  deployment:
+    environments:
+      - production
+    hosting_location: eu-central
+    resilience_pattern: multi-zone
+
+  dependencies:
+    upstream_components: []
+    downstream_components: []
+    standards:
+      - Customer Activation Standard
+
+  security:
+    identity_integration: enterprise-iam
+    logging: centralized
+    secrets_management: platform-managed
+    compliance:
+      - ISO27001
+
+  service_levels:
+    availability_target: 99.95%
+    patching_window: monthly
+    recovery_time_objective: 4h
+
+  governance:
+    lifecycle_policy: Review quarterly for event resilience, capacity, and platform controls.
+
+  tags:
+    - technology
+    - integration
+    - event
+
+  notes:
+    assumptions:
+      - Shared event runtime remains the approved pattern for internal activation propagation.
+    risks:
+      - Platform contention during peak event windows could affect activation timeliness.

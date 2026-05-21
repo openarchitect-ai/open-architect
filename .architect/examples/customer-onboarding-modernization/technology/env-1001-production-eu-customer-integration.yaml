@@ -1,0 +1,111 @@
+spec:
+  id: ENV-1001
+  name: production-eu-customer-integration
+  display_name: Production EU Customer Integration
+  aliases:
+    - Prod EU Customer Integration
+  summary: Production runtime environment for the onboarding activation service and event flow in the EU region.
+  description: >
+    Environment definition describing the production runtime boundary for the
+    onboarding activation service and integration event flow, including
+    operational and security controls.
+
+  classification:
+    environment_type: production
+    region: eu-central
+    hosting_model: cloud
+    criticality: high
+
+  status:
+    lifecycle: active
+    operational_status: live
+    compliance_status: compliant
+
+  ownership:
+    environment_owner: Enterprise Platforms
+    operations_owner: Integration Operations
+    security_owner: Cyber Security
+
+  metadata:
+    source_of_truth:
+      system: Open Architect Worked Example
+      record_locator: ENV-1001
+      owner: Enterprise Platforms
+    last_reviewed: 2026-05-21
+    review_owner: Enterprise Platforms
+    confidence: high
+    references:
+      - type: diagram
+        title: Transition Architecture View
+        url: .architect/examples/customer-onboarding-modernization/views/transition-customer-onboarding-wave-1.md
+    change_log:
+      - date: 2026-05-21
+        summary: Created worked example production environment for onboarding integration.
+        author: Open Architect
+
+  relationships:
+    - type: hosts-solution
+      target_kind: solution
+      target_id: SOL-1001
+      strength: supporting
+      confidence: medium
+    - type: hosts-application
+      target_kind: application
+      target_id: APP-1001
+      strength: supporting
+      confidence: medium
+    - type: hosts-technology-component
+      target_kind: technology-component
+      target_id: TC-1001
+      strength: primary
+      confidence: high
+    - type: used-by-transition-architecture
+      target_kind: transition-architecture
+      target_id: TA-1001
+      strength: supporting
+      confidence: medium
+    - type: constrained-by-requirement
+      target_kind: requirement
+      target_id: REQ-1001
+      strength: supporting
+      confidence: medium
+
+  runtime:
+    availability_tier: tier-1
+    network_zone: private
+    deployment_pattern: multi-zone
+    support_window: 24x7
+
+  constraints:
+    residency:
+      - Customer activation data must remain within approved EU hosting boundaries.
+    security:
+      - Production access requires privileged identity approval.
+      - Secrets must be managed using approved platform controls.
+    operational:
+      - Changes require approved production release management.
+
+  connectivity:
+    ingress_patterns:
+      - managed-api-gateway
+      - approved-private-connectivity
+    egress_patterns:
+      - controlled-outbound-event-delivery
+    restricted_patterns:
+      - unmanaged-public-endpoints
+
+  governance:
+    change_control: production-change-board
+    review_frequency: quarterly
+    compliance_evidence_required: true
+
+  tags:
+    - environment
+    - production
+    - onboarding
+
+  notes:
+    assumptions:
+      - The production environment will remain the first deployment target for the worked example.
+    risks:
+      - Regional environment drift could weaken traceability and deployment consistency.

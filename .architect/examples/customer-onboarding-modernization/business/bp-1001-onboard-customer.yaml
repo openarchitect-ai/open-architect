@@ -1,0 +1,135 @@
+spec:
+  id: BP-1001
+  name: onboard-customer
+  display_name: Onboard Customer
+  aliases:
+    - Customer Activation Process
+  summary: Process for capturing, validating, approving, and activating a new customer through the governed onboarding flow.
+  description: >
+    Business process for receiving a customer onboarding request, validating the
+    submission, creating a customer activation profile, and triggering
+    downstream activation.
+
+  classification:
+    domain: customer
+    process_type: operational
+    frequency: daily
+    criticality: high
+
+  status:
+    lifecycle: active
+    automation_level: semi-automated
+    improvement_status: under-review
+
+  ownership:
+    process_owner: Customer Onboarding Manager
+    operational_owner: Customer Operations
+    architecture_owner: Business Architecture
+
+  metadata:
+    source_of_truth:
+      system: Open Architect Worked Example
+      record_locator: BP-1001
+      owner: Business Architecture
+    last_reviewed: 2026-05-21
+    review_owner: Business Architecture
+    confidence: high
+    references:
+      - type: document
+        title: Worked Example Overview
+        url: .architect/examples/customer-onboarding-modernization/README.md
+    change_log:
+      - date: 2026-05-21
+        summary: Created worked example business process for customer onboarding.
+        author: Open Architect
+
+  relationships:
+    - type: realizes-capability
+      target_kind: business-capability
+      target_id: BC-1001
+      strength: primary
+      confidence: high
+    - type: uses-application
+      target_kind: application
+      target_id: APP-1001
+      strength: primary
+      confidence: high
+    - type: uses-service
+      target_kind: application-service
+      target_id: AS-1001
+      strength: primary
+      confidence: high
+    - type: exchanges-through
+      target_kind: interface
+      target_id: IF-1001
+      strength: supporting
+      confidence: medium
+    - type: creates-or-updates
+      target_kind: data-object
+      target_id: DO-1001
+      strength: primary
+      confidence: high
+
+  business_alignment:
+    capabilities_realized:
+      - BC-1001
+    triggers:
+      - Customer onboarding request submitted
+    outcomes:
+      - Customer activation profile approved
+      - Downstream policy administration activated
+
+  flow:
+    inputs:
+      - Customer onboarding request
+      - Identity and compliance evidence
+    outputs:
+      - Activated customer profile
+      - Activation event sent to policy administration
+    key_steps:
+      - Capture onboarding request
+      - Validate required information
+      - Create activation profile
+      - Approve activation
+      - Emit downstream activation event
+
+  enablement:
+    applications:
+      - APP-1001
+      - APP-1002
+    application_services:
+      - AS-1001
+    interfaces:
+      - IF-1001
+    data_objects:
+      - DO-1001
+
+  controls:
+    policy_controls:
+      - Customer identity verification
+      - Approval before downstream activation
+    service_level_targets:
+      cycle_time: 4h
+      first_time_right: 95%
+
+  improvement:
+    pain_points:
+      - Manual downstream activation creates avoidable delay.
+      - Failed activation events are not always visible to operations.
+    opportunities:
+      - Introduce event-driven activation.
+      - Standardize traceability across onboarding steps.
+
+  governance:
+    process_standard: BPMN-aligned modeling required for controlled process changes.
+
+  tags:
+    - process
+    - customer
+    - onboarding
+
+  notes:
+    assumptions:
+      - Identity verification remains an approved prerequisite before activation.
+    risks:
+      - Regional onboarding variants may require controlled future extensions.

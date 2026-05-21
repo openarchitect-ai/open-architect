@@ -1,0 +1,126 @@
+spec:
+  id: DEC-1001
+  name: adopt-customer-activation-event-api
+  display_name: Adopt Customer Activation Event API
+  aliases:
+    - Activation Event ADR
+  summary: Decision to standardize customer activation handoff through a single onboarding service and event-driven downstream update.
+  description: >
+    Architecture decision to expose customer activation through a governed
+    onboarding service that emits a standardized event to downstream consumers.
+
+  classification:
+    decision_type: architecture
+    scope: solution
+    criticality: high
+
+  status:
+    lifecycle: approved
+    decision_state: accepted
+    effective_date: 2026-05-21
+
+  ownership:
+    decision_owner: Lead Solution Architect
+    approver: Architecture Review Board
+    contributors:
+      - Integration Architect
+      - Data Architect
+      - Customer Operations Lead
+
+  metadata:
+    source_of_truth:
+      system: Open Architect Worked Example
+      record_locator: DEC-1001
+      owner: Enterprise Architecture
+    last_reviewed: 2026-05-21
+    review_owner: Lead Solution Architect
+    confidence: high
+    references:
+      - type: diagram
+        title: Activation Sequence Diagram
+        url: .architect/examples/customer-onboarding-modernization/views/sequence-customer-activation-sync.puml
+    change_log:
+      - date: 2026-05-21
+        summary: Created worked example decision for customer activation event standardization.
+        author: Open Architect
+
+  relationships:
+    - type: governs-capability
+      target_kind: business-capability
+      target_id: BC-1001
+      strength: supporting
+      confidence: medium
+    - type: constrains-application
+      target_kind: application
+      target_id: APP-1001
+      strength: supporting
+      confidence: medium
+    - type: standardizes-data-object
+      target_kind: data-object
+      target_id: DO-1001
+      strength: primary
+      confidence: high
+    - type: constrains-interface
+      target_kind: interface
+      target_id: IF-1001
+      strength: primary
+      confidence: high
+    - type: linked-to-initiative
+      target_kind: initiative
+      target_id: INI-1001
+      strength: supporting
+      confidence: medium
+
+  context:
+    problem_statement: Customer onboarding currently relies on manual or inconsistent downstream activation handoffs that are difficult to trace and recover.
+    drivers:
+      - Reduce activation delay
+      - Improve traceability of downstream activation
+      - Standardize future onboarding integrations
+
+  decision:
+    statement: Customer activation will be exposed through a single onboarding service and propagated downstream using a standardized activation event feed.
+    rationale:
+      - Creates a single architectural control point for activation behavior.
+      - Supports reusable downstream integration.
+      - Makes sequencing and failure handling more observable.
+
+  options_considered:
+    - option: Manual downstream activation after onboarding approval
+      outcome: rejected
+      reason: Too slow and hard to trace consistently.
+    - option: Direct point-to-point activation logic inside the portal
+      outcome: rejected
+      reason: Couples experience logic to downstream integration behavior.
+    - option: Dedicated onboarding service with downstream activation event feed
+      outcome: accepted
+      reason: Best balance of reuse, observability, and future extensibility.
+
+  impact:
+    affected_capabilities:
+      - BC-1001
+    affected_applications:
+      - APP-1001
+      - APP-1002
+    affected_data_objects:
+      - DO-1001
+    affected_interfaces:
+      - IF-1001
+    consequences:
+      - Downstream activation teams must consume the standard event structure.
+      - The onboarding service becomes the governed handoff boundary.
+
+  governance:
+    supersedes: null
+    review_date: 2027-05-21
+
+  tags:
+    - decision
+    - onboarding
+    - event-driven
+
+  notes:
+    assumptions:
+      - Policy Administration can accept asynchronous activation updates within the agreed SLA.
+    risks:
+      - Poor exception handling would undermine confidence in event-driven activation.

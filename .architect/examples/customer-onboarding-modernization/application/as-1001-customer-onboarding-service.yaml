@@ -1,0 +1,116 @@
+spec:
+  id: AS-1001
+  name: customer-onboarding-service
+  display_name: Customer Onboarding Service
+  aliases:
+    - Activation Service
+  summary: Logical service that validates approved onboarding requests and emits the standardized activation event.
+  description: >
+    Logical service responsible for final onboarding validation, activation
+    profile creation, and propagation of the downstream activation event.
+
+  classification:
+    domain: customer
+    service_type: business-supporting
+    exposure: internal
+    criticality: high
+
+  status:
+    lifecycle: production
+    operational_status: active
+    version: v1
+
+  ownership:
+    owning_application: APP-1001
+    business_owner: Customer Operations
+    technical_owner: Digital Platforms
+
+  metadata:
+    source_of_truth:
+      system: Open Architect Worked Example
+      record_locator: AS-1001
+      owner: Digital Platforms
+    last_reviewed: 2026-05-21
+    review_owner: Digital Platforms
+    confidence: high
+    references:
+      - type: diagram
+        title: Activation Sequence Diagram
+        url: .architect/examples/customer-onboarding-modernization/views/sequence-customer-activation-sync.puml
+    change_log:
+      - date: 2026-05-21
+        summary: Created worked example application service for onboarding activation.
+        author: Open Architect
+
+  relationships:
+    - type: realized-by
+      target_kind: application
+      target_id: APP-1001
+      strength: primary
+      confidence: high
+    - type: supports-capability
+      target_kind: business-capability
+      target_id: BC-1001
+      strength: primary
+      confidence: high
+    - type: supports-process
+      target_kind: business-process
+      target_id: BP-1001
+      strength: primary
+      confidence: high
+    - type: exposed-through
+      target_kind: interface
+      target_id: IF-1001
+      strength: primary
+      confidence: high
+    - type: manages-data-object
+      target_kind: data-object
+      target_id: DO-1001
+      strength: primary
+      confidence: high
+
+  business_alignment:
+    capabilities_supported:
+      - BC-1001
+    processes_supported:
+      - BP-1001
+
+  contract:
+    responsibilities:
+      - Validate approved onboarding request for activation readiness
+      - Create or update customer activation profile
+      - Emit customer activation event
+    service_policies:
+      - Every activation event must carry a correlation identifier.
+      - Activation retries must not create duplicate downstream customer activation.
+
+  realization:
+    interfaces:
+      - IF-1001
+    data_objects:
+      - DO-1001
+
+  consumers:
+    applications:
+      - APP-1002
+    organizations:
+      - Policy Operations
+
+  service_levels:
+    availability_target: 99.5%
+    response_time_target_ms: 1500
+    support_model: on-call
+
+  governance:
+    versioning_policy: Service version follows the governed activation contract lifecycle.
+
+  tags:
+    - service
+    - onboarding
+    - activation
+
+  notes:
+    assumptions:
+      - The service remains the single activation handoff boundary.
+    risks:
+      - Hidden activation logic outside the service would weaken traceability.

@@ -77,5 +77,6 @@ For a new project, start with:
 
 ## Next Step
 
-These files define the skill taxonomy and scope. A later step can turn the most
-valuable skills into full agent instructions or orchestrated flows.
+Wave 1 skills now include concrete playbook steps and a linked worked example.
+The next step is to turn the most valuable playbooks into executable agent
+instructions or orchestrated flows.

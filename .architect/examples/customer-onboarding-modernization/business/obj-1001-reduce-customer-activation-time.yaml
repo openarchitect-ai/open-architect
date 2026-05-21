@@ -1,0 +1,105 @@
+spec:
+  id: OBJ-1001
+  name: reduce-customer-activation-time
+  display_name: Reduce Customer Activation Time
+  aliases:
+    - Activation Time Objective
+  summary: Objective to reduce the elapsed time from onboarding submission to downstream customer activation.
+  description: >
+    Objective representing the business and architecture outcome of shortening
+    customer activation time while improving traceability and reliability.
+
+  classification:
+    objective_type: strategic
+    scope: domain
+    time_horizon: short-term
+    criticality: high
+
+  status:
+    lifecycle: active
+    approval_status: approved
+    progress_status: in-progress
+
+  ownership:
+    objective_owner: Head of Customer Operations
+    architecture_owner: Enterprise Architecture
+    measurement_owner: Customer Operations Analytics
+
+  metadata:
+    source_of_truth:
+      system: Open Architect Worked Example
+      record_locator: OBJ-1001
+      owner: Enterprise Architecture
+    last_reviewed: 2026-05-21
+    review_owner: Enterprise Architecture
+    confidence: high
+    references:
+      - type: document
+        title: Worked Example Overview
+        url: .architect/examples/customer-onboarding-modernization/README.md
+    change_log:
+      - date: 2026-05-21
+        summary: Created worked example objective for customer activation time reduction.
+        author: Open Architect
+
+  relationships:
+    - type: pursued-by-capability
+      target_kind: business-capability
+      target_id: BC-1001
+      strength: primary
+      confidence: high
+    - type: realized-by-solution
+      target_kind: solution
+      target_id: SOL-1001
+      strength: primary
+      confidence: high
+    - type: articulated-in-architecture-vision
+      target_kind: architecture-vision
+      target_id: VIS-1001
+      strength: primary
+      confidence: high
+    - type: delivered-through-initiative
+      target_kind: initiative
+      target_id: INI-1001
+      strength: primary
+      confidence: high
+    - type: threatened-by-risk
+      target_kind: risk
+      target_id: RSK-1001
+      strength: supporting
+      confidence: medium
+
+  intent:
+    statement: Reduce customer activation elapsed time without losing operational control or traceability.
+    rationale:
+      - Faster activation improves customer experience and revenue conversion.
+      - Clear traceability reduces operational rework and exception handling.
+    success_measures:
+      - name: straight-through-activation-time
+        target: 4h
+      - name: activation-traceability-completeness
+        target: 100%
+
+  scope:
+    affected_domains:
+      - Customer
+      - Policy Administration
+    affected_artifacts:
+      - solutions
+      - interfaces
+      - work-packages
+
+  governance:
+    reporting_cadence: fortnightly
+    review_forum: Customer Activation Steering Group
+
+  tags:
+    - objective
+    - customer
+    - onboarding
+
+  notes:
+    assumptions:
+      - The downstream policy administration team will accept event-driven activation updates.
+    risks:
+      - Incomplete downstream adoption could hide true activation lead time.

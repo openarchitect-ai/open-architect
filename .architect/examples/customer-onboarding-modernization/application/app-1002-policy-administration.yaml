@@ -1,0 +1,120 @@
+spec:
+  id: APP-1002
+  name: policy-administration
+  display_name: Policy Administration
+  aliases:
+    - Policy Admin
+  summary: Downstream operational platform that must receive customer activation updates before policy servicing begins.
+  description: >
+    Enterprise application responsible for policy administration and dependent
+    on timely customer activation updates from the onboarding flow.
+
+  classification:
+    domain: policy
+    application_type: packaged
+    architectural_tier: system-of-record
+    deployment_model: vendor-hosted
+    criticality: high
+
+  status:
+    lifecycle: production
+    operational_status: active
+    investment_status: tolerate
+
+  ownership:
+    business_owner: Policy Operations
+    technical_owner: Core Platforms
+    product_owner: Policy Platform Manager
+    vendor: Guidewire
+
+  metadata:
+    source_of_truth:
+      system: Open Architect Worked Example
+      record_locator: APP-1002
+      owner: Core Platforms
+    last_reviewed: 2026-05-21
+    review_owner: Core Platforms
+    confidence: medium
+    references:
+      - type: diagram
+        title: Solution Context Diagram
+        url: .architect/examples/customer-onboarding-modernization/views/context-customer-onboarding-modernization.md
+    change_log:
+      - date: 2026-05-21
+        summary: Created worked example downstream policy administration application.
+        author: Open Architect
+
+  relationships:
+    - type: depends-on-interface
+      target_kind: interface
+      target_id: IF-1001
+      strength: primary
+      confidence: high
+    - type: consumes-data-object
+      target_kind: data-object
+      target_id: DO-1001
+      strength: primary
+      confidence: high
+    - type: included-in-solution
+      target_kind: solution
+      target_id: SOL-1001
+      strength: supporting
+      confidence: high
+
+  business_alignment:
+    capabilities_supported:
+      - BC-1001
+    processes_supported:
+      - BP-1001
+    primary_users:
+      - Policy Operations
+
+  services:
+    application_services: []
+    exposed_interfaces: []
+    consumed_interfaces:
+      - IF-1001
+
+  data:
+    authoritative_data_objects: []
+    consumed_data_objects:
+      - DO-1001
+
+  technology:
+    technology_components: []
+    hosting_platform: Managed Policy Platform
+    integration_platform: Integration Event Runtime
+
+  dependencies:
+    upstream_applications:
+      - APP-1001
+    downstream_applications: []
+
+  security:
+    identity_provider: Enterprise SSO
+    authentication: platform-managed
+    authorization: role-based
+    data_classification:
+      - confidential
+      - pii
+
+  service_levels:
+    availability_target: 99.5%
+    support_model: on-call
+    recovery_time_objective: 4h
+    recovery_point_objective: 30m
+
+  governance:
+    standards_compliance:
+      - Customer Activation Standard
+
+  tags:
+    - application
+    - policy
+    - downstream
+
+  notes:
+    assumptions:
+      - Policy Administration remains the first downstream consumer in Wave 1.
+    risks:
+      - Downstream release timing may not align with onboarding modernization milestones.

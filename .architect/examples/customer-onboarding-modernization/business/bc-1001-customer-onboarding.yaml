@@ -1,0 +1,120 @@
+spec:
+  id: BC-1001
+  name: customer-onboarding
+  display_name: Customer Onboarding
+  aliases:
+    - New Customer Activation
+  summary: Business capability to register, validate, approve, and activate new customers across operational systems.
+  description: >
+    Ability to onboard new customers, validate required information, create a
+    governed customer profile, and activate downstream operational processing.
+
+  classification:
+    domain: customer
+    level: level-2
+    capability_type: core
+    criticality: high
+
+  status:
+    lifecycle: active
+    target_state: modernize
+    maturity: defined
+
+  ownership:
+    executive_owner: Head of Customer Operations
+    business_owner: Customer Onboarding Manager
+    architecture_owner: Enterprise Architecture
+
+  metadata:
+    source_of_truth:
+      system: Open Architect Worked Example
+      record_locator: BC-1001
+      owner: Enterprise Architecture
+    last_reviewed: 2026-05-21
+    review_owner: Enterprise Architecture
+    confidence: high
+    references:
+      - type: document
+        title: Worked Example Overview
+        url: .architect/examples/customer-onboarding-modernization/README.md
+    change_log:
+      - date: 2026-05-21
+        summary: Created worked example business capability for customer onboarding.
+        author: Open Architect
+
+  relationships:
+    - type: enabled-by
+      target_kind: application
+      target_id: APP-1001
+      strength: primary
+      confidence: high
+    - type: realized-by
+      target_kind: business-process
+      target_id: BP-1001
+      strength: primary
+      confidence: high
+    - type: uses-data-object
+      target_kind: data-object
+      target_id: DO-1001
+      strength: primary
+      confidence: high
+    - type: changed-by
+      target_kind: initiative
+      target_id: INI-1001
+      strength: primary
+      confidence: high
+    - type: guided-by
+      target_kind: decision
+      target_id: DEC-1001
+      strength: supporting
+      confidence: medium
+
+  hierarchy:
+    parent_capability: null
+    child_capabilities: []
+
+  business_context:
+    value_streams:
+      - Lead to Policy
+    outcomes:
+      - Faster customer activation
+      - Clear downstream activation traceability
+    measures:
+      - name: straight-through-activation-time
+        target: 4h
+      - name: manual-rework-rate
+        target: below-5%
+
+  enablement:
+    processes:
+      - BP-1001
+    applications:
+      - APP-1001
+      - APP-1002
+    data_objects:
+      - DO-1001
+
+  strategy:
+    drivers:
+      - Reduce onboarding delay
+      - Increase reuse of standard activation flows
+    pain_points:
+      - Manual downstream activation handoff
+      - Poor visibility of failed activation events
+    target_maturity: managed
+
+  governance:
+    policy_references:
+      - Customer Activation Policy
+      - Straight-Through Processing Standard
+
+  tags:
+    - business
+    - capability
+    - onboarding
+
+  notes:
+    assumptions:
+      - Customer onboarding remains centrally governed rather than regionally fragmented.
+    risks:
+      - Exceptions for special cases may erode standardization if unmanaged.

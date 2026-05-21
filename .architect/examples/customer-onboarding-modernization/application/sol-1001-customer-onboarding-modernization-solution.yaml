@@ -1,0 +1,151 @@
+spec:
+  id: SOL-1001
+  name: customer-onboarding-modernization-solution
+  display_name: Customer Onboarding Modernization Solution
+  aliases:
+    - Onboarding Modernization Solution
+  summary: End-to-end solution for standardizing customer onboarding approval, activation, and downstream policy administration update.
+  description: >
+    Solution architecture describing the bounded design for customer onboarding
+    approval, activation profile creation, and downstream policy administration
+    update through a standardized service and event flow.
+
+  classification:
+    solution_type: target-solution
+    architecture_state: transition
+    scope: cross-domain
+    criticality: high
+
+  status:
+    lifecycle: in-flight
+    architecture_status: approved
+    delivery_status: amber
+
+  ownership:
+    solution_owner: Solution Architecture
+    business_owner: Customer Operations
+    technical_owner: Digital Platforms
+
+  metadata:
+    source_of_truth:
+      system: Open Architect Worked Example
+      record_locator: SOL-1001
+      owner: Solution Architecture
+    last_reviewed: 2026-05-21
+    review_owner: Solution Architecture
+    confidence: high
+    references:
+      - type: diagram
+        title: Solution Context Diagram
+        url: .architect/examples/customer-onboarding-modernization/views/context-customer-onboarding-modernization.md
+      - type: diagram
+        title: Activation Sequence Diagram
+        url: .architect/examples/customer-onboarding-modernization/views/sequence-customer-activation-sync.puml
+    change_log:
+      - date: 2026-05-21
+        summary: Created worked example solution for onboarding modernization.
+        author: Open Architect
+
+  relationships:
+    - type: realizes-capability
+      target_kind: business-capability
+      target_id: BC-1001
+      strength: primary
+      confidence: high
+    - type: supports-process
+      target_kind: business-process
+      target_id: BP-1001
+      strength: primary
+      confidence: high
+    - type: includes-application
+      target_kind: application
+      target_id: APP-1001
+      strength: primary
+      confidence: high
+    - type: includes-application
+      target_kind: application
+      target_id: APP-1002
+      strength: supporting
+      confidence: high
+    - type: includes-application-service
+      target_kind: application-service
+      target_id: AS-1001
+      strength: primary
+      confidence: high
+    - type: includes-interface
+      target_kind: interface
+      target_id: IF-1001
+      strength: primary
+      confidence: high
+    - type: includes-data-object
+      target_kind: data-object
+      target_id: DO-1001
+      strength: primary
+      confidence: high
+    - type: uses-technology-component
+      target_kind: technology-component
+      target_id: TC-1001
+      strength: supporting
+      confidence: medium
+    - type: constrained-by-requirement
+      target_kind: requirement
+      target_id: REQ-1001
+      strength: primary
+      confidence: high
+    - type: deployed-to-environment
+      target_kind: environment
+      target_id: ENV-1001
+      strength: supporting
+      confidence: medium
+    - type: realized-through-transition-architecture
+      target_kind: transition-architecture
+      target_id: TA-1001
+      strength: supporting
+      confidence: medium
+
+  scope:
+    business_outcomes:
+      - Faster customer activation after onboarding approval
+      - Visible and recoverable downstream activation flow
+    in_scope_domains:
+      - Customer
+      - Policy Administration
+    out_of_scope:
+      - Pricing and underwriting redesign
+      - Non-customer lifecycle orchestration
+
+  architecture:
+    context: Customer onboarding approval triggers a governed onboarding service that emits an activation event to Policy Administration using the integration event runtime.
+    logical_components:
+      - Customer Onboarding Portal
+      - Customer Onboarding Service
+      - Integration Event Runtime
+      - Policy Administration
+    integration_patterns:
+      - event-driven synchronization
+      - approval-triggered activation
+    data_patterns:
+      - activation profile as governed data handoff
+      - correlation-id traceability
+
+  quality_attributes:
+    availability: 99.5%
+    resilience: retry and replay support for activation events
+    security: role-based access and encrypted transport
+    observability: end-to-end correlation and failure alerts
+
+  governance:
+    approval_forum: Architecture Review Board
+    review_cadence: milestone-based
+    deviation_process: Formal design waiver required for side-channel activation paths.
+
+  tags:
+    - solution
+    - onboarding
+    - transition
+
+  notes:
+    assumptions:
+      - Customer onboarding remains the authoritative initiation point for downstream activation.
+    risks:
+      - Dual operation of old and new activation patterns would complicate support and measurement.

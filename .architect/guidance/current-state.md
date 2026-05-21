@@ -111,6 +111,23 @@ capability container, including:
   - `.architect/guidance/diagram-conventions.md`
   - `.architect/architecture/views/README.md`
   - defines notation selection, storage conventions, and diagram creation rules
+- Added anti-hallucination modeling conventions:
+  - `.architect/guidance/conventions.md`
+  - defines evidence, confidence, unknown, assumption, open-question, and partial-artifact rules
+- Added a worked example architecture project:
+  - `.architect/examples/customer-onboarding-modernization/README.md`
+  - linked business, application, data, technology, governance, and change artifacts
+  - three example views under `.architect/examples/customer-onboarding-modernization/views/`
+- Turned Wave 1 skills into concrete playbooks:
+  - `project-bootstrapper`
+  - `stakeholder-objective-framer`
+  - `baseline-discovery`
+  - `requirement-normalizer`
+  - `requirements-follow-up`
+  - `solution-modeler`
+  - `relationship-mapper`
+  - `decision-recorder`
+  - `architecture-review`
 - Added flow placeholders:
   - architecture development
   - requirements and change coordination
@@ -128,6 +145,7 @@ Key folders:
 - `.architect/templates/`
 - `.architect/architecture/`
 - `.architect/architecture/views/`
+- `.architect/examples/`
 - `.architect/config/`
 - `.architect/guidance/`
 - `.architect/method/`
@@ -154,16 +172,17 @@ Current role library:
 
 High priority:
 
-- Turn the initial `skills/` taxonomy into fuller reusable agent instructions
+- Turn the most valuable playbooks into executable agent instructions
+- Validate the worked example against relationship, enum, and required-field checks
 - Add validation or schema support
   - e.g. `.architect/schemas/` or `.architect/validation/`
-- Create a worked example under `.architect/architecture/`
 - Add a glossary in `.architect/guidance/glossary.md`
-- Strengthen `guidance/conventions.md` with:
+- Extend `guidance/conventions.md` with:
   - ID generation rules
   - traceability expectations
   - review/governance cadence
-- Add worked diagram examples under `.architect/architecture/views/`
+  - validation expectations for evidence and confidence
+- Add more worked diagram examples under `.architect/examples/`
 
 Open source hygiene:
 
@@ -184,8 +203,8 @@ Future direction:
 
 If work resumes later, the best next task is:
 
-1. turn the defined `skills/` taxonomy into executable agent playbooks
-2. create a small worked example in `.architect/architecture/`
+1. turn the strongest playbooks into executable agent instructions and real flows
+2. validate the worked example and tighten conventions for IDs, traceability, and evidence quality
 3. add glossary, stronger conventions, and schema or validation support
 
 ## Notes

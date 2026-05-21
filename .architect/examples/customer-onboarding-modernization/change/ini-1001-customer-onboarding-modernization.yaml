@@ -1,0 +1,124 @@
+spec:
+  id: INI-1001
+  name: customer-onboarding-modernization
+  display_name: Customer Onboarding Modernization
+  aliases:
+    - Onboarding Modernization Initiative
+  summary: Initiative to modernize customer onboarding activation through a standard service and event-driven downstream update.
+  description: >
+    Initiative to improve customer onboarding cycle time, reduce manual
+    downstream activation, and introduce traceable activation propagation.
+
+  classification:
+    initiative_type: transformation-project
+    investment_theme: modernization
+    priority: high
+
+  status:
+    lifecycle: in-flight
+    delivery_status: amber
+    architecture_status: approved
+
+  ownership:
+    sponsor: Head of Customer Operations
+    delivery_owner: Program Manager
+    architecture_owner: Solution Architecture
+
+  metadata:
+    source_of_truth:
+      system: Open Architect Worked Example
+      record_locator: INI-1001
+      owner: Program Management Office
+    last_reviewed: 2026-05-21
+    review_owner: Solution Architecture
+    confidence: high
+    references:
+      - type: document
+        title: Worked Example Overview
+        url: .architect/examples/customer-onboarding-modernization/README.md
+    change_log:
+      - date: 2026-05-21
+        summary: Created worked example initiative for onboarding modernization.
+        author: Open Architect
+
+  relationships:
+    - type: changes-capability
+      target_kind: business-capability
+      target_id: BC-1001
+      strength: primary
+      confidence: high
+    - type: changes-application
+      target_kind: application
+      target_id: APP-1001
+      strength: primary
+      confidence: high
+    - type: changes-data-object
+      target_kind: data-object
+      target_id: DO-1001
+      strength: primary
+      confidence: high
+    - type: changes-interface
+      target_kind: interface
+      target_id: IF-1001
+      strength: supporting
+      confidence: medium
+    - type: enabled-by-decision
+      target_kind: decision
+      target_id: DEC-1001
+      strength: supporting
+      confidence: medium
+
+  planning:
+    start_date: 2026-06-01
+    target_end_date: 2026-11-30
+    funding_status: funded
+    delivery_method: agile
+
+  scope:
+    capabilities:
+      - BC-1001
+    processes:
+      - BP-1001
+    applications:
+      - APP-1001
+      - APP-1002
+    data_objects:
+      - DO-1001
+    interfaces:
+      - IF-1001
+    technology_components:
+      - TC-1001
+
+  outcomes:
+    business_outcomes:
+      - Reduce customer activation elapsed time
+      - Improve activation failure traceability
+      - Reduce manual downstream coordination
+    success_measures:
+      - name: straight-through-activation-time
+        target: 4h
+      - name: activation-success-rate
+        target: 99.5%
+
+  dependencies:
+    predecessor_initiatives: []
+    related_decisions:
+      - DEC-1001
+    delivery_risks:
+      - Downstream event adoption may slip.
+      - Observability implementation may lag interface rollout.
+
+  governance:
+    steering_forum: Customer Activation Steering Group
+    reporting_cadence: fortnightly
+
+  tags:
+    - initiative
+    - onboarding
+    - transformation
+
+  notes:
+    assumptions:
+      - Wave 1 focuses on one downstream consumer to keep scope bounded.
+    risks:
+      - Pressure to broaden scope early could delay the first operational outcome.

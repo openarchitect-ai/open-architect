@@ -1,0 +1,97 @@
+spec:
+  id: STK-1001
+  name: head-of-customer-operations
+  display_name: Head of Customer Operations
+  aliases:
+    - Customer Operations Sponsor
+  summary: Senior business sponsor for customer onboarding modernization and customer activation outcomes.
+  description: >
+    Stakeholder accountable for onboarding outcomes, operational efficiency, and
+    adoption of the new customer activation flow.
+
+  classification:
+    stakeholder_type: business-leader
+    scope: domain
+    influence_level: high
+    criticality: high
+
+  status:
+    lifecycle: active
+    engagement_status: engaged
+    decision_authority: high
+
+  ownership:
+    stakeholder_owner: Enterprise Architecture
+    relationship_owner: Solution Architecture
+    business_contact: Customer Operations
+
+  metadata:
+    source_of_truth:
+      system: Open Architect Worked Example
+      record_locator: STK-1001
+      owner: Enterprise Architecture
+    last_reviewed: 2026-05-21
+    review_owner: Enterprise Architecture
+    confidence: high
+    references:
+      - type: document
+        title: Worked Example Overview
+        url: .architect/examples/customer-onboarding-modernization/README.md
+    change_log:
+      - date: 2026-05-21
+        summary: Created worked example stakeholder for customer onboarding modernization.
+        author: Open Architect
+
+  relationships:
+    - type: sponsors-initiative
+      target_kind: initiative
+      target_id: INI-1001
+      strength: primary
+      confidence: high
+    - type: approves-architecture-vision
+      target_kind: architecture-vision
+      target_id: VIS-1001
+      strength: primary
+      confidence: high
+    - type: concerned-with-objective
+      target_kind: objective
+      target_id: OBJ-1001
+      strength: primary
+      confidence: high
+    - type: monitors-risk
+      target_kind: risk
+      target_id: RSK-1001
+      strength: supporting
+      confidence: medium
+
+  concerns:
+    business_concerns:
+      - Customer activation takes too long when downstream setup is delayed.
+      - Manual reconciliation increases operational cost and customer friction.
+    architecture_concerns:
+      - The new onboarding flow must remain traceable across portal, service, and downstream systems.
+      - Delivery must not create another point-to-point integration variant.
+    success_criteria:
+      - Customer activation is completed within four business hours for straight-through cases.
+      - Failed downstream activation can be traced and recovered without manual record re-entry.
+
+  engagement:
+    preferred_engagement_model: steering-forum
+    communication_cadence: fortnightly
+    escalation_role: sponsor
+
+  governance:
+    decision_rights:
+      - Approve onboarding outcome priorities
+      - Escalate delivery blockers affecting customer activation targets
+
+  tags:
+    - stakeholder
+    - customer
+    - onboarding
+
+  notes:
+    assumptions:
+      - Customer Operations remains the primary business owner for onboarding policy changes.
+    risks:
+      - Operational urgency may drive local exceptions unless the target flow is visible and measurable.

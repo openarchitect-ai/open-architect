@@ -30,7 +30,7 @@ The expected authoring flow is:
 2. Identify the audience for the view.
 3. Select the relevant architecture artifacts and relationships.
 4. Choose the notation using the selection matrix below.
-5. Create the diagram source in `.architect/architecture/views/`.
+5. Create the diagram source in `.architect/architecture/views/` for live project work.
 6. Link the diagram from the relevant architecture artifacts.
 7. Refresh the diagram when architecture changes affect the view.
 
@@ -40,6 +40,12 @@ Project-specific diagram sources should live in:
 
 ```text
 .architect/architecture/views/
+```
+
+Worked example diagrams should live alongside their example project, for example:
+
+```text
+.architect/examples/<example-name>/views/
 ```
 
 Recommended file naming:

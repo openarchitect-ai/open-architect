@@ -1,0 +1,144 @@
+spec:
+  id: WP-1001
+  name: deliver-customer-activation-event-flow
+  display_name: Deliver Customer Activation Event Flow
+  aliases:
+    - Activation Flow Delivery Pack
+  summary: Work package for implementing the onboarding activation service and downstream event feed in Wave 1.
+  description: >
+    Delivery increment that implements the standard activation service, event
+    feed, observability controls, and downstream policy administration update.
+
+  classification:
+    work_package_type: delivery-increment
+    architecture_state: transition
+    priority: high
+    criticality: high
+
+  status:
+    lifecycle: in-flight
+    delivery_status: amber
+    readiness_status: ready-for-build
+
+  ownership:
+    initiative_owner: Program Manager
+    delivery_owner: Integration Delivery Lead
+    architecture_owner: Solution Architecture
+
+  metadata:
+    source_of_truth:
+      system: Open Architect Worked Example
+      record_locator: WP-1001
+      owner: Program Management Office
+    last_reviewed: 2026-05-21
+    review_owner: Integration Delivery Lead
+    confidence: medium
+    references:
+      - type: diagram
+        title: Transition Architecture View
+        url: .architect/examples/customer-onboarding-modernization/views/transition-customer-onboarding-wave-1.md
+    change_log:
+      - date: 2026-05-21
+        summary: Created worked example work package for activation event flow delivery.
+        author: Open Architect
+
+  relationships:
+    - type: realizes-transition-architecture
+      target_kind: transition-architecture
+      target_id: TA-1001
+      strength: primary
+      confidence: high
+    - type: part-of-initiative
+      target_kind: initiative
+      target_id: INI-1001
+      strength: primary
+      confidence: high
+    - type: constrained-by
+      target_kind: decision
+      target_id: DEC-1001
+      strength: supporting
+      confidence: medium
+    - type: changes-application
+      target_kind: application
+      target_id: APP-1001
+      strength: primary
+      confidence: high
+    - type: changes-application
+      target_kind: application
+      target_id: APP-1002
+      strength: supporting
+      confidence: high
+    - type: changes-interface
+      target_kind: interface
+      target_id: IF-1001
+      strength: primary
+      confidence: high
+    - type: changes-data-object
+      target_kind: data-object
+      target_id: DO-1001
+      strength: supporting
+      confidence: medium
+
+  planning:
+    start_date: 2026-07-15
+    target_end_date: 2026-10-15
+    delivery_method: agile
+    funding_status: funded
+    milestone: activation-event-go-live
+
+  scope:
+    objectives:
+      - Implement the onboarding activation service
+      - Publish the standard customer activation event
+      - Enable Policy Administration downstream consumption
+    in_scope:
+      applications:
+        - APP-1001
+        - APP-1002
+      application_services:
+        - AS-1001
+      interfaces:
+        - IF-1001
+      data_objects:
+        - DO-1001
+    out_of_scope:
+      - Additional downstream consumer onboarding
+      - Historical activation replay beyond cutover support
+
+  deliverables:
+    architecture_deliverables:
+      - Updated solution design
+      - Approved activation event contract
+      - Cutover and support model
+    implementation_deliverables:
+      - Deployed onboarding activation service
+      - Production-ready activation event feed
+      - Operational traceability dashboard
+
+  dependencies:
+    predecessor_work_packages: []
+    successor_work_packages: []
+    blockers:
+      - Downstream event contract sign-off
+      - Production observability configuration approval
+
+  acceptance_criteria:
+    - Activation event feed passes integration testing with Policy Administration.
+    - Correlation-id based activation traceability is visible in operations dashboards.
+    - Manual fallback is documented and tested for failed event delivery.
+
+  governance:
+    decision_log_required: true
+    reporting_cadence: fortnightly
+    architecture_checkpoint: required-before-production
+
+  tags:
+    - work-package
+    - onboarding
+    - delivery
+
+  notes:
+    assumptions:
+      - Delivery and operations teams share a common cutover readiness checklist.
+    risks:
+      - Support model gaps could delay go-live approval even if build completes on time.

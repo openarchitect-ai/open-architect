@@ -11,11 +11,34 @@ traceability, and governance readiness.
 - quality checks are needed before governance review
 - the team wants to find modeling gaps early
 
+## Read First
+
+- `.architect/project-config.yaml`
+- `.architect/guidance/conventions.md`
+- `.architect/guidance/diagram-conventions.md`
+- `.architect/examples/customer-onboarding-modernization/README.md`
+
 ## Inputs
 
 - the current architecture artifact set
 - relevant requirements, decisions, standards, and transition items
 - review expectations from governance
+
+## Steps
+
+1. Confirm the scope of the review.
+   Decide whether this is a project checkpoint, a quality sweep, or a governance-prep review.
+2. Check coverage.
+   Are the critical business, solution, data, technology, and change concerns represented?
+3. Check coherence.
+   Do the artifacts tell one story, or are there contradictions?
+4. Check traceability.
+   Can you follow the path from stakeholder and objective through requirement, solution, decision, and delivery?
+5. Check governance readiness.
+   Are decisions, risks, exceptions, and review expectations visible?
+6. Check views and documentation.
+   Are the important diagrams and written outputs aligned to the model?
+7. Publish findings in severity order and name the missing next actions.
 
 ## Outputs
 
@@ -23,7 +46,20 @@ traceability, and governance readiness.
 - identified gaps in coverage, linkage, quality, or consistency
 - prioritized follow-up actions
 
+## Output Checklist
+
+- findings are specific and anchored in artifacts
+- missing links and missing evidence are called out
+- governance blockers are explicit
+- the review leaves a clearer next action, not just a critique
+
 ## Typical Collaboration
 
 - works closely with `architecture-governance-lead`
 - supports every other role and every delivery skill
+
+## Quality Checks
+
+- Findings should prioritize risk and delivery impact over stylistic preference.
+- A review should not stop at “missing document” if the underlying model gap is the real issue.
+- If no findings exist, say so explicitly and mention residual risks or evidence gaps.

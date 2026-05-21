@@ -1,0 +1,99 @@
+spec:
+  id: RSK-1001
+  name: delayed-downstream-event-adoption
+  display_name: Delayed Downstream Event Adoption
+  aliases:
+    - Event Adoption Risk
+  summary: Risk that the downstream policy administration team delays adoption of the standard activation event feed.
+  description: >
+    Architecture risk that delayed downstream adoption of the standard
+    activation event feed undermines expected onboarding cycle-time benefits.
+
+  classification:
+    risk_type: architecture-delivery
+    category: transition
+    impact_level: high
+    criticality: high
+
+  status:
+    lifecycle: active
+    treatment_status: mitigation-planned
+    trend: stable
+
+  ownership:
+    risk_owner: Solution Architecture
+    mitigation_owner: Program Manager
+    escalation_owner: Enterprise Architecture
+
+  metadata:
+    source_of_truth:
+      system: Open Architect Worked Example
+      record_locator: RSK-1001
+      owner: Enterprise Architecture
+    last_reviewed: 2026-05-21
+    review_owner: Enterprise Architecture
+    confidence: medium
+    references:
+      - type: document
+        title: Worked Example Overview
+        url: .architect/examples/customer-onboarding-modernization/README.md
+    change_log:
+      - date: 2026-05-21
+        summary: Created worked example risk for delayed downstream adoption.
+        author: Open Architect
+
+  relationships:
+    - type: threatens-objective
+      target_kind: objective
+      target_id: OBJ-1001
+      strength: primary
+      confidence: high
+    - type: threatens-solution
+      target_kind: solution
+      target_id: SOL-1001
+      strength: primary
+      confidence: high
+    - type: threatens-transition-architecture
+      target_kind: transition-architecture
+      target_id: TA-1001
+      strength: primary
+      confidence: high
+
+  statement:
+    cause: Downstream policy administration change capacity may not align with onboarding modernization milestones.
+    event: Policy Administration cannot consume the standard activation event on schedule.
+    effect: Customer activation remains partially manual and the expected cycle-time improvement is delayed.
+
+  analysis:
+    likelihood: medium
+    impact: high
+    exposure: significant
+    early_indicators:
+      - Delayed interface contract sign-off
+      - Repeated requests for temporary manual handoff
+      - Unresolved downstream exception handling design questions
+
+  treatment:
+    strategy: mitigate
+    mitigation_actions:
+      - Lock event contract sign-off before build completion.
+      - Track downstream readiness in each steering review.
+      - Prepare a controlled fallback for limited manual activation.
+    contingency_actions:
+      - Restrict Wave 1 scope to priority customer segments.
+      - Escalate milestone slippage to the architecture review board.
+
+  governance:
+    review_cadence: fortnightly
+    escalation_threshold: missed interface readiness milestone
+
+  tags:
+    - risk
+    - onboarding
+    - transition
+
+  notes:
+    assumptions:
+      - The downstream team has funded capacity in the Wave 1 delivery window.
+    risks:
+      - Fallback processes may become sticky if not explicitly time-bounded.

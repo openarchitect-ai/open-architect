@@ -1,0 +1,175 @@
+spec:
+  id: TA-1001
+  name: customer-onboarding-wave-1
+  display_name: Customer Onboarding Wave 1
+  aliases:
+    - Onboarding Wave 1 Transition
+  summary: First transition state for introducing the standard activation service and downstream event feed.
+  description: >
+    Time-bounded transition architecture describing Wave 1 of the onboarding
+    modernization initiative, including the new activation service, event feed,
+    and downstream adoption path.
+
+  classification:
+    architecture_state: transition
+    transition_type: rollout-wave
+    scope: solution
+    criticality: high
+
+  status:
+    lifecycle: in-flight
+    planning_status: approved
+    delivery_status: amber
+
+  ownership:
+    architecture_owner: Solution Architecture
+    delivery_owner: Program Manager
+    business_owner: Customer Operations
+
+  metadata:
+    source_of_truth:
+      system: Open Architect Worked Example
+      record_locator: TA-1001
+      owner: Solution Architecture
+    last_reviewed: 2026-05-21
+    review_owner: Solution Architecture
+    confidence: high
+    references:
+      - type: diagram
+        title: Transition Architecture View
+        url: .architect/examples/customer-onboarding-modernization/views/transition-customer-onboarding-wave-1.md
+    change_log:
+      - date: 2026-05-21
+        summary: Created worked example transition architecture for onboarding Wave 1.
+        author: Open Architect
+
+  relationships:
+    - type: driven-by
+      target_kind: initiative
+      target_id: INI-1001
+      strength: primary
+      confidence: high
+    - type: constrained-by
+      target_kind: decision
+      target_id: DEC-1001
+      strength: primary
+      confidence: high
+    - type: changes-capability
+      target_kind: business-capability
+      target_id: BC-1001
+      strength: primary
+      confidence: high
+    - type: changes-application
+      target_kind: application
+      target_id: APP-1001
+      strength: primary
+      confidence: high
+    - type: changes-application
+      target_kind: application
+      target_id: APP-1002
+      strength: supporting
+      confidence: high
+    - type: changes-interface
+      target_kind: interface
+      target_id: IF-1001
+      strength: primary
+      confidence: high
+    - type: changes-data-object
+      target_kind: data-object
+      target_id: DO-1001
+      strength: primary
+      confidence: high
+    - type: executed-by
+      target_kind: work-package
+      target_id: WP-1001
+      strength: primary
+      confidence: high
+
+  timeframe:
+    valid_from: 2026-07-01
+    valid_to: 2026-10-31
+    milestone: wave-1-go-live
+
+  baseline:
+    reference_state: baseline
+    architecture_scope:
+      applications:
+        - APP-1001
+        - APP-1002
+      interfaces: []
+      data_objects:
+        - DO-1001
+
+  target:
+    reference_state: target
+    architecture_scope:
+      applications:
+        - APP-1001
+        - APP-1002
+      interfaces:
+        - IF-1001
+      data_objects:
+        - DO-1001
+
+  changes:
+    introduced:
+      - kind: application-service
+        id: AS-1001
+        change_type: introduce
+        rationale: Introduce a governed activation service boundary.
+      - kind: interface
+        id: IF-1001
+        change_type: introduce
+        rationale: Introduce the standard customer activation event feed.
+    modified:
+      - kind: application
+        id: APP-1001
+        change_type: modify
+        rationale: Extend onboarding portal to emit activation through the service.
+      - kind: application
+        id: APP-1002
+        change_type: modify
+        rationale: Enable downstream consumption of activation events.
+      - kind: data-object
+        id: DO-1001
+        change_type: modify
+        rationale: Finalize the governed activation profile for downstream use.
+    retained: []
+    retired: []
+
+  dependencies:
+    predecessor_transition_architectures: []
+    dependent_work_packages:
+      - WP-1001
+    blocking_risks:
+      - Downstream event adoption readiness must be confirmed before go-live.
+      - Production observability controls must be in place before activation cutover.
+
+  outcomes:
+    business_outcomes:
+      - Customer activation is triggered through the standard flow.
+      - Operations can trace successful and failed downstream activation.
+    architecture_outcomes:
+      - A single activation service boundary is established.
+      - The activation event feed becomes the governed downstream pattern.
+
+  exit_criteria:
+    - Customer activation event feed is live in production.
+    - Policy Administration consumes the standard activation event for Wave 1 scope.
+    - Operational dashboards expose correlation-id based activation traceability.
+
+  governance:
+    approval_forum: Architecture Review Board
+    review_cadence: fortnightly
+    exception_process: Formal architecture waiver required for bypassing the standard event feed.
+
+  tags:
+    - transition
+    - onboarding
+    - wave-1
+
+  notes:
+    assumptions:
+      - Wave 1 can go live without redesigning all onboarding variants.
+    risks:
+      - Partial cutover could create dual operational behavior if not tightly controlled.

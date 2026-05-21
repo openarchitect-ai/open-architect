@@ -1,0 +1,25 @@
+@startuml
+title Customer Activation Synchronization
+
+actor "Customer Operations" as Ops
+participant "Customer Onboarding Portal" as Portal
+participant "Customer Onboarding Service" as Service
+participant "Integration Event Runtime" as Runtime
+participant "Policy Administration" as Policy
+
+Ops -> Portal : Approve onboarding request
+Portal -> Service : submitApprovedActivation(customer_id, correlation_id)
+Service -> Service : Create Customer Activation Profile
+Service -> Runtime : publish customer.activated
+Runtime -> Policy : deliver activation event
+Policy --> Runtime : acknowledge activation accepted
+Runtime --> Service : delivery success
+Service --> Portal : activation accepted
+Portal --> Ops : activation status visible
+
+note over Service,Runtime
+Every activation event includes a correlation_id
+for end-to-end traceability and replay support.
+end note
+
+@enduml

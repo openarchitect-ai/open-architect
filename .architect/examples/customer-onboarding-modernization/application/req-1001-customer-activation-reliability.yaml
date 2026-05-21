@@ -1,0 +1,121 @@
+spec:
+  id: REQ-1001
+  name: customer-activation-reliability-and-traceability
+  display_name: Customer Activation Reliability And Traceability Requirement
+  aliases:
+    - Activation Reliability Requirement
+  summary: Requirement that customer activation be reliable, traceable, and recoverable across the onboarding flow.
+  description: >
+    Requirement capturing availability, traceability, and recovery expectations
+    for the customer activation flow from onboarding approval through downstream
+    policy administration update.
+
+  classification:
+    requirement_type: non-functional
+    category: reliability
+    priority: high
+    criticality: high
+
+  status:
+    lifecycle: active
+    approval_status: approved
+    verification_status: planned
+
+  ownership:
+    business_owner: Customer Operations
+    requirement_owner: Solution Architecture
+    verification_owner: Integration Delivery Lead
+
+  metadata:
+    source_of_truth:
+      system: Open Architect Worked Example
+      record_locator: REQ-1001
+      owner: Solution Architecture
+    last_reviewed: 2026-05-21
+    review_owner: Solution Architecture
+    confidence: high
+    references:
+      - type: diagram
+        title: Activation Sequence Diagram
+        url: .architect/examples/customer-onboarding-modernization/views/sequence-customer-activation-sync.puml
+    change_log:
+      - date: 2026-05-21
+        summary: Created worked example requirement for activation reliability and traceability.
+        author: Open Architect
+
+  relationships:
+    - type: constrains-solution
+      target_kind: solution
+      target_id: SOL-1001
+      strength: primary
+      confidence: high
+    - type: constrains-transition-architecture
+      target_kind: transition-architecture
+      target_id: TA-1001
+      strength: supporting
+      confidence: medium
+    - type: constrains-application-service
+      target_kind: application-service
+      target_id: AS-1001
+      strength: primary
+      confidence: high
+    - type: constrains-interface
+      target_kind: interface
+      target_id: IF-1001
+      strength: primary
+      confidence: high
+    - type: traced-to-decision
+      target_kind: decision
+      target_id: DEC-1001
+      strength: supporting
+      confidence: medium
+    - type: delivered-by-work-package
+      target_kind: work-package
+      target_id: WP-1001
+      strength: supporting
+      confidence: medium
+
+  intent:
+    statement: Customer activation must complete reliably and be fully traceable from onboarding approval to downstream activation outcome.
+    rationale:
+      - Operations must quickly identify and recover failed activations.
+      - Business benefit depends on predictable downstream propagation.
+    success_measure:
+      - name: activation-success-rate
+        target: 99.5%
+      - name: activation-traceability
+        target: 100%
+
+  specification:
+    fit_criteria:
+      - Activation events must be published within 5 minutes of onboarding approval.
+      - Each activation must expose a correlation identifier visible to support teams.
+      - Failed downstream activation must be recoverable without re-entering customer data.
+    constraints:
+      - Use the approved integration runtime and enterprise event logging controls.
+      - Do not expose unmanaged activation endpoints outside the governed service boundary.
+    assumptions:
+      - Downstream consumers can process activation events within the agreed SLA.
+
+  verification:
+    verification_method:
+      - integration test
+      - operational readiness review
+      - observability evidence review
+    acceptance_owner: Customer Operations
+    target_verification_date: 2026-10-15
+
+  governance:
+    source_priority: authoritative
+    waiver_process: Architecture waiver required for reduced traceability coverage.
+
+  tags:
+    - requirement
+    - reliability
+    - onboarding
+
+  notes:
+    assumptions:
+      - Correlation identifiers can be passed across all in-scope components.
+    risks:
+      - Partial observability implementation would reduce support effectiveness.

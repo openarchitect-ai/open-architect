@@ -1,0 +1,109 @@
+spec:
+  id: VIS-1001
+  name: customer-onboarding-modernization-vision
+  display_name: Customer Onboarding Modernization Vision
+  aliases:
+    - Onboarding Vision
+  summary: Architecture vision for a governed, traceable, event-driven customer onboarding flow.
+  description: >
+    Architecture vision describing the target direction for modernizing customer
+    onboarding through a standard service boundary, explicit activation profile,
+    and downstream event propagation.
+
+  classification:
+    vision_type: transformation
+    architecture_state: target
+    scope: cross-domain
+    criticality: high
+
+  status:
+    lifecycle: active
+    approval_status: approved
+    communication_status: published
+
+  ownership:
+    vision_owner: Enterprise Architecture
+    sponsor: Head of Customer Operations
+    lead_architect: Lead Solution Architect
+
+  metadata:
+    source_of_truth:
+      system: Open Architect Worked Example
+      record_locator: VIS-1001
+      owner: Enterprise Architecture
+    last_reviewed: 2026-05-21
+    review_owner: Lead Solution Architect
+    confidence: high
+    references:
+      - type: diagram
+        title: Solution Context Diagram
+        url: .architect/examples/customer-onboarding-modernization/views/context-customer-onboarding-modernization.md
+    change_log:
+      - date: 2026-05-21
+        summary: Created worked example architecture vision for customer onboarding modernization.
+        author: Open Architect
+
+  relationships:
+    - type: supported-by-stakeholder
+      target_kind: stakeholder
+      target_id: STK-1001
+      strength: primary
+      confidence: high
+    - type: articulates-objective
+      target_kind: objective
+      target_id: OBJ-1001
+      strength: primary
+      confidence: high
+    - type: guides-solution
+      target_kind: solution
+      target_id: SOL-1001
+      strength: primary
+      confidence: high
+    - type: informs-transition-architecture
+      target_kind: transition-architecture
+      target_id: TA-1001
+      strength: supporting
+      confidence: medium
+    - type: enabled-by-initiative
+      target_kind: initiative
+      target_id: INI-1001
+      strength: supporting
+      confidence: medium
+
+  vision:
+    problem_statement: Customer activation is delayed by manual downstream setup and weak end-to-end visibility across onboarding steps.
+    future_state: A governed onboarding solution creates a standard activation profile and emits a traceable event to downstream policy administration.
+    value_proposition:
+      - Faster activation for straight-through onboarding
+      - Consistent architecture traceability from requirement to delivery
+      - Reduced manual downstream coordination
+
+  scope:
+    in_scope:
+      - Customer onboarding portal
+      - Activation service
+      - Policy administration activation update
+      - Customer activation profile
+    out_of_scope:
+      - Policy product design
+      - Full customer master remediation outside onboarding
+
+  principles:
+    - Event-driven activation where downstream timing matters
+    - Traceability first for onboarding outcomes and failures
+    - Incremental rollout with explicit transition checkpoints
+
+  governance:
+    approval_forum: Architecture Review Board
+    communication_cadence: milestone-based
+
+  tags:
+    - architecture-vision
+    - onboarding
+    - target
+
+  notes:
+    assumptions:
+      - Stakeholders agree that onboarding modernization can start with one downstream activation path.
+    risks:
+      - The vision may fragment if teams introduce side-channel activation mechanisms.
