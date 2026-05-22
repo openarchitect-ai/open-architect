@@ -28,8 +28,6 @@ Open Architect is built for the situations architects actually walk into:
 
 Twenty-four pre-packaged engagement shapes, each bundling a ready-to-clone `project-config.yaml`, recommended skill sequence, applicable review gates, anti-patterns, and a first-working-session script.
 
-**By engagement family:**
-
 | Family | Playbooks |
 |---|---|
 | Discovery & decision | `inventory-only`, `portfolio-rationalization`, `vendor-evaluation-and-selection`, `capability-based-planning` |
@@ -41,39 +39,7 @@ Twenty-four pre-packaged engagement shapes, each bundling a ready-to-clone `proj
 | M&A lifecycle | `acquisition-due-diligence`, `post-acquisition-integration`, `divestiture-separation` |
 | Practice setup & operation | `architecture-team-bootstrap`, `steady-state-governance` |
 
-**Detail:**
-
-
-| Playbook | Use when |
-|---|---|
-| [`inventory-only`](.architect/playbooks/inventory-only/) | document and assess an estate without modeling target state |
-| [`quick-solution-design`](.architect/playbooks/quick-solution-design/) | bounded solution for one team, in weeks |
-| [`migration-wave`](.architect/playbooks/migration-wave/) | modernization, decommissioning, or wave-based transition |
-| [`full-togaf-adm`](.architect/playbooks/full-togaf-adm/) | enterprise architecture cycle with stakeholders, vision, capabilities, governance |
-| [`ai-platform-bootstrap`](.architect/playbooks/ai-platform-bootstrap/) | standing up or rationalizing an AI platform with model lifecycle, RAG, eval, guardrails |
-| [`compliance-driven-modernization`](.architect/playbooks/compliance-driven-modernization/) | the regulator (DORA, NIS2, AI Act, PCI DSS, HIPAA, FedRAMP, SEC cyber) is the driver |
-| [`post-acquisition-integration`](.architect/playbooks/post-acquisition-integration/) | M&A has happened and two estates must be integrated within a TSA clock |
-| [`data-platform-modernization`](.architect/playbooks/data-platform-modernization/) | building or rationalizing a data platform — lake / lakehouse / mesh, data products, contracts |
-| [`platform-engineering-bootstrap`](.architect/playbooks/platform-engineering-bootstrap/) | standing up an internal developer platform with golden paths and self-service |
-| [`portfolio-rationalization`](.architect/playbooks/portfolio-rationalization/) | invest / tolerate / migrate / eliminate analysis before any migration program executes |
-| [`security-uplift`](.architect/playbooks/security-uplift/) | CISO or threat landscape is driving architectural change — zero-trust, defense-in-depth, identity strategy |
-| [`post-incident-architecture-review`](.architect/playbooks/post-incident-architecture-review/) | major incident has happened and architecture must change to prevent the class of failure |
-| [`tech-debt-remediation`](.architect/playbooks/tech-debt-remediation/) | improving quality of an existing estate without major reshape — debt inventory, scoring, prevention practice |
-| [`steady-state-governance`](.architect/playbooks/steady-state-governance/) | operating the architecture function — board cadence, decision lifecycle, principle stewardship, exception process |
-| [`enterprise-integration-bootstrap`](.architect/playbooks/enterprise-integration-bootstrap/) | standing up an integration platform — iPaaS / event mesh / API gateway / service registry / B2B onboarding |
-| [`cloud-migration`](.architect/playbooks/cloud-migration/) | migrating to cloud — landing zone, 6Rs decisions per app, identity federation, FinOps from Day 1, exit posture |
-| [`vendor-evaluation-and-selection`](.architect/playbooks/vendor-evaluation-and-selection/) | structured RFI / RFP / scoring / decision for selecting a major vendor with defensible rationale |
-| [`capability-based-planning`](.architect/playbooks/capability-based-planning/) | business capability map, heatmap, value-stream alignment, investment direction per capability |
-| [`acquisition-due-diligence`](.architect/playbooks/acquisition-due-diligence/) | pre-deal technical diligence — risk register, integration cost estimate, crown-jewel inventory, deal-impact decisions |
-| [`divestiture-separation`](.architect/playbooks/divestiture-separation/) | seller-side carve-out — TSA forward, identity / data separation, decommissioning, standalone architecture at TSA exit |
-| [`architecture-team-bootstrap`](.architect/playbooks/architecture-team-bootstrap/) | creating an architecture function from zero — charter, founding principles, operating model, hiring plan, tooling, initial cadence |
-| [`business-continuity-readiness`](.architect/playbooks/business-continuity-readiness/) | proactive BCP / DR — criticality tiers, RTO/RPO targets, resilience architecture, recovery rehearsal cadence |
-| [`domain-driven-redesign`](.architect/playbooks/domain-driven-redesign/) | DDD-led redesign of part of an estate — bounded contexts, context map, ubiquitous language, integration patterns |
-| [`decommissioning-program`](.architect/playbooks/decommissioning-program/) | focused legacy retirement — schedule, dependency closure, data archival, customer notice, contract termination |
-
-Pick one. Clone its config. Follow the brief.
-
-→ [.architect/playbooks/README.md](.architect/playbooks/README.md)
+Pick one. Clone its config. Follow the brief. Per-playbook descriptions and selection guidance live in the [catalog](.architect/playbooks/README.md).
 
 ### Gap Radar
 
@@ -112,14 +78,8 @@ First-class architecture patterns for AI work: retrieval-augmented generation, p
 |---|---|
 | Joining a project mid-stream or returning after time away | `project-recap` |
 | Preparing for a review gate or after a stretch of intensive modeling | `gap-radar` |
-| Designing one bounded solution for a team, in weeks | `quick-solution-design` |
-| Running a full enterprise architecture cycle | `full-togaf-adm` |
-| Standing up an AI, data, developer, or integration platform | [platform-bootstrap family](.architect/playbooks/README.md) (`ai-platform-bootstrap`, `data-platform-modernization`, `platform-engineering-bootstrap`, `enterprise-integration-bootstrap`) |
-| Driven by a regulator, CISO, incident, or BCP/DR posture | [driver-specific family](.architect/playbooks/README.md) (`compliance-driven-modernization`, `security-uplift`, `post-incident-architecture-review`, `business-continuity-readiness`) |
-| Working any phase of an M&A | [M&A lifecycle family](.architect/playbooks/README.md) (`acquisition-due-diligence`, `post-acquisition-integration`, `divestiture-separation`) |
-| Modernizing, migrating, redesigning, or decommissioning | [modernization & transition family](.architect/playbooks/README.md) (`migration-wave`, `cloud-migration`, `tech-debt-remediation`, `domain-driven-redesign`, `decommissioning-program`) |
-| Doing discovery before action (inventory, rationalization, vendor selection, capability mapping) | [discovery & decision family](.architect/playbooks/README.md) (`inventory-only`, `portfolio-rationalization`, `vendor-evaluation-and-selection`, `capability-based-planning`) |
-| Setting up or operating the architecture function itself | [practice setup & operation family](.architect/playbooks/README.md) (`architecture-team-bootstrap`, `steady-state-governance`) |
+| Starting a new engagement | pick a playbook from the [catalog](.architect/playbooks/README.md) |
+| Standing up AI capability inside an engagement | the [AI patterns](.architect/patterns/ai/README.md) (referenced by `ai-platform-bootstrap` and gap-radar) |
 | Using C4 / ArchiMate-Lite / DDD vocabulary | [`guidance/vocabulary-bridges/`](.architect/guidance/vocabulary-bridges/) |
 | Not sure which playbook fits | `./architect.sh list-playbooks` then `./architect.sh playbook <name>` |
 
