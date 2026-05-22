@@ -32,12 +32,35 @@ shape demands it; major bump to 1.0 will signal the contract is frozen.
 
 ## [Unreleased]
 
-### Changed
-
-- **Root `README.md` restructured** to reflect the workflow accumulated this release. Adds a new "How Open Architect works" section anchored by a Mermaid workflow diagram (`architect new` → `project-recap` → `baseline-discovery` → modeling skills → `diagram-author` → `gap-radar` / `architecture-review` → `change-coordinator` → loop). Signature capabilities re-grouped: scanning skills (`project-recap` + `gap-radar` + `capability-radar`) presented together; new "Workflow discipline" subsection covering working-log + change-register + `architect status`; new "Diagrams as code" subsection covering the 9 starter views. Getting Started extended with `architect status` and the six-file architect-work scaffold. Project status, What's In The Repo, and Contributing list refreshed to match current state.
-
 ### Added
 
+- **Convention Enforcement Matrix landing.** Closes the smoke-test
+  finding that ~half the convention surface in `workspace-defaults.yaml`
+  was decorative — defined and documented but with no behavioral
+  binding the AI reads during skill execution. New artifacts:
+  - [`config/bindings.md`](./config/bindings.md) — single AI-facing
+    binding spec. Organizes every convention flag's behavioral effect
+    by six categories (response shape, mode/context, conversational
+    contract, evidence/traceability, governance gates,
+    requirement-change). `AGENTS.md` mandates the AI read it on every
+    session, same pattern as `response-display.md`.
+  - [`guidance/convention-enforcement-matrix.md`](./guidance/convention-enforcement-matrix.md) —
+    audit register listing every flag, its binding location, and
+    status. The audit target for the `capability-radar` §7 check.
+  - **§7 Convention Binding Checks** in
+    [`guidance/capability-radar-checklists.md`](./guidance/capability-radar-checklists.md) —
+    mechanical checks for unbound flags, documentation-only bindings,
+    distributed bindings, and retired-flag re-introduction.
+  - **Adding / Retiring a convention** sections in
+    [`guidance/capability-maintenance.md`](./guidance/capability-maintenance.md) —
+    explicit ripple-effect checklists that codify the
+    binding-vs-documentation distinction surfaced by the audit.
+
+  Convention surface went from **37 → 29 flags, all bound**. The
+  smoke-test pain point (`artifact_creation_requires_explicit_request`
+  not being honored by artifact-creating skills) is closed: the
+  binding lives in `bindings.md` §2 and fires on every session via
+  the AGENTS.md mandate.
 - **`working-with-open-architect.md` user-facing guide.** Closes a
   first-touch friction: there was no user-facing documentation
   explaining how an architect actually runs a skill, updates
@@ -186,6 +209,23 @@ shape demands it; major bump to 1.0 will signal the contract is frozen.
 
 ### Changed
 
+- **Root `README.md` restructured** to reflect the workflow accumulated this release. Adds a new "How Open Architect works" section anchored by a Mermaid workflow diagram (`architect new` → `project-recap` → `baseline-discovery` → modeling skills → `diagram-author` → `gap-radar` / `architecture-review` → `change-coordinator` → loop). Signature capabilities re-grouped: scanning skills (`project-recap` + `gap-radar` + `capability-radar`) presented together; new "Workflow discipline" subsection covering working-log + change-register + `architect status`; new "Diagrams as code" subsection covering the 9 starter views. Getting Started extended with `architect status` and the six-file architect-work scaffold. Project status, What's In The Repo, and Contributing list refreshed to match current state.
+- **`AGENTS.md`** now mandates that AI agents read
+  `config/bindings.md` and `config/response-display.md` on every
+  session, alongside `AGENTS.md` itself. AGENTS.md remains the lean
+  trunk; binding spec lives in `bindings.md` so every binding fires
+  in the AI's execution context.
+- **Thematic guidance files** (`work-modes.md`,
+  `evidence-and-quality.md`, `governance-conventions.md`) stripped of
+  duplicate binding text. They now carry only the *narrative
+  principles* — the "why" behind each flag — and link to
+  `bindings.md` for the "what to do." Deliberate consolidation to
+  avoid distributed binding maintenance.
+- **`config/workspace-defaults.yaml`** + all 24 playbook
+  `project-config.yaml` files lost the 8 retired flag entries.
+- **`current-state.md`** updated with the full audit / retire / bind /
+  consolidate narrative including architectural lessons codified
+  during the pass.
 - Split workspace-level defaults from engagement config: renamed
   `.architect/project-config.yaml` to
   `.architect/config/workspace-defaults.yaml`. Slimmed to workspace-only
@@ -194,6 +234,21 @@ shape demands it; major bump to 1.0 will signal the contract is frozen.
   skills enabled, governance review checkpoints) now live exclusively in
   `workspace/<project>/project-config.yaml`. Updated skills, validator,
   agent task artifact, AGENTS.md, and documentation accordingly.
+
+### Removed
+
+- **8 convention flags retired as redundant or decorative** —
+  `id_prefix_mode`, `human_review_required`, `ask_before_scope_changes`,
+  `ask_before_status_changes`, `ask_user_on_blocking_open_questions`,
+  `allow_progress_on_non_blocking_open_questions`,
+  `maximize_followup_task_capture`, `stop_on_decision_changes`. Each
+  was either (a) functionally identical to an already-bound canonical
+  flag (e.g. `human_review_required` ≡ `allow_agent_auto_approval: false`)
+  or (b) describing default behavior with no opposing value anyone
+  would want to set. Retirement table in
+  [`config/agent.config.md`](./config/agent.config.md) §"Retired
+  conventions" preserves each flag's canonical replacement so future
+  maintainers don't re-add by reflex.
 
 ---
 

@@ -306,85 +306,30 @@ Recommended guided output elements:
 - bottom line
   - a short closing takeaway or decision boundary
 
-Use `guided_mode_depth` to tune how much of that guidance is included:
+> **Note on bindings.** Earlier versions of this file contained
+> `If conventions.X is true: ...` behavioral spec blocks for many
+> flags. Those blocks were duplicates of the canonical AI behavior
+> defined in [`config/bindings.md`](./bindings.md) (which `AGENTS.md`
+> mandates the AI read on every session) and were removed in the
+> 2026-05-22 consolidation. For the AI behavior governed by each
+> flag, see `bindings.md`. This file documents purpose, allowed
+> values, and per-section guidance for *human maintainers*.
 
-- `concise`
-  - short orientation and next step
-- `standard`
-  - orientation, key gaps, and next-step guidance
-- `detailed`
-  - fuller coaching and explicit decision support
+### `architect-work/` file conventions
 
-If `conventions.include_architect_tasks_in_all_modes` is `true`:
+The architect-work folder holds six categorical files plus the
+working-log narrative:
 
-- every mode should leave the architect with concrete next actions
-- those actions may include questions to ask, evidence to collect, people to
-  confirm with, decisions to prepare, or artifacts to review
-- the task list should stay mode-appropriate and should not force modeling or
-  orchestration when the user did not ask for it
+- `open-questions.md` — unresolved questions, grouped by domain
+- `answers-and-confirmations.md` — confirmed facts and current working interpretation
+- `evidence-requests.md` — what's been received and what's still missing
+- `architect-task-list.md` — Ask / Confirm / Request / Decide tasks
+- `working-log.md` — chronological, plain-language narrative of what happened on the project (newest entry on top)
+- `change-register.md` — chronological log of requirement and scope changes (newest entry on top); sponsor-readable single-page view of scope drift, populated by the `change-coordinator` skill per [`requirement-change-handling.md`](../guidance/requirement-change-handling.md)
 
-If `conventions.announce_active_role_and_skill` is `true`:
-
-- say which role lens is active for the current task
-- say which skill or playbook is being used, if any
-- do this near the start of the response so the architect can see the working stance
-- if no named skill is being used, say that the assistant is working without an explicit skill
-
-If `conventions.response_display_style` is `architect-friendly`:
-
-- responses should follow the architect-friendly display contract by default
-
-If `conventions.response_display_enforcement` is `strict`:
-
-- responses must begin with a `Session` block unless the task is trivially short
-- responses must use the standard section order unless the user explicitly asks for a different format
-- responses must use grouped architect tasks when a task bundle is present
-- responses must end with a short `Bottom Line` when the answer is more than a quick one-liner
-
-If `conventions.response_session_banner` is `table`:
-
-- the `Session` block should be rendered as a two-column table with `Field` and `Value`
-
-If `conventions.response_status_labels` is `true`:
-
-- use status labels such as `CONFIRMED`, `PROVISIONAL`, `OPEN`, `BLOCKER`, `ACTION`, `REQUEST`, and `DECISION` where they improve scanability
-
-If `conventions.response_task_grouping` is `ask-confirm-request-decide`:
-
-- group architect tasks as `Ask`, `Confirm`, `Request`, and `Decide` unless the task list is too small to benefit
-
-If `conventions.response_bottom_line` is `true`:
-
-- include a short `Bottom Line` takeaway at the end of substantial responses
-
-If `conventions.requirement_freeze_enforcement` is set:
-
-- `off` — post-`requirement-baseline` requirement changes apply normally with no freeze-gate ceremony
-- `advisory` (recommended default) — changes apply but the [`change-register.md`](../guidance/requirement-change-handling.md) entry flags any post-baseline landing; the next review gate explicitly acknowledges them
-- `strict` — post-baseline changes pause until the sponsor or coordinator formally re-opens the requirement set; the `change-coordinator` skill produces a re-opening request instead of applying the change
-
-Strict mode pairs with regulated engagements (DORA, NIS2, HIPAA) where requirements drift must be defensible against audit. Advisory mode is the right default for most engagements.
-
-If `conventions.response_structured_choices` is `true`:
-
-- when a decision has **2-4 discrete, mutually-exclusive options with non-trivial trade-offs**, surface it via the host's structured-choice UI (e.g. `AskUserQuestion` in Claude Code) in addition to the prose explanation
-- use it for: immediate next-step choices at end of response, `Decide` architect tasks with pickable options, and option-comparison tables in the body
-- skip for: yes/no confirmations, open-ended exploration, scope-clarifying questions mid-task, decisions the user can't make unilaterally
-- where the host has no structured-choice primitive (most non-Claude AI tools today), fall back to prose options
-- see [`response-display.md`](./response-display.md) for the full convention
-
-If `conventions.architect_work_auto_capture` is `true`:
-
-- identify follow-up material that belongs in `architect-work/`
-- classify it into the appropriate working files:
-  - `open-questions.md` — unresolved questions, grouped by domain
-  - `answers-and-confirmations.md` — confirmed facts and current working interpretation
-  - `evidence-requests.md` — what's been received and what's still missing
-  - `architect-task-list.md` — Ask / Confirm / Request / Decide tasks
-  - `working-log.md` — chronological, plain-language narrative of what happened on the project (newest entry on top)
-  - `change-register.md` — chronological log of requirement and scope changes (newest entry on top); sponsor-readable single-page view of scope drift, populated by the `change-coordinator` skill per [`requirement-change-handling.md`](../guidance/requirement-change-handling.md)
-- surface those proposed updates as part of the response when useful
-- when a skill runs (`project-recap`, `baseline-discovery`, `gap-radar`, `solution-modeler`, `decision-recorder`, etc.) it should propose a `working-log.md` entry summarizing the run in plain language so the project's story remains readable to someone joining cold
+The `architect_work_auto_capture` and
+`architect_work_auto_update_mode` flags govern *how* the AI proposes
+updates to these files — see `bindings.md` §3.
 
 ### Item formatting convention
 
@@ -405,17 +350,6 @@ The `working-log.md` file is the exception — its entries are dated H2
 headings (`## YYYY-MM-DD — title`) followed by free-form prose under
 `What I did:` / `What I found:` / `Biggest signal:` / `See also:`
 labels, because the log is narrative, not categorical.
-
-If `conventions.architect_work_auto_update_mode` is `approval-before-write`:
-
-- the assistant may prepare `architect-work/` updates automatically
-- it must not write those updates until the architect confirms
-- confirmation may be explicit in the current exchange or via a clear user instruction to update the files
-
-If `conventions.architect_work_auto_update_scope` is `architect-work-only`:
-
-- apply this automation only to the project-local `architect-work/` folder
-- do not extend the same writeback behavior to formal architecture artifacts unless the user asks for it
 
 See [`.architect/config/response-display.md`](./response-display.md) for the display pattern.
 
@@ -500,13 +434,6 @@ In an architect-assist project, agents should default to:
   - change scope assumptions
   - change statuses or approvals
   - introduce owners or stakeholders not grounded in source evidence
-
-If `conventions.clarify_operating_context_first` is `true`:
-
-- assume the operating context may still need clarification
-- make the current interpretation explicit before leaning into conclusions
-- keep a visible boundary between source evidence and inferred framing
-- surface the smallest context questions that would change the next step
 
 ## Open Question Behavior
 

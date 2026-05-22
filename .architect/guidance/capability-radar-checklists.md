@@ -223,13 +223,15 @@ flags bind in `AGENTS.md` directly).
   **Severity:** `warn` (the failure is silent drift, not breakage)
   **Mechanical:** yes — grep each flag name across the binding-spec file set; zero hits = finding
 
-### Documentation-only bindings (anti-pattern)
+### Documentation-or-duplicate bindings in agent.config.md (anti-pattern)
 
-- **Signal:** Are there `If conventions.X is true: ...` behavioral spec blocks in `config/agent.config.md` for flags that aren't bound in `config/bindings.md`?
-  **Where:** `config/agent.config.md` headings of the form `If conventions.<flag>` vs. `config/bindings.md` flag-name references
-  **Why:** `agent.config.md` is the docs file — `AGENTS.md` doesn't mandate reading it during routine skill execution. Behavioral specs that live only there are bindings in name only. The canonical binding location is `bindings.md`, which AGENTS.md *does* mandate reading.
+- **Signal:** Are there any `If conventions.X is true: ...` (or similarly phrased) behavioral spec blocks in `config/agent.config.md`?
+  **Where:** grep `config/agent.config.md` for the pattern `^If \`?conventions\.` and equivalents
+  **Why:** `agent.config.md` is the docs file for human maintainers — it documents purpose, allowed values, and per-section guidance. `AGENTS.md` does NOT mandate reading it during skill execution, so a behavioral spec there fires only by happenstance. Two failure modes both warrant the finding:
+    - *Documentation-only binding* — the flag's behavioral text lives ONLY in `agent.config.md` and not in `bindings.md` (binding doesn't fire reliably).
+    - *Duplicate binding* — the same behavioral text appears in BOTH `agent.config.md` and `bindings.md` (maintenance burden; one will drift behind the other). The 2026-05-22 audit found 14 such duplicates and removed them.
   **Severity:** `warn`
-  **Mechanical:** partial (the heading enumeration is mechanical; deciding whether the matching binding exists requires reading)
+  **Mechanical:** yes — any matching block is a finding regardless of whether `bindings.md` also covers the flag. `agent.config.md` should hold only documentation (purpose, allowed values, when-to-use guidance), not behavioral `If X then Y` blocks.
 
 ### Distributed-binding anti-pattern
 
