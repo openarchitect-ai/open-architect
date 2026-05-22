@@ -20,7 +20,7 @@ The workspace assumes the architect stays in control. AI assists with bounded ta
 
 ## Core idea
 
-Each YAML file under `architecture/` represents one architecture object:
+Each YAML file under a project's `workspace/<project-name>/` folder represents one architecture object:
 
 - one `application`
 - one `interface`
@@ -35,13 +35,24 @@ Objects link to each other through typed `relationships`. This is what makes the
 
 ## How to start
 
-The shortest useful path:
+The shortest useful path uses the `architect` CLI:
 
-1. Pick an engagement shape from [`playbooks/`](./playbooks/README.md).
-2. Copy the playbook's `project-config.yaml` to your project location under `architecture/<your-project>/project-config.yaml`.
-3. Follow the playbook's first-working-session script.
+```bash
+# from the repo root
+./architect.sh new my-project --playbook quick-solution-design
+# or PowerShell
+./architect.ps1 new my-project -Playbook quick-solution-design
+```
 
-The playbook chooses the right templates, roles, skills, and review gates for the engagement. Tune from there as the work evolves.
+That scaffolds `../workspace/my-project/` with `project-config.yaml`,
+`notes.md`, `architect-work/`, and `docs/`. Then follow the playbook's
+first-working-session script.
+
+CLI usage and templates: [`cli/README.md`](./cli/README.md).
+
+Manual path: pick a playbook from [`playbooks/`](./playbooks/README.md),
+create `../workspace/<your-project>/`, copy the playbook's
+`project-config.yaml` into it, and start.
 
 For lighter setup:
 
@@ -66,8 +77,12 @@ Beyond the metamodel, the workspace gives you:
 
 ## Folder structure
 
+`.architect/` is the **capability library**. Real project work lives in
+a sibling `workspace/` folder (one subfolder per project).
+
 ```text
-.architect/
+.architect/                  ← capability library (this folder)
+  cli/              ← `architect` CLI (architect.ps1, architect.sh, templates/)
   playbooks/        ← engagement shapes (start here)
   patterns/         ← reusable architecture patterns (incl. patterns/ai/)
   templates/        ← the metamodel (what each artifact kind looks like)
@@ -76,15 +91,21 @@ Beyond the metamodel, the workspace gives you:
   method/           ← chosen project method + ADM and transition references
   guidance/         ← conventions, glossary, vocabulary-bridges/
   compliance/       ← jurisdiction, sector, and control obligations
-  architecture/     ← real project artifacts go here
-    application/  business/  change/  data/  governance/  technology/
-  examples/         ← worked reference projects
+  examples/         ← worked reference projects (use the same project shape as workspace/)
   agents/           ← runtime profiles for multi-agent execution (advanced)
   runtime/          ← live queue / gate state (advanced)
   schemas/          ← formal JSON Schema contracts (advanced)
   validation/       ← validators for templates and artifacts (advanced)
   config/           ← workspace and agent configuration guides
   project-config.yaml ← workspace-level skeleton; real projects pick a playbook
+
+../workspace/                ← where the architect's project work lives
+  <project-name>/
+    project-config.yaml      ← chosen playbook + tailoring
+    notes.md
+    architect-work/          ← architect-owned working notes
+    docs/                    ← source material
+    business/  application/  data/  technology/  governance/  change/  views/
 ```
 
 ---
@@ -136,14 +157,14 @@ The workspace answers five questions for the project:
 2. What artifacts do we use? — `templates/` and `project-config.yaml`
 3. Who is responsible? — `roles/`
 4. What method do we follow? — `method/`
-5. Where do real project artifacts live? — `architecture/`
+5. Where do real project artifacts live? — `../workspace/<project-name>/`
 
 In practical terms:
 
 - Use `playbooks/` to pick the engagement shape and start with a pre-packaged config.
 - Use `project-config.yaml` to declare what this project will actually use.
 - Use `templates/` to define the metamodel.
-- Use `architecture/` to store real project instances.
+- Use `../workspace/<project-name>/` to store real project instances.
 - Use `patterns/` for reusable architectural approaches and design guidance.
 - Use `compliance/` to scope jurisdiction, sector, privacy, AI, cyber-resilience, and payment/security obligations.
 - Use `skills/` for reusable procedures (incl. `gap-radar`, `project-recap`, `solution-modeler`, etc.).
@@ -178,7 +199,7 @@ For most real projects, start in `architect-assist`:
 
 | Level | What it gives you | When to use |
 |---|---|---|
-| **Core** | `playbooks/`, `project-config.yaml`, `architecture/`, `config/`, `guidance/`, `templates/`, small subset of `roles/` and `skills/` | normal architect-assist work |
+| **Core** | `playbooks/`, `project-config.yaml`, `../workspace/`, `config/`, `guidance/`, `templates/`, small subset of `roles/` and `skills/` | normal architect-assist work |
 | **Optional** | broader `roles/`, broader `skills/`, `compliance/`, richer template coverage | projects that need more explicit structure but not full orchestration |
 | **Advanced** | `agents/`, `runtime/`, `schemas/`, `validation/` | multi-agent execution, stronger automation, deeper formal controls |
 

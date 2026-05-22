@@ -158,8 +158,8 @@ Recommended approach:
 
 1. Pick the closest playbook from [`../playbooks/`](../playbooks/README.md).
 2. Read its `playbook.md` end-to-end before copying the config.
-3. Copy its `project-config.yaml` to your project location
-   (`.architect/architecture/<project-name>/project-config.yaml`).
+3. Copy its `project-config.yaml` into a new project folder under
+   `workspace/<project-name>/project-config.yaml`.
 4. Set `project.playbook` to the playbook name so future agents and human
    reviewers can see which engagement shape was intended.
 5. Tune the rest per the playbook's Customization Guide.

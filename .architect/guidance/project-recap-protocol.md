@@ -40,7 +40,7 @@ do not skip ahead.
    - read newest files first (use file modification timestamps)
    - flag any docs that appear to contradict current artifacts
 
-7. **`architecture/<project-name>/`** artifacts, in this order:
+7. **`workspace/<project-name>/`** artifacts, in this order:
    - `stakeholder` and `objective`
    - `architecture-vision` if present
    - `business-capability` and `organization`
@@ -135,7 +135,7 @@ and include these sections in this order:
 ## Output Conventions
 
 - Use `CONFIRMED`, `PROVISIONAL`, `OPEN`, `BLOCKER`, `ACTION`, `REQUEST`, `DECISION` labels where they aid scanning.
-- For every recap item, name its source (e.g. `architect-work/answers-and-confirmations.md` or `architecture/<project>/decisions/D-0007.yaml`).
+- For every recap item, name its source (e.g. `architect-work/answers-and-confirmations.md` or `workspace/<project>/governance/D-0007.yaml`).
 - Use clickable `file_path:line_number` references.
 - Do not propagate answers, close drift, or update artifacts. Recap is read-only.
 - Surface proposed `architect-work/` updates as suggestions; write only after architect confirmation per `architect_work_auto_update_mode`.

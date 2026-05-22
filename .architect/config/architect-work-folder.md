@@ -20,7 +20,7 @@ Use it to capture:
 ## Recommended Shape
 
 ```text
-.architect/architecture/<project-name>/
+workspace/<project-name>/
   docs/
   architect-work/
     open-questions.md

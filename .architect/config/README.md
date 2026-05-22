@@ -35,7 +35,7 @@ For pre-packaged engagement starting points, see [`../playbooks/`](../playbooks/
 
 For most new projects:
 
-1. create a small project folder under `.architect/architecture/`
+1. create a small project folder under `workspace/`
 2. add a `docs/` folder for uploaded source material
 3. optionally add a short `notes.md` with business context
 4. stay in `inventory` or `analysis` mode first

@@ -27,9 +27,8 @@ Each playbook folder contains exactly two files:
 To start a project from a playbook:
 
 1. Read its `playbook.md` to confirm fit.
-2. Copy its `project-config.yaml` to `.architect/project-config.yaml` (or
-   create a new project folder under `.architect/architecture/` and put the
-   config there).
+2. Create a new project folder at `workspace/<your-project>/` and copy the
+   playbook's `project-config.yaml` into it.
 3. Adjust `project.name` and any compliance scope to your real context.
 4. Follow the playbook's recommended first steps.
 
@@ -83,8 +82,8 @@ Contributions welcome — see *Contributing A Playbook* below.
 
 Playbook selection is **per project**, not workspace-level. The
 workspace-level `.architect/project-config.yaml` should leave `playbook`
-empty. Each project under `.architect/architecture/<project-name>/` picks
-its own playbook based on the engagement shape.
+empty. Each project under `workspace/<project-name>/` picks its own
+playbook based on the engagement shape.
 
 The architect is expected to **customize** the cloned config and the
 playbook stance per engagement — playbooks are intentional starting points,

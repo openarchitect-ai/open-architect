@@ -33,7 +33,7 @@ a handover, or simply starting a working session and need orientation first.
 ```text
 Project Recap.
 
-Run the `project-recap` skill against `.architect/architecture/<project-name>/`.
+Run the `project-recap` skill against `workspace/<project-name>/`.
 Walk the read order in `.architect/guidance/project-recap-protocol.md`.
 
 Tell me:
@@ -74,7 +74,7 @@ standards gaps. Best before review gates or when re-entering after recap.
 ```text
 Gap Radar.
 
-Run the `gap-radar` skill against `.architect/architecture/<project-name>/`.
+Run the `gap-radar` skill against `workspace/<project-name>/`.
 Use the checklists in `.architect/guidance/gap-radar-checklists.md`.
 
 Honor the scope controls:
@@ -127,7 +127,7 @@ Use when you want source-first extraction only.
 ```text
 Inventory mode.
 
-Read the source files under `.architect/architecture/<project-name>/docs/`.
+Read the source files under `workspace/<project-name>/docs/`.
 Extract the applications and interfaces relevant to <topic>.
 Do not create architecture artifacts.
 Keep unknowns explicit.
@@ -223,7 +223,7 @@ Use when you are ready to preserve the result.
 ```text
 Modeling mode.
 
-Turn the agreed baseline and scope into project artifacts under `.architect/architecture/<project-name>/`.
+Turn the agreed baseline and scope into project artifacts under `workspace/<project-name>/`.
 Create only the minimum useful set.
 Keep all unresolved questions visible.
 Guide me as you go.
@@ -236,7 +236,7 @@ Good when you need to turn source material into a first stakeholder call.
 ```text
 Analysis mode.
 
-Using the source material under `.architect/architecture/<project-name>/docs/`, prepare me for a first discovery call.
+Using the source material under `workspace/<project-name>/docs/`, prepare me for a first discovery call.
 Give me:
 - a short working interpretation
 - the most important unknowns

@@ -1,8 +1,8 @@
 project:
   # This file is the workspace-level skeleton. Real engagement configuration belongs
-  # to a project under .architect/architecture/<project-name>/project-config.yaml.
+  # to a project under workspace/<project-name>/project-config.yaml.
   # To start a new project, pick an engagement shape from .architect/playbooks/,
-  # copy its project-config.yaml into the project folder, then tune from there.
+  # copy its project-config.yaml into the workspace/<project-name>/ folder, then tune from there.
   name: Open Architect # replace with the project or workspace name if needed
   architecture_scope: enterprise-and-solution # enterprise | solution | enterprise-and-solution
   architecture_mode: project-local # project-local

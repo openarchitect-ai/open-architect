@@ -273,7 +273,7 @@ Pre-load `architect-work/open-questions.md` with these:
 1. Read this playbook.
 2. Copy `project-config.yaml` from this folder to your project location.
 3. Adjust `project.name`. Set compliance scope based on the incident class (privacy, security, financial-sector, sector-specific).
-4. Open [`architecture/<your-project>/architect-work/`](.) and pre-load the incident framing and notification clock immediately.
+4. Open [`workspace/<your-project>/architect-work/`](.) and pre-load the incident framing and notification clock immediately.
 5. Run [`baseline-discovery`](../../skills/baseline-discovery.md) on the incident path *before* designing the fix.
 6. Run [`gap-radar`](../../skills/gap-radar.md) before each gate, with particular attention to *Drift Signals* (assumptions vs reality) and *Ownership Truthfulness Risks* (control ownership claims that didn't hold).
 

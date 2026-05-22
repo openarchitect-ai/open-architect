@@ -104,7 +104,7 @@ inventory may expose:
 
 ## Entry Criteria
 
-- a project folder exists under `.architect/architecture/<project-name>/`
+- a project folder exists under `workspace/<project-name>/`
 - there is at least some source material in `docs/`
 - the stakeholder is clear that this is **inventory**, not solution design
 
@@ -155,7 +155,7 @@ Tune the playbook per engagement:
 
 1. Read this playbook.
 2. Copy `project-config.yaml` from this folder to your project location
-   (`.architect/architecture/<project-name>/project-config.yaml`).
+   (`workspace/<project-name>/project-config.yaml`).
 3. Adjust `project.name`. Confirm jurisdictions if any apply.
 4. Run [`project-recap`](../../skills/project-recap.md) if the project
    already has content; otherwise begin with

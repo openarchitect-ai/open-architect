@@ -22,7 +22,7 @@ with the structured architecture rather than becoming disconnected drawings.
 - architecture diagrams based on the underlying model
 - view-specific visual summaries such as context, interaction, deployment, or transition diagrams
 - updated diagrams after requirements or decisions change
-- diagram sources stored under `.architect/architecture/views/` for live projects
+- diagram sources stored under `workspace/<project-name>/views/` for live projects
 - example diagram sources stored under `.architect/examples/<example-name>/views/`
 
 ## Typical Collaboration

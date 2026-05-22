@@ -154,25 +154,42 @@ This is the kind of report Open Architect produces — scannable, severity-marke
 
 ## Getting Started
 
-1. **Pick a playbook** from [.architect/playbooks/](.architect/playbooks/) — pick the engagement shape closest to your work.
-2. **Copy its `project-config.yaml`** to your project location under `.architect/architecture/<your-project>/`.
-3. **Follow the playbook's first-working-session script.**
+The fastest path is the `architect` CLI:
 
-That's it. Don't pick templates or skills one by one — the playbook has chosen them for you. Tune from there as the engagement evolves.
+```bash
+# PowerShell
+./architect.ps1 new my-project -Playbook quick-solution-design
+
+# Bash
+./architect.sh new my-project --playbook quick-solution-design
+```
+
+That scaffolds `workspace/my-project/` with `project-config.yaml`,
+`notes.md`, `architect-work/`, and `docs/` ready to use.
+
+Then **follow the playbook's First Working Session steps** (in
+`.architect/playbooks/<playbook>/playbook.md`).
+
+To see available playbooks: `./architect.sh list-playbooks` (or check
+the [catalog](.architect/playbooks/README.md)).
 
 **Quick-start guides:**
 
 - [Playbooks overview](.architect/playbooks/README.md) — pick an engagement shape
+- [`architect` CLI](.architect/cli/README.md) — init and project scaffolding commands
 - [Starter project guide](.architect/config/starter-project.md) — minimum useful setup
 - [Prompt recipes](.architect/config/prompt-recipes.md) — practical prompts for inventory, analysis, review, decision, and modeling
 - [Cheat sheet](.architect/config/cheat-sheet.md) — fast reference
 
 ---
 
-## What's in the workspace
+## What's in the repo
 
 ```text
-.architect/
+architect.ps1 / architect.sh   ← CLI delegators (call from repo root)
+
+.architect/            ← capability library (the tool)
+  cli/            ← `architect` CLI source + templates
   playbooks/      ← engagement shapes (start here)
   patterns/       ← reusable architecture patterns (incl. patterns/ai/)
   templates/      ← the metamodel — what each artifact kind looks like
@@ -181,13 +198,20 @@ That's it. Don't pick templates or skills one by one — the playbook has chosen
   method/         ← chosen project method + ADM and transition references
   guidance/       ← conventions, glossary, vocabulary-bridges/
   compliance/     ← jurisdiction, sector, and control obligations
-  architecture/   ← real project artifacts go here
-  examples/       ← worked reference projects
+  examples/       ← worked reference projects (use the same project shape as workspace/)
   agents/         ← runtime profiles for multi-agent execution (advanced)
   runtime/        ← live queue / gate state (advanced)
   schemas/        ← formal JSON Schema contracts (advanced)
   validation/     ← validators for templates and artifacts (advanced)
   config/         ← workspace and agent configuration guides
+
+workspace/             ← where your project work lives (one folder per project)
+  <project-name>/
+    project-config.yaml
+    notes.md
+    architect-work/
+    docs/
+    business/  application/  data/  technology/  governance/  change/  views/
 ```
 
 Three levels:

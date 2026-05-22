@@ -1,18 +1,4 @@
-# Ignore project-specific architecture artifacts inside workspace subfolders.
-.architect/architecture/application/*
-.architect/architecture/business/*
-.architect/architecture/change/*
-.architect/architecture/data/*
-.architect/architecture/governance/*
-.architect/architecture/technology/*
-.architect/architecture/views/*
-.architect/architecture/my-test-project
-
-# Keep folder guidance files tracked.
-!.architect/architecture/application/README.md
-!.architect/architecture/business/README.md
-!.architect/architecture/change/README.md
-!.architect/architecture/data/README.md
-!.architect/architecture/governance/README.md
-!.architect/architecture/technology/README.md
-!.architect/architecture/views/README.md
+# The workspace/ folder is architect-owned project work, not part of the
+# Open Architect capability library. It is created and populated by the
+# `architect` CLI (see .architect/cli/).
+workspace/

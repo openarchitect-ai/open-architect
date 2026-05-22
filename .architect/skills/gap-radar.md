@@ -22,14 +22,14 @@ specific questions. It reads what is there and reports what is missing.
 
 - [`.architect/guidance/gap-radar-checklists.md`](../guidance/gap-radar-checklists.md)
 - [`.architect/project-config.yaml`](../project-config.yaml)
-- the project's `architecture/<project-name>/architect-work/` folder, if present
+- the project's `workspace/<project-name>/architect-work/` folder, if present
 - [`.architect/guidance/traceability-rules.md`](../guidance/traceability-rules.md)
 - [`.architect/guidance/governance-conventions.md`](../guidance/governance-conventions.md)
 - [`.architect/guidance/evidence-and-quality.md`](../guidance/evidence-and-quality.md)
 
 ## Inputs
 
-- the project's architecture artifacts under `.architect/architecture/<project-name>/`
+- the project's architecture artifacts under `workspace/<project-name>/`
 - the project's `architect-work/` folder if present
 - the project's `docs/` folder source material
 - `project-config.yaml` — to scope checks to enabled templates, roles, jurisdictions, and frameworks

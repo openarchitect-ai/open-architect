@@ -44,7 +44,7 @@ VALIDATION_SUMMARY validator=<name> status=<status> checked=<n> errors=<n> warni
   Checks any architecture artifact folder for structural consistency, resolvable
   relationships, local references, and basic approval/evidence hygiene.
   It is intended for both reference projects under `.architect/examples/` and
-  live project folders under `.architect/architecture/`.
+  live project folders under `workspace/`.
   For covered kinds, it now also loads JSON Schema contracts from
   `../schemas/` and applies schema-derived required-section and enum checks.
   It now also enforces selected deeper rules aligned to the schema layer,
@@ -52,7 +52,7 @@ VALIDATION_SUMMARY validator=<name> status=<status> checked=<n> errors=<n> warni
   patterns, and stronger approval/evidence gating.
   Conditional `if`/`then` rules from the schemas are now interpreted directly
   for the supported subset used by this workspace.
-  For live project artifacts under `.architect/architecture/`, it also warns
+  For live project artifacts under `workspace/`, it also warns
   when ownership fields look speculative instead of using explicit
   `confirmed:`, `role-placeholder:`, `tbd`, or `unknown` values.
   It also warns when `.architect/project-config.yaml` still declares

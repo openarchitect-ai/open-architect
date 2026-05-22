@@ -21,7 +21,7 @@ wrapper files under `../templates/`.
 In other words:
 
 - these schemas target documents created under `.architect/examples/` or
-  `.architect/architecture/`
+  `workspace/`
 - they validate the top-level `spec` structure used by actual architecture
   artifacts
 - template-library validation remains primarily handled by

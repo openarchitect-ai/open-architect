@@ -11,7 +11,7 @@ architecture projects in a structured, reviewable, and traceable way.
 
 - Skills should support project delivery, not only workspace maintenance.
 - Skills should use templates as reference, not replace them.
-- Skills should produce real artifacts in `.architect/architecture/`.
+- Skills should produce real artifacts in `workspace/<project-name>/`.
 - Skills should reinforce typed relationships, governance, and transition thinking.
 - Skills should use the pattern library as normal decision and modeling context rather than treating patterns as optional extras.
 - Skills should be small enough to compose into later agentic flows.

@@ -11,7 +11,7 @@ forcing runtime orchestration or early artifact creation.
 ## Minimal Folder Shape
 
 ```text
-.architect/architecture/<project-name>/
+workspace/<project-name>/
   docs/
   architect-work/  # optional but recommended
   notes.md          # optional

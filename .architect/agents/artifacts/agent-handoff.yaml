@@ -7,7 +7,7 @@ handoff:
   from_task_id: AGT-TSK-0001
 
   scope:
-    project_root: .architect/architecture/example-project
+    project_root: workspace/example-project
     summary: bounded solution direction prepared for review
 
   changed_artifacts:

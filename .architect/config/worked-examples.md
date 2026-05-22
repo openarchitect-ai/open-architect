@@ -13,7 +13,7 @@ Prompt:
 ```text
 Inventory mode.
 
-Read the source files under `.architect/architecture/<project-name>/docs/`.
+Read the source files under `workspace/<project-name>/docs/`.
 Extract the applications and interfaces relevant to ERP migration.
 Give me a table and a top-10 list.
 Do not create architecture artifacts.

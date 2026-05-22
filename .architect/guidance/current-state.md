@@ -328,14 +328,17 @@ capability container, including:
 - Added `LICENSE` using Apache-2.0
 - Normalized public project name to:
   - `Open Architect`
+- Separated capability library from workspace work:
+  - moved `.architect/architecture/` content to a top-level `workspace/` sibling
+  - `.architect/` is now purely the capability library (templates, playbooks, patterns, skills, guidance, method, compliance, etc.)
+  - `workspace/<project-name>/` is where each project's real work lives (project-config.yaml, notes.md, architect-work/, docs/, business/, application/, data/, technology/, governance/, change/, views/)
+  - updated READMEs, config guidance, skill instructions, agent artifacts, and `.gitignore` to reflect the new layout
 
 ## Current Structure
 
 Key folders:
 
 - `.architect/templates/`
-- `.architect/architecture/`
-- `.architect/architecture/views/`
 - `.architect/examples/`
 - `.architect/agents/`
 - `.architect/patterns/`
@@ -349,6 +352,7 @@ Key folders:
 - `.architect/project-config.yaml`
 - `.architect/roles/`
 - `.architect/skills/`
+- `workspace/<project-name>/` — sibling folder where the architect's real project work lives
 
 Current role library:
 
@@ -372,7 +376,7 @@ High priority:
   - run task and handoff artifacts through a live project slice
   - confirm that coordinator routing, bounded write scopes, and review gates work as intended
 - Run the new agent test scenarios against the runtime execution model and executable instructions
-- Extend live-project validation and operational use under `.architect/architecture/`
+- Extend live-project validation and operational use under `workspace/`
   - validate real project artifact folders, not only the worked example
   - use the review packet format and role-boundary guidance during real project handoffs
 - Deepen validation and schema-driven enforcement
@@ -383,7 +387,7 @@ High priority:
   - validate cross-artifact approval/evidence rules beyond the worked example set
   - add richer warning rules for evidence, confidence, and approval quality
 - Extend artifact-folder validation coverage
-  - validate live project artifacts under `.architect/architecture/`
+  - validate live project artifacts under `workspace/`
   - add stronger review-gate checks during active project execution
 - Add explicit review/governance cadence guidance
   - define the recurring review rhythm for ongoing architecture projects
@@ -406,7 +410,7 @@ operational use, proof, and automation.
     slices rather than only existing as structure
 - Real-project proving
   - the structure is broad and mature, but it still needs proving against live
-    work under `.architect/architecture/`, not only examples and scaffolding
+    work under `workspace/`, not only examples and scaffolding
   - handoff, review, validation, and compliance guidance should be exercised in
     real project use
 - Repeatable agent testing

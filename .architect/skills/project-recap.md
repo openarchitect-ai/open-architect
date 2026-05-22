@@ -27,7 +27,7 @@ This is the right first skill to run when re-entering a project. Use
 
 ## Inputs
 
-- the target project folder under `.architect/architecture/<project-name>/`
+- the target project folder under `workspace/<project-name>/`
 - `notes.md`, `docs/`, `architect-work/`, and architecture artifacts
 - `project-config.yaml`
 - optionally: the architect's stated purpose ("I'm preparing for steering", "I'm handing over", "I'm restarting after 3 months")

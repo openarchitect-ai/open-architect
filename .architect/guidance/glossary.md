@@ -8,8 +8,8 @@ playbooks, patterns, statuses, and evidence-related concepts.
 
 ### Architecture Artifact
 
-A concrete project output stored under `.architect/architecture/`, such as a
-requirement, solution, decision, risk, or transition architecture entry.
+A concrete project output stored under `workspace/<project-name>/`, such as
+a requirement, solution, decision, risk, or transition architecture entry.
 
 ### Architecture Vision
 

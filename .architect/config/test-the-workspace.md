@@ -5,7 +5,7 @@ falling into premature modeling or orchestration.
 
 ## Recommended Test Path
 
-1. Create a small project folder under `.architect/architecture/`
+1. Create a small project folder under `workspace/`
 2. Add a `docs/` folder with the source material you actually have
 3. Optionally add a short `notes.md` with:
    - the assignment or problem statement
@@ -24,7 +24,7 @@ Use a prompt like:
 ```text
 Inventory mode.
 
-Read the source files under `.architect/architecture/<project-name>/docs/`.
+Read the source files under `workspace/<project-name>/docs/`.
 Extract the applications, interfaces, or other relevant facts for <topic>.
 Do not create architecture artifacts.
 Keep unknowns explicit.
@@ -44,7 +44,7 @@ Use a prompt like:
 ```text
 Analysis mode.
 
-Use the extracted facts from `.architect/architecture/<project-name>/docs/`.
+Use the extracted facts from `workspace/<project-name>/docs/`.
 Group them into the most useful clusters for understanding the current state.
 Keep unknowns explicit.
 Do not create architecture artifacts.
@@ -67,7 +67,7 @@ Use a prompt like:
 Modeling mode.
 
 Create only the minimum architecture artifacts needed to capture the agreed
-scope for `.architect/architecture/<project-name>/`.
+scope for `workspace/<project-name>/`.
 Keep unknowns explicit.
 Guide me as you go.
 ```

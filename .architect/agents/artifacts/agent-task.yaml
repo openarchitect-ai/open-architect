@@ -8,7 +8,7 @@ task:
   skill: solution-modeler
 
   scope:
-    project_root: .architect/architecture/example-project
+    project_root: workspace/example-project
     artifact_paths:
       - application/sol-0001-example-solution.yaml
       - application/req-0001-example-requirement.yaml
@@ -31,7 +31,7 @@ task:
 
   validation:
     required: true
-    command: powershell -ExecutionPolicy Bypass -File .architect\validation\Validate-ArchitectureArtifacts.ps1 -ArtifactRoot .architect\architecture\example-project
+    command: powershell -ExecutionPolicy Bypass -File .architect\validation\Validate-ArchitectureArtifacts.ps1 -ArtifactRoot workspace\example-project
 
   review_gate:
     gate: solution-direction
