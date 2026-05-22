@@ -2,9 +2,11 @@
 
 Use this file to describe the architecture method chosen for this project.
 
-Before tailoring the method, align it with `.architect/project-config.yaml` so
-the selected method, roles, templates, playbook, and governance expectations
-are explicit for the project.
+Before tailoring the method, align it with the project's
+`workspace/<project-name>/project-config.yaml` (and the workspace-level
+defaults at `.architect/config/workspace-defaults.yaml`) so the selected
+method, roles, templates, playbook, and governance expectations are
+explicit for the project.
 
 Suggested coverage:
 

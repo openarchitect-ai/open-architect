@@ -20,7 +20,8 @@ This is the right first skill to run when re-entering a project. Use
 ## Read First
 
 - [`.architect/guidance/project-recap-protocol.md`](../guidance/project-recap-protocol.md)
-- [`.architect/project-config.yaml`](../project-config.yaml)
+- the project's `workspace/<project-name>/project-config.yaml`
+- [`.architect/config/workspace-defaults.yaml`](../config/workspace-defaults.yaml) (workspace-level defaults)
 - the project's `architect-work/` folder, if present
 - [`.architect/guidance/evidence-and-quality.md`](../guidance/evidence-and-quality.md)
 - [`.architect/guidance/lifecycle-and-dates.md`](../guidance/lifecycle-and-dates.md)

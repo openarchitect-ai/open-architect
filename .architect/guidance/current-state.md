@@ -355,6 +355,11 @@ populates it on demand.
   - `.architect/VERSION` is the single source of truth (semver, 0.1.0 baseline)
   - `.architect/CHANGELOG.md` follows the Keep a Changelog convention with explicit MAJOR / MINOR / PATCH rules
   - `architect --version` reports the capability version, not a CLI version
+- Split workspace-level defaults from engagement config:
+  - renamed `.architect/project-config.yaml` to `.architect/config/workspace-defaults.yaml`
+  - slimmed it to workspace-level concerns only: `project:` metadata, default method, `conventions:` block, and minimal `runtime:` defaults
+  - removed engagement-specific blocks (compliance scope, roles enabled, templates enabled, skills enabled, governance review checkpoints) — those now live exclusively in each project's `workspace/<project-name>/project-config.yaml`
+  - updated skills, validator, agent task artifact, AGENTS.md, and documentation to reference the new path
 
 ## Current Structure
 

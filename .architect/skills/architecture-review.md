@@ -13,7 +13,8 @@ traceability, governance readiness, and pattern fit.
 
 ## Read First
 
-- `.architect/project-config.yaml`
+- the project's `workspace/<project-name>/project-config.yaml`
+- `.architect/config/workspace-defaults.yaml` (workspace-level defaults)
 - `.architect/guidance/conventions.md`
 - `.architect/guidance/evidence-and-quality.md`
 - `.architect/guidance/governance-conventions.md`

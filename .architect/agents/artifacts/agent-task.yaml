@@ -14,7 +14,8 @@ task:
       - application/req-0001-example-requirement.yaml
 
   input_artifacts:
-    - .architect/project-config.yaml
+    - .architect/config/workspace-defaults.yaml
+    - workspace/example-project/project-config.yaml
     - .architect/playbooks/full-togaf-adm/playbook.md
     - .architect/guidance/handoff-contracts.md
 

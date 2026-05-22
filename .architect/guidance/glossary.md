@@ -50,6 +50,24 @@ activities, handoffs, and control points.
 
 ## C
 
+### Capability Library
+
+The `.architect/` folder. Holds the Open Architect templates, playbooks,
+patterns, skills, roles, method, compliance guidance, CLI, schemas,
+validation, and multi-agent execution scaffold — everything that defines
+*how* architecture work is done in this workspace. Versioned via
+`.architect/VERSION`; contract-level changes are recorded in
+`.architect/CHANGELOG.md`. Contrast with the [Workspace](#workspace),
+which holds real project work.
+
+### Capability Version
+
+The Open Architect capability version recorded in `.architect/VERSION`,
+following semantic versioning. The `architect --version` CLI command
+reads it at runtime; contract-level changes are recorded in
+`.architect/CHANGELOG.md`. Major / minor / patch rules are documented at
+the top of that changelog.
+
 ### Confidence
 
 An explicit statement of how reliable an artifact field or relationship is,
@@ -91,6 +109,14 @@ replicated geographically.
 
 ## E
 
+### Engagement Family
+
+A grouping of playbooks that share an engagement shape. The 24 playbooks
+are organized into 8 families: discovery & decision, solution/design,
+modernization & transition, platform bootstrap, enterprise cycle,
+driver-specific, M&A lifecycle, and practice setup & operation. Families
+help architects narrow the catalog before picking a specific playbook.
+
 ### Environment
 
 A runtime boundary such as development, test, production, region, or operational
@@ -107,24 +133,29 @@ A worked reference project stored under `.architect/examples/` to demonstrate
 how templates become linked artifacts without mixing sample content into live
 project work.
 
-## F
+## G
 
 ### Gap
 
 A missing, weak, or insufficient architecture capability that must be addressed
 through change, transition planning, or delivery work.
 
-## G
+### Gap Radar
+
+A proactive scanning skill that catches what an experienced architect would
+catch on a fresh read: missing required content, cross-artifact
+contradictions, invented owners, governance hygiene issues, drift signals,
+and AI-era modernity gaps. Findings reference the applicable architecture
+pattern and carry severity markers. Run before review gates, after stretches
+of intensive modeling, or as routine cadence. See
+[`skills/gap-radar.md`](../skills/gap-radar.md) and the checklist at
+[`guidance/gap-radar-checklists.md`](./gap-radar-checklists.md). Pairs with
+Project Recap for project re-entry.
 
 ### Governance Review
 
 A formal or semi-formal checkpoint where architecture content is reviewed for
 quality, risk, compliance, traceability, and decision readiness.
-
-### High-Risk AI System
-
-An AI system category under the EU AI Act that carries specific obligations and
-stronger governance expectations.
 
 ## H
 
@@ -185,12 +216,35 @@ applicable review gates, anti-patterns, customization guide, and a
 ready-to-clone `project-config.yaml`. Playbooks live under
 `.architect/playbooks/` and answer "what shape of engagement is this?".
 Each project picks one playbook; there is no workspace-level default.
+Playbooks are organized into Engagement Families.
+
+### Project Recap
+
+A read-only re-entry / handover skill for an architect joining a project
+mid-stream or returning after time away. Walks the project state and
+surfaces what's confirmed, what's open, what's stale, what has drifted
+between recent source material and current artifacts, and what matters
+most right now. Run this first when re-entering a project; run Gap Radar
+afterwards. See [`skills/project-recap.md`](../skills/project-recap.md)
+and the protocol at
+[`guidance/project-recap-protocol.md`](./project-recap-protocol.md).
 
 ### Project Config
 
-The project-level configuration file at `.architect/project-config.yaml` that
-selects active roles, templates, skills, the chosen playbook, and governance
-controls.
+The `project-config.yaml` file that declares a project's chosen playbook,
+applicable compliance scope (jurisdiction, sector, regulations, control
+frameworks), governance controls (review checkpoints, approval roles), and
+per-project tailoring.
+
+Lives only at the project level: `workspace/<project-name>/project-config.yaml`.
+Cloned from the chosen playbook's `project-config.yaml` template when
+`architect new <project> --playbook <name>` scaffolds the project, then
+tailored per engagement.
+
+Workspace-level defaults (conventions, operating style, primary method)
+that all projects inherit live separately in
+`.architect/config/workspace-defaults.yaml` — see
+[Capability Library](#capability-library).
 
 ### Proposed
 
@@ -342,6 +396,18 @@ Vocabulary bridges live under `.architect/guidance/vocabulary-bridges/`.
 
 A delivery increment that realizes part of a transition architecture or closes
 one or more architecture gaps.
+
+### Workspace
+
+The sibling folder at the repo root (next to `.architect/`) that holds the
+architect's real project work — one subfolder per engagement. Each
+`workspace/<project-name>/` contains `project-config.yaml`, `notes.md`,
+`architect-work/`, `docs/`, and the typed artifact subfolders (business/,
+application/, data/, technology/, governance/, change/, views/).
+`workspace/` is gitignored and initialized by the `architect` CLI.
+Contrast with the [Capability Library](#capability-library), which holds
+the templates, playbooks, patterns, skills, roles, method, compliance, and
+CLI.
 
 ## Working Rule
 

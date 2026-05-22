@@ -96,8 +96,7 @@ a sibling `workspace/` folder (one subfolder per project).
   runtime/          ← live queue / gate state (advanced)
   schemas/          ← formal JSON Schema contracts (advanced)
   validation/       ← validators for templates and artifacts (advanced)
-  config/           ← workspace and agent configuration guides
-  project-config.yaml ← workspace-level skeleton; real projects pick a playbook
+  config/           ← workspace and agent configuration guides + workspace-defaults.yaml
 
 ../workspace/                ← where the architect's project work lives
   <project-name>/

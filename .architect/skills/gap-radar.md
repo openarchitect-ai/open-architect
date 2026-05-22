@@ -21,7 +21,8 @@ specific questions. It reads what is there and reports what is missing.
 ## Read First
 
 - [`.architect/guidance/gap-radar-checklists.md`](../guidance/gap-radar-checklists.md)
-- [`.architect/project-config.yaml`](../project-config.yaml)
+- the project's `workspace/<project-name>/project-config.yaml`
+- [`.architect/config/workspace-defaults.yaml`](../config/workspace-defaults.yaml) (workspace-level defaults)
 - the project's `workspace/<project-name>/architect-work/` folder, if present
 - [`.architect/guidance/traceability-rules.md`](../guidance/traceability-rules.md)
 - [`.architect/guidance/governance-conventions.md`](../guidance/governance-conventions.md)

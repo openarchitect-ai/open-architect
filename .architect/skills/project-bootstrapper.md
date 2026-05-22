@@ -13,7 +13,8 @@ scope, roles, templates, conventions, and delivery expectations.
 
 ## Read First
 
-- `.architect/project-config.yaml`
+- the chosen playbook's `project-config.yaml` template under `.architect/playbooks/<playbook-name>/`
+- `.architect/config/workspace-defaults.yaml` (workspace-level defaults)
 - `.architect/config/agent.config.md`
 - `.architect/compliance/README.md`
 - `.architect/method/project-method.md`

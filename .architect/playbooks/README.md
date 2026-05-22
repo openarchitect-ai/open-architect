@@ -80,10 +80,11 @@ Contributions welcome — see *Contributing A Playbook* below.
 
 ## There Is No Default Playbook
 
-Playbook selection is **per project**, not workspace-level. The
-workspace-level `.architect/project-config.yaml` should leave `playbook`
-empty. Each project under `workspace/<project-name>/` picks its own
-playbook based on the engagement shape.
+Playbook selection is **per project**, not workspace-level. The workspace
+itself isn't an active engagement, so `.architect/config/workspace-defaults.yaml`
+holds only cross-project defaults (conventions, operating style) and does
+not name a playbook. Each project under `workspace/<project-name>/` picks
+its own playbook based on the engagement shape.
 
 The architect is expected to **customize** the cloned config and the
 playbook stance per engagement — playbooks are intentional starting points,

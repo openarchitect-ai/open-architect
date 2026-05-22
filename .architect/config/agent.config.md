@@ -1,13 +1,29 @@
 # Agent Config
 
-This guide explains how to use `.architect/project-config.yaml` as the
-project-local agent and workspace configuration file for Open Architect.
+This guide explains how Open Architect's two configuration files work
+together: workspace-level defaults and per-project engagement config.
+
+## The Two Files
+
+| File | Scope | What lives here |
+|---|---|---|
+| `.architect/config/workspace-defaults.yaml` | Workspace-level | Cross-project defaults: workspace metadata, default method, `conventions:` (agent behavior defaults), default `runtime.execution_mode` |
+| `workspace/<project-name>/project-config.yaml` | Per-engagement | The active playbook, applicable compliance scope, enabled roles/templates/skills, governance (review checkpoints, approval roles), and any project-specific overrides of the workspace defaults |
+
+Engagement-specific decisions (compliance scope, roles enabled,
+templates enabled, skills enabled, review checkpoints) only make sense
+once a playbook has been picked, so they live exclusively in the
+per-project file. The workspace itself isn't an engagement.
+
+A project's `project-config.yaml` inherits defaults from
+`workspace-defaults.yaml` and overrides individual fields as the
+engagement requires.
 
 ## Purpose
 
-`project-config.yaml` defines which parts of the Open Architect capability are
-active for a specific project and which architecture context an agent should
-assume by default.
+`project-config.yaml` (per-engagement) defines which parts of the Open
+Architect capability are active for that specific project and which
+architecture context an agent should assume by default.
 
 Use it to decide:
 
@@ -19,6 +35,7 @@ Use it to decide:
 - which governance expectations apply
 - which execution model and runtime state the agents should use
 - which operating style and work mode the user wants by default
+- which workspace defaults (from `workspace-defaults.yaml`) to override
 
 This prevents every project from inheriting the full architecture capability by
 default.
@@ -27,7 +44,7 @@ default.
 
 Recommended approach:
 
-1. Pick the engagement playbook closest to your work from [`.architect/playbooks/`](../playbooks/README.md) and copy its `project-config.yaml` as your starting point.
+1. Pick the engagement playbook closest to your work from [`.architect/playbooks/`](../playbooks/README.md) and copy its `project-config.yaml` into your `workspace/<project-name>/` folder. (The `architect new <project> --playbook <name>` CLI does this for you.)
 2. Set the project name and architecture scope.
 3. Confirm or adjust the primary method and any reference methods.
 4. Confirm or trim the enabled roles to those that will actually participate.
@@ -124,8 +141,9 @@ brief, recommended skill sequence, applicable review gates, anti-patterns,
 customization guide, and a ready-to-clone `project-config.yaml`.
 
 There is **no workspace-level default playbook.** The `playbook` field
-should be set on a per-project basis. The workspace-level
-`.architect/project-config.yaml` should leave this field empty.
+is set per-project in `workspace/<project-name>/project-config.yaml`.
+The workspace-level `.architect/config/workspace-defaults.yaml` does not
+hold a `playbook` field at all — the workspace itself isn't an engagement.
 
 Available values:
 

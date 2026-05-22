@@ -1097,7 +1097,7 @@ foreach ($artifact in $artifactInventory.Values) {
     }
 }
 
-Test-RuntimeDriftAgainstExecutionMode -ProjectConfigPath (Join-Path $repoRoot '.architect\project-config.yaml')
+Test-RuntimeDriftAgainstExecutionMode -ProjectConfigPath (Join-Path $repoRoot '.architect\config\workspace-defaults.yaml')
 
 $warnings = @($issues | Where-Object { $_.Severity -eq 'warning' })
 $errors = @($issues | Where-Object { $_.Severity -eq 'error' })

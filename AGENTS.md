@@ -6,8 +6,8 @@ This repository uses the Open Architect workspace conventions under `.architect/
 
 Always use the standard architect-friendly response format described in:
 
-- `.architect/project-config.yaml`
-- `.architect/config/response-display.md`
+- `.architect/config/workspace-defaults.yaml` (workspace-level convention flags)
+- `.architect/config/response-display.md` (the display contract itself)
 
 Unless the user explicitly asks for a different format, substantial responses
 must follow that display contract.

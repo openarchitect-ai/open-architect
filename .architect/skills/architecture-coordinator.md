@@ -18,7 +18,8 @@ work coherent.
 
 ## Read First
 
-- `.architect/project-config.yaml`
+- the project's `workspace/<project-name>/project-config.yaml`
+- `.architect/config/workspace-defaults.yaml` (workspace-level defaults)
 - `.architect/playbooks/README.md`
 - the active playbook named in `project.playbook` under `.architect/playbooks/<playbook-name>/playbook.md`
 - `.architect/guidance/handoff-contracts.md`
