@@ -40,6 +40,7 @@ When the skill runs, group findings as:
 4. `Cross-Document Consistency` — counts and lists that disagree
 5. `Structural Drift` — old paths still referenced after renames
 6. `Vocabulary Drift` — terms in skills but not in glossary
+7. `Convention Binding Gaps` — flags defined but not bound to behavior
 
 End with a `Bottom Line` listing the 1-3 highest-leverage findings.
 
@@ -203,6 +204,47 @@ End with a `Bottom Line` listing the 1-3 highest-leverage findings.
   **Where:** `guidance/glossary.md`
   **Why:** Glossary pointing to phantom paths is worse than no pointer.
   **Severity:** `block`
+  **Mechanical:** yes
+
+## 7. Convention Binding Checks
+
+The audit target for these checks is
+[`convention-enforcement-matrix.md`](./convention-enforcement-matrix.md),
+which indexes every flag's binding location, and
+[`config/bindings.md`](../config/bindings.md),
+which is the canonical binding spec for nearly every flag (response-shape
+flags bind in `AGENTS.md` directly).
+
+### Unbound convention flags
+
+- **Signal:** For every flag in `config/workspace-defaults.yaml`'s `conventions:` block, does the flag-name appear in `config/bindings.md` *or* in `AGENTS.md` / `config/response-display.md` (for response-shape flags)?
+  **Where:** `config/workspace-defaults.yaml` (flag list) vs. grep of the flag-name across `config/bindings.md`, `AGENTS.md`, and `config/response-display.md`
+  **Why:** A flag defined in workspace-defaults and documented in `agent.config.md` but never referenced in the binding spec is a decorative config knob — the AI can only honor it by happenstance. The 2026-05-22 audit found 16 such flags; 8 were retired and 8 are now bound.
+  **Severity:** `warn` (the failure is silent drift, not breakage)
+  **Mechanical:** yes — grep each flag name across the binding-spec file set; zero hits = finding
+
+### Documentation-only bindings (anti-pattern)
+
+- **Signal:** Are there `If conventions.X is true: ...` behavioral spec blocks in `config/agent.config.md` for flags that aren't bound in `config/bindings.md`?
+  **Where:** `config/agent.config.md` headings of the form `If conventions.<flag>` vs. `config/bindings.md` flag-name references
+  **Why:** `agent.config.md` is the docs file — `AGENTS.md` doesn't mandate reading it during routine skill execution. Behavioral specs that live only there are bindings in name only. The canonical binding location is `bindings.md`, which AGENTS.md *does* mandate reading.
+  **Severity:** `warn`
+  **Mechanical:** partial (the heading enumeration is mechanical; deciding whether the matching binding exists requires reading)
+
+### Distributed-binding anti-pattern
+
+- **Signal:** Are there `When conventions.X is true:` (or similar) behavioral spec blocks in thematic guidance files (`guidance/work-modes.md`, `guidance/evidence-and-quality.md`, `guidance/governance-conventions.md`, `guidance/working-with-open-architect.md`) that duplicate bindings already in `config/bindings.md`?
+  **Where:** thematic guidance files vs. `config/bindings.md`
+  **Why:** Distributing binding text across multiple files creates the maintenance burden the consolidation was designed to fix. Narrative principles belong in thematic guidance; behavioral bindings belong in `bindings.md`. Re-distribution should be a deliberate exception (e.g. requirement-freeze, which is interwoven with its procedure), not a default.
+  **Severity:** `warn`
+  **Mechanical:** partial — grep for the pattern; review required to decide whether the duplication is a deliberate exception
+
+### Retired flags re-introduced
+
+- **Signal:** Does any flag listed in `agent.config.md`'s "Retired conventions" section appear in `workspace-defaults.yaml`, any playbook's `project-config.yaml`, or `bindings.md`?
+  **Where:** retired-flag list vs. the file set above
+  **Why:** A flag was retired because it was redundant with a canonical flag. Re-introducing it by reflex re-creates the redundancy.
+  **Severity:** `block` (re-adding a retired flag should require an explicit unretire decision)
   **Mechanical:** yes
 
 ## Calibration Notes

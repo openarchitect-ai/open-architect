@@ -3,6 +3,14 @@
 This guide defines the default human-in-the-loop and approval behavior for Open
 Architect work.
 
+> **Note on bindings.** This file describes the *narrative principles*
+> behind governance. The *AI behavioral bindings* tied to
+> `architecture_reviews_required`, `compliance_reviews_required`, and
+> `stop_on_governance_status_changes` live in
+> [`config/bindings.md`](../config/bindings.md)
+> §"Governance gates". Architects read this file for understanding;
+> AI agents must also read `bindings.md` for what to do.
+
 ## Human In The Loop Rules
 
 Open Architect should operate on the principle:
@@ -81,3 +89,27 @@ Agents should pause for human input when:
 
 When one of these triggers occurs, the agent should record the issue explicitly
 instead of choosing a path silently.
+
+## Governance Gates
+
+Three convention flags gate the governance dimension of artifact
+approval:
+
+- **`architecture_reviews_required`** — gates approval on a prior
+  `architecture-review` run with findings addressed.
+- **`compliance_reviews_required`** — gates approval on a prior
+  compliance review when the artifact touches the project's
+  applicable regulations.
+- **`stop_on_governance_status_changes`** — pauses the current skill
+  when a governance artifact's status changes mid-run, so the
+  architect can react before the AI continues on a stale assumption.
+
+Regulated playbooks (`compliance-driven-modernization`,
+`post-incident-architecture-review`,
+`business-continuity-readiness`, `post-acquisition-integration`)
+treat the first two as hard gates.
+
+For the exact AI behavior when each flag is `true` or `false`, see
+[`bindings.md`](../config/bindings.md)
+§"Governance gates". The `architecture-review` and
+`review-pack-builder` skills implement the gate behavior.

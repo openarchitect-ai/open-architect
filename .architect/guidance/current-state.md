@@ -472,6 +472,80 @@ High priority:
   - add `CONTRIBUTING.md`, issue templates, contribution guide
   - clarify pattern/playbook contribution shape so external contributors
     can extend the catalog without breaking conventions
+- **Smoke-test follow-ups (surfaced 2026-05-22; first hits from `workspace/smoke-test-2026-05-22/` exercising the workflow end-to-end + a follow-up convention-instantiation audit)**
+  - **Convention surface audited, trimmed, fully bound, and consolidated (2026-05-22).**
+    Initial smoke-test surfaced 6 unbound convention flags; the full
+    flag-name audit (grepped every flag across `skills/*.md`,
+    `AGENTS.md`, and all behavior-defining guidance) confirmed 16
+    unbound + 1 partial. The bind-vs-retire pass retired 8 as
+    redundant or decorative and kept 9 for binding work. A subsequent
+    consolidation pass moved all binding text into a single canonical
+    file. Final state:
+    - ✅ **29 flags bound, 0 partial, 0 unbound** — every convention
+      flag in `workspace-defaults.yaml` is now bound.
+    - Convention surface went from **37 → 29 flags** (8 retired).
+    - **Bindings consolidated into [`config/bindings.md`](../config/bindings.md)**
+      as the single AI-facing source of truth. `AGENTS.md` mandates
+      every AI agent read it on session start, same pattern as the
+      existing `response-display.md` companion-read. Response-shape
+      flags continue to bind directly in `AGENTS.md` because they
+      govern the response shape itself.
+    - **Thematic guidance files** (`work-modes.md`,
+      `evidence-and-quality.md`, `governance-conventions.md`) now
+      hold only the *narrative principles* — the "why" behind each
+      flag. The "what to do when the flag is true" lives in
+      `bindings.md`. Each thematic file links to it.
+    - The smoke-test pain point (`artifact_creation_requires_explicit_request`
+      not being honored by artifact-creating skills) is closed: the
+      binding lives in `bindings.md` §2 and fires on every session via
+      the AGENTS.md mandate. Local Quality-Check reinforcement in the
+      8 artifact-creating skills was added during the initial binding
+      pass and then removed during the consolidation pass to avoid the
+      distributed-binding anti-pattern.
+    - **§7 Convention Binding Checks** in
+      [`capability-radar-checklists.md`](./capability-radar-checklists.md)
+      now audit against the consolidated `bindings.md`
+      and flag re-distribution as an anti-pattern.
+    - **`capability-maintenance.md`** "Adding a new convention" +
+      "Retiring a convention" sections point at
+      `bindings.md` as the canonical binding location.
+    - **Architectural lessons codified:** (1) `agent.config.md` is the
+      docs file, not the binding location; (2) thematic guidance files
+      hold narrative, not bindings; (3) the single canonical binding
+      file is read on every session via the `AGENTS.md` mandate.
+    Full inventory + binding architecture: see
+    [`convention-enforcement-matrix.md`](./convention-enforcement-matrix.md)
+    §"Summary". The matrix is the audit register; the binding spec
+    itself lives in `config/bindings.md`.
+  - **gap-radar check: missing `change-register.md` under freeze
+    enforcement.** When `requirement_freeze_enforcement` is `advisory`
+    or `strict` and the file is absent, gap-radar should flag it as a
+    §1 (Completeness) finding. Note: `architect init` already scaffolds
+    this file — the smoke-test project predates that fix. The check
+    protects old projects + accidental deletion.
+  - **Refined principle (worth codifying in `capability-maintenance.md`
+    if not already covered): documented convention ≠ bound convention.**
+    The original "documented ≠ instantiated" framing focused on missing
+    files. The audit shows the higher-frequency failure is at the *flag*
+    level: a behavioral convention is defined and described but no skill
+    binds the behavior. Any new convention flag added to
+    `workspace-defaults.yaml` needs explicit binding in at least one
+    skill or AGENTS.md section to take effect.
+  - **capability-radar check for unbound convention flags.** Add to
+    `capability-radar-checklists.md`: for every flag in
+    `workspace-defaults.yaml`'s `conventions:` block, count references
+    in `skills/*.md` + `AGENTS.md` + behavior-defining guidance files.
+    Zero references = drift finding. Mechanical, complements the
+    existing "every flag has documentation in agent.config.md" check.
+  - **gap-radar §2 heuristic to flag OA-dev signal leaking into project
+    working-logs.** The separation rule lives in
+    `capability-maintenance.md`, but it is a written rule, not a
+    checked one. A heuristic could flag `architect-work/working-log.md`
+    entries that reference paths under `.architect/` outside of a "See
+    also" footer, or that editorialize about OA capabilities,
+    conventions, or workspace gaps. Imperfect detection — but enough to
+    nudge the dual-hat architect (architect = OA maintainer) to split
+    the entry across `working-log.md` and `current-state.md`.
 
 Medium priority:
 

@@ -208,7 +208,6 @@ Suggested architect-assist conventions:
 - `guided_mode_depth: standard`
 - `clarify_operating_context_first: true`
 - `include_architect_tasks_in_all_modes: true`
-- `maximize_followup_task_capture: true`
 - `announce_active_role_and_skill: true`
 - `response_display_style: architect-friendly`
 - `response_display_enforcement: strict`
@@ -224,12 +223,9 @@ Suggested architect-assist conventions:
 - `artifact_creation_requires_explicit_request: true`
 - `next_step_recommendations_only: true`
 - `auto_progression: false`
-- `ask_before_scope_changes: true`
-- `ask_before_status_changes: true`
 - `ask_before_owner_creation: true`
 - `allow_agent_auto_approval: false`
 - `default_agent_output_status: draft`
-- `stop_on_decision_changes: true`
 - `stop_on_governance_status_changes: true`
 - `evidence_required_for_approval: true`
 
@@ -256,21 +252,14 @@ be incomplete until it has been made explicit. In practice, that means:
 - call out the minimum context questions that would materially change the work
 - avoid silently acting as if the project goal, state, or scope is already known
 
-You can also express how the agent should handle unresolved questions.
-
-Recommended convention:
-
-- `ask_user_on_blocking_open_questions: true`
-- `allow_progress_on_non_blocking_open_questions: true`
-
-Use this when the project wants the coordinator to ask the user directly when
-an open question materially blocks safe progression, instead of only recording
-that question in summaries or handoffs.
-
-Use `allow_progress_on_non_blocking_open_questions: true` when the project
-wants the coordinator and specialist agents to keep moving on bounded work as
-long as the unresolved question does not make the next step unsafe or
-misleading.
+Unresolved-question handling is part of the conversational contract
+governed by `user_is_primary_driver: true` and the default approval
+pattern: blocking questions surface to the architect; non-blocking
+questions are tracked in `open-questions.md` without halting the
+session. (The previously-separate `ask_user_on_blocking_open_questions`
+and `allow_progress_on_non_blocking_open_questions` flags were retired
+on 2026-05-22 as redundant — see the "Retired conventions" section
+below.)
 
 ### Work Modes
 
@@ -333,16 +322,6 @@ If `conventions.include_architect_tasks_in_all_modes` is `true`:
   confirm with, decisions to prepare, or artifacts to review
 - the task list should stay mode-appropriate and should not force modeling or
   orchestration when the user did not ask for it
-
-If `conventions.maximize_followup_task_capture` is `true`:
-
-- do not stop at a single next step when several useful follow-ups are already
-  visible
-- capture the architect's likely next tasks in batches when the source supports
-  it
-- prefer short, practical task lists over repeated one-question-at-a-time
-  follow-ups
-- separate high-confidence tasks from lower-confidence suggestions when needed
 
 If `conventions.announce_active_role_and_skill` is `true`:
 
@@ -531,24 +510,40 @@ If `conventions.clarify_operating_context_first` is `true`:
 
 ## Open Question Behavior
 
-If `conventions.ask_user_on_blocking_open_questions` is `true`:
+Blocking questions surface to the architect for resolution; non-blocking
+questions are tracked in `architect-work/open-questions.md` without
+halting the session. This is the OA conversational contract — governed
+by `user_is_primary_driver: true` and the default approval pattern, not
+by dedicated flags. When a specialist agent encounters a blocking
+question, it routes back through the coordinator (when one is enabled)
+or directly to the architect. Non-blocking questions should be
+classified explicitly as `non-blocking` in `open-questions.md` and
+carried forward in coordination summaries and handoffs — they should
+never be turned into a fake fact just to make an artifact look
+complete.
 
-- the coordinator should ask the user directly when an unresolved question
-  materially blocks the next safe step
-- specialist agents may record open questions, but should route blocking ones
-  back through the coordinator
-- non-blocking questions may still be tracked in notes, handoffs, or review
-  packets without pausing the flow
+## Retired conventions
 
-If `conventions.allow_progress_on_non_blocking_open_questions` is `true`:
+The following flags were retired on 2026-05-22 because they were
+either redundant with already-bound conventions, or decorative (no
+opposing behavior anyone would actually want bound). Each row names
+the canonical flag or pattern that already covers the behavior so
+future maintainers don't re-add them by reflex.
 
-- unresolved but non-blocking questions should be classified explicitly as
-  `non-blocking`
-- agents may continue with the next safe bounded step
-- those questions should still be carried forward in coordination summaries,
-  handoffs, review packets, or `notes.open_questions`
-- the presence of a non-blocking question should not be turned into a fake
-  fact just to make the artifact look complete
+| Retired flag | Already covered by |
+|---|---|
+| `human_review_required` | `allow_agent_auto_approval: false` — same proposition from the opposite side |
+| `id_prefix_mode` | Template kind names (SOL-, DEC-, STK-, APP-, …) baked into the template registry — no mechanism existed for the flag to change behavior |
+| `allow_progress_on_non_blocking_open_questions` | Default conversational behavior — opposite value ("halt on any open question") has no use case |
+| `maximize_followup_task_capture` | `architect_work_auto_capture: true` — the on/off flag; intensity dial had no use case |
+| `ask_before_scope_changes` | `architect_work_auto_update_mode: approval-before-write` + `requirement_freeze_enforcement` + `allow_agent_auto_approval: false` — scope changes are writes, and writes already require approval |
+| `ask_before_status_changes` | `architect_work_auto_update_mode: approval-before-write` + `allow_agent_auto_approval: false` — status changes are writes, and writes already require approval |
+| `ask_user_on_blocking_open_questions` | `user_is_primary_driver: true` + general conversational contract — opposite value ("don't ask, guess") would violate the contract OA is built on |
+| `stop_on_decision_changes` | `stop_on_governance_status_changes` — a decision is a governance artifact; collapsed into the broader flag |
+
+Re-introduce only if a real new use case emerges that the canonical flag
+cannot express (e.g. multi-role review where reviewer ≠ approver, in
+which case `human_review_required` becomes meaningful again).
 
 ## Suggested Defaults
 

@@ -2,15 +2,19 @@
 
 This repository uses the Open Architect workspace conventions under `.architect/`.
 
+## Mandatory Reads
+
+Every AI agent operating in this workspace must read these files at session start, alongside `AGENTS.md` itself:
+
+- [`.architect/config/workspace-defaults.yaml`](.architect/config/workspace-defaults.yaml) — defines every convention flag and its default value
+- [`.architect/config/bindings.md`](.architect/config/bindings.md) — **the binding spec** that maps each flag to the AI behavior it governs. This is the single source of truth for what each flag does. Honor every binding here when running any skill.
+- [`.architect/config/response-display.md`](.architect/config/response-display.md) — full display-contract spec
+
+`AGENTS.md` is the lean trunk; `bindings.md` is the leaves. Together they tell the AI how to behave at every turn.
+
 ## Default Response Format
 
-Always use the standard architect-friendly response format described in:
-
-- `.architect/config/workspace-defaults.yaml` (workspace-level convention flags)
-- `.architect/config/response-display.md` (the display contract itself)
-
-Unless the user explicitly asks for a different format, substantial responses
-must follow that display contract.
+Always use the standard architect-friendly response format described in `.architect/config/response-display.md`. Unless the user explicitly asks for a different format, substantial responses must follow that display contract.
 
 ## Required Display Contract
 

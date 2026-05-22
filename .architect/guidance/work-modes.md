@@ -3,113 +3,66 @@
 This guide defines the default working modes for an architect-led Open
 Architect workspace.
 
+> **Note on bindings.** This file describes the *narrative principles*
+> behind work modes. The *AI behavioral bindings* tied to mode-related
+> convention flags (`default_work_mode`, `guided_mode_support`,
+> `guided_mode_depth`, `clarify_operating_context_first`,
+> `include_architect_tasks_in_all_modes`,
+> `artifact_creation_requires_explicit_request`) live in
+> [`config/bindings.md`](../config/bindings.md)
+> §"Mode and operating context". Architects read this file for
+> understanding; AI agents must also read `bindings.md`
+> for what to do.
+
 ## Purpose
 
 Work modes tell the agent what kind of help is wanted before it starts
 producing architecture outputs.
 
-This prevents a common failure mode where the user wants extraction or analysis,
-but the workspace jumps into artifact creation, workflow progression, or
-governance packaging too early.
+This prevents a common failure mode where the user wants extraction or
+analysis, but the workspace jumps into artifact creation, workflow
+progression, or governance packaging too early.
 
 ## Default Principle
 
 The architect is the primary driver.
 
-Agents support the current task. They do not decide the project lifecycle on
-their own unless the user explicitly opts into a coordinator-led model.
+Agents support the current task. They do not decide the project
+lifecycle on their own unless the user explicitly opts into a
+coordinator-led model.
 
-When guided mode is enabled, the agent should also help the architect make
-progress inside the current mode instead of only returning raw output.
+When guided mode is enabled, the agent should also help the architect
+make progress inside the current mode instead of only returning raw
+output.
 
 ## Guided Output Shape
 
-When `guided_mode_support` is on, each mode should normally include:
+The guided output shape (active in `standard` and `detailed` guided
+mode depths) includes:
 
-- active role and skill
-  - which role lens and which skill or playbook are active for this task
-- current picture
-  - what is now known
-- working interpretation
-  - what the assistant currently thinks the task or context is
-- what matters
-  - the most important signals, risks, or choices
-- open points
-  - what is still unclear
-- recommended next move
-  - the most useful next step inside the current effort
-- architect tasks
-  - the concrete follow-up actions the architect should now take
-- bottom line
-  - the short practical takeaway
+- **active role and skill** — which role lens and which skill or playbook are active for this task
+- **current picture** — what is now known
+- **working interpretation** — what the assistant currently thinks the task or context is
+- **what matters** — the most important signals, risks, or choices
+- **open points** — what is still unclear
+- **recommended next move** — the most useful next step inside the current effort
+- **architect tasks** — the concrete follow-up actions the architect should now take
+- **bottom line** — the short practical takeaway
 
-This guidance should stay mode-appropriate and should not force artifact
-creation or workflow progression on its own.
+This guidance should stay mode-appropriate and should not force
+artifact creation or workflow progression on its own.
 
-If `response_display_style` is `architect-friendly`, prefer:
+Architect tasks, when present, are grouped as:
 
-- a short top banner
-- stable section order
-- status labels where useful
-- grouped architect tasks
-- a short bottom-line close
+- **Ask** — questions the architect should ask other people
+- **Confirm** — items that need validation or agreement
+- **Request** — evidence, documents, or access the architect should obtain
+- **Decide** — choices the architect should prepare or make
 
-If `announce_active_role_and_skill` is enabled, the assistant should make its
-working stance explicit near the start of the response:
-
-- active role
-- active skill or playbook
-- or an explicit note that no named skill is being used
-
-If `clarify_operating_context_first` is enabled, the assistant should assume
-that the operating context may still be incomplete until it has been made
-explicit. It should therefore:
-
-- state its current interpretation of the assignment or slice
-- separate source-backed facts from inferred framing
-- highlight the smallest context gaps that would materially change the work
-- avoid behaving as if scope, state, or target intent are already settled
-
-If `include_architect_tasks_in_all_modes` is enabled, each mode should also end
-with a short, concrete set of tasks for the architect. These may include:
-
-- questions to ask
-- people to confirm with
-- evidence or source material to request
-- decisions to prepare
-- reviews or validations to perform next
-
-If `maximize_followup_task_capture` is enabled, the assistant should also try to
-capture as many useful architect follow-ups as the current evidence safely
-supports. In practice, that means:
-
-- provide a small batch of next tasks instead of only one
-- include related clarification, review, and evidence-collection tasks together
-- avoid artificial scarcity when multiple sensible follow-ups are already clear
-- keep the task list prioritized so it still feels actionable
-
-If `architect_work_auto_capture` is enabled:
-
-- treat `architect-work/` as the default destination for project-local follow-up material
-- identify candidate updates for open questions, confirmations, evidence requests, and architect tasks as part of normal work
-
-If `architect_work_auto_update_mode` is `approval-before-write`:
-
-- prepare or suggest `architect-work/` updates when they are useful
-- wait for the architect's confirmation before writing them
-
-When possible, present architect tasks in this shape:
-
-- ask
-  - questions the architect should ask other people
-- confirm
-  - items that need validation or agreement
-- request
-  - evidence, documents, or access the architect should obtain
-- decide
-  - choices the architect should prepare or make
-
-This keeps follow-up output practical and easy to scan.
+The verbosity of this output (concise / standard / detailed) is
+controlled by the `guided_mode_depth` flag — see
+[`bindings.md`](../config/bindings.md)
+§`guided_mode_depth`.
 
 ## Modes
 
@@ -171,7 +124,8 @@ By default, do not:
 
 ### `modeling`
 
-Use when the user explicitly wants architecture assets created or updated.
+Use when the user explicitly wants architecture assets created or
+updated.
 
 Expected behavior:
 
@@ -258,5 +212,5 @@ If the user does not specify a mode, prefer:
 2. `analysis`
 3. `modeling` only after explicit request
 
-This keeps the workspace useful for practicing architects who want support
-without losing control of the work.
+This keeps the workspace useful for practicing architects who want
+support without losing control of the work.

@@ -78,18 +78,15 @@ skills:
     - evidence-curator
 
 conventions:
-  id_prefix_mode: standard
   traceability_required: true
   compliance_reviews_required: true
   architecture_reviews_required: true
-  human_review_required: true
   user_is_primary_driver: true
   default_work_mode: inventory
   guided_mode_support: true
   guided_mode_depth: standard
   clarify_operating_context_first: true
   include_architect_tasks_in_all_modes: true
-  maximize_followup_task_capture: true
   announce_active_role_and_skill: true
   response_display_style: architect-friendly
   response_display_enforcement: strict
@@ -103,14 +100,9 @@ conventions:
   artifact_creation_requires_explicit_request: true
   next_step_recommendations_only: true
   auto_progression: false
-  ask_before_scope_changes: true
-  ask_before_status_changes: true
   ask_before_owner_creation: true
-  ask_user_on_blocking_open_questions: true
-  allow_progress_on_non_blocking_open_questions: true
   allow_agent_auto_approval: false
   default_agent_output_status: draft
-  stop_on_decision_changes: true
   stop_on_governance_status_changes: true
   evidence_required_for_approval: true
 
