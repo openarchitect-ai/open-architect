@@ -38,6 +38,39 @@ shape demands it; major bump to 1.0 will signal the contract is frozen.
 
 ### Added
 
+- **`working-with-open-architect.md` user-facing guide.** Closes a
+  first-touch friction: there was no user-facing documentation
+  explaining how an architect actually runs a skill, updates
+  architect-work files, records sponsor answers, or approves AI
+  writes. The pattern is conversational (architect describes →
+  AI proposes → architect approves → AI writes), governed by the
+  `architect_work_auto_capture` / `architect_work_auto_update_mode` /
+  `architect_work_auto_update_scope` conventions in
+  `workspace-defaults.yaml`, but it was buried in `agent.config.md`.
+  The new guide covers: how to run a skill, how to update
+  architect-work, how approvals work, common patterns (start of
+  session, end of session, sponsor answers, task completion), a
+  sample one-hour session conversation, and pointers to deeper
+  reference docs. Linked from root README Getting Started, AGENTS.md,
+  and `.architect/skills/README.md`.
+- **Publication-package shape + workspace-boundary clarification.** OA
+  previously had four skills that produced documentation outputs
+  (`review-pack-builder`, `delivery-handover-packager`,
+  `architecture-documenter`, `communication-packager`) but never said
+  *where* the outputs landed or where OA's responsibility ended.
+  Added:
+  - [`guidance/publication-package-shape.md`](./guidance/publication-package-shape.md)
+    defining the standard publication-package folder shape
+    (`workspace/<project>/publications/<date>-<gate>/` with `README.md`,
+    `manifest.yaml`, `provenance.yaml`, composed documents, and
+    referenced diagrams), and crucially, the explicit OA / enterprise
+    boundary: **OA produces the package; what your organization does
+    with it (upload to Confluence, transform to Word for SharePoint,
+    import into LeanIX or Ardoq, route through your CMS) is your org's
+    documentation policy and outside OA's scope.**
+  - The four package-producing skills updated with refined Outputs
+    sections (each names the publication folder it writes into) and a
+    new explicit Boundaries section restating the OA / enterprise line.
 - **Playbook v1 refresh + regulated-playbook freeze-enforcement guidance.**
   A capability-radar pass over all 24 playbooks surfaced two
   asymmetries: (1) the four original v1 playbooks (`inventory-only`,

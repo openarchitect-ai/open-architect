@@ -253,6 +253,7 @@ To see available playbooks: `./architect.sh list-playbooks` (or check the [catal
 
 **Quick-start guides:**
 
+- **[Working with Open Architect](.architect/guidance/working-with-open-architect.md)** — how the architect actually runs skills, updates project state, and approves writes in their AI session. Start here if you've never used OA.
 - [Playbooks overview](.architect/playbooks/README.md) — pick an engagement shape
 - [`architect` CLI](.architect/cli/README.md) — init, new, status, list-playbooks, playbook, list-projects
 - [Starter project guide](.architect/config/starter-project.md) — minimum useful setup

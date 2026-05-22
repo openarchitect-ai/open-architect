@@ -79,6 +79,8 @@ across a project or the capability library):
 - `gap-radar.md` — proactive scan of a project for gaps, contradictions, modernity gaps
 - `capability-radar.md` — drift / consistency scan of the `.architect/` capability library itself (maintainer-focused)
 
+> **New to Open Architect?** See [`../guidance/working-with-open-architect.md`](../guidance/working-with-open-architect.md) for *how* to actually run a skill — you don't invoke them via a CLI command; you ask your AI tool in plain language inside the project folder.
+
 ## Levels
 
 ### Core

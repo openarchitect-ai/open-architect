@@ -364,6 +364,14 @@ populates it on demand.
   - **TOGAF** — the cleanest 1:1 since OA's templates are TOGAF-adjacent; covers ADM-phase → artifact mapping, ABB/SBB building blocks, and Architecture Repository concepts
   - **BIZBOK** — business-architect vocabulary; capability maps, value streams, information maps, organization maps, course-of-action mapping
   - **Cloud Well-Architected** — combined AWS + Azure + GCP pillar set; review findings persisted as `gap` / `risk` / `decision` artifacts rather than living only in vendor tooling
+- Added user-facing guide `guidance/working-with-open-architect.md`:
+  - covers the conversational workflow pattern (architect describes → AI proposes → architect approves → AI writes)
+  - explains how skills are invoked (via AI conversation, not a CLI command), how the architect-work files get updated, and how approvals work
+  - documents common patterns (start of session, end of session, sponsor answers, task completion) with a sample one-hour session conversation
+  - linked from root `README.md` Getting Started, `AGENTS.md`, and `skills/README.md`
+- Added publication-package-shape guidance + workspace-boundary clarification:
+  - `guidance/publication-package-shape.md` defines the standard folder shape under `workspace/<project>/publications/<date>-<gate>/` (README, manifest, provenance, composed docs, diagrams)
+  - the four package-producing skills (`review-pack-builder`, `delivery-handover-packager`, `architecture-documenter`, `communication-packager`) updated with refined Outputs and a new Boundaries section stating that OA produces the package and what the org does with it (upload to Confluence, transform to Word, etc.) lives outside OA's scope
 - Restructured root `README.md` to reflect the end-to-end workflow that now exists. New "How Open Architect works" section with a Mermaid diagram of the engagement loop (recap → discover → model → visualize → review → change-handle → status briefing → loop back). Re-grouped signature capabilities (scanning skills together; new Workflow discipline subsection for working-log + change-register + `architect status`; new Diagrams-as-code subsection); refreshed Project status, What's in the repo, and Contributing.
 - Refreshed the four v1 playbooks (`inventory-only`, `quick-solution-design`, `migration-wave`, `full-togaf-adm`) to match v2-v6 structural depth:
   - backfilled `Sample Backlog Of Open Questions` and `Recommended Diagrams` sections in all four

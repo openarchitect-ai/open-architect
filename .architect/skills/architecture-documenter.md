@@ -20,9 +20,13 @@ papers, and transition summaries.
 
 ## Outputs
 
-- architecture documents rooted in the source model
-- structured summaries of scope, design intent, assumptions, and impacts
-- document sections that stay traceable to the underlying artifacts
+- an architecture-document **publication package** under `workspace/<project>/publications/<date>-<purpose>/` (purposes vary: `solution-overview`, `hld-pack`, `option-paper`, `transition-summary`, etc.) in the standard shape defined in [`publication-package-shape.md`](../guidance/publication-package-shape.md): `README.md`, `manifest.yaml`, `provenance.yaml`, the composed document(s) as Markdown, and referenced diagrams under `views/`
+- document sections that stay traceable to the underlying artifacts (every section names its source artifact IDs)
+- a `working-log.md` entry in the project recording that the document package was assembled
+
+## Boundaries
+
+This skill **produces** the document package in Markdown. **What your organization does with it — render to PDF, transform to Microsoft Word, post to Confluence, format for the company template — is your org's documentation policy and outside Open Architect's scope.** See [`publication-package-shape.md`](../guidance/publication-package-shape.md) for the boundary statement.
 
 ## Typical Collaboration
 

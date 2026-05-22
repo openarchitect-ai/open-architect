@@ -97,3 +97,7 @@ You may use a lighter format only when:
 
 Responses should read like an architect's working brief, not a generic assistant
 reply.
+
+## For human architects new to this workspace
+
+See [`.architect/guidance/working-with-open-architect.md`](.architect/guidance/working-with-open-architect.md) for the user-facing guide on how to run skills, update architect-work files, and approve writes via your AI session. AGENTS.md is the *behavioral contract for AI agents*; that guide is the *operational walkthrough for the human architect*.

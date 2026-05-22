@@ -19,9 +19,13 @@ executive-friendly summaries without losing traceability back to the source arti
 
 ## Outputs
 
-- concise architecture summaries
-- stakeholder-oriented communications
-- audience-specific communication framing rooted in the source model
+- a stakeholder-communication **publication package** under `workspace/<project>/publications/<date>-<purpose>/` (purposes vary: `sponsor-briefing`, `steering-update`, `exec-summary`, etc.) in the standard shape defined in [`publication-package-shape.md`](../guidance/publication-package-shape.md): `README.md`, `manifest.yaml`, `provenance.yaml`, the composed summary(s), and any referenced diagrams under `views/`
+- audience-specific framing rooted in the source model (every claim traces back to artifact IDs)
+- a `working-log.md` entry in the project recording the briefing-package assembly
+
+## Boundaries
+
+This skill **produces** the stakeholder summary package. **What your organization does with it — turn it into a slide deck, email it as a memo, brief from it in a meeting, post to an internal channel — is your communication and delivery culture, not Open Architect's scope.** See [`publication-package-shape.md`](../guidance/publication-package-shape.md) for the boundary statement.
 
 ## Typical Collaboration
 
