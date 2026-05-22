@@ -30,28 +30,28 @@ Open Architect has four moving parts that work together: a **playbook** that sha
 
 ```mermaid
 graph TB
-    PB[Playbook<br/>chosen at engagement start<br/>names which skills to run, which review gates apply,<br/>which decisions you will face]
+    PB[Playbook<br/>chosen at engagement start —<br/>names the phases to run,<br/>review gates that apply,<br/>and decisions you will face]
 
     subgraph LOOP["The architect's work loop"]
         direction LR
-        R[project-recap<br/>where are we?]
-        D[baseline-discovery<br/>what exists today?]
-        M[modeling skills<br/>solution-modeler<br/>decision-recorder<br/>option-evaluator<br/>transition-planner]
-        VIZ[diagram-author<br/>communicate the design]
-        G[gap-radar<br/>architecture-review<br/>what is missing?]
-        C[change-coordinator<br/>handle scope shifts]
+        R[Orient<br/>where are we?]
+        D[Discover<br/>what exists today?]
+        M[Model<br/>design the change]
+        VIZ[Visualize<br/>communicate the design]
+        G[Review<br/>what is missing or wrong?]
+        C[Handle change<br/>when requirements shift]
         R --> D --> M --> VIZ --> G --> C
         C -. next session .-> R
     end
 
-    subgraph LIB["Foundation library (skills read from here)"]
+    subgraph LIB["Foundation library (the loop reads from here)"]
         direction LR
         T[Templates<br/>25 typed shapes,<br/>one per artifact kind]
         P[Patterns<br/>100+ reusable<br/>design approaches]
         RL[Roles<br/>11 architecture roles<br/>with explicit boundaries]
     end
 
-    subgraph PS["Project state (skills read + update here)"]
+    subgraph PS["Project state (the loop reads + updates here)"]
         direction LR
         WL[Working log<br/>plain-language<br/>narrative]
         CR[Change register<br/>scope-drift log<br/>sponsors read this]
@@ -75,10 +75,16 @@ graph TB
 
 **Reading the diagram:**
 
-- A **playbook** is picked at engagement start (there are 24 to choose from). It names the skills you'll run, the review gates that apply, and the decisions you'll face.
-- The **work loop** is what the architect actually does day-to-day: orient → discover → model → visualize → review → handle change → loop back next session.
+- A **playbook** is picked at engagement start (there are 24 to choose from). It names the phases you'll run, the review gates that apply, and the decisions you'll face.
+- The **work loop** is what the architect actually does day-to-day. Each phase in the loop is implemented by one or more named **skills** the architect runs:
+  - **Orient** — read the project state and produce a briefing of where things stand (the [`project-recap`](.architect/skills/project-recap.md) skill)
+  - **Discover** — extract architecture facts from source material into typed artifacts ([`baseline-discovery`](.architect/skills/baseline-discovery.md))
+  - **Model** — design the change as artifacts: solutions, decisions, options compared, transition states (`solution-modeler`, `decision-recorder`, `option-evaluator`, `transition-planner`, and more)
+  - **Visualize** — produce architecture views from the modeled artifacts ([`diagram-author`](.architect/skills/diagram-author.md))
+  - **Review** — surface missing content, drift, and present-day-standards gaps ([`gap-radar`](.architect/skills/gap-radar.md), [`architecture-review`](.architect/skills/architecture-review.md))
+  - **Handle change** — when requirements shift, classify the change, assess impact, log it ([`change-coordinator`](.architect/skills/change-coordinator.md))
 - The **foundation library** sits underneath as the reusable backbone. Skills reach into templates for artifact shapes, patterns for reusable designs, and roles for accountability boundaries.
-- The **project state** is what each skill reads and updates. The working log + change register + topical files carry the project's memory across sessions; the architecture artifacts (typed YAML, one per object) are the structured truth. When you re-enter a project, `project-recap` reads everything back and gives you the briefing.
+- The **project state** is what each skill reads and updates. The working log + change register + topical files carry the project's memory across sessions; the architecture artifacts (typed YAML, one per object) are the structured truth.
 
 ---
 
