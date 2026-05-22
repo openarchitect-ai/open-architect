@@ -111,12 +111,17 @@ First-class architecture patterns for AI work: retrieval-augmented generation, p
 | If you're... | Run / use |
 |---|---|
 | Joining a project mid-stream or returning after time away | `project-recap` |
-| Preparing for a review gate | `gap-radar` |
-| Starting a new engagement | pick a [playbook](.architect/playbooks/) |
-| Standing up an AI platform | `ai-platform-bootstrap` + [`patterns/ai/`](.architect/patterns/ai/) |
-| Driven by a regulator | `compliance-driven-modernization` |
-| Integrating an acquired company | `post-acquisition-integration` |
-| Using C4 / ArchiMate / DDD vocabulary | [`guidance/vocabulary-bridges/`](.architect/guidance/vocabulary-bridges/) |
+| Preparing for a review gate or after a stretch of intensive modeling | `gap-radar` |
+| Designing one bounded solution for a team, in weeks | `quick-solution-design` |
+| Running a full enterprise architecture cycle | `full-togaf-adm` |
+| Standing up an AI, data, developer, or integration platform | [platform-bootstrap family](.architect/playbooks/README.md) (`ai-platform-bootstrap`, `data-platform-modernization`, `platform-engineering-bootstrap`, `enterprise-integration-bootstrap`) |
+| Driven by a regulator, CISO, incident, or BCP/DR posture | [driver-specific family](.architect/playbooks/README.md) (`compliance-driven-modernization`, `security-uplift`, `post-incident-architecture-review`, `business-continuity-readiness`) |
+| Working any phase of an M&A | [M&A lifecycle family](.architect/playbooks/README.md) (`acquisition-due-diligence`, `post-acquisition-integration`, `divestiture-separation`) |
+| Modernizing, migrating, redesigning, or decommissioning | [modernization & transition family](.architect/playbooks/README.md) (`migration-wave`, `cloud-migration`, `tech-debt-remediation`, `domain-driven-redesign`, `decommissioning-program`) |
+| Doing discovery before action (inventory, rationalization, vendor selection, capability mapping) | [discovery & decision family](.architect/playbooks/README.md) (`inventory-only`, `portfolio-rationalization`, `vendor-evaluation-and-selection`, `capability-based-planning`) |
+| Setting up or operating the architecture function itself | [practice setup & operation family](.architect/playbooks/README.md) (`architecture-team-bootstrap`, `steady-state-governance`) |
+| Using C4 / ArchiMate-Lite / DDD vocabulary | [`guidance/vocabulary-bridges/`](.architect/guidance/vocabulary-bridges/) |
+| Not sure which playbook fits | `./architect.sh list-playbooks` then `./architect.sh playbook <name>` |
 
 ---
 
