@@ -136,6 +136,20 @@ Available values:
 - `ai-platform-bootstrap`
 - `compliance-driven-modernization`
 - `post-acquisition-integration`
+- `data-platform-modernization`
+- `platform-engineering-bootstrap`
+- `portfolio-rationalization`
+- `security-uplift`
+- `post-incident-architecture-review`
+- `tech-debt-remediation`
+- `steady-state-governance`
+- `enterprise-integration-bootstrap`
+- `cloud-migration`
+- `vendor-evaluation-and-selection`
+- `capability-based-planning`
+- `acquisition-due-diligence`
+- `divestiture-separation`
+- `architecture-team-bootstrap`
 
 Recommended approach:
 

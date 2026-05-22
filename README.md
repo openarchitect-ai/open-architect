@@ -26,7 +26,23 @@ Open Architect is built for the situations architects actually walk into:
 
 ### Engagement playbooks
 
-Seven pre-packaged engagement shapes, each bundling a ready-to-clone `project-config.yaml`, recommended skill sequence, applicable review gates, anti-patterns, and a first-working-session script:
+Twenty-one pre-packaged engagement shapes, each bundling a ready-to-clone `project-config.yaml`, recommended skill sequence, applicable review gates, anti-patterns, and a first-working-session script.
+
+**By engagement family:**
+
+| Family | Playbooks |
+|---|---|
+| Discovery & decision | `inventory-only`, `portfolio-rationalization`, `vendor-evaluation-and-selection`, `capability-based-planning` |
+| Solution / design | `quick-solution-design` |
+| Modernization & transition | `migration-wave`, `tech-debt-remediation`, `cloud-migration` |
+| Platform bootstrap | `ai-platform-bootstrap`, `platform-engineering-bootstrap`, `enterprise-integration-bootstrap`, `data-platform-modernization` |
+| Enterprise cycle | `full-togaf-adm` |
+| Driver-specific | `compliance-driven-modernization`, `security-uplift`, `post-incident-architecture-review` |
+| M&A lifecycle | `acquisition-due-diligence`, `post-acquisition-integration`, `divestiture-separation` |
+| Practice setup & operation | `architecture-team-bootstrap`, `steady-state-governance` |
+
+**Detail:**
+
 
 | Playbook | Use when |
 |---|---|
@@ -37,6 +53,20 @@ Seven pre-packaged engagement shapes, each bundling a ready-to-clone `project-co
 | [`ai-platform-bootstrap`](.architect/playbooks/ai-platform-bootstrap/) | standing up or rationalizing an AI platform with model lifecycle, RAG, eval, guardrails |
 | [`compliance-driven-modernization`](.architect/playbooks/compliance-driven-modernization/) | the regulator (DORA, NIS2, AI Act, PCI DSS, HIPAA, FedRAMP, SEC cyber) is the driver |
 | [`post-acquisition-integration`](.architect/playbooks/post-acquisition-integration/) | M&A has happened and two estates must be integrated within a TSA clock |
+| [`data-platform-modernization`](.architect/playbooks/data-platform-modernization/) | building or rationalizing a data platform — lake / lakehouse / mesh, data products, contracts |
+| [`platform-engineering-bootstrap`](.architect/playbooks/platform-engineering-bootstrap/) | standing up an internal developer platform with golden paths and self-service |
+| [`portfolio-rationalization`](.architect/playbooks/portfolio-rationalization/) | invest / tolerate / migrate / eliminate analysis before any migration program executes |
+| [`security-uplift`](.architect/playbooks/security-uplift/) | CISO or threat landscape is driving architectural change — zero-trust, defense-in-depth, identity strategy |
+| [`post-incident-architecture-review`](.architect/playbooks/post-incident-architecture-review/) | major incident has happened and architecture must change to prevent the class of failure |
+| [`tech-debt-remediation`](.architect/playbooks/tech-debt-remediation/) | improving quality of an existing estate without major reshape — debt inventory, scoring, prevention practice |
+| [`steady-state-governance`](.architect/playbooks/steady-state-governance/) | operating the architecture function — board cadence, decision lifecycle, principle stewardship, exception process |
+| [`enterprise-integration-bootstrap`](.architect/playbooks/enterprise-integration-bootstrap/) | standing up an integration platform — iPaaS / event mesh / API gateway / service registry / B2B onboarding |
+| [`cloud-migration`](.architect/playbooks/cloud-migration/) | migrating to cloud — landing zone, 6Rs decisions per app, identity federation, FinOps from Day 1, exit posture |
+| [`vendor-evaluation-and-selection`](.architect/playbooks/vendor-evaluation-and-selection/) | structured RFI / RFP / scoring / decision for selecting a major vendor with defensible rationale |
+| [`capability-based-planning`](.architect/playbooks/capability-based-planning/) | business capability map, heatmap, value-stream alignment, investment direction per capability |
+| [`acquisition-due-diligence`](.architect/playbooks/acquisition-due-diligence/) | pre-deal technical diligence — risk register, integration cost estimate, crown-jewel inventory, deal-impact decisions |
+| [`divestiture-separation`](.architect/playbooks/divestiture-separation/) | seller-side carve-out — TSA forward, identity / data separation, decommissioning, standalone architecture at TSA exit |
+| [`architecture-team-bootstrap`](.architect/playbooks/architecture-team-bootstrap/) | creating an architecture function from zero — charter, founding principles, operating model, hiring plan, tooling, initial cadence |
 
 Pick one. Clone its config. Follow the brief.
 
