@@ -26,41 +26,59 @@ Open Architect is built for the situations architects actually walk into:
 
 ## How Open Architect works
 
-Architecture work happens in a loop: orient yourself, find out what's there, model the change, check for gaps, handle scope shifts, brief the team — and pick up again next session. Open Architect names each step and remembers state between sessions so you're not starting fresh every time.
+Open Architect has four moving parts that work together: a **playbook** that shapes the engagement, the **skills** the architect runs (in a repeatable loop), a **foundation library** the skills draw from, and the **project state** that carries from session to session.
 
 ```mermaid
-graph LR
-    A([architect new<br/>scaffold project])
-    B[project-recap<br/>where are we?]
-    C[baseline-discovery<br/>what exists today?]
-    D[solution-modeler<br/>decision-recorder<br/>option-evaluator<br/>model the change]
-    E[diagram-author<br/>communicate the design]
-    F[gap-radar<br/>architecture-review<br/>what is missing or wrong?]
-    G[change-coordinator<br/>when requirements shift]
-    H([architect status<br/>portfolio briefing])
+graph TB
+    PB[Playbook<br/>chosen at engagement start<br/>names which skills to run, which review gates apply,<br/>which decisions you will face]
 
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
-    F --> G
-    G -. next session .-> B
-    F -. anytime .-> H
+    subgraph LOOP["The architect's work loop"]
+        direction LR
+        R[project-recap<br/>where are we?]
+        D[baseline-discovery<br/>what exists today?]
+        M[modeling skills<br/>solution-modeler<br/>decision-recorder<br/>option-evaluator<br/>transition-planner]
+        VIZ[diagram-author<br/>communicate the design]
+        G[gap-radar<br/>architecture-review<br/>what is missing?]
+        C[change-coordinator<br/>handle scope shifts]
+        R --> D --> M --> VIZ --> G --> C
+        C -. next session .-> R
+    end
 
-    classDef start fill:#fde68a,stroke:#a16207,color:#000
-    classDef phase fill:#bfdbfe,stroke:#1d4ed8,color:#000
-    class A,H start
-    class B,C,D,E,F,G phase
+    subgraph LIB["Foundation library (skills read from here)"]
+        direction LR
+        T[Templates<br/>25 typed shapes,<br/>one per artifact kind]
+        P[Patterns<br/>100+ reusable<br/>design approaches]
+        RL[Roles<br/>11 architecture roles<br/>with explicit boundaries]
+    end
+
+    subgraph PS["Project state (skills read + update here)"]
+        direction LR
+        WL[Working log<br/>plain-language<br/>narrative]
+        CR[Change register<br/>scope-drift log<br/>sponsors read this]
+        AW[Topical files<br/>questions, answers,<br/>evidence, tasks]
+        ART[Architecture artifacts<br/>typed YAML — one per<br/>application, decision, etc.]
+    end
+
+    PB ==>|orchestrates| LOOP
+    LOOP -->|reads from| LIB
+    LOOP -->|reads + updates| PS
+
+    classDef play fill:#fde68a,stroke:#a16207,color:#000
+    classDef loop fill:#bfdbfe,stroke:#1d4ed8,color:#000
+    classDef lib fill:#ddd6fe,stroke:#6d28d9,color:#000
+    classDef state fill:#bbf7d0,stroke:#166534,color:#000
+    class PB play
+    class R,D,M,VIZ,G,C loop
+    class T,P,RL lib
+    class WL,CR,AW,ART state
 ```
 
-**A few files under each project carry the state forward across sessions:**
+**Reading the diagram:**
 
-- A **working log** — the story of the project, in plain language, newest entry on top
-- A **change register** — a running log of scope and requirement changes that sponsors can read directly
-- Four **topical files** — open questions, confirmed answers, evidence requested, and an active task list
-
-Skills read these when they start and suggest updates when they finish. When you re-enter a project, `project-recap` reads everything back and gives you the briefing.
+- A **playbook** is picked at engagement start (there are 24 to choose from). It names the skills you'll run, the review gates that apply, and the decisions you'll face.
+- The **work loop** is what the architect actually does day-to-day: orient → discover → model → visualize → review → handle change → loop back next session.
+- The **foundation library** sits underneath as the reusable backbone. Skills reach into templates for artifact shapes, patterns for reusable designs, and roles for accountability boundaries.
+- The **project state** is what each skill reads and updates. The working log + change register + topical files carry the project's memory across sessions; the architecture artifacts (typed YAML, one per object) are the structured truth. When you re-enter a project, `project-recap` reads everything back and gives you the briefing.
 
 ---
 
