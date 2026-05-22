@@ -1,198 +1,208 @@
 # Open Architect
 
-Open Architect is an open source, AI-assisted workspace for enterprise
-architects and solution architects.
+Architecture work doesn't start clean. You join projects in flight, requirements are partial, the estate is undocumented, the standard you're held to keeps moving — and you still need to deliver something defensible.
 
-It is designed to help practicing architects work from real project evidence,
-capture architecture as structured knowledge when useful, and bring AI support
-into architecture work without forcing heavy process or premature modeling.
+**Open Architect** is an open-source, AI-aware workspace built for that reality. It pairs a structured architecture metamodel with active scanning skills, pre-packaged engagement playbooks, and AI-era patterns — so the architect stays in control while AI catches what gets missed.
 
-The core idea is simple:
+- **Architect-led.** AI assists; you decide.
+- **Engagement-shaped.** Pick a playbook for the work you're actually doing, not a generic process.
+- **Catches what you miss.** A built-in scanner surfaces gaps an experienced reviewer would catch on a fresh read.
 
-- keep architecture guidance close to the project
-- start from source material and explicit questions
-- move from inventory to analysis before modeling
-- create architecture artifacts only when they are actually useful
-- support both human architects and AI-assisted workflows
+---
 
-## Why Open Architect
+## The architect's reality
 
-Most architecture work is fragmented across documents, diagrams, wikis, and
-delivery boards. That makes it hard to:
+Open Architect is built for the situations architects actually walk into:
 
-- understand the current estate clearly
-- maintain a coherent target state
-- trace requirements, decisions, and transition steps
-- govern change over time
-- reuse architecture knowledge across projects
-- support AI agents with reliable architecture context
+- **You joined a project at month 18.** Three architects came before you. No one wrote down why.
+- **You have unclear requirements** and stakeholders who change their mind weekly.
+- **You're delivering to standards that didn't exist last year** — EU AI Act, DORA, NIS2, modern supply-chain integrity, zero-trust, observability-by-design.
+- **You miss things under time pressure** — and reviewers find them at the worst moment.
+- **You work across multiple AI tools** (Claude, Codex, Copilot, others) and need them to behave consistently inside your workspace.
 
-Open Architect treats architecture as a project-local capability with:
+---
 
-- lightweight project startup
-- reusable templates and guidance
-- explicit roles, skills, and working modes
-- optional structured architecture artifacts
-- optional advanced orchestration when a project actually needs it
+## Signature capabilities
 
-## What Is In This Repository
+### Engagement playbooks
 
-This repository currently contains the `.architect` capability structure,
-including:
+Seven pre-packaged engagement shapes, each bundling a ready-to-clone `project-config.yaml`, recommended skill sequence, applicable review gates, anti-patterns, and a first-working-session script:
 
-- architecture templates for business, application, data, technology, governance, and change
-- project-local guidance and conventions
-- role definitions for architects
-- method and reference method content
-- prompt recipes, starter-project guidance, and lightweight presets
-- markdown flow definitions for architecture development and coordination, with a path to richer visual or executable workflows when explicitly needed
-- architecture instance folders for real project artifacts
+| Playbook | Use when |
+|---|---|
+| [`inventory-only`](.architect/playbooks/inventory-only/) | document and assess an estate without modeling target state |
+| [`quick-solution-design`](.architect/playbooks/quick-solution-design/) | bounded solution for one team, in weeks |
+| [`migration-wave`](.architect/playbooks/migration-wave/) | modernization, decommissioning, or wave-based transition |
+| [`full-togaf-adm`](.architect/playbooks/full-togaf-adm/) | enterprise architecture cycle with stakeholders, vision, capabilities, governance |
+| [`ai-platform-bootstrap`](.architect/playbooks/ai-platform-bootstrap/) | standing up or rationalizing an AI platform with model lifecycle, RAG, eval, guardrails |
+| [`compliance-driven-modernization`](.architect/playbooks/compliance-driven-modernization/) | the regulator (DORA, NIS2, AI Act, PCI DSS, HIPAA, FedRAMP, SEC cyber) is the driver |
+| [`post-acquisition-integration`](.architect/playbooks/post-acquisition-integration/) | M&A has happened and two estates must be integrated within a TSA clock |
 
-The main workspace documentation is here:
+Pick one. Clone its config. Follow the brief.
 
-- [`.architect/README.md`](.architect/README.md)
+→ [.architect/playbooks/README.md](.architect/playbooks/README.md)
 
-## Repository Structure
+### Gap Radar
 
-```text
-.architect/
-  architecture/
-  examples/
-  patterns/
-  compliance/
-  playbooks/
-  schemas/
-  validation/
-  config/
-  guidance/
-  method/
-  roles/
-  skills/
-  templates/
+A proactive scan skill that catches what experienced architects miss under time pressure: missing required content, cross-artifact contradictions, invented owners, governance hygiene issues, drift signals, and AI-era modernity gaps. Findings reference the applicable architecture pattern and carry severity markers.
+
+Run it before any review gate, after a stretch of intensive modeling, or as routine cadence.
+
+→ [.architect/skills/gap-radar.md](.architect/skills/gap-radar.md) · [.architect/guidance/gap-radar-checklists.md](.architect/guidance/gap-radar-checklists.md)
+
+### Project Recap
+
+Read-only orientation for an architect joining a project mid-stream or returning after time away. Walks the project state, surfaces what's confirmed, what's open, what's stale, what has drifted between recent source material and current artifacts, and what matters most right now.
+
+Run this first when re-entering. Run Gap Radar afterwards.
+
+→ [.architect/skills/project-recap.md](.architect/skills/project-recap.md)
+
+### AI-era patterns
+
+First-class architecture patterns for AI work: retrieval-augmented generation, prompt lifecycle management, continuous model evaluation, version promotion gates, layered guardrail stack, agentic bounded loops, embedding lifecycle management, and model vendor portability. Referenced by Gap Radar's AI Platform checks and the `ai-platform-bootstrap` playbook.
+
+→ [.architect/patterns/ai/](.architect/patterns/ai/README.md)
+
+### Plus
+
+- **Substantial compliance layer** — GDPR, UK GDPR, EU AI Act, NIS2, DORA, Cyber Resilience Act, EU Data Act, HIPAA Security Rule, FTC Safeguards, SEC cyber disclosure, PCI DSS, CCPA/CPRA, FedRAMP, CMMC, and more
+- **TOGAF-adjacent template library** across business, application, data, technology, governance, change
+- **Vocabulary bridges** for teams that think in C4, ArchiMate-Lite, or DDD
+- **Deep pattern library** across application, integration, data, security, technology, transition, governance, business
+
+---
+
+## When to use it
+
+| If you're... | Run / use |
+|---|---|
+| Joining a project mid-stream or returning after time away | `project-recap` |
+| Preparing for a review gate | `gap-radar` |
+| Starting a new engagement | pick a [playbook](.architect/playbooks/) |
+| Standing up an AI platform | `ai-platform-bootstrap` + [`patterns/ai/`](.architect/patterns/ai/) |
+| Driven by a regulator | `compliance-driven-modernization` |
+| Integrating an acquired company | `post-acquisition-integration` |
+| Using C4 / ArchiMate / DDD vocabulary | [`guidance/vocabulary-bridges/`](.architect/guidance/vocabulary-bridges/) |
+
+---
+
+## What a session looks like
+
+A `gap-radar` pass before a `solution-direction` review gate:
+
+```
+Mode: Review · Role: Chief Architect · Confidence: High
+
+## Blockers
+🚫 sol-1002-payment-orchestration is marked `accepted` but related
+   decisions D-0007 and D-0008 are still `proposed`
+🚫 int-1003 carries PII but declares no encryption-in-transit stance
+
+## Missing Required Content
+- 3 applications without an accountable owner (app-1002, app-1004, app-1009)
+- 2 transitions without rollback approach declared (ta-2002, ta-2003)
+
+## Present-Day Standards Gaps
+- sol-1002 has no observability ownership named (who reads the dashboards?)
+- 4 services with credentials in scope have no secret rotation cadence
+- No BCP/DR posture stated for the 2 critical solutions
+
+## Bottom Line
+The two blockers are fixable today. The 3-without-owner and missing
+observability ownership are the real risks before the gate.
+
+Your move: pick a finding to address, or ask for the full list.
 ```
 
-High-level intent:
+This is the kind of report Open Architect produces — scannable, severity-marked, pattern-referenced, and oriented around what the architect should do next.
 
-- `architecture/`: real architecture artifacts created for a project
-- `examples/`: worked examples and reference projects separated from live project artifacts
-- `patterns/`: reusable architecture patterns and reference solution approaches
-- `compliance/`: compliance-aware reference material for jurisdiction, sector, and control obligations
-- `playbooks/`: pre-packaged engagement shapes (inventory-only, quick-solution-design, migration-wave, full-togaf-adm, ai-platform-bootstrap, compliance-driven-modernization, post-acquisition-integration) bundling a ready-to-clone `project-config.yaml`, recommended skill sequence, and applicable review gates
-- `schemas/`: formal JSON Schema contracts for artifact document structure
-- `validation/`: lightweight validators for templates and architecture artifact folders
-- `config/`: configuration guidance for agent and workspace behavior
-- `guidance/`: conventions, glossary, and local rules
-- `method/`: the chosen project method and reference methods such as ADM
-- `roles/`: role descriptions and responsibilities
-- `skills/`: reusable architecture skills and procedures that agents apply
-- `templates/`: the architecture metamodel and starter templates
-
-The workspace is now best understood in three levels:
-
-- `Core`
-  - everyday architect-assist use
-- `Optional`
-  - additional structure for more formal projects
-- `Advanced`
-  - orchestration, runtime state, schemas, and deeper automation
-
-## Who It Is For
-
-Open Architect is intended for:
-
-- enterprise architects shaping capability, target state, standards, and roadmap
-- solution architects defining bounded solutions, interfaces, environments, and transition plans
-- teams that want architecture to be versioned, reviewable, and automatable
-- organizations exploring AI-assisted architecture practices
-
-It works especially well when the architect wants to stay in control and use AI
-as a specialist helper for extraction, analysis, review, and selective
-modeling.
-
-## Current Scope
-
-The project already includes templates for:
-
-- business capability, process, stakeholder, objective, organization, principle
-- application, application service, interface, solution, requirement
-- data object
-- technology component, technology standard, environment
-- decision, compliance assessment, risk, architecture vision
-- initiative, roadmap, transition architecture, work package, gap
-
-It also now includes a substantial compliance layer for privacy, AI,
-cybersecurity, financial resilience, health security, public-company cyber
-disclosure, payment security, public-sector and product obligations, and
-consumer privacy concerns.
+---
 
 ## Getting Started
 
-The lightest useful way to start is:
+1. **Pick a playbook** from [.architect/playbooks/](.architect/playbooks/) — pick the engagement shape closest to your work.
+2. **Copy its `project-config.yaml`** to your project location under `.architect/architecture/<your-project>/`.
+3. **Follow the playbook's first-working-session script.**
 
-1. Open [`.architect/playbooks/`](.architect/playbooks/) and pick the engagement shape that fits.
-2. Copy the playbook's `project-config.yaml` to your project location.
-3. Create a small project folder under [`.architect/architecture`](.architect/architecture).
-4. Add a `docs/` folder with your source material.
-5. Optionally add a short `notes.md` with your business goal and questions.
-6. Follow the playbook's recommended first steps.
+That's it. Don't pick templates or skills one by one — the playbook has chosen them for you. Tune from there as the engagement evolves.
 
-Best quick-start guides:
+**Quick-start guides:**
 
-- [playbooks/README.md](.architect/playbooks/README.md) — pick an engagement shape
-- [starter-project.md](.architect/config/starter-project.md)
-- [prompt-recipes.md](.architect/config/prompt-recipes.md)
-- [cheat-sheet.md](.architect/config/cheat-sheet.md)
-- [agent.config.md](.architect/config/agent.config.md)
+- [Playbooks overview](.architect/playbooks/README.md) — pick an engagement shape
+- [Starter project guide](.architect/config/starter-project.md) — minimum useful setup
+- [Prompt recipes](.architect/config/prompt-recipes.md) — practical prompts for inventory, analysis, review, decision, and modeling
+- [Cheat sheet](.architect/config/cheat-sheet.md) — fast reference
 
-If you already know you want a more formal setup, then review:
+---
 
-- [`.architect/templates`](.architect/templates)
-- [`.architect/project-config.yaml`](.architect/project-config.yaml)
-- [`.architect/method/project-method.md`](.architect/method/project-method.md)
+## What's in the workspace
 
-## Project Direction
+```text
+.architect/
+  playbooks/      ← engagement shapes (start here)
+  patterns/       ← reusable architecture patterns (incl. patterns/ai/)
+  templates/      ← the metamodel — what each artifact kind looks like
+  skills/         ← reusable procedures (incl. gap-radar, project-recap)
+  roles/          ← role descriptions and accountabilities
+  method/         ← chosen project method + ADM and transition references
+  guidance/       ← conventions, glossary, vocabulary-bridges/
+  compliance/     ← jurisdiction, sector, and control obligations
+  architecture/   ← real project artifacts go here
+  examples/       ← worked reference projects
+  agents/         ← runtime profiles for multi-agent execution (advanced)
+  runtime/        ← live queue / gate state (advanced)
+  schemas/        ← formal JSON Schema contracts (advanced)
+  validation/     ← validators for templates and artifacts (advanced)
+  config/         ← workspace and agent configuration guides
+```
 
-Open Architect is intended to evolve toward:
+Three levels:
 
-- stronger architect-assist workflows and examples
-- deeper schema precision and richer validator enforcement
-- richer example architectures
-- reusable reference patterns
-- visual architecture flows where useful
-- AI-native architecture assistants and automation where explicitly helpful
+- **Core** — everyday architect-assist use
+- **Optional** — additional structure for more formal projects
+- **Advanced** — multi-agent orchestration, schemas, runtime state
+
+Detailed workspace docs: [.architect/README.md](.architect/README.md)
+
+---
+
+## How AI agents are guided
+
+[`AGENTS.md`](AGENTS.md) in the repo root tells AI agents (Claude Code, Codex, others) how to respond inside this workspace. It defines the display contract, status labels, and behavioral guardrails — including ownership truthfulness rules to prevent agents from inventing facts to make artifacts look complete.
+
+Edit it once for your team; any AI tool that respects the convention picks it up.
+
+---
+
+## Project status
+
+Open Architect is in a **strong foundation stage**:
+
+- ✅ Templates, patterns (incl. AI), compliance, playbooks, scanning skills are in place
+- ✅ Architect-assist operating model defined
+- ✅ Display contract, vocabulary bridges, glossary aligned
+- 🟡 Real-project proving in progress
+- 🟡 Worked examples are still thin — currently one (customer onboarding modernization)
+- 🟡 Validators exist but don't yet execute the Gap Radar checklists mechanically
+
+---
 
 ## Contributing
 
-Contributions are welcome.
+Useful contribution areas:
 
-Useful contribution areas include:
+- Worked examples across industries (finance, healthcare, public sector, AI platforms, manufacturing OT/IT)
+- Tier 2 AI patterns (inference caching, FinOps, tenant isolation, AI Act Article 50 disclosure, hallucination handling, red-teaming, human-in-the-loop review)
+- Additional vocabulary bridges (BIZBOK, Wardley Mapping, AWS Well-Architected, Google Cloud Architecture Framework)
+- Schema precision and runnable validators (especially Gap Radar checks as executable validation)
+- Method tailoring guides (TOGAF tailoring, DDD-aligned engagement, lean architecture, lightweight RACI)
+- New playbooks (e.g. data-platform modernization, post-incident architecture review, capability-based planning)
 
-- improving templates and guidance
-- improving starter-project, prompt, and usability guidance
-- adding or extending schemas and validation rules
-- creating worked examples
-- refining method and role descriptions
-- designing flow definitions
-- improving AI interoperability and automation support
+Issues and pull requests welcome.
 
-## Status
-
-This project is currently in a strong foundation stage.
-
-The core workspace, templates, patterns, compliance layer, and architect-assist
-operating model are in place. The main remaining work is now less about adding
-structure and more about making the workspace easier to prove and use in real
-projects.
-
-The repository still needs:
-
-- richer examples
-- more real-project proving of the assistive workflows
-- deeper schema precision and fuller schema-aware enforcement where useful
-- contribution standards
-- contribution and project-governance details
+---
 
 ## License
 
-This project is licensed under the Apache License 2.0.
-See [LICENSE](LICENSE).
+Apache License 2.0. See [LICENSE](LICENSE).

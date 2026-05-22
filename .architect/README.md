@@ -1,319 +1,192 @@
-# Open Architect
+# Open Architect — Workspace Reference
 
-Open Architect is an AI-native workspace for enterprise architects and solution architects.
+This is the working reference for the `.architect/` workspace. For the project's value pitch, getting-started, and signature capabilities overview, see the [root README](../README.md).
 
-The goal is to capture architecture as structured, linked, machine-readable knowledge rather than disconnected documents. The `.architect` folder is the project-local architecture capability container: it holds guidance, method definitions, playbooks, patterns, roles, skills, templates, and architecture work products in one predictable place.
+The `.architect/` folder is the project-local architecture capability container: it holds the metamodel (templates), the engagement shapes (playbooks), the reusable patterns, the operating skills, the chosen method, conventions, compliance scope, and the real architecture artifacts produced for the project — all in one predictable place.
 
-## What This Workspace Is For
+The goal is to capture architecture as **structured, linked, machine-readable knowledge** — not disconnected documents — so it can be reasoned over by humans and AI agents alike.
 
-Use this workspace to describe:
+---
 
-- Business architecture
-- Application and integration architecture
-- Data architecture
-- Technology architecture
-- Governance and decision-making
-- Transition architecture and delivery change
+## Who this workspace is for
 
-This is intended to support both:
+- **Enterprise architects** working on capability, governance, standards, principles, target state, and transition
+- **Solution architects** working on requirements, solution scope, services, interfaces, environments, and delivery traceability
+- **Architecture teams** that want versioning, reviewability, traceability, and consistent AI behavior across multiple tools (Claude Code, Codex, Copilot, others)
 
-- Enterprise architects who need capability, governance, standards, principles, target state, and transition views
-- Solution architects who need requirements, solution scope, services, interfaces, environments, and delivery traceability
+The workspace assumes the architect stays in control. AI assists with bounded tasks (extraction, analysis, review, drafting); it does not auto-progress the work.
 
-## Core Idea
+---
 
-Each YAML file represents one architecture object.
+## Core idea
 
-Examples:
+Each YAML file under `architecture/` represents one architecture object:
 
-- one application
-- one interface
-- one business capability
-- one decision
-- one transition architecture
+- one `application`
+- one `interface`
+- one `business-capability`
+- one `decision`
+- one `transition-architecture`
+- and so on across the metamodel
 
-These objects are linked using typed `relationships`, which makes the workspace easier to query, validate, and reason over with AI.
+Objects link to each other through typed `relationships`. This is what makes the workspace queryable, reviewable, and AI-friendly.
 
-## Folder Structure
+---
+
+## How to start
+
+The shortest useful path:
+
+1. Pick an engagement shape from [`playbooks/`](./playbooks/README.md).
+2. Copy the playbook's `project-config.yaml` to your project location under `architecture/<your-project>/project-config.yaml`.
+3. Follow the playbook's first-working-session script.
+
+The playbook chooses the right templates, roles, skills, and review gates for the engagement. Tune from there as the work evolves.
+
+For lighter setup:
+
+- [`config/starter-project.md`](./config/starter-project.md) — minimum useful project shape
+- [`config/prompt-recipes.md`](./config/prompt-recipes.md) — practical prompts per mode
+- [`config/cheat-sheet.md`](./config/cheat-sheet.md) — fast reference
+
+---
+
+## Signature capabilities
+
+Beyond the metamodel, the workspace gives you:
+
+- **Engagement playbooks** under [`playbooks/`](./playbooks/) — pre-packaged engagement shapes for inventory-only work, quick solution design, migration waves, full TOGAF cycles, AI platform bootstrap, compliance-driven modernization, and post-acquisition integration.
+- **Gap Radar skill** at [`skills/gap-radar.md`](./skills/gap-radar.md) — proactive scan that catches what an experienced architect would catch on a fresh read. Checklists live in [`guidance/gap-radar-checklists.md`](./guidance/gap-radar-checklists.md).
+- **Project Recap skill** at [`skills/project-recap.md`](./skills/project-recap.md) — read-only re-entry / handover orientation. Protocol in [`guidance/project-recap-protocol.md`](./guidance/project-recap-protocol.md).
+- **AI patterns** under [`patterns/ai/`](./patterns/ai/README.md) — RAG, prompt lifecycle, continuous evaluation, model version promotion gates, guardrail stack, agentic bounded loops, embedding lifecycle, vendor portability.
+- **Vocabulary bridges** under [`guidance/vocabulary-bridges/`](./guidance/vocabulary-bridges/README.md) — for teams who think in C4, ArchiMate-Lite, or DDD.
+- **Compliance layer** under [`compliance/`](./compliance/) — jurisdiction, sector, and control obligations for GDPR, UK GDPR, EU AI Act, NIS2, DORA, HIPAA Security Rule, PCI DSS, FedRAMP, CMMC, and more.
+
+---
+
+## Folder structure
 
 ```text
 .architect/
-  architecture/
-    application/
-    business/
-    change/
-    data/
-    governance/
-    technology/
-  examples/
-  agents/
-  patterns/
-  playbooks/
-  compliance/
-  runtime/
-  schemas/
-  validation/
-  config/
-  guidance/
-  method/
-  project-config.yaml
-  roles/
-  skills/
-  templates/
-    agents.md
-    application/
-    business/
-    change/
-    data/
-    governance/
-    technology/
+  playbooks/        ← engagement shapes (start here)
+  patterns/         ← reusable architecture patterns (incl. patterns/ai/)
+  templates/        ← the metamodel (what each artifact kind looks like)
+  skills/           ← reusable procedures (incl. gap-radar, project-recap)
+  roles/            ← role descriptions and accountabilities
+  method/           ← chosen project method + ADM and transition references
+  guidance/         ← conventions, glossary, vocabulary-bridges/
+  compliance/       ← jurisdiction, sector, and control obligations
+  architecture/     ← real project artifacts go here
+    application/  business/  change/  data/  governance/  technology/
+  examples/         ← worked reference projects
+  agents/           ← runtime profiles for multi-agent execution (advanced)
+  runtime/          ← live queue / gate state (advanced)
+  schemas/          ← formal JSON Schema contracts (advanced)
+  validation/       ← validators for templates and artifacts (advanced)
+  config/           ← workspace and agent configuration guides
+  project-config.yaml ← workspace-level skeleton; real projects pick a playbook
 ```
 
-Folder intent:
+---
 
-- `architecture/`: actual project architecture objects created from templates
-- `examples/`: worked examples and reference projects kept separate from live project work
-- `patterns/`: reusable architecture patterns and reference solution approaches
-- `playbooks/`: pre-packaged engagement shapes bundling a config preset, recommended skill sequence, and applicable review gates
-- `compliance/`: compliance-aware reference material for jurisdictions, sectors, and control obligations
-- `agents/`: executable agent profiles, runtime contracts, and task/handoff payloads for optional multi-agent execution
-- `runtime/`: live queue, gate, and active-work state when a project explicitly uses orchestration
-- `schemas/`: formal structural contracts for artifact documents
-- `validation/`: executable checks for templates and architecture artifact folders
-- `config/`: configuration guidance for agent and workspace behavior
-- `guidance/`: conventions, glossary, and local architecture guidance
-- `method/`: the selected project architecture method plus reference methods
-- `project-config.yaml`: project-level selection of roles, templates, skills, method, and the active playbook
-- `roles/`: role descriptions and responsibilities
-- `skills/`: agent or reusable architecture skill instructions
-- `templates/`: starter metamodel templates grouped by architecture concern
+## Template set
 
-## Template Set
+The metamodel covers:
 
-### Enterprise And Business
+**Enterprise and business**
 
-- `business-capability.yaml`: stable business ability the enterprise needs
-- `business-process.yaml`: business process that realizes one or more capabilities
-- `organization.yaml`: teams, functions, or operating units that own or steward architecture elements
-- `stakeholder.yaml`: internal or external stakeholder with concerns, influence, and decision rights
-- `objective.yaml`: measurable business or architecture objective
-- `initiative.yaml`: transformation initiative, program, or project
-- `architecture-vision.yaml`: high-level architecture direction and value proposition
-- `principle.yaml`: durable architecture rule or design guardrail
-- `decision.yaml`: specific architecture decision with rationale and impact
+- `business-capability` — stable business ability the enterprise needs
+- `business-process` — process that realizes one or more capabilities
+- `organization` — team, function, or operating unit that owns or stewards architecture
+- `stakeholder` — internal or external stakeholder with concerns, influence, decision rights
+- `objective` — measurable business or architecture outcome
+- `initiative` — transformation initiative, program, or project
+- `architecture-vision` — high-level architecture direction and value proposition
+- `principle` — durable architecture rule or design guardrail
+- `decision` — specific architecture decision with rationale and impact
 
-### Application, Data, And Technology
+**Application, data, technology**
 
-- `application.yaml`: application or system in the estate
-- `application-service.yaml`: logical service exposed by an application
-- `interface.yaml`: concrete integration or API contract
-- `data-object.yaml`: canonical business data object
-- `technology-component.yaml`: runtime, platform, product, or technical building block
-- `technology-standard.yaml`: approved, tolerated, or prohibited technology direction
-- `environment.yaml`: runtime boundary such as dev, test, production, or region
+- `application` — application or system in the estate
+- `application-service` — logical service exposed by an application
+- `interface` — concrete integration point or API contract
+- `data-object` — canonical business data object
+- `technology-component` — runtime, platform, product, or technical building block
+- `technology-standard` — approved, tolerated, or prohibited technology direction
+- `environment` — runtime boundary (dev, test, production, region, segment)
 
-### Solution And Delivery
+**Solution and delivery**
 
-- `solution.yaml`: bounded end-to-end solution architecture
-- `requirement.yaml`: business, functional, non-functional, security, or regulatory requirement
-- `transition-architecture.yaml`: time-bounded interim architecture state or rollout wave
-- `work-package.yaml`: delivery increment that realizes part of a transition
-- `gap.yaml`: missing or weak architecture capability that must be addressed
-- `roadmap.yaml`: sequenced view of architecture change over time
-- `compliance-assessment.yaml`: architecture conformance review and remediation record
-- `risk.yaml`: architecture or transition risk with treatment and governance
+- `solution` — bounded end-to-end solution architecture
+- `requirement` — business, functional, non-functional, security, or regulatory requirement
+- `transition-architecture` — time-bounded interim architecture state or rollout wave
+- `work-package` — delivery increment that realizes part of a transition
+- `gap` — missing or weak architecture capability that must be addressed
+- `roadmap` — sequenced view of architecture change over time
+- `compliance-assessment` — architecture conformance review and remediation record
+- `risk` — architecture or transition risk with treatment and governance
 
-## Operating Model
+---
 
-Treat `.architect` as the place that answers five questions for the project:
+## Operating model
 
-- What architecture artifacts do we use?
-- How do we model them?
-- Who is responsible for architecture work?
-- What method do we follow?
-- Where do real project architecture objects live?
+The workspace answers five questions for the project:
+
+1. What engagement shape is this? — `playbooks/`
+2. What artifacts do we use? — `templates/` and `project-config.yaml`
+3. Who is responsible? — `roles/`
+4. What method do we follow? — `method/`
+5. Where do real project artifacts live? — `architecture/`
 
 In practical terms:
 
-- use `playbooks/` to pick an engagement shape and start with a pre-packaged config
-- use `project-config.yaml` to declare what this project will actually use
-- use `templates/` to define the metamodel
-- use `architecture/` to store actual project instances
-- use `examples/` for reference implementations and sample views
-- use `patterns/` for reusable architectural approaches and design guidance
-- use `compliance/` to scope jurisdiction, sector, privacy, AI, cyber-resilience, and payment/security obligations that should shape the architecture
-- use `agents/` to define executable runtime profiles when you explicitly want specialist agents
-- use `runtime/` only when the project intentionally uses orchestration, queue state, handoffs, and review gates
-- use `schemas/` to define formal machine-readable contracts for artifact structure
-- use `validation/` to check template quality and project artifact consistency
-- use `config/` to explain how project and agent configuration should work
-- use `guidance/` to explain local rules, and `guidance/vocabulary-bridges/` to bridge to C4, ArchiMate-Lite, or DDD when your team uses those vocabularies
-- use `method/` to describe the chosen project method and its tailoring
-- use `roles/` to clarify who does what
-- use `skills/` for reusable architecture procedures
+- Use `playbooks/` to pick the engagement shape and start with a pre-packaged config.
+- Use `project-config.yaml` to declare what this project will actually use.
+- Use `templates/` to define the metamodel.
+- Use `architecture/` to store real project instances.
+- Use `patterns/` for reusable architectural approaches and design guidance.
+- Use `compliance/` to scope jurisdiction, sector, privacy, AI, cyber-resilience, and payment/security obligations.
+- Use `skills/` for reusable procedures (incl. `gap-radar`, `project-recap`, `solution-modeler`, etc.).
+- Use `guidance/` for conventions, glossary, and `vocabulary-bridges/` for C4 / ArchiMate / DDD teams.
+- Use `method/` to describe the chosen project method and its tailoring.
+- Use `agents/` and `runtime/` only when the project explicitly opts into multi-agent execution.
+- Use `schemas/` and `validation/` only when formal artifact contracts and runnable checks are wanted.
 
-## Roles, Skills, And Agents
+### Roles, skills, agents — three distinct layers
 
-These three layers are related, but not the same:
+- `roles/` — perspective, accountability, ownership boundaries
+- `skills/` — reusable procedures for doing architecture work
+- `agents/` — executable runtime profiles that bind a role to allowed skills, write scope, validation, and handoff behavior
 
-- `roles/`
-  Describe perspective, accountability, and ownership boundaries.
-- `skills/`
-  Describe reusable procedures for doing architecture work.
-- `agents/`
-  Describe executable runtime profiles that bind a role to allowed skills, write
-  scope, validation, and handoff behavior.
+Without `agents/` and `runtime/`, the workspace is treated as **architect-led single-agent execution** that can switch among specialist roles and skills on demand.
 
-Without `agents/` and `runtime/`, the workspace should normally be treated as
-architect-led single-agent execution that can switch among specialist roles and
-skills on demand.
+With `agents/` and `runtime/`, the workspace supports **actual multi-agent orchestration** with bounded specialists and explicit handoffs.
 
-With `agents/` and `runtime/`, the workspace can support actual multi-agent
-orchestration with bounded specialists and explicit handoffs.
+### Recommended default style
 
-## Recommended Default Style
-
-For most real projects, start in an `architect-assist` style:
+For most real projects, start in `architect-assist`:
 
 - the architect remains the primary driver
-- agents help with bounded tasks such as extraction, analysis, review, and drafting
+- agents help with bounded tasks (extraction, analysis, review, drafting)
 - inventory and analysis come before modeling
 - architecture artifacts are created only when explicitly requested
 - multi-agent orchestration is opt-in, not assumed
 
-## Workspace Levels
+---
 
-Think of the workspace in three levels:
+## Workspace levels
 
-### Core
+| Level | What it gives you | When to use |
+|---|---|---|
+| **Core** | `playbooks/`, `project-config.yaml`, `architecture/`, `config/`, `guidance/`, `templates/`, small subset of `roles/` and `skills/` | normal architect-assist work |
+| **Optional** | broader `roles/`, broader `skills/`, `compliance/`, richer template coverage | projects that need more explicit structure but not full orchestration |
+| **Advanced** | `agents/`, `runtime/`, `schemas/`, `validation/` | multi-agent execution, stronger automation, deeper formal controls |
 
-Use these first in most projects:
+---
 
-- `playbooks/` to pick an engagement shape
-- `project-config.yaml`
-- `architecture/`
-- `config/`
-- `guidance/`
-- `templates/`
-- a small working subset of `roles/` and `skills/`
+## Modeling guidance
 
-This is the normal architect-assist layer.
-
-### Optional
-
-Bring these in when the project becomes more structured:
-
-- broader `roles/`
-- broader `skills/`
-- `compliance/`
-- richer template coverage
-
-This is the layer for projects that need more explicit structure, but not full orchestration.
-
-### Advanced
-
-Use these only when you explicitly want a managed architecture system:
-
-- `agents/`
-- `runtime/`
-- `schemas/`
-- `validation/`
-
-This is the layer for multi-agent execution, stronger automation, and deeper formal controls.
-
-## Quick Start
-
-If you want the lightest useful setup:
-
-1. create a folder under [`.architect/architecture/`](./architecture/)
-2. add a `docs/` folder with your source material
-3. optionally add an `architect-work/` folder for architect-owned questions, answers, and task lists
-4. optionally add a short `notes.md` with context and questions
-5. start in `inventory` or `analysis` mode
-6. create architecture artifacts only when you explicitly want them
-
-Useful guides:
-
-- [starter-project.md](./config/starter-project.md)
-  Minimal project shape with no runtime state and no required YAML artifacts up front.
-- [prompt-recipes.md](./config/prompt-recipes.md)
-  Practical prompts for inventory, analysis, review, decision, and modeling work.
-- [agent.config.md](./config/agent.config.md)
-  Operating style, approval thresholds, work modes, and runtime guidance.
-
-## How To Use The Templates
-
-Before creating architecture content, tailor [`.architect/project-config.yaml`](project-config.yaml) so the project explicitly selects:
-
-- chosen engagement playbook (from `.architect/playbooks/`)
-- active roles
-- in-scope templates
-- chosen method and reference methods
-- enabled skills
-- applicable jurisdictions, sectors, and regulations
-
-This keeps the workspace intentional and avoids treating every project as if it
-must use the full capability set.
-
-Guidance for this file is in [`.architect/config/agent.config.md`](config/agent.config.md).
-
-### For Enterprise Architecture
-
-A typical enterprise architecture flow is:
-
-1. Define drivers, expectations, and outcomes with `stakeholder`, `objective`, and `architecture-vision`.
-2. Define the business anchor with `business-capability`.
-3. Add `business-process` and `organization` to describe realization and ownership.
-4. Capture strategic guardrails using `principle` and `technology-standard`.
-5. Record target change through `initiative` and `decision`.
-6. Link impacted `application`, `data-object`, `interface`, and `technology-component` entries.
-7. Define phased change using `roadmap`, `transition-architecture`, `gap`, and `work-package`.
-8. Govern realization through `compliance-assessment` and `risk`.
-
-### For Solution Architecture
-
-A typical solution architecture flow is:
-
-1. Create a `solution` for the bounded architecture you are designing.
-2. Capture constraints in `requirement`, `decision`, `principle`, and `technology-standard`.
-3. Align the solution to `stakeholder`, `objective`, and `architecture-vision`.
-4. Model the participating `application`, `application-service`, `interface`, `data-object`, and `technology-component` entries.
-5. Add `environment` to describe runtime, security, and operational boundaries.
-6. Use `transition-architecture`, `work-package`, `compliance-assessment`, and `risk` when delivery happens over time.
-
-## Recommended Authoring Order
-
-If you are starting a new initiative, use this order:
-
-1. `stakeholder`
-2. `objective`
-3. `architecture-vision`
-4. `business-capability`
-5. `organization`
-6. `application`
-7. `data-object`
-8. `application-service`
-9. `interface`
-10. `technology-component`
-11. `principle`
-12. `technology-standard`
-13. `requirement`
-14. `decision`
-15. `solution`
-16. `initiative`
-17. `roadmap`
-18. `transition-architecture`
-19. `gap`
-20. `work-package`
-21. `environment`
-22. `compliance-assessment`
-23. `risk`
-
-You do not need every template on day one. Start with the smallest useful set, then expand.
-
-## Baseline, Target, And Transition
-
-The recommended modeling approach is:
+### Baseline, target, and transition
 
 - Use the core templates to describe baseline architecture facts
 - Use the same templates to describe target architecture facts
@@ -321,13 +194,19 @@ The recommended modeling approach is:
 - Use `gap` to capture what is missing or weak
 - Use `work-package` to describe the delivery increments that close those gaps
 
-Avoid cloning the whole architecture for every phase unless an object genuinely becomes a different version.
+Avoid cloning the whole architecture per phase unless an object genuinely becomes a different version.
 
-## How Relationships Should Work
+### Recommended authoring order
 
-Prefer typed relationships over loose notes.
+If you are starting a new initiative, use this order (skip anything not in scope):
 
-Example:
+1. `stakeholder` → 2. `objective` → 3. `architecture-vision` → 4. `business-capability` → 5. `organization` → 6. `application` → 7. `data-object` → 8. `application-service` → 9. `interface` → 10. `technology-component` → 11. `principle` → 12. `technology-standard` → 13. `requirement` → 14. `decision` → 15. `solution` → 16. `initiative` → 17. `roadmap` → 18. `transition-architecture` → 19. `gap` → 20. `work-package` → 21. `environment` → 22. `compliance-assessment` → 23. `risk`
+
+You do not need every template on day one. Start with the smallest useful set and expand.
+
+### How relationships should work
+
+Prefer typed relationships over loose notes:
 
 ```yaml
 relationships:
@@ -338,16 +217,16 @@ relationships:
     confidence: high
 ```
 
-This allows people and AI agents to answer questions like:
+This lets humans and AI agents answer:
 
 - What capabilities does this solution realize?
 - Which interfaces are constrained by this decision?
 - Which work packages close this gap?
 - Which applications are affected by this transition?
 
-## How To Read A Template
+### Template anatomy
 
-Each template follows the same high-level shape:
+Each template follows the same shape:
 
 ```yaml
 template:
@@ -367,65 +246,59 @@ spec:
 
 Important sections:
 
-- `classification`: what kind of thing this is
-- `status`: lifecycle and operating state
-- `ownership`: who is accountable
-- `metadata`: provenance, confidence, review, and references
-- `relationships`: links to other architecture objects
-- `governance`: rules, approvals, exceptions, or review cadence
-- `notes`: assumptions and risks
+- `classification` — what kind of thing this is
+- `status` — lifecycle and operating state
+- `ownership` — who is accountable (use truthful values: `confirmed:<owner>`, `role-placeholder:<role>`, `tbd`, `unknown`)
+- `metadata` — provenance, confidence, review, references
+- `relationships` — links to other architecture objects
+- `governance` — rules, approvals, exceptions, review cadence
+- `notes` — assumptions and risks
 
-## Naming And Structure Rules
-
-Use:
+### Naming and structure rules
 
 - singular file names
 - lowercase `kebab-case`
-- file stem matching `template.kind`
+- file stem matches `template.kind`
 
-Examples:
+Examples: `application.yaml` → `kind: application`, `transition-architecture.yaml` → `kind: transition-architecture`.
 
-- `application.yaml` -> `kind: application`
-- `transition-architecture.yaml` -> `kind: transition-architecture`
-- `technology-standard.yaml` -> `kind: technology-standard`
+Each template should include: `id`, `name`, `display_name`, `aliases`, `summary`, `description`, `metadata`, `relationships`.
 
-Each template should include:
+Detailed authoring guidance: [`templates/agents.md`](./templates/agents.md).
 
-- `id`
-- `name`
-- `display_name`
-- `aliases`
-- `summary`
-- `description`
-- `metadata`
-- `relationships`
+---
 
-More detailed authoring guidance is in [agents.md](templates/agents.md).
+## Starting small
 
-## Suggested Next Steps
+If you want a minimal but useful first architecture slice, create one of each:
 
-To make this workspace operational, the next best additions are:
-
-1. Add additional worked examples under `examples/`.
-2. Turn the strongest playbooks into executable agent instructions.
-3. Deepen schema precision and schema-aware validation behavior.
-4. Prove the expanded pattern library through real project use and executable agent scenarios.
-5. Add automation for ID generation, relationship checks, broken reference detection, and approval-quality validation.
-
-## Starting Small
-
-If you want a minimal but useful first architecture slice, create:
-
-1. one `stakeholder`
-2. one `objective`
-3. one `business-capability`
-4. one `application`
-5. one `data-object`
-6. one `application-service`
-7. one `interface`
-8. one `requirement`
-9. one `decision`
-10. one `solution`
-11. one `transition-architecture`
+`stakeholder` → `objective` → `business-capability` → `application` → `data-object` → `application-service` → `interface` → `requirement` → `decision` → `solution` → `transition-architecture`
 
 That is usually enough to demonstrate the value of the workspace before modeling the wider estate.
+
+---
+
+## Where to read next
+
+- [`playbooks/README.md`](./playbooks/README.md) — engagement-shape catalog and how to pick one
+- [`config/agent.config.md`](./config/agent.config.md) — operating style, approval thresholds, work modes, runtime guidance
+- [`config/response-display.md`](./config/response-display.md) — the display contract for AI responses inside this workspace
+- [`guidance/conventions.md`](./guidance/conventions.md) — entry point for modeling, evidence, governance, lifecycle, and diagram conventions
+- [`guidance/glossary.md`](./guidance/glossary.md) — shared workspace vocabulary
+- [`guidance/vocabulary-bridges/README.md`](./guidance/vocabulary-bridges/README.md) — bridges from C4 / ArchiMate-Lite / DDD
+- [`method/project-method.md`](./method/project-method.md) — the chosen project method
+- [`patterns/README.md`](./patterns/README.md) — the full pattern library
+- [`compliance/README.md`](./compliance/README.md) — compliance-aware reference material
+
+---
+
+## Suggested next steps for this workspace
+
+The current direction for ongoing work:
+
+1. ✅ Prove the new persona-driven skills (`gap-radar`, `project-recap`) against real project slices
+2. 🟡 Add worked examples across more engagement shapes (the existing customer-onboarding example only exercises one)
+3. 🟡 Add Tier 2 AI patterns (inference caching, FinOps signals, tenant isolation, AI Act Article 50 disclosure, hallucination handling, red-teaming, human-in-the-loop review)
+4. 🟡 Turn the strongest skill instructions into executable agent payloads
+5. 🟡 Make `validation/` execute the gap-radar checklists mechanically, not only describe them
+6. 🟡 Add ID generation, broken-reference detection, and approval-quality validation
