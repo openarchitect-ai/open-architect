@@ -41,10 +41,10 @@ To start a project from a playbook:
 |---|---|
 | Discovery & decision | `inventory-only`, `portfolio-rationalization`, `vendor-evaluation-and-selection`, `capability-based-planning` |
 | Solution / design | `quick-solution-design` |
-| Modernization & transition | `migration-wave`, `tech-debt-remediation`, `cloud-migration` |
+| Modernization & transition | `migration-wave`, `tech-debt-remediation`, `cloud-migration`, `domain-driven-redesign`, `decommissioning-program` |
 | Platform bootstrap | `ai-platform-bootstrap`, `platform-engineering-bootstrap`, `enterprise-integration-bootstrap`, `data-platform-modernization` |
 | Enterprise cycle | `full-togaf-adm` |
-| Driver-specific | `compliance-driven-modernization`, `security-uplift`, `post-incident-architecture-review` |
+| Driver-specific | `compliance-driven-modernization`, `security-uplift`, `post-incident-architecture-review`, `business-continuity-readiness` |
 | M&A lifecycle | `acquisition-due-diligence`, `post-acquisition-integration`, `divestiture-separation` |
 | Practice setup & operation | `architecture-team-bootstrap`, `steady-state-governance` |
 
@@ -73,6 +73,9 @@ To start a project from a playbook:
 | [acquisition-due-diligence](./acquisition-due-diligence/playbook.md) | one-shot, time-bounded by deal | pre-deal technical diligence on a target company — risk register, integration cost estimate, crown-jewel inventory, deal-impact decisions |
 | [divestiture-separation](./divestiture-separation/playbook.md) | one-shot, time-bounded by TSA forward | seller-side carve-out — boundary, TSA forward, identity / data separation, decommissioning of shared services, standalone architecture at TSA exit |
 | [architecture-team-bootstrap](./architecture-team-bootstrap/playbook.md) | one-shot, with handoff to steady-state | creating an architecture function from zero — charter, founding principles, operating model, hiring plan, tooling, initial cadence |
+| [business-continuity-readiness](./business-continuity-readiness/playbook.md) | quasi-cyclic, resilience-driven | proactive BCP / DR — criticality tiers, RTO/RPO targets, resilience architecture, recovery rehearsal cadence, evidence chain |
+| [domain-driven-redesign](./domain-driven-redesign/playbook.md) | one-shot, scope-bounded | redesigning part of an estate using DDD — bounded contexts, context map, ubiquitous language, integration patterns between contexts |
+| [decommissioning-program](./decommissioning-program/playbook.md) | one-shot, retirement-focused | focused legacy retirement — schedule, dependency closure, data archival, customer notice, contract termination, talent transition |
 
 Contributions welcome — see *Contributing A Playbook* below.
 
@@ -124,6 +127,9 @@ a clearer entry point for new users.
 | "We're doing pre-deal technical diligence on a target company" | `acquisition-due-diligence` |
 | "We're divesting a business unit and need to carve it out" | `divestiture-separation` |
 | "We're creating an architecture function from zero" | `architecture-team-bootstrap` |
+| "We need a proactive BCP / DR architecture program (RTO/RPO, rehearsals)" | `business-continuity-readiness` |
+| "We're redesigning part of an estate using Domain-Driven Design" | `domain-driven-redesign` |
+| "We're running a focused program to retire legacy systems" | `decommissioning-program` |
 | "We don't know yet" | `inventory-only` first, then choose |
 
 When the engagement does not match any playbook cleanly, fork the closest

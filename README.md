@@ -26,7 +26,7 @@ Open Architect is built for the situations architects actually walk into:
 
 ### Engagement playbooks
 
-Twenty-one pre-packaged engagement shapes, each bundling a ready-to-clone `project-config.yaml`, recommended skill sequence, applicable review gates, anti-patterns, and a first-working-session script.
+Twenty-four pre-packaged engagement shapes, each bundling a ready-to-clone `project-config.yaml`, recommended skill sequence, applicable review gates, anti-patterns, and a first-working-session script.
 
 **By engagement family:**
 
@@ -34,10 +34,10 @@ Twenty-one pre-packaged engagement shapes, each bundling a ready-to-clone `proje
 |---|---|
 | Discovery & decision | `inventory-only`, `portfolio-rationalization`, `vendor-evaluation-and-selection`, `capability-based-planning` |
 | Solution / design | `quick-solution-design` |
-| Modernization & transition | `migration-wave`, `tech-debt-remediation`, `cloud-migration` |
+| Modernization & transition | `migration-wave`, `tech-debt-remediation`, `cloud-migration`, `domain-driven-redesign`, `decommissioning-program` |
 | Platform bootstrap | `ai-platform-bootstrap`, `platform-engineering-bootstrap`, `enterprise-integration-bootstrap`, `data-platform-modernization` |
 | Enterprise cycle | `full-togaf-adm` |
-| Driver-specific | `compliance-driven-modernization`, `security-uplift`, `post-incident-architecture-review` |
+| Driver-specific | `compliance-driven-modernization`, `security-uplift`, `post-incident-architecture-review`, `business-continuity-readiness` |
 | M&A lifecycle | `acquisition-due-diligence`, `post-acquisition-integration`, `divestiture-separation` |
 | Practice setup & operation | `architecture-team-bootstrap`, `steady-state-governance` |
 
@@ -67,6 +67,9 @@ Twenty-one pre-packaged engagement shapes, each bundling a ready-to-clone `proje
 | [`acquisition-due-diligence`](.architect/playbooks/acquisition-due-diligence/) | pre-deal technical diligence — risk register, integration cost estimate, crown-jewel inventory, deal-impact decisions |
 | [`divestiture-separation`](.architect/playbooks/divestiture-separation/) | seller-side carve-out — TSA forward, identity / data separation, decommissioning, standalone architecture at TSA exit |
 | [`architecture-team-bootstrap`](.architect/playbooks/architecture-team-bootstrap/) | creating an architecture function from zero — charter, founding principles, operating model, hiring plan, tooling, initial cadence |
+| [`business-continuity-readiness`](.architect/playbooks/business-continuity-readiness/) | proactive BCP / DR — criticality tiers, RTO/RPO targets, resilience architecture, recovery rehearsal cadence |
+| [`domain-driven-redesign`](.architect/playbooks/domain-driven-redesign/) | DDD-led redesign of part of an estate — bounded contexts, context map, ubiquitous language, integration patterns |
+| [`decommissioning-program`](.architect/playbooks/decommissioning-program/) | focused legacy retirement — schedule, dependency closure, data archival, customer notice, contract termination |
 
 Pick one. Clone its config. Follow the brief.
 

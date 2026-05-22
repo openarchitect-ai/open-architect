@@ -150,6 +150,9 @@ Available values:
 - `acquisition-due-diligence`
 - `divestiture-separation`
 - `architecture-team-bootstrap`
+- `business-continuity-readiness`
+- `domain-driven-redesign`
+- `decommissioning-program`
 
 Recommended approach:
 
