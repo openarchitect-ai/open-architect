@@ -63,12 +63,16 @@ First-class architecture patterns for AI work: retrieval-augmented generation, p
 
 → [.architect/patterns/ai/](.architect/patterns/ai/README.md)
 
-### Plus
+### Foundation
 
-- **Substantial compliance layer** — GDPR, UK GDPR, EU AI Act, NIS2, DORA, Cyber Resilience Act, EU Data Act, HIPAA Security Rule, FTC Safeguards, SEC cyber disclosure, PCI DSS, CCPA/CPRA, FedRAMP, CMMC, and more
-- **TOGAF-adjacent template library** across business, application, data, technology, governance, change
-- **Vocabulary bridges** for teams that think in C4, ArchiMate-Lite, or DDD
-- **Deep pattern library** across application, integration, data, security, technology, transition, governance, business
+The differentiators above sit on a substantial, opinionated foundation:
+
+- **Architecture metamodel — 25 template kinds.** Every architecture object (application, interface, capability, decision, transition, requirement, risk, …) has a typed YAML shape with provenance, ownership, lifecycle, governance, and typed relationships. This is what makes the workspace queryable and AI-friendly rather than a pile of documents. → [`.architect/templates/`](.architect/templates/)
+- **Pattern library — 100+ patterns across 8 domains** (business, application, integration, data, security, technology, transition, governance). Reusable architectural approaches with intent, applicability, consequences, and links back to templates. Skills read patterns as normal working context, not as a side reference. → [`.architect/patterns/`](.architect/patterns/)
+- **Skill library — ~25 reusable procedures.** Bounded operational skills that an architect (or an agent) can invoke: `project-bootstrapper`, `stakeholder-objective-framer`, `baseline-discovery`, `requirement-normalizer`, `solution-modeler`, `decision-recorder`, `architecture-review`, `transition-planner`, `risk-compliance-assessor`, `option-evaluator`, `evidence-curator`, `architecture-coordinator`, and more. Each skill has a clear input, output, and read-first context. → [`.architect/skills/`](.architect/skills/)
+- **Role library — 11 architecture roles** with explicit boundaries (chief architect, enterprise architect, solution architect, business architect, data architect, integration architect, domain architect, security architect, technology architect, architecture governance lead, business analyst). Roles describe perspective and accountability; skills describe what they do. → [`.architect/roles/`](.architect/roles/)
+- **Compliance layer.** Jurisdiction (EU/EEA, UK, US, California, Canada), sector (financial services, healthcare, education, payments, public sector, critical infrastructure, software products, life sciences & pharma, consumer digital), and regulation profiles (GDPR, UK GDPR, EU AI Act, NIS2, DORA, Cyber Resilience Act, EU Data Act, HIPAA Security Rule, FTC Safeguards, SEC cyber disclosure, PCI DSS, CCPA/CPRA, FedRAMP, CMMC, and more), wired into modeling skills. → [`.architect/compliance/`](.architect/compliance/)
+- **Vocabulary bridges** for teams that think in C4, ArchiMate-Lite, or DDD — concept maps to the Open Architect templates and patterns. → [`.architect/guidance/vocabulary-bridges/`](.architect/guidance/vocabulary-bridges/)
 
 ---
 
