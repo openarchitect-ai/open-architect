@@ -23,21 +23,16 @@ project work, prefer:
 
 ## Purpose
 
-Open Architect is being shaped as an open source, AI-native architecture
-workspace for enterprise architects and solution architects.
+Open Architect is shaped as an open source, AI-native architecture workspace
+for enterprise architects and solution architects.
 
-The `.architect` folder is intended to act as the project-local architecture
-capability container, including:
+The `.architect/` folder is the **capability library** — templates,
+playbooks, patterns, skills, roles, method, compliance, guidance, CLI,
+schemas, validation, and the multi-agent execution scaffold.
 
-- config
-- guidance
-- method definition
-- reference methods
-- flows
-- roles
-- skills
-- templates
-- real architecture artifacts
+A sibling `workspace/` folder holds the architect's **real project work**
+(one folder per project). `workspace/` is gitignored; the CLI creates and
+populates it on demand.
 
 ## Completed
 
@@ -333,26 +328,63 @@ capability container, including:
   - `.architect/` is now purely the capability library (templates, playbooks, patterns, skills, guidance, method, compliance, etc.)
   - `workspace/<project-name>/` is where each project's real work lives (project-config.yaml, notes.md, architect-work/, docs/, business/, application/, data/, technology/, governance/, change/, views/)
   - updated READMEs, config guidance, skill instructions, agent artifacts, and `.gitignore` to reflect the new layout
+- Expanded the playbook catalog to 24 engagement shapes across 8 families:
+  - discovery & decision: `inventory-only`, `portfolio-rationalization`, `vendor-evaluation-and-selection`, `capability-based-planning`
+  - solution / design: `quick-solution-design`
+  - modernization & transition: `migration-wave`, `tech-debt-remediation`, `cloud-migration`, `domain-driven-redesign`, `decommissioning-program`
+  - platform bootstrap: `ai-platform-bootstrap`, `platform-engineering-bootstrap`, `enterprise-integration-bootstrap`, `data-platform-modernization`
+  - enterprise cycle: `full-togaf-adm`
+  - driver-specific: `compliance-driven-modernization`, `security-uplift`, `post-incident-architecture-review`, `business-continuity-readiness`
+  - M&A lifecycle: `acquisition-due-diligence`, `post-acquisition-integration`, `divestiture-separation`
+  - practice setup & operation: `architecture-team-bootstrap`, `steady-state-governance`
+  - each playbook follows the 16-section structure with Stages, Anti-Patterns, Decision Points, Sample Backlog Of Open Questions, Recommended Diagrams, Customization Guide, and a ready-to-clone `project-config.yaml`
+- Added first-class AI pattern domain under `patterns/ai/`:
+  - retrieval-augmented-generation, prompt-lifecycle-management, continuous-model-evaluation, model-version-promotion-gate, ai-guardrail-stack, agentic-system-bounded-loop, embedding-lifecycle-management, model-vendor-portability
+  - referenced by `ai-platform-bootstrap` playbook and gap-radar's AI Platform Checks section
+- Added vocabulary bridges under `guidance/vocabulary-bridges/`:
+  - concept maps from C4, ArchiMate-Lite, and DDD to Open Architect templates and patterns
+  - so teams thinking in those vocabularies can land in the workspace without retraining
+- Refined the display contract:
+  - architect-friendly response section order in `AGENTS.md` and `config/response-display.md`
+  - emoji-prefixed status labels: ✅ CONFIRMED, 🟡 PROVISIONAL, ❓ OPEN, 🚫 BLOCKER, 🔵 ACTION, 📥 REQUEST, 📌 DECISION, 💡 TIP, ⚠️ WARNING
+- Shipped the `architect` CLI (Group A):
+  - zero-dependency cross-platform shell scripts under `.architect/cli/` (PowerShell + Bash) with repo-root delegators
+  - commands: `init`, `new <project> [--playbook <name>]`, `list-playbooks`, `list-projects`, `playbook <name>`, `--help [command]`, `--version`
+  - typo suggestion for misspelled playbook names; per-command help; Windows PS 5.x emoji-safe output
+- Moved versioning from CLI-internal to capability-level:
+  - `.architect/VERSION` is the single source of truth (semver, 0.1.0 baseline)
+  - `.architect/CHANGELOG.md` follows the Keep a Changelog convention with explicit MAJOR / MINOR / PATCH rules
+  - `architect --version` reports the capability version, not a CLI version
 
 ## Current Structure
 
-Key folders:
+Top-level layout:
 
-- `.architect/templates/`
-- `.architect/examples/`
-- `.architect/agents/`
-- `.architect/patterns/`
-- `.architect/playbooks/`
-- `.architect/runtime/`
-- `.architect/schemas/`
-- `.architect/validation/`
-- `.architect/config/`
-- `.architect/guidance/`
-- `.architect/method/`
-- `.architect/project-config.yaml`
-- `.architect/roles/`
-- `.architect/skills/`
-- `workspace/<project-name>/` — sibling folder where the architect's real project work lives
+- `.architect/` — capability library (the tool)
+- `workspace/<project-name>/` — sibling folder where each project's real work lives (gitignored)
+- `architect.ps1` / `architect.sh` — repo-root CLI delegators
+
+Inside `.architect/`:
+
+- `VERSION` — single source of truth for the capability version (semver)
+- `CHANGELOG.md` — Keep-a-Changelog history
+- `README.md` — workspace reference
+- `project-config.yaml` — workspace-level skeleton (real projects pick a playbook)
+- `cli/` — `architect` CLI source (PowerShell + Bash) and starter templates
+- `playbooks/` — 24 engagement shapes across 8 families
+- `patterns/` — reusable architecture patterns (incl. first-class `patterns/ai/`)
+- `templates/` — the metamodel (25 template kinds)
+- `skills/` — reusable procedures (incl. `gap-radar`, `project-recap`)
+- `roles/` — role descriptions and accountabilities
+- `method/` — chosen project method + ADM and transition references
+- `guidance/` — conventions, glossary, gap-radar checklists, project-recap protocol, `vocabulary-bridges/`
+- `compliance/` — jurisdiction, sector, and control obligations
+- `examples/` — worked reference projects (same shape as `workspace/`)
+- `agents/` — runtime profiles for multi-agent execution (advanced)
+- `runtime/` — live queue / gate state (advanced)
+- `schemas/` — formal JSON Schema contracts (advanced)
+- `validation/` — validators for templates and artifacts (advanced)
+- `config/` — workspace and agent configuration guides
 
 Current role library:
 
@@ -370,101 +402,81 @@ Current role library:
 
 ## Recommended Next Steps
 
+Baseline coverage (templates, playbooks, patterns, compliance, scanning
+skills, CLI, versioning) is now in place. The remaining work is mostly
+about proof, operational use, automation, and contributor readiness.
+
 High priority:
 
-- Prove the new multi-agent execution scaffold in real use
-  - run task and handoff artifacts through a live project slice
-  - confirm that coordinator routing, bounded write scopes, and review gates work as intended
-- Run the new agent test scenarios against the runtime execution model and executable instructions
-- Extend live-project validation and operational use under `workspace/`
-  - validate real project artifact folders, not only the worked example
-  - use the review packet format and role-boundary guidance during real project handoffs
-- Deepen validation and schema-driven enforcement
-  - keep growing `.architect/validation/`
-  - deepen schema precision for covered kinds and broaden direct enforcement of conditional schema rules
-  - add fuller schema-level YAML parsing when or if a dependency strategy is chosen
-- Extend template and artifact validation depth
-  - validate cross-artifact approval/evidence rules beyond the worked example set
-  - add richer warning rules for evidence, confidence, and approval quality
-- Extend artifact-folder validation coverage
-  - validate live project artifacts under `workspace/`
-  - add stronger review-gate checks during active project execution
-- Add explicit review/governance cadence guidance
-  - define the recurring review rhythm for ongoing architecture projects
-- Add validation for human review controls
-  - e.g. prevent agent-generated approval states without explicit review evidence
-- Add more worked diagram examples under `.architect/examples/`
-- Expand the reusable pattern library only where real usage shows clear gaps
-  - add more patterns when live project use or executable agents expose missing guidance
-  - link patterns more explicitly to templates, decisions, skills, and example diagrams
+- **Real-project proving under `workspace/`**
+  - exercise the playbooks against live engagements, not only the worked
+    example
+  - capture friction back into playbooks, gap-radar checklists, and
+    project-recap protocol
+- **More worked examples across engagement shapes**
+  - `examples/` still contains only the customer-onboarding modernization
+    case; one example per family would dramatically improve adoption
+  - regulated, public-sector, AI-platform, and M&A scenarios are the
+    most useful next examples
+- **Turn the strongest skill instructions into executable agent payloads**
+  - bind selected skills to `agents/` profiles with bounded write scopes,
+    explicit handoffs, and review gates
+  - run the existing agent test scenarios against those payloads
+- **Make `validation/` execute gap-radar checklists mechanically**
+  - today the checklists are guidance; a runnable equivalent would
+    catch the same findings without an architect prompting `gap-radar`
+- **Deepen schema-driven enforcement**
+  - broaden conditional schema rules (approval evidence, verification,
+    compliance review)
+  - validate cross-artifact approval/evidence rules across full project
+    folders, not only the worked example
+- **Open source contributor readiness**
+  - add `CONTRIBUTING.md`, issue templates, contribution guide
+  - clarify pattern/playbook contribution shape so external contributors
+    can extend the catalog without breaking conventions
 
-## Remaining Gaps
+Medium priority:
 
-The largest remaining gaps are no longer in baseline coverage. They are in
-operational use, proof, and automation.
-
-- Executable agent behavior
-  - the workspace now has an execution scaffold, but it still needs proving in
-    practice
-  - task, handoff, and runtime-state files need to be exercised by real project
-    slices rather than only existing as structure
-- Real-project proving
-  - the structure is broad and mature, but it still needs proving against live
-    work under `workspace/`, not only examples and scaffolding
-  - handoff, review, validation, and compliance guidance should be exercised in
-    real project use
-- Repeatable agent testing
-  - agent test scenarios exist, but the project still needs a repeatable way to
-    run and evaluate agents against them
-  - this includes checking traceability, stop conditions, evidence handling,
-    and review-gate behavior
-- Deeper validation and enforcement
-  - validators and schemas exist, but more cross-artifact, governance-aware,
-    and compliance-aware checks should become automatic
-  - the strongest gaps are around approval controls, evidence sufficiency, and
-    review-state enforcement
-- Example depth
-  - the worked example is useful, but the project would benefit from more
-    varied examples across enterprise, regulated, public-sector, and
-    product-oriented scenarios
-- Flow and diagram maturity
-  - the flow layer is useful, but still lighter than the patterns, skills,
-    compliance, and validation layers
-  - more executable flow behavior and more worked diagram examples would
-    improve operational readiness
-- Open source contributor readiness
-  - the repo still needs stronger contribution standards, contributor guidance,
-    and project-governance details for broader community use
-- Compliance-to-control traceability in practice
-  - the compliance library is now broad, but the next step is tighter linkage
-    from compliance profiles to artifacts, assessments, review packets, and
-    validation behavior
-
-Open source hygiene:
-
-- Add `CONTRIBUTING.md`
-- Add issue templates or roadmap notes
-- Optionally add a `NOTICE` file if needed later
+- **AI patterns Tier 2** — inference caching, FinOps signals, tenant
+  isolation, AI Act Article 50 disclosure, hallucination handling,
+  red-team programs, human-in-the-loop review
+- **Additional vocabulary bridges** — BIZBOK, Wardley Mapping, AWS
+  Well-Architected, Google Cloud Architecture Framework
+- **Compliance-to-control traceability in practice** — tighter linkage
+  from compliance profiles to artifacts, assessments, review packets,
+  and validator behavior
+- **Engagement-shape gaps in the playbook catalog** — hybrid/edge,
+  OT/IT convergence, sustainability-driven architecture, AI red-team
+  programs
 
 Future direction:
 
-- Replace flow placeholder docs with real visual/editor flow definitions
-- Add automation for:
-  - ID uniqueness checks
-  - broken relationship detection
-  - required metadata validation
-  - enum validation
+- ID uniqueness, broken-reference detection, required-metadata
+  validation, enum validation as runnable checks
+- Slash-command shims for Claude / Codex so the workspace's skills are
+  invokable directly from the CLI surface those tools provide
+- Optional CLI extensions only when real use exposes friction (status,
+  gap-radar trigger, project-recap trigger, upgrade-config, delete,
+  doctor, dry-run on `new`)
 
 ## Suggested Resume Point
 
 If work resumes later, the best next task is:
 
-1. turn the strongest playbooks into executable agent instructions using the new handoff, traceability, and review guidance
-2. run the new agent test scenarios against the execution scaffold and those executable instructions
-3. extend live-project validation and deepen schema precision and enforcement further
+1. **Prove the catalog against a live engagement** — pick one playbook
+   (e.g. `quick-solution-design` or `ai-platform-bootstrap`), run a
+   real project slice under `workspace/`, and capture friction back
+   into the playbook + gap-radar checklists.
+2. **Add a second worked example** to `examples/` that exercises a
+   different family from the existing customer-onboarding case.
+3. **Then** turn the strongest skills into executable agent payloads
+   and run the agent test scenarios against them.
 
 ## Notes
 
-- The repository is still in an early framework stage.
-- The structure is strong, but it now needs examples and validation to become
-  fully operational.
+- Baseline coverage is broad and mature (capability v0.1.0). The
+  bottleneck has moved from "what's missing" to "how to prove and
+  operationalize what's there."
+- The capability version is tracked in `.architect/VERSION` and the
+  changelog in `.architect/CHANGELOG.md` records every contract-level
+  change going forward.

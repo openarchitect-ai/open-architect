@@ -66,7 +66,7 @@ For lighter setup:
 
 Beyond the metamodel, the workspace gives you:
 
-- **Engagement playbooks** under [`playbooks/`](./playbooks/) — pre-packaged engagement shapes for inventory-only work, quick solution design, migration waves, full TOGAF cycles, AI platform bootstrap, compliance-driven modernization, and post-acquisition integration.
+- **Engagement playbooks** under [`playbooks/`](./playbooks/) — 24 pre-packaged engagement shapes across 8 families: discovery & decision, solution/design, modernization & transition, platform bootstrap, enterprise cycle, driver-specific, M&A lifecycle, and practice setup & operation. Each bundles a ready-to-clone `project-config.yaml`, recommended skill sequence, review gates, anti-patterns, and a first-working-session script.
 - **Gap Radar skill** at [`skills/gap-radar.md`](./skills/gap-radar.md) — proactive scan that catches what an experienced architect would catch on a fresh read. Checklists live in [`guidance/gap-radar-checklists.md`](./guidance/gap-radar-checklists.md).
 - **Project Recap skill** at [`skills/project-recap.md`](./skills/project-recap.md) — read-only re-entry / handover orientation. Protocol in [`guidance/project-recap-protocol.md`](./guidance/project-recap-protocol.md).
 - **AI patterns** under [`patterns/ai/`](./patterns/ai/README.md) — RAG, prompt lifecycle, continuous evaluation, model version promotion gates, guardrail stack, agentic bounded loops, embedding lifecycle, vendor portability.

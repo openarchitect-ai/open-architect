@@ -254,7 +254,7 @@ Useful contribution areas:
 - Additional vocabulary bridges (BIZBOK, Wardley Mapping, AWS Well-Architected, Google Cloud Architecture Framework)
 - Schema precision and runnable validators (especially Gap Radar checks as executable validation)
 - Method tailoring guides (TOGAF tailoring, DDD-aligned engagement, lean architecture, lightweight RACI)
-- New playbooks (e.g. data-platform modernization, post-incident architecture review, capability-based planning)
+- New playbooks for engagement shapes not yet in the catalog (the [current 24](.architect/playbooks/README.md) cover discovery, solution/design, modernization, platform bootstrap, enterprise cycle, driver-specific, M&A, and practice setup — gaps include hybrid/edge, OT/IT convergence, sustainability-driven architecture, AI red-team programs)
 
 Issues and pull requests welcome.
 
