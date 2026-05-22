@@ -26,6 +26,7 @@ Use these files as the detailed rule set:
 - [`lifecycle-and-dates.md`](lifecycle-and-dates.md): status rules, date policy, and update expectations
 - [`diagram-conventions.md`](diagram-conventions.md): notation selection and diagram authoring rules
 - [`glossary.md`](glossary.md): shared workspace vocabulary
+- [`vocabulary-bridges/`](vocabulary-bridges/README.md): bridges from C4, ArchiMate-Lite, and DDD so teams using those vocabularies can adopt Open Architect without abandoning their existing models
 
 ## Quick Principles
 

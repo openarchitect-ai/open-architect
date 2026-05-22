@@ -1,8 +1,13 @@
 project:
+  # This file is the workspace-level skeleton. Real engagement configuration belongs
+  # to a project under .architect/architecture/<project-name>/project-config.yaml.
+  # To start a new project, pick an engagement shape from .architect/playbooks/,
+  # copy its project-config.yaml into the project folder, then tune from there.
   name: Open Architect # replace with the project or workspace name if needed
   architecture_scope: enterprise-and-solution # enterprise | solution | enterprise-and-solution
   architecture_mode: project-local # project-local
   operating_style: architect-assist # architect-assist | coordinator-led | external-orchestrated
+  playbook: # set this per project from .architect/playbooks/ (e.g. quick-solution-design, full-togaf-adm). Leave empty at workspace level.
   primary_method: .architect/method/project-method.md # selected project method
   reference_methods:
     - .architect/method/references/adm.md
@@ -85,6 +90,7 @@ skills:
   enabled:
     - baseline-discovery
     - project-bootstrapper
+    - project-recap
     - stakeholder-objective-framer
     - requirement-normalizer
     - solution-modeler
@@ -94,12 +100,7 @@ skills:
     - architecture-documenter
     - architecture-review
     - risk-compliance-assessor
-
-flows:
-  enabled:
-    # Enable only the flows used by this project.
-    - architecture-development
-    - transition-architecture
+    - gap-radar
 
 conventions:
   # Project-wide controls that can later be validated automatically.

@@ -3,8 +3,8 @@
 Use this file to describe the architecture method chosen for this project.
 
 Before tailoring the method, align it with `.architect/project-config.yaml` so
-the selected method, roles, templates, flows, and governance expectations are
-explicit for the project.
+the selected method, roles, templates, playbook, and governance expectations
+are explicit for the project.
 
 Suggested coverage:
 
@@ -17,7 +17,7 @@ Suggested coverage:
 - implementation governance
 - change management and continuous improvement
 - tailoring of reference methods such as ADM
-- flow entry and exit criteria
+- phase entry and exit criteria (often inherited from the chosen playbook)
 
 Recommended template mapping:
 

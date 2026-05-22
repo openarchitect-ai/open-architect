@@ -14,7 +14,6 @@ follow-up needed to keep architecture requirements actionable over time.
 ## Read First
 
 - `.architect/templates/application/requirement.yaml`
-- `.architect/flows/requirements-change-coordination.flow.md`
 - `.architect/examples/customer-onboarding-modernization/application/req-1001-customer-activation-reliability.yaml`
 
 ## Inputs
@@ -25,14 +24,16 @@ follow-up needed to keep architecture requirements actionable over time.
 
 ## Steps
 
-1. Review requirement lifecycle, approval, and verification status.
-2. Identify which requirements are blocked, ambiguous, stale, or weakly linked.
-3. Route clarification to the right owner.
+1. Capture the new or changed requirement input from source material, stakeholder feedback, or working notes.
+2. Normalize and classify the requirement change so its type (functional, non-functional, security, regulatory) and lifecycle stance are explicit.
+3. Identify which requirements are blocked, ambiguous, stale, or weakly linked, and assign clarification ownership.
    Business ambiguity goes to business owners; solution ambiguity goes to the solution team.
-4. Update relationships as the solution and transition artifacts evolve.
-5. Confirm whether each changed requirement needs a new decision, work-package update, or transition update.
-6. Track verification readiness, not only requirement wording.
-7. Publish follow-up actions and due dates into the project cadence.
+4. Assess impact on solution, interfaces, data, technology, and transition state.
+5. Record or update architecture decisions where the change materially affects direction. Route to `decision-recorder` when warranted.
+6. Update relationships as solution and transition artifacts evolve so traceability remains explicit.
+7. Update gaps, transition architectures, and work packages where the change shifts what must be delivered.
+8. Review risk, compliance, and delivery readiness implications. Route to `risk-compliance-assessor` when material.
+9. Publish follow-up actions, due dates, and governance status into the project cadence.
 
 ## Outputs
 

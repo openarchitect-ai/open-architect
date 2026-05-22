@@ -313,6 +313,16 @@ capability container, including:
   - architecture development
   - requirements and change coordination
   - transition architecture
+- Added persona-driven scanning skills:
+  - `gap-radar` with substantive checklist guidance under `guidance/gap-radar-checklists.md`
+  - `project-recap` with read-order and drift-detection protocol under `guidance/project-recap-protocol.md`
+  - both registered as on-demand skills, both strictly read-only on architecture artifacts
+- Pivoted flows and config presets into a single engagement-playbook concept:
+  - replaced `flows/` and `config/presets/` with `playbooks/`
+  - seeded `inventory-only`, `quick-solution-design`, `migration-wave`, `full-togaf-adm`
+  - each playbook bundles brief + ready-to-clone `project-config.yaml`
+  - removed the `flows:` block from `project-config.yaml`; added `project.playbook` field
+  - updated READMEs, config guidance, and skill references to point to playbooks
 - Added `.architect/README.md` as the internal workspace guide
 - Added root `README.md` as the open source project README
 - Added `LICENSE` using Apache-2.0
@@ -329,13 +339,13 @@ Key folders:
 - `.architect/examples/`
 - `.architect/agents/`
 - `.architect/patterns/`
+- `.architect/playbooks/`
 - `.architect/runtime/`
 - `.architect/schemas/`
 - `.architect/validation/`
 - `.architect/config/`
 - `.architect/guidance/`
 - `.architect/method/`
-- `.architect/flows/`
 - `.architect/project-config.yaml`
 - `.architect/roles/`
 - `.architect/skills/`

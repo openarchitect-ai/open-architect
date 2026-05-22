@@ -1,10 +1,12 @@
 project:
-  name: Inventory-Only Project
-  architecture_scope: solution
+  name: Migration Wave Project
+  architecture_scope: enterprise-and-solution
   architecture_mode: project-local
   operating_style: architect-assist
+  playbook: migration-wave
   primary_method: .architect/method/project-method.md
-  reference_methods: []
+  reference_methods:
+    - .architect/method/references/transition-architecture.md
 
 compliance:
   jurisdictions: []
@@ -13,33 +15,71 @@ compliance:
   control_frameworks: []
   data_residency_requirements: []
   ai_regulated_use: false
-  incident_reporting_requirements: false
+  incident_reporting_requirements: true
 
 roles:
   enabled:
     - chief-architect
     - business-analyst
+    - solution-architect
     - integration-architect
+    - security-architect
+    - data-architect
 
 templates:
-  enabled: []
+  enabled:
+    - application
+    - application-service
+    - interface
+    - data-object
+    - technology-component
+    - environment
+    - requirement
+    - solution
+    - decision
+    - transition-architecture
+    - gap
+    - work-package
+    - roadmap
+    - risk
+    - compliance-assessment
 
 skills:
   enabled:
+    - project-recap
     - baseline-discovery
+    - requirement-normalizer
+    - option-evaluator
+    - decision-recorder
+    - transition-planner
+    - risk-compliance-assessor
+    - gap-radar
     - architecture-review
-
-flows:
-  enabled: []
+    - architecture-documenter
 
 conventions:
   id_prefix_mode: standard
-  traceability_required: false
-  compliance_reviews_required: false
-  architecture_reviews_required: false
+  traceability_required: true
+  compliance_reviews_required: true
+  architecture_reviews_required: true
   human_review_required: true
   user_is_primary_driver: true
-  default_work_mode: inventory
+  default_work_mode: analysis
+  guided_mode_support: true
+  guided_mode_depth: standard
+  clarify_operating_context_first: true
+  include_architect_tasks_in_all_modes: true
+  maximize_followup_task_capture: true
+  announce_active_role_and_skill: true
+  response_display_style: architect-friendly
+  response_display_enforcement: strict
+  response_session_banner: table
+  response_status_labels: true
+  response_task_grouping: ask-confirm-request-decide
+  response_bottom_line: true
+  architect_work_auto_capture: true
+  architect_work_auto_update_mode: approval-before-write
+  architect_work_auto_update_scope: architect-work-only
   artifact_creation_requires_explicit_request: true
   next_step_recommendations_only: true
   auto_progression: false
@@ -63,7 +103,11 @@ governance:
   coordinator_auto_route: false
   human_approval_roles:
     - chief-architect
-  review_checkpoints: []
+  review_checkpoints:
+    - solution-direction
+    - decision-approval
+    - governance-review
+    - transition-plan
 
 runtime:
   execution_mode: single-agent-guided
@@ -72,4 +116,4 @@ runtime:
   task_artifact: .architect/agents/artifacts/agent-task.yaml
   handoff_artifact: .architect/agents/artifacts/agent-handoff.yaml
   allow_parallel_specialists: false
-  require_validation_before_handoff: false
+  require_validation_before_handoff: true

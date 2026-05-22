@@ -28,7 +28,8 @@ The default direction is now:
 - `test-the-workspace.md`
 - `prompt-recipes.md`
 - `worked-examples.md`
-- `presets/`
+
+For pre-packaged engagement starting points, see [`../playbooks/`](../playbooks/README.md).
 
 ## Recommended Starting Point
 
@@ -72,5 +73,5 @@ runtime files should stay in their neutral template state.
   Practical prompts for inventory, analysis, review, and modeling tasks.
 - [worked-examples.md](./worked-examples.md)
   Example ways to use the workspace for common architecture tasks.
-- `presets/`
-  Example `project-config.yaml` variants for lighter-weight project types.
+- [`../playbooks/`](../playbooks/README.md)
+  Pre-packaged engagement shapes (inventory-only, quick-solution-design, migration-wave, full-togaf-adm) — each one bundles a ready-to-clone `project-config.yaml` with the matching skill sequence and review gates.

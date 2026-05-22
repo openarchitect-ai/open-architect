@@ -60,10 +60,10 @@ The main workspace documentation is here:
   examples/
   patterns/
   compliance/
+  playbooks/
   schemas/
   validation/
   config/
-  flows/
   guidance/
   method/
   roles/
@@ -77,14 +77,14 @@ High-level intent:
 - `examples/`: worked examples and reference projects separated from live project artifacts
 - `patterns/`: reusable architecture patterns and reference solution approaches
 - `compliance/`: compliance-aware reference material for jurisdiction, sector, and control obligations
+- `playbooks/`: pre-packaged engagement shapes (inventory-only, quick-solution-design, migration-wave, full-togaf-adm, ai-platform-bootstrap, compliance-driven-modernization, post-acquisition-integration) bundling a ready-to-clone `project-config.yaml`, recommended skill sequence, and applicable review gates
 - `schemas/`: formal JSON Schema contracts for artifact document structure
 - `validation/`: lightweight validators for templates and architecture artifact folders
-- `flows/`: optional guided workflows and, later, richer automations
 - `config/`: configuration guidance for agent and workspace behavior
 - `guidance/`: conventions, glossary, and local rules
 - `method/`: the chosen project method and reference methods such as ADM
 - `roles/`: role descriptions and responsibilities
-- `skills/`: AI or reusable architecture playbooks
+- `skills/`: reusable architecture skills and procedures that agents apply
 - `templates/`: the architecture metamodel and starter templates
 
 The workspace is now best understood in three levels:
@@ -129,15 +129,16 @@ consumer privacy concerns.
 
 The lightest useful way to start is:
 
-1. Open [`.architect/README.md`](.architect/README.md).
-2. Create a small project folder under [`.architect/architecture`](.architect/architecture).
-3. Add a `docs/` folder with your source material.
-4. Optionally add a short `notes.md` with your business goal and questions.
-5. Start in `inventory` or `analysis` mode.
-6. Create architecture artifacts only when you explicitly want them.
+1. Open [`.architect/playbooks/`](.architect/playbooks/) and pick the engagement shape that fits.
+2. Copy the playbook's `project-config.yaml` to your project location.
+3. Create a small project folder under [`.architect/architecture`](.architect/architecture).
+4. Add a `docs/` folder with your source material.
+5. Optionally add a short `notes.md` with your business goal and questions.
+6. Follow the playbook's recommended first steps.
 
 Best quick-start guides:
 
+- [playbooks/README.md](.architect/playbooks/README.md) — pick an engagement shape
 - [starter-project.md](.architect/config/starter-project.md)
 - [prompt-recipes.md](.architect/config/prompt-recipes.md)
 - [cheat-sheet.md](.architect/config/cheat-sheet.md)

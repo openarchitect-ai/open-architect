@@ -2,7 +2,7 @@
 
 Open Architect is an AI-native workspace for enterprise architects and solution architects.
 
-The goal is to capture architecture as structured, linked, machine-readable knowledge rather than disconnected documents. The `.architect` folder is the project-local architecture capability container: it holds guidance, method definitions, flows, roles, templates, and architecture work products in one predictable place.
+The goal is to capture architecture as structured, linked, machine-readable knowledge rather than disconnected documents. The `.architect` folder is the project-local architecture capability container: it holds guidance, method definitions, playbooks, patterns, roles, skills, templates, and architecture work products in one predictable place.
 
 ## What This Workspace Is For
 
@@ -48,12 +48,12 @@ These objects are linked using typed `relationships`, which makes the workspace 
   examples/
   agents/
   patterns/
+  playbooks/
   compliance/
   runtime/
   schemas/
   validation/
   config/
-  flows/
   guidance/
   method/
   project-config.yaml
@@ -74,16 +74,16 @@ Folder intent:
 - `architecture/`: actual project architecture objects created from templates
 - `examples/`: worked examples and reference projects kept separate from live project work
 - `patterns/`: reusable architecture patterns and reference solution approaches
+- `playbooks/`: pre-packaged engagement shapes bundling a config preset, recommended skill sequence, and applicable review gates
 - `compliance/`: compliance-aware reference material for jurisdictions, sectors, and control obligations
 - `agents/`: executable agent profiles, runtime contracts, and task/handoff payloads for optional multi-agent execution
 - `runtime/`: live queue, gate, and active-work state when a project explicitly uses orchestration
 - `schemas/`: formal structural contracts for artifact documents
 - `validation/`: executable checks for templates and architecture artifact folders
 - `config/`: configuration guidance for agent and workspace behavior
-- `flows/`: visual or executable architecture workflows
 - `guidance/`: conventions, glossary, and local architecture guidance
 - `method/`: the selected project architecture method plus reference methods
-- `project-config.yaml`: project-level selection of roles, templates, skills, method, and flows
+- `project-config.yaml`: project-level selection of roles, templates, skills, method, and the active playbook
 - `roles/`: role descriptions and responsibilities
 - `skills/`: agent or reusable architecture skill instructions
 - `templates/`: starter metamodel templates grouped by architecture concern
@@ -135,6 +135,7 @@ Treat `.architect` as the place that answers five questions for the project:
 
 In practical terms:
 
+- use `playbooks/` to pick an engagement shape and start with a pre-packaged config
 - use `project-config.yaml` to declare what this project will actually use
 - use `templates/` to define the metamodel
 - use `architecture/` to store actual project instances
@@ -146,11 +147,10 @@ In practical terms:
 - use `schemas/` to define formal machine-readable contracts for artifact structure
 - use `validation/` to check template quality and project artifact consistency
 - use `config/` to explain how project and agent configuration should work
-- use `flows/` for visual or executable workflow definitions
-- use `guidance/` to explain local rules
+- use `guidance/` to explain local rules, and `guidance/vocabulary-bridges/` to bridge to C4, ArchiMate-Lite, or DDD when your team uses those vocabularies
 - use `method/` to describe the chosen project method and its tailoring
 - use `roles/` to clarify who does what
-- use `skills/` for AI or reusable playbooks
+- use `skills/` for reusable architecture procedures
 
 ## Roles, Skills, And Agents
 
@@ -189,6 +189,7 @@ Think of the workspace in three levels:
 
 Use these first in most projects:
 
+- `playbooks/` to pick an engagement shape
 - `project-config.yaml`
 - `architecture/`
 - `config/`
@@ -204,7 +205,6 @@ Bring these in when the project becomes more structured:
 
 - broader `roles/`
 - broader `skills/`
-- `flows/`
 - `compliance/`
 - richer template coverage
 
@@ -245,10 +245,10 @@ Useful guides:
 
 Before creating architecture content, tailor [`.architect/project-config.yaml`](project-config.yaml) so the project explicitly selects:
 
+- chosen engagement playbook (from `.architect/playbooks/`)
 - active roles
 - in-scope templates
 - chosen method and reference methods
-- enabled flows
 - enabled skills
 - applicable jurisdictions, sectors, and regulations
 

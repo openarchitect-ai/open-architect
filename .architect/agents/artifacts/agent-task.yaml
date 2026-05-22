@@ -15,7 +15,7 @@ task:
 
   input_artifacts:
     - .architect/project-config.yaml
-    - .architect/flows/architecture-development.flow.md
+    - .architect/playbooks/full-togaf-adm/playbook.md
     - .architect/guidance/handoff-contracts.md
 
   writable_paths:

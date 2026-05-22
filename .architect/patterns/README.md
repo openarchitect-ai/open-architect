@@ -14,6 +14,7 @@ project-specific architecture artifacts:
 
 ```text
 patterns/
+  ai/
   application/
   business/
   data/
@@ -53,6 +54,14 @@ Patterns make the workspace more useful for both architects and agents:
 
 This folder now includes a broad reusable set:
 
+- `ai/retrieval-augmented-generation.md`
+- `ai/prompt-lifecycle-management.md`
+- `ai/continuous-model-evaluation.md`
+- `ai/model-version-promotion-gate.md`
+- `ai/ai-guardrail-stack.md`
+- `ai/agentic-system-bounded-loop.md`
+- `ai/embedding-lifecycle-management.md`
+- `ai/model-vendor-portability.md`
 - `integration/event-driven-integration.md`
 - `integration/request-response-integration.md`
 - `integration/batch-integration.md`

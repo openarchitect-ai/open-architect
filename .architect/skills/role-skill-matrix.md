@@ -22,5 +22,5 @@ This matrix shows which skills are most relevant to each architecture role.
 - Skills are reusable capabilities those role-based agents can apply.
 - Patterns are normal working context for many of these role-skill combinations, especially in business framing, solution shaping, data governance, technology design, risk/compliance, review, and transition planning.
 - A single project agent team will usually combine several roles and several skills.
-- Future `flows/` should orchestrate these skills rather than duplicate them.
+- `playbooks/` sequence these skills against an engagement shape rather than duplicating them.
 - Documentation, diagramming, and review outputs are treated as explicit skills so they can be coordinated and maintained rather than improvised.

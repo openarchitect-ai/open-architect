@@ -11,10 +11,10 @@ assume by default.
 
 Use it to decide:
 
+- which engagement playbook the project is using
 - which roles are in scope
 - which templates the project will use
 - which skills are enabled
-- which flows are active
 - which method and reference methods guide the work
 - which governance expectations apply
 - which execution model and runtime state the agents should use
@@ -27,11 +27,11 @@ default.
 
 Recommended approach:
 
-1. Set the project name and architecture scope.
-2. Select the primary method and any reference methods.
-3. Enable only the roles that will actually participate.
-4. Enable only the templates needed for the project.
-5. Enable flows that match the chosen method.
+1. Pick the engagement playbook closest to your work from [`.architect/playbooks/`](../playbooks/README.md) and copy its `project-config.yaml` as your starting point.
+2. Set the project name and architecture scope.
+3. Confirm or adjust the primary method and any reference methods.
+4. Confirm or trim the enabled roles to those that will actually participate.
+5. Confirm or trim the enabled templates to those needed for the project.
 6. Add skills later as the project matures.
 7. Confirm governance roles and review expectations.
 8. Decide whether the project is `architect-assist` or `coordinator-led`.
@@ -116,14 +116,39 @@ For an architect-assist project, start with a small set such as:
 Add coordination-heavy or delivery-heavy skills only when you explicitly want
 them.
 
-### `flows.enabled`
+### `project.playbook`
 
-Enable only the flows the project intends to use.
+Name the engagement playbook this project is using. Playbooks live under
+[`.architect/playbooks/`](../playbooks/README.md) and bundle a stage-by-stage
+brief, recommended skill sequence, applicable review gates, anti-patterns,
+customization guide, and a ready-to-clone `project-config.yaml`.
 
-Examples:
+There is **no workspace-level default playbook.** The `playbook` field
+should be set on a per-project basis. The workspace-level
+`.architect/project-config.yaml` should leave this field empty.
 
-- `architecture-development`
-- `transition-architecture`
+Available values:
+
+- `inventory-only`
+- `quick-solution-design`
+- `migration-wave`
+- `full-togaf-adm`
+- `ai-platform-bootstrap`
+- `compliance-driven-modernization`
+- `post-acquisition-integration`
+
+Recommended approach:
+
+1. Pick the closest playbook from [`../playbooks/`](../playbooks/README.md).
+2. Read its `playbook.md` end-to-end before copying the config.
+3. Copy its `project-config.yaml` to your project location
+   (`.architect/architecture/<project-name>/project-config.yaml`).
+4. Set `project.playbook` to the playbook name so future agents and human
+   reviewers can see which engagement shape was intended.
+5. Tune the rest per the playbook's Customization Guide.
+
+If no playbook fits cleanly, fork the closest one. Playbooks are starting
+points, not constraints.
 
 ### `conventions`
 
@@ -434,11 +459,11 @@ If `conventions.allow_progress_on_non_blocking_open_questions` is `true`:
 
 If you are unsure, start with:
 
+- the `inventory-only` playbook (lightest engagement shape)
 - `architecture_scope: enterprise-and-solution`
 - `architecture_mode: project-local`
 - a small but realistic role set
 - a reduced template set instead of the full library
-- one or two flows
 
 ## Good Practice
 

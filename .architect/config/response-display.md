@@ -66,15 +66,21 @@ This should stay compact. It is for orientation, not narration.
 
 ## Status Labels
 
-When `response_status_labels: true`, use status labels when they improve scanability:
+When `response_status_labels: true`, use status labels with their emoji prefixes
+when they improve scanability:
 
-- `CONFIRMED`
-- `PROVISIONAL`
-- `OPEN`
-- `BLOCKER`
-- `ACTION`
-- `REQUEST`
-- `DECISION`
+- ✅ `CONFIRMED`
+- 🟡 `PROVISIONAL`
+- ❓ `OPEN`
+- 🚫 `BLOCKER`
+- 🔵 `ACTION`
+- 📥 `REQUEST`
+- 📌 `DECISION`
+
+Two utility prefixes are also available for callouts:
+
+- 💡 `RECOMMEND` / `TIP`
+- ⚠️ `WARNING` / `CAUTION`
 
 These are especially useful in:
 
@@ -123,13 +129,13 @@ mapping if the UI supports styling:
 - role: teal
 - skill: purple
 - confidence: green / amber / red depending on confidence level
-- `CONFIRMED`: green
-- `PROVISIONAL`: slate or blue-gray
-- `OPEN`: amber
-- `BLOCKER`: red
-- `ACTION`: blue
-- `REQUEST`: violet
-- `DECISION`: cyan
+- ✅ `CONFIRMED`: green
+- 🟡 `PROVISIONAL`: slate or blue-gray
+- ❓ `OPEN`: amber
+- 🚫 `BLOCKER`: red
+- 🔵 `ACTION`: blue
+- 📥 `REQUEST`: violet
+- 📌 `DECISION`: cyan
 
 ## Practical Rule
 

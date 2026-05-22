@@ -25,6 +25,101 @@ If you want the assistant to prepare `architect-work/` updates but wait for your
 Suggest updates for the `architect-work/` folder, but do not write them until I confirm.
 ```
 
+## Project Recap
+
+Use when you are joining a project late, returning after time away, preparing
+a handover, or simply starting a working session and need orientation first.
+
+```text
+Project Recap.
+
+Run the `project-recap` skill against `.architect/architecture/<project-name>/`.
+Walk the read order in `.architect/guidance/project-recap-protocol.md`.
+
+Tell me:
+- where the project is
+- what is confirmed
+- what is open
+- what is stale
+- what has drifted (with proposed reconciliations)
+- who is involved
+- the 1-3 things that matter most now
+- my architect tasks grouped as ask / confirm / request / decide
+
+Do not modify any architecture artifacts.
+Surface proposed `architect-work/` updates as suggestions only, awaiting my confirmation.
+Use the standard architect-friendly response format.
+```
+
+Variations to add when needed:
+
+```text
+Use the quick recap variation. Only give me where the project is, what matters most now, and the bottom line.
+```
+
+```text
+Use the handover recap variation. Include an explicit "Open Threads For Successor" section.
+```
+
+```text
+Use the drift-focused recap variation. Only report what has drifted and proposed reconciliations.
+```
+
+## Gap Radar
+
+Use when you want an active sweep for missing content, contradictions,
+ownership untruths, governance hygiene issues, drift, and present-day
+standards gaps. Best before review gates or when re-entering after recap.
+
+```text
+Gap Radar.
+
+Run the `gap-radar` skill against `.architect/architecture/<project-name>/`.
+Use the checklists in `.architect/guidance/gap-radar-checklists.md`.
+
+Honor the scope controls:
+- only run checks for template kinds in `templates.enabled`
+- only fire jurisdiction-specific checks for entries in `compliance.applicable_regulations`
+
+Give me a `Gap Radar Report` with:
+- the scan scope (what was scanned, what was skipped, why)
+- blockers
+- missing required content
+- inconsistencies
+- present-day standards gaps
+- ownership truthfulness risks
+- governance hygiene
+- drift signals
+- my architect tasks grouped as ask / confirm / request / decide
+- a bottom line naming the 1-3 highest-leverage findings
+
+Do not modify any architecture artifacts.
+Surface proposed `architect-work/` updates as suggestions only, awaiting my confirmation.
+Use the standard architect-friendly response format.
+```
+
+Variations to add when needed:
+
+```text
+Use the headline radar variation. Only `BLOCKER` and `OPEN` items. One screen.
+```
+
+```text
+Use the domain radar variation. Restrict to <data | integration | security | transition | application>.
+```
+
+```text
+Use the artifact radar variation. Focus on <solution / transition / decision name> and everything it touches.
+```
+
+```text
+Use the gate radar variation. Tune the checks to the next imminent review gate (<gate-name>).
+```
+
+```text
+Use the modernity radar variation. Only run the present-day standards checks.
+```
+
 ## Inventory Mode
 
 Use when you want source-first extraction only.

@@ -2,7 +2,7 @@
 
 This glossary defines the core terms used across the Open Architect workspace.
 Use it to keep humans and agents aligned on the meaning of artifacts, skills,
-flows, statuses, and evidence-related concepts.
+playbooks, patterns, statuses, and evidence-related concepts.
 
 ## A
 
@@ -109,11 +109,6 @@ project work.
 
 ## F
 
-### Flow
-
-An orchestration pattern that describes how multiple skills and roles work
-together across a sequence of architecture steps and review gates.
-
 ### Gap
 
 A missing, weak, or insufficient architecture capability that must be addressed
@@ -176,10 +171,26 @@ stewards, approves, or operates architecture elements.
 
 ## P
 
+### Pattern
+
+A reusable architecture design approach with explicit purpose, applicability,
+key components, benefits, tradeoffs, and risks. Patterns live under
+`.architect/patterns/<domain>/` and are first-class working context for
+modeling, decision, and review skills.
+
+### Playbook
+
+A pre-packaged engagement shape that bundles a recommended skill sequence,
+applicable review gates, anti-patterns, customization guide, and a
+ready-to-clone `project-config.yaml`. Playbooks live under
+`.architect/playbooks/` and answer "what shape of engagement is this?".
+Each project picks one playbook; there is no workspace-level default.
+
 ### Project Config
 
 The project-level configuration file at `.architect/project-config.yaml` that
-selects active roles, templates, skills, flows, and governance controls.
+selects active roles, templates, skills, the chosen playbook, and governance
+controls.
 
 ### Proposed
 
@@ -232,8 +243,10 @@ states, work packages, dependencies, and delivery timing.
 
 ### Review Checkpoint
 
-A named point in a flow where architecture work is expected to pause for human
-review, clarification, or approval.
+A named point in an engagement where architecture work is expected to pause
+for human review, clarification, or approval. Checkpoints are declared per
+project in `governance.review_checkpoints` and per playbook in *Review Gates
+That Apply*.
 
 ### Risk
 
@@ -244,9 +257,11 @@ operations, compliance, value, or governance outcomes.
 
 ### Skill
 
-A reusable capability or playbook that an agent or architect can apply to do a
-specific kind of architecture work, such as baseline discovery, solution
-modeling, relationship mapping, or decision recording.
+A reusable architecture procedure that an agent or architect can apply to do
+a specific kind of architecture work, such as baseline discovery, solution
+modeling, relationship mapping, or decision recording. Skills live under
+`.architect/skills/`. Note: in this workspace, "playbook" refers to an
+engagement-shape playbook, not a skill playbook.
 
 ### Solution
 
@@ -313,6 +328,13 @@ intermediate design.
 
 A status indicating that a requirement, control, or expectation has supporting
 verification evidence rather than only intention or design-time assertion.
+
+### Vocabulary Bridge
+
+A guidance document that maps an external architecture vocabulary (such as
+C4, ArchiMate-Lite, or DDD) to Open Architect concepts, so teams using that
+vocabulary can adopt the workspace without abandoning their existing models.
+Vocabulary bridges live under `.architect/guidance/vocabulary-bridges/`.
 
 ## W
 

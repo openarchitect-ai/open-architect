@@ -42,7 +42,7 @@ scope, roles, templates, conventions, and delivery expectations.
 5. Confirm method and governance expectations.
    Align review cadence, ownership, and architecture checkpoints with the chosen method.
 6. Tailor `project-config.yaml`.
-   Update active roles, enabled templates, enabled flows, governance ownership, and regulation applicability.
+   Pick the closest engagement playbook from `.architect/playbooks/`, copy its `project-config.yaml`, then update active roles, enabled templates, governance ownership, and regulation applicability. Record the chosen playbook in `project.playbook`.
 7. Recommend the first artifact sequence.
    Usually begin with stakeholders, objectives, vision, requirements, and the first solution boundary.
 8. Point the team to the worked example if context is still abstract.

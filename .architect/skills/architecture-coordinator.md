@@ -19,7 +19,8 @@ work coherent.
 ## Read First
 
 - `.architect/project-config.yaml`
-- `.architect/flows/architecture-development.flow.md`
+- `.architect/playbooks/README.md`
+- the active playbook named in `project.playbook` under `.architect/playbooks/<playbook-name>/playbook.md`
 - `.architect/guidance/handoff-contracts.md`
 - `.architect/guidance/traceability-rules.md`
 - `.architect/guidance/id-and-naming-rules.md`
@@ -32,7 +33,7 @@ work coherent.
 
 - project or pilot folder
 - current artifact set
-- current stage in the architecture flow
+- the active engagement playbook and its recommended skill sequence
 - enabled roles and skills
 - configured coordinator role and coordinator skill
 - known review gates, compliance constraints, and delivery expectations

@@ -11,9 +11,9 @@ real work in a project.
 Use this folder for:
 
 - agent instructions that describe repeatable architecture work
-- role-supporting playbooks that can be reused across projects
+- role-supporting procedures that can be reused across projects
 - modeling, review, transition, and governance accelerators
-- team-level skill definitions that can later be orchestrated through flows when explicitly needed
+- team-level skill definitions that engagement playbooks can sequence
 
 ## How To Think About Skills
 
@@ -21,7 +21,7 @@ Use this folder for:
 - `roles/` define perspective, accountability, and ownership
 - `skills/` define reusable capabilities that role-based agents can apply
 - `agents/` define the executable runtime profiles that may invoke those skills
-- `flows/` define orchestration across multiple skills and steps
+- `playbooks/` define the engagement shape — which skills to use, in what order, against which gates
 - `runtime/` stores live queue and gate state when multi-agent execution is enabled
 - `architecture/` contains the actual project artifacts produced by people or agents
 
@@ -140,10 +140,11 @@ to be run by separate bounded agents with real task and handoff artifacts.
 
 ## Next Step
 
-Wave 1 skills now include concrete playbook steps and an execution scaffold.
-The next step is to prove those playbooks through real work. In most projects,
-that should begin with source-first discovery and analysis before any runtime
-queue state, review gates, or formal handoff artifacts are introduced.
+Wave 1 skills now include concrete step-by-step instructions and an execution
+scaffold. The next step is to prove those skills through real work. In most
+projects, that should begin with source-first discovery and analysis before
+any runtime queue state, review gates, or formal handoff artifacts are
+introduced.
 
 Before broad team operationalization, use the guidance set for:
 

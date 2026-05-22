@@ -5,7 +5,7 @@ true multi-agent execution.
 
 ## Purpose
 
-Roles, skills, and flows describe architecture work conceptually.
+Roles, skills, patterns, and playbooks describe architecture work conceptually.
 
 The execution model defines how that work runs operationally.
 

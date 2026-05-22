@@ -1,10 +1,13 @@
 project:
-  name: Solution Design Project
-  architecture_scope: solution
+  name: Full TOGAF ADM Project
+  architecture_scope: enterprise-and-solution
   architecture_mode: project-local
   operating_style: architect-assist
+  playbook: full-togaf-adm
   primary_method: .architect/method/project-method.md
-  reference_methods: []
+  reference_methods:
+    - .architect/method/references/adm.md
+    - .architect/method/references/transition-architecture.md
 
 compliance:
   jurisdictions: []
@@ -13,53 +16,90 @@ compliance:
   control_frameworks: []
   data_residency_requirements: []
   ai_regulated_use: false
-  incident_reporting_requirements: false
+  incident_reporting_requirements: true
 
 roles:
   enabled:
     - chief-architect
-    - business-analyst
+    - enterprise-architect
+    - business-architect
     - solution-architect
-    - integration-architect
-    - security-architect
     - data-architect
+    - integration-architect
+    - technology-architect
+    - security-architect
+    - architecture-governance-lead
+    - business-analyst
 
 templates:
   enabled:
     - stakeholder
     - objective
     - architecture-vision
+    - principle
+    - organization
+    - business-capability
+    - business-process
     - application
     - application-service
     - interface
     - data-object
     - technology-component
+    - technology-standard
     - environment
     - requirement
     - solution
     - decision
+    - initiative
+    - roadmap
+    - transition-architecture
+    - gap
+    - work-package
+    - compliance-assessment
     - risk
 
 skills:
   enabled:
+    - project-bootstrapper
+    - project-recap
+    - stakeholder-objective-framer
     - baseline-discovery
     - requirement-normalizer
-    - solution-modeler
+    - option-evaluator
     - decision-recorder
+    - solution-modeler
+    - transition-planner
+    - risk-compliance-assessor
+    - gap-radar
     - architecture-review
-
-flows:
-  enabled:
-    - architecture-development
+    - architecture-coordinator
+    - architecture-documenter
+    - requirements-follow-up
+    - evidence-curator
 
 conventions:
   id_prefix_mode: standard
   traceability_required: true
-  compliance_reviews_required: false
+  compliance_reviews_required: true
   architecture_reviews_required: true
   human_review_required: true
   user_is_primary_driver: true
-  default_work_mode: modeling
+  default_work_mode: inventory
+  guided_mode_support: true
+  guided_mode_depth: standard
+  clarify_operating_context_first: true
+  include_architect_tasks_in_all_modes: true
+  maximize_followup_task_capture: true
+  announce_active_role_and_skill: true
+  response_display_style: architect-friendly
+  response_display_enforcement: strict
+  response_session_banner: table
+  response_status_labels: true
+  response_task_grouping: ask-confirm-request-decide
+  response_bottom_line: true
+  architect_work_auto_capture: true
+  architect_work_auto_update_mode: approval-before-write
+  architect_work_auto_update_scope: architect-work-only
   artifact_creation_requires_explicit_request: true
   next_step_recommendations_only: true
   auto_progression: false
@@ -83,10 +123,14 @@ governance:
   coordinator_auto_route: false
   human_approval_roles:
     - chief-architect
+    - architecture-governance-lead
   review_checkpoints:
+    - project-bootstrap
     - requirement-baseline
     - solution-direction
     - decision-approval
+    - governance-review
+    - transition-plan
 
 runtime:
   execution_mode: single-agent-guided

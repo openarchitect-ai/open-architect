@@ -65,7 +65,7 @@ Use these role descriptions to:
 - define who owns which architecture artifacts
 - clarify collaboration between architecture disciplines
 - give the architect clear specialist lenses to pull in on demand
-- guide how methods, templates, and flows are applied in practice
+- guide how methods, templates, and playbooks are applied in practice
 - ground role behavior in the reusable pattern library when shaping, reviewing, or governing architecture work
 
 Role descriptions are not, by themselves, executable agents.
