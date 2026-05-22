@@ -220,6 +220,7 @@ Tune the playbook per engagement:
 - **Coordinator** — `coordinator_auto_route: false`; compliance work needs explicit decision points, not auto-routing.
 - **Review cadence** — set `governance-review` cadence explicitly; quarterly is a common starting point.
 - **Attestation cadence** — declare it per regulation (annual, biennial, per-incident, continuous).
+- **Requirement freeze enforcement** — set `conventions.requirement_freeze_enforcement: strict` in `project-config.yaml`. Compliance-driven work needs a defensible audit trail of any post-baseline requirement change; strict enforcement routes changes through explicit sponsor / coordinator re-opening rather than silent application. See [`../../guidance/requirement-change-handling.md`](../../guidance/requirement-change-handling.md).
 
 ## Decision Points
 

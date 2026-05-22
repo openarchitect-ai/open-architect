@@ -231,6 +231,7 @@ Tune the playbook per engagement:
 - **Coordinator** — `coordinator_auto_route: false`; high-stakes decisions, explicit human routing.
 - **Notification clock** — record the regulatory notification deadline explicitly in `roadmap` from Day 1 if applicable.
 - **Hypercare scope** — explicit ownership and duration; "we'll watch it for a while" is not hypercare.
+- **Requirement freeze enforcement** — set `conventions.requirement_freeze_enforcement: strict` in `project-config.yaml`. Post-incident engagements often have regulatory exposure and stakeholder scrutiny; strict enforcement ensures that any post-baseline change to remediation requirements goes through explicit sponsor / coordinator re-opening, not silent edits. See [`../../guidance/requirement-change-handling.md`](../../guidance/requirement-change-handling.md).
 
 ## Decision Points
 

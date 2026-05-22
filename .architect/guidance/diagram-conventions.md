@@ -30,9 +30,14 @@ The expected authoring flow is:
 2. Identify the audience for the view.
 3. Select the relevant architecture artifacts and relationships.
 4. Choose the notation using the selection matrix below.
-5. Create the diagram source in `workspace/<project-name>/views/` for live project work.
-6. Link the diagram from the relevant architecture artifacts.
-7. Refresh the diagram when architecture changes affect the view.
+5. Open the matching starter from [`diagram-starter-views/`](./diagram-starter-views/README.md) and copy it into the project.
+6. Create the diagram source in `workspace/<project-name>/views/` for live project work.
+7. Replace placeholder artifact IDs with real ones from the project.
+8. Link the diagram from the relevant architecture artifacts via `metadata.references`.
+9. Refresh the diagram when architecture changes affect the view.
+
+See [`../skills/diagram-author.md`](../skills/diagram-author.md) for the
+skill-level procedure, output checklist, and quality checks.
 
 ## Default Storage Pattern
 
@@ -48,19 +53,31 @@ Worked example diagrams should live alongside their example project, for example
 .architect/examples/<example-name>/views/
 ```
 
+Starter templates for each notation category live in:
+
+```text
+.architect/guidance/diagram-starter-views/
+```
+
+Copy from there into the project's `views/` folder; tailor as needed.
+
 Recommended file naming:
 
 - `context-<subject>.md`
+- `container-<subject>.md`
 - `sequence-<subject>.puml`
-- `process-<subject>.bpmn`
 - `deployment-<subject>.puml`
+- `data-<subject>.md`
+- `process-<subject>.md` (Mermaid swimlane) or `process-<subject>.bpmn` (controlled BPMN)
 - `transition-<subject>.md`
+- `capability-<subject>.md`
+- `value-stream-<subject>.md`
 
 Recommended storage rules:
 
-- use Markdown with embedded Mermaid for lightweight views
-- use PlantUML when UML sequence, deployment, or more explicit technical notation is helpful
-- use BPMN files for controlled business process models
+- use Markdown with embedded Mermaid for lightweight views (context, container, ERD, transition, capability, value-stream, BPMN-ish process)
+- use PlantUML when full UML sequence (with notes / returns / async) or deployment (with nested nodes) is needed — Mermaid's support for those is too thin for production use
+- use real BPMN files for controlled business process governance where audit semantics matter
 - keep filenames short, descriptive, and stable
 
 ## Notation Selection Matrix

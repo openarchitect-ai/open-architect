@@ -364,6 +364,22 @@ populates it on demand.
   - **TOGAF** — the cleanest 1:1 since OA's templates are TOGAF-adjacent; covers ADM-phase → artifact mapping, ABB/SBB building blocks, and Architecture Repository concepts
   - **BIZBOK** — business-architect vocabulary; capability maps, value streams, information maps, organization maps, course-of-action mapping
   - **Cloud Well-Architected** — combined AWS + Azure + GCP pillar set; review findings persisted as `gap` / `risk` / `decision` artifacts rather than living only in vendor tooling
+- Refreshed the four v1 playbooks (`inventory-only`, `quick-solution-design`, `migration-wave`, `full-togaf-adm`) to match v2-v6 structural depth:
+  - backfilled `Sample Backlog Of Open Questions` and `Recommended Diagrams` sections in all four
+  - backfilled `Decision Points` in `inventory-only`
+  - all 24 playbooks now have parity in the core 16 + optional 3 sections
+- Added `requirement_freeze_enforcement: strict` recommendation to the four most regulated playbooks (`compliance-driven-modernization`, `post-incident-architecture-review`, `business-continuity-readiness`, `post-acquisition-integration`) so the new convention from the previous batch lands where it matters most
+- Added requirement-change handling discipline:
+  - `guidance/requirement-change-handling.md` — architect's 8-step procedure with four-type taxonomy (new / modified / removed / superseded), explicit decision-threshold rule, and freeze-gate semantics
+  - `patterns/governance/requirement-change-protocol.md` — architectural shape of the protocol
+  - `skills/change-coordinator.md` rewritten from a thin stub to a full delivery-skill specializing on requirement-change (Read First, Steps, Outputs, Output Checklist, Boundaries, Quality Checks, Variations)
+  - new `architect-work/change-register.md` (6th file in CLI scaffold) — sponsor-readable aggregated log of scope changes; CLI auto-includes the seed
+  - new `conventions.requirement_freeze_enforcement` flag (off / advisory / strict) in `workspace-defaults.yaml` and documented in `agent.config.md`
+  - `gap-radar-checklists.md` Section 6 extended with two new drift signals (requirement-drift, register-drift)
+- Deepened diagrams-as-code support:
+  - rewrote `skills/diagram-author.md` from a thin stub into a full delivery-skill shape (Read First, 8-step procedure, Output Checklist, Boundaries, Quality Checks, Variations)
+  - added `guidance/diagram-starter-views/` folder with 9 starter view templates (context, container, sequence, deployment, ERD, business-process, transition-wave, capability-heatmap, value-stream); Mermaid where it works, PlantUML where it doesn't; every starter has placeholder artifact IDs and a `Related Artifacts` section
+  - updated `guidance/diagram-conventions.md` to reference the starter library and extend filename / notation guidance for the broader set
 - Added capability-maintenance discipline so the `.architect/` library can stay coherent across changes:
   - `guidance/capability-maintenance.md` — maintainer playbook listing ripple effects per change type (new skill, new pattern, new playbook, new template kind, rename, new compliance profile, new convention, version bump, new vocabulary bridge)
   - `skills/capability-radar.md` + `guidance/capability-radar-checklists.md` — cross-cutting scanning skill for drift inside `.architect/` (analog of `gap-radar` pointed at the capability library), covering mechanical reference checks, concept completeness, currency, cross-doc consistency, structural drift, and vocabulary drift

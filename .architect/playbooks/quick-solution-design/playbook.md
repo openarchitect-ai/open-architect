@@ -211,6 +211,34 @@ Tune the playbook per engagement:
 - **NFR depth** — heavyweight NFR analysis vs lightweight posture statement. Choose explicitly based on regulatory and operational stakes.
 - **Diagram-first vs artifact-first** — if stakeholders think visually, run `diagram-author` early; if they think structurally, run it last.
 
+## Sample Backlog Of Open Questions
+
+Pre-load `architect-work/open-questions.md` with these:
+
+- Who is the named sponsor for this solution and what is their decision authority?
+- What is the bounded scope — which team, which system, which user-facing problem?
+- What is the go-live commitment (date, milestone, or pegged to another delivery)?
+- What does measurable success look like — what changes that we can observe?
+- What existing solutions, patterns, or standards must this fit alongside?
+- What are the material NFRs (performance, availability, security, observability, compliance, accessibility)?
+- What is the data classification of any data flowing through the solution?
+- What is the regulatory / compliance scope (any applicable regulations, sector profile)?
+- What is the operational stance — who runs it, who is on-call, who triages alerts?
+- What is the rollback approach if the solution proves wrong in production?
+- What scope is explicitly out for this iteration (will become anti-scope statements)?
+- What is the human-review / governance expectation for decisions made during design?
+- Does the solution touch AI behavior (LLM calls, embeddings, agentic loops)? If yes, [`patterns/ai/`](../../patterns/ai/) becomes relevant.
+
+## Recommended Diagrams
+
+- **Context view** — system in scope + primary actors + external systems it integrates with. See [`context-view.md`](../../guidance/diagram-starter-views/context-view.md).
+- **Container view** — the internal structure of the bounded solution (applications, services, technology components). See [`container-view.md`](../../guidance/diagram-starter-views/container-view.md).
+- **Sequence view** — the primary runtime interaction (happy path; one or two key error paths). See [`sequence-view.puml`](../../guidance/diagram-starter-views/sequence-view.puml).
+- **Data model** (if data is material) — entities and relationships. See [`data-erd.md`](../../guidance/diagram-starter-views/data-erd.md).
+- **Decision-options comparison view** — when `option-evaluator` runs, a comparison table or diagram capturing the alternatives considered.
+
+Keep the view set small. A quick-solution-design engagement typically needs 2-3 diagrams, not 6.
+
 ## Getting Started
 
 1. Read this playbook.

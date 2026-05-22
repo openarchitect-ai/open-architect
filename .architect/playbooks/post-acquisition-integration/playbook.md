@@ -233,6 +233,7 @@ Tune the playbook per engagement:
 - **Default mode** — `inventory` is the right starting mode; do not switch to `modeling` until rationalization decisions are made.
 - **Coordinator** — `coordinator_auto_route: false` for the duration; M&A integration needs explicit human decision points.
 - **TSA milestones** — record TSA exit dates explicitly in `roadmap`; they are the immovable constraints.
+- **Requirement freeze enforcement** — set `conventions.requirement_freeze_enforcement: strict` in `project-config.yaml`. M&A integration runs under TSA clocks with regulatory exposure (DORA, sector concentration limits, SEC disclosure where applicable); strict enforcement ensures that any post-baseline change to integration requirements routes through explicit sponsor / coordinator re-opening rather than silent edits. See [`../../guidance/requirement-change-handling.md`](../../guidance/requirement-change-handling.md).
 
 ## Decision Points
 

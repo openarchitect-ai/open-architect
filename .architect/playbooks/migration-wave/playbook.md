@@ -199,6 +199,34 @@ Tune the playbook per engagement:
 - **Wave shape** — pilot-then-scale vs phased-decommissioning vs hybrid — pick based on risk appetite and operational readiness.
 - **Hypercare model** — embedded in delivery team vs separate architecture support — decide before cutover, not after.
 
+## Sample Backlog Of Open Questions
+
+Pre-load `architect-work/open-questions.md` with these:
+
+- What is the modernization driver — cost, risk, capability, regulatory, end-of-life?
+- What is the success measure for the modernization as a whole (not just per-wave)?
+- Which systems are in scope and which are explicitly out?
+- What is the baseline picture of each in-scope system — applications, interfaces, data flows, environments?
+- What are the operational dependencies and silent integrations between in-scope systems?
+- What is the per-system disposition (lift-and-shift / replatform / refactor / replace / retire)?
+- What is the coexistence model for each transition?
+- What is the rollback approach per wave, and what is the rollback decision threshold?
+- What is the data-reconciliation plan during coexistence?
+- What are the compliance and risk implications per wave, not just at the end?
+- Who owns delivery for each wave and what is their capacity?
+- What is the cutover-rehearsal cadence — every wave, or only material ones?
+- What is the hypercare model and the exit criteria for hypercare?
+- Are there contractual or vendor commitments that constrain the sequencing?
+
+## Recommended Diagrams
+
+- **Baseline-vs-target view per in-scope system** — what changes, what stays, what retires. Two columns or two-state diagram.
+- **Wave sequencing view** — work packages, dependencies, timeline. See [`transition-wave-view.md`](../../guidance/diagram-starter-views/transition-wave-view.md).
+- **Coexistence pattern view per transition** — which slice runs in which system during which wave, with the data-ownership boundary explicit.
+- **Data-flow during coexistence** — where authoritative copies live during each wave; particularly important when reconciliation is non-trivial.
+- **Cutover-rehearsal sequence** — the ordered steps of the cutover, with rollback decision points marked. See [`sequence-view.puml`](../../guidance/diagram-starter-views/sequence-view.puml).
+- **Rollback decision tree** — what signals trigger rollback at each cutover; what the rollback procedure is.
+
 ## Getting Started
 
 1. Read this playbook.

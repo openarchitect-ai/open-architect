@@ -34,6 +34,75 @@ shape demands it; major bump to 1.0 will signal the contract is frozen.
 
 ### Added
 
+- **Playbook v1 refresh + regulated-playbook freeze-enforcement guidance.**
+  A capability-radar pass over all 24 playbooks surfaced two
+  asymmetries: (1) the four original v1 playbooks (`inventory-only`,
+  `quick-solution-design`, `migration-wave`, `full-togaf-adm`) were
+  missing the `Sample Backlog Of Open Questions` and `Recommended
+  Diagrams` sections that all 20 v2-v6 playbooks have, and
+  `inventory-only` was also missing `Decision Points`. (2) The newer
+  `requirement_freeze_enforcement` convention had no playbook-level
+  guidance on when to set it to `strict`. Closed both:
+  - Backfilled all four v1 playbooks with engagement-appropriate
+    `Sample Backlog Of Open Questions` and `Recommended Diagrams`;
+    backfilled `Decision Points` in `inventory-only`. Recommended-Diagrams
+    sections reference the relevant starter view templates.
+  - Added a `Customization Guide` bullet recommending
+    `requirement_freeze_enforcement: strict` to the four most regulated
+    playbooks: `compliance-driven-modernization`,
+    `post-incident-architecture-review`, `business-continuity-readiness`,
+    and `post-acquisition-integration`. Each bullet links to
+    `guidance/requirement-change-handling.md` for the rationale.
+
+  All 24 playbooks now have the core 16 + optional 3 sections
+  (Sample Backlog Of Open Questions, Decision Points, Recommended
+  Diagrams), bringing v1 to v2-v6 parity.
+- **Requirement-change handling discipline.** Requirements drift was
+  previously handled only by scattered `metadata.change_log` lines and
+  ad-hoc updates; no single procedure existed. New artifacts close the
+  gap:
+  - `guidance/requirement-change-handling.md` — the architect's 8-step
+    procedure with a four-type taxonomy (new / modified / removed /
+    superseded), explicit decision-threshold rule (promote to a
+    `decision` when any of: touches >1 solution, alters compliance
+    posture, materially affects timeline / cost, crosses a review gate,
+    sponsor requests), and freeze-gate semantics
+  - `patterns/governance/requirement-change-protocol.md` — the
+    architectural shape of the protocol, suitable for engagements that
+    explicitly customize it
+  - `skills/change-coordinator.md` rewritten from a vague
+    Inputs/Outputs stub into a full delivery-skill (Read First, Steps,
+    Outputs, Output Checklist, Boundaries, Quality Checks, Variations)
+    that specializes on requirement-change
+  - `architect-work/change-register.md` — new 6th file in the CLI
+    scaffold; the sponsor-readable aggregated log of scope changes on
+    a project. Template at
+    `cli/templates/architect-work/change-register.md`; both CLIs
+    auto-include it on `architect new`
+  - `conventions.requirement_freeze_enforcement` flag added to
+    `workspace-defaults.yaml` with three modes (off / advisory /
+    strict); documented in `agent.config.md`
+  - `gap-radar-checklists.md` Section 6 gains two new drift signals:
+    requirement-drift (requirement changed without downstream
+    re-review) and register-drift (change_log entry without matching
+    register row)
+- **Diagrams-as-code depth pass.** Diagram authoring is now a
+  substantive workflow, not just guidance:
+  - `skills/diagram-author.md` rewritten from a thin Inputs/Outputs
+    stub to a full skill with Read First, Steps (8-step procedure),
+    Output Checklist, Boundaries, Quality Checks, and Variations —
+    matching the shape of other delivery skills.
+  - `guidance/diagram-starter-views/` new folder with 9 starter
+    templates covering the full notation matrix: `context-view.md`,
+    `container-view.md`, `sequence-view.puml`, `deployment-view.puml`,
+    `data-erd.md`, `business-process-view.md`,
+    `transition-wave-view.md`, `capability-heatmap.md`,
+    `value-stream-view.md`. Mermaid where it works (renders natively
+    on GitHub); PlantUML for full sequence and deployment views.
+    Each starter has placeholder artifact IDs, a `Related Artifacts`
+    section, and a `Tailoring` note.
+  - `guidance/diagram-conventions.md` updated to reference the starter
+    library and to extend the filename / notation guidance.
 - **Capability maintenance + drift detection.** Three new artifacts
   keep the `.architect/` library internally consistent as it evolves:
   - [`guidance/capability-maintenance.md`](./guidance/capability-maintenance.md) — the maintainer playbook ("when you add a skill, here are the 5 files to also update")

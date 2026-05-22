@@ -217,6 +217,7 @@ Suggested architect-assist conventions:
 - `response_task_grouping: ask-confirm-request-decide`
 - `response_bottom_line: true`
 - `response_structured_choices: true`
+- `requirement_freeze_enforcement: advisory`
 - `architect_work_auto_capture: true`
 - `architect_work_auto_update_mode: approval-before-write`
 - `architect_work_auto_update_scope: architect-work-only`
@@ -377,6 +378,14 @@ If `conventions.response_bottom_line` is `true`:
 
 - include a short `Bottom Line` takeaway at the end of substantial responses
 
+If `conventions.requirement_freeze_enforcement` is set:
+
+- `off` — post-`requirement-baseline` requirement changes apply normally with no freeze-gate ceremony
+- `advisory` (recommended default) — changes apply but the [`change-register.md`](../guidance/requirement-change-handling.md) entry flags any post-baseline landing; the next review gate explicitly acknowledges them
+- `strict` — post-baseline changes pause until the sponsor or coordinator formally re-opens the requirement set; the `change-coordinator` skill produces a re-opening request instead of applying the change
+
+Strict mode pairs with regulated engagements (DORA, NIS2, HIPAA) where requirements drift must be defensible against audit. Advisory mode is the right default for most engagements.
+
 If `conventions.response_structured_choices` is `true`:
 
 - when a decision has **2-4 discrete, mutually-exclusive options with non-trivial trade-offs**, surface it via the host's structured-choice UI (e.g. `AskUserQuestion` in Claude Code) in addition to the prose explanation
@@ -394,6 +403,7 @@ If `conventions.architect_work_auto_capture` is `true`:
   - `evidence-requests.md` — what's been received and what's still missing
   - `architect-task-list.md` — Ask / Confirm / Request / Decide tasks
   - `working-log.md` — chronological, plain-language narrative of what happened on the project (newest entry on top)
+  - `change-register.md` — chronological log of requirement and scope changes (newest entry on top); sponsor-readable single-page view of scope drift, populated by the `change-coordinator` skill per [`requirement-change-handling.md`](../guidance/requirement-change-handling.md)
 - surface those proposed updates as part of the response when useful
 - when a skill runs (`project-recap`, `baseline-discovery`, `gap-radar`, `solution-modeler`, `decision-recorder`, etc.) it should propose a `working-log.md` entry summarizing the run in plain language so the project's story remains readable to someone joining cold
 

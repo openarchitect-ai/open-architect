@@ -11,7 +11,7 @@ This is a lightweight `C4-style` context and container view rendered as
 Markdown with Mermaid.
 
 ```mermaid
-flowchart LR
+graph LR
     A[Head of Customer Operations]
     B[Customer Onboarding Portal]
     C[Customer Onboarding Service]

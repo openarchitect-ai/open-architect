@@ -151,6 +151,40 @@ Tune the playbook per engagement:
 - **Deliverable shape** — written briefing vs. structured artifacts only vs. workshop deck. Decide before extraction starts.
 - **Exit recommendation** — name the candidate follow-up engagements but do not commit; let the sponsor choose.
 
+## Decision Points
+
+Even an inventory engagement involves choices that should be explicit before extraction starts:
+
+- **Scope of domains** — application, interface, data, environment are the default. Confirm whether organization, business-capability, business-process, or compliance scope should also be in scope.
+- **Severity floor for `gap-radar`** — headline-only (BLOCKER + OPEN) vs full sweep. Headline is the right default for inventory.
+- **Deliverable shape** — written briefing vs structured artifacts only vs workshop deck. Decide before extraction begins; rework cost is high otherwise.
+- **Exit recommendation stance** — name candidate follow-up engagements but do not commit, vs. recommend a specific next engagement. The first is safer.
+- **Ownership truthfulness threshold** — how aggressively to flag `tbd` / `unknown` / `role-placeholder:`. Default: every owner not directly cited in source material is flagged.
+
+## Sample Backlog Of Open Questions
+
+Pre-load `architect-work/open-questions.md` with these:
+
+- What is the source authority for each domain (system inventory, ServiceNow, an architect's spreadsheet, vendor diagrams)?
+- What is the freshness threshold for documents being treated as evidence (e.g., older than 18 months = provisional)?
+- Are there sensitive systems or data flows that need extra-careful handling (e.g., redacted owners, classified interfaces)?
+- Which domains, systems, or interfaces are explicitly out of scope for this inventory?
+- What does "good enough" look like for the receiving party — every system or only the load-bearing ones?
+- Are there owners we should NOT name without their explicit confirmation?
+- Are any systems intentionally being deprecated and therefore should not be modeled?
+- What is the format and audience of the final deliverable?
+- Is there a previous baseline we are refreshing, or is this the first time the estate is being captured?
+
+## Recommended Diagrams
+
+- **Application landscape** — single-screen inventory map of in-scope applications grouped by domain or organization owner
+- **Interface inventory** — matrix or directed graph showing which applications exchange data, classified by sync/async and trust boundary
+- **Data flow at architecture level** — which systems hold authoritative copies of which data objects
+- **Environment topology** — production / non-production / DR footprint per application
+- **Ownership map** — which organization unit owns which application, with `tbd` / `role-placeholder:` clearly differentiated from confirmed owners
+
+For starter templates see [`../../guidance/diagram-starter-views/`](../../guidance/diagram-starter-views/README.md). Inventory engagements typically use context and container views; ERD is optional based on whether data modeling is in scope.
+
 ## Getting Started
 
 1. Read this playbook.

@@ -42,7 +42,7 @@ Usage: architect new <project-name> [--playbook <playbook-name>]
   Scaffolds workspace/<project-name>/ with:
     - project-config.yaml (from the named playbook, if specified)
     - notes.md (seed file)
-    - architect-work/ with five standard files (incl. working-log)
+    - architect-work/ with six standard files (incl. working-log and change-register)
     - docs/ (empty)
 
   If the workspace folder doesn't exist yet, it's initialized first.

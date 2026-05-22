@@ -419,6 +419,16 @@ older assumptions and would not pass a present-day architecture review.
   **Why:** Long-stale questions are how decisions never get made.
   **Severity:** `info`
 
+- **Signal (requirement drift):** Are there `requirement` artifacts with a `metadata.change_log` entry newer than the `metadata.last_reviewed` date on any realizing `solution` / `decision` / `interface` / `transition-architecture`?
+  **Where:** requirement change_log vs. downstream artifact last_reviewed
+  **Why:** Requirement changed but downstream wasn't re-reviewed — the change landed in the requirement YAML but its impact wasn't worked through. This is exactly what the `change-coordinator` skill is supposed to prevent; the radar catches the cases where it didn't run.
+  **Severity:** `warn` (block when freeze-gate enforcement is `strict` and the change is post-baseline)
+
+- **Signal (register drift):** Are there `requirement.metadata.change_log` entries with no matching row in `architect-work/change-register.md`?
+  **Where:** requirement change_log vs. change register
+  **Why:** The per-requirement history and the aggregated register must agree, or sponsors lose visibility into scope drift.
+  **Severity:** `warn`
+
 ## 7. AI Platform Checks
 
 These checks apply when AI is in scope. Gate them on any of:

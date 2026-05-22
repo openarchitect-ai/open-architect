@@ -1,0 +1,55 @@
+@startuml
+' Question: Where do the runtime components live, and what crosses
+' which environment / network / trust boundary?
+'
+' Audience: <technology architects, SREs, security review>
+'
+' Replace nodes and components with real artifact IDs from your
+' technology and environment templates.
+
+title <Subject> deployment
+
+skinparam rectangle {
+    BackgroundColor #f9fafb
+    BorderColor #374151
+}
+
+cloud "Internet" as Internet {
+}
+
+node "<Environment 1: production, region eu-west-1>\nENV-XXXX" as EnvProd {
+    rectangle "<App container 1>\nAPP-XXXX" as App1
+    rectangle "<App container 2>\nAPP-XXXX" as App2
+    database "<Primary datastore>\nTC-XXXX" as DB
+    queue "<Event broker>\nTC-XXXX" as Bus
+}
+
+node "<Environment 2: production, region eu-west-2 (DR)>\nENV-XXXX" as EnvDR {
+    rectangle "<App container 1 (standby)>\nAPP-XXXX" as App1DR
+    database "<Replica datastore>\nTC-XXXX" as DBDR
+}
+
+cloud "External SaaS" as ExtSaaS {
+    rectangle "<External system>\nAPP-XXXX" as Ext
+}
+
+Internet --> App1 : HTTPS\ningress controller
+App1 --> DB : reads / writes
+App1 --> Bus : publishes
+App2 --> Bus : consumes
+DB --> DBDR : async replication
+App1 --> Ext : API call\noutbound only
+
+note bottom of EnvDR
+    Standby region; RTO <subject>, RPO <subject>.
+    Failover procedure in <transition-architecture id> /
+    runbook reference.
+end note
+
+' Related Artifacts:
+' - ENV-XXXX (each environment shown)
+' - APP-XXXX (each application or container)
+' - TC-XXXX (each datastore, queue, runtime, platform)
+' - IF-XXXX (interfaces crossing trust boundaries)
+' - TS-XXXX (technology standards governing the placements)
+@enduml

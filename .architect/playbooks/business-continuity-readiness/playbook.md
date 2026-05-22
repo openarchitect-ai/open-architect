@@ -236,6 +236,7 @@ Tune the playbook per engagement:
 - **Tier model** — pick 3–4 tiers, not 7. Each tier needs clear definitions and target RTO/RPO.
 - **Rehearsal mix** — table-top + partial + full DR. Don't rely on table-top alone.
 - **Third-party dependency posture** — declare early. Vendors can take you down even if your architecture is solid.
+- **Requirement freeze enforcement** — for DORA / NIS2 / sectoral-resilience-rule engagements, set `conventions.requirement_freeze_enforcement: strict` in `project-config.yaml`. Resilience requirements (RTO / RPO targets, criticality tier definitions, dependency posture) drift quietly under pressure; strict enforcement routes post-baseline changes through explicit sponsor / coordinator re-opening rather than silent edits. See [`../../guidance/requirement-change-handling.md`](../../guidance/requirement-change-handling.md).
 
 ## Decision Points
 

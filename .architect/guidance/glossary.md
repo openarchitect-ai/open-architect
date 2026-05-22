@@ -50,6 +50,31 @@ activities, handoffs, and control points.
 
 ## C
 
+### Change Register
+
+A chronological, sponsor-readable log of requirement and scope changes
+on a single engagement. Lives at
+`workspace/<project-name>/architect-work/change-register.md`. Each
+entry captures the change type ([Requirement Change Type](#requirement-change-type)),
+source, requirements touched, impact assessment, decision-threshold
+evaluation, freeze-gate status, and confirmation state.
+
+Populated by the [Change Coordinator](#change-coordinator) skill per
+the procedure in `guidance/requirement-change-handling.md` and the
+architectural shape in `patterns/governance/requirement-change-protocol.md`.
+
+Distinct from `working-log.md` (project narrative, all activity) and
+from per-requirement `metadata.change_log` (granular history). The
+register is the aggregated, sponsor-facing view.
+
+### Change Coordinator
+
+The OA skill that runs the requirement-change protocol on a live
+engagement: classify the change, assess impact, evaluate the decision
+threshold, respect the freeze gate, apply the change to artifacts,
+populate the change register, and log a working-log entry. See
+`.architect/skills/change-coordinator.md`.
+
 ### Capability Library
 
 The `.architect/` folder. Holds the Open Architect templates, playbooks,
@@ -325,6 +350,32 @@ A named point in an engagement where architecture work is expected to pause
 for human review, clarification, or approval. Checkpoints are declared per
 project in `governance.review_checkpoints` and per playbook in *Review Gates
 That Apply*.
+
+### Requirement Change Type
+
+The taxonomy used by the [Change Coordinator](#change-coordinator)
+skill to classify a requirement change. Four values:
+
+- `new` — a requirement that didn't exist before
+- `modified` — an existing requirement's content, scope, or acceptance criteria materially changed
+- `removed` — an existing requirement is no longer in scope
+- `superseded` — an existing requirement is replaced by one or more new requirements with the same intent
+
+Conflict is a *trigger*, not a type — resolution produces one of the
+four. See `guidance/requirement-change-handling.md`.
+
+### Requirement Freeze Enforcement
+
+A project-config convention controlling how strictly post-baseline
+requirement changes are gated. Three values:
+
+- `off` — changes apply directly; no freeze-gate ceremony
+- `advisory` (recommended default) — changes apply but the register flags post-baseline landings; the next review gate acknowledges them
+- `strict` — post-baseline changes pause until the sponsor or coordinator formally re-opens the requirement set; suited to regulated engagements (DORA, NIS2, HIPAA)
+
+Set in `project-config.yaml` under
+`conventions.requirement_freeze_enforcement`. The `requirement-baseline`
+review checkpoint is the freeze line.
 
 ### Risk
 

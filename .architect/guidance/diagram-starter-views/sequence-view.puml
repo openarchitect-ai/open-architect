@@ -1,0 +1,41 @@
+@startuml
+' Question: What is the ordered sequence of messages between participants
+' to satisfy <subject>? Use this when timing, ordering, async, returns,
+' or notes matter more than static structure.
+'
+' Audience: <delivery teams, integration architects, review board>
+'
+' Replace placeholder participant names and message labels. Keep the
+' "Related Artifacts" comment block at the bottom up to date.
+
+title <Subject> sequence
+
+actor "<Actor / Stakeholder>" as Actor
+participant "<Application 1>" as App1
+participant "<Application Service>" as Svc
+participant "<Technology Component\n(e.g. queue, DB)>" as Tech
+participant "<External Application>" as Ext
+
+Actor -> App1 : <user action>
+App1 -> Svc : <method or message>(<correlation_id>)
+Svc -> Tech : <persist / publish>
+Tech --> Svc : <ack>
+Svc -> Ext : <forward / call>
+Ext --> Svc : <response>
+Svc --> App1 : <result>
+App1 --> Actor : <feedback>
+
+note over Svc,Tech
+    Capture invariants here:
+    - correlation_id propagated end-to-end
+    - retry / replay policy
+    - timeout / circuit-breaker stance
+end note
+
+' Related Artifacts:
+' - APP-XXXX (each participant)
+' - AS-XXXX (application services)
+' - IF-XXXX (each cross-application call)
+' - TC-XXXX (technology components used)
+' - STK-XXXX (the human actor at the top)
+@enduml

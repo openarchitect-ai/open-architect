@@ -11,7 +11,7 @@ This is a custom transition view represented with Mermaid because the main
 question is phased change rather than formal UML behavior.
 
 ```mermaid
-flowchart LR
+graph LR
     A[Baseline:\nPortal approval\nManual downstream activation] --> B[Wave 1 Build:\nOnboarding Service\nActivation Profile\nEvent Feed]
     B --> C[Wave 1 Go-Live:\nPolicy Administration consumes event\nTraceability dashboard live]
     C --> D[Target Direction:\nStandard activation path\nReusable downstream pattern]

@@ -234,6 +234,41 @@ Tune the playbook per engagement:
 - **Standards strictness** — approved/tolerated/prohibited with waivers, or approved-only with explicit deprecation — pick a model.
 - **Decision lifecycle weight** — heavy ADR with extensive options vs lightweight option-summary — pick per organization.
 
+## Sample Backlog Of Open Questions
+
+Pre-load `architect-work/open-questions.md` with these:
+
+- Who is the enterprise or program architecture sponsor and what is their authority?
+- What is the cycle cadence — quarterly, annual, continuous?
+- What is the scope of in-scope domains for this cycle (business, IS, technology, security, data, all)?
+- What is the architecture review forum and who has approval authority at each gate?
+- What is the principle / standard adoption process — who proposes, who approves, what is the waiver mechanism?
+- What is the organization's TOGAF tailoring stance (which phases are fully applied, which are abbreviated, which are skipped)?
+- What are the durable architecture principles (Phase A) and how will they be enforced through decisions?
+- What does the capability map look like and who owns each capability?
+- What is the target-state architecture vision and how is it measurably different from baseline?
+- What is the compliance and regulatory scope across the cycle (which regulations, sector profiles, jurisdictions)?
+- What is the cycle-to-cycle handoff mechanism (Phase H to next Phase A)?
+- What patterns and reference architectures are pre-curated for this cycle?
+- What is the cycle's risk appetite for change — incremental, transformational, or holding pattern?
+- What does cycle completion look like and how will the next cycle's drivers be captured?
+
+## Recommended Diagrams
+
+A full ADM cycle produces a coordinated view set rather than individual diagrams. Pre-plan the set:
+
+- **Capability map** — business capability decomposition, often with maturity heatmap. See [`capability-heatmap.md`](../../guidance/diagram-starter-views/capability-heatmap.md).
+- **Value-stream view** — how value streams map to capabilities. See [`value-stream-view.md`](../../guidance/diagram-starter-views/value-stream-view.md).
+- **Architecture-vision view** — target shape at strategic level; not a context view, broader.
+- **Baseline-vs-target IS architecture** — typically a paired set of container views. See [`container-view.md`](../../guidance/diagram-starter-views/container-view.md).
+- **Technology standards posture** — approved / tolerated / prohibited by domain or by tier.
+- **Migration roadmap** — waves and transitions over time; often a gantt-style or transition-wave view.
+- **Governance and decision lifecycle view** — how decisions move from proposed to approved to superseded.
+- **Compliance-to-control traceability view** — which controls satisfy which regulation, which artifacts evidence which controls.
+- **Cycle handoff view** — how Phase H closes out and what feeds the next Phase A.
+
+For starter templates see [`../../guidance/diagram-starter-views/`](../../guidance/diagram-starter-views/README.md). Full ADM cycles legitimately need more diagrams than other playbooks; the test is whether each view answers a distinct question, not whether the set is exhaustive.
+
 ## Getting Started
 
 1. Read this playbook.
