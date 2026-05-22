@@ -46,7 +46,13 @@ $prefixToKind = @{}
 $artifactInventory = @{}
 $schemaRulesByKind = @{}
 $commonSchemaRoot = $null
-$liveArchitectureRoot = Resolve-Path (Join-Path $repoRoot '.architect\architecture')
+# Live project artifacts live under `workspace/<project>/` (sibling of `.architect/`),
+# not under the pre-pivot `.architect/architecture/` path. Resolve-Path is avoided
+# because `workspace/` may not exist (it's gitignored and CLI-created on demand).
+$liveArchitectureRoot = Join-Path $repoRoot 'workspace'
+if (Test-Path $liveArchitectureRoot) {
+    $liveArchitectureRoot = (Resolve-Path $liveArchitectureRoot).Path
+}
 $ownershipTruthyPatterns = @(
     '^(?i:tbd)$',
     '^(?i:unknown)$',
@@ -839,6 +845,15 @@ if ($artifactFiles.Count -eq 0) {
 
 foreach ($file in $artifactFiles) {
     $lines = Get-Content $file.FullName
+
+    # Skip non-artifact YAMLs. Architecture artifacts have a top-level
+    # `template:` section naming their kind. Files like project-config.yaml,
+    # publication manifests, and provenance metadata don't and are out of
+    # scope for this validator.
+    if (-not ($lines | Where-Object { $_ -match '^template:\s*$' } | Select-Object -First 1)) {
+        continue
+    }
+
     if (-not ($lines | Where-Object { $_ -match '^spec:\s*$' } | Select-Object -First 1)) {
         Add-Error $file.FullName 'missing top-level spec section'
         continue
@@ -891,7 +906,7 @@ foreach ($artifact in $artifactInventory.Values) {
         }
     }
 
-    if ((Test-IsUnderRoot -Path $artifact.Path -Root $liveArchitectureRoot.Path) -and $ownershipLines.Count -gt 0) {
+    if ((Test-IsUnderRoot -Path $artifact.Path -Root $liveArchitectureRoot) -and $ownershipLines.Count -gt 0) {
         $ownershipValueLines = $ownershipLines | Where-Object { $_ -match '^\s{4}([A-Za-z0-9_]+):\s*(.+?)\s*(#.*)?$' }
         foreach ($line in $ownershipValueLines) {
             if ($line -match '^\s{4}([A-Za-z0-9_]+):\s*(.+?)\s*(#.*)?$') {
