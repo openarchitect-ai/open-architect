@@ -90,6 +90,35 @@ Example:
 EOF
       return
       ;;
+    status)
+      cat <<'EOF'
+Usage: architect status [project-name]
+
+  Show a portfolio status across projects in workspace/, or a deep view
+  of a single project. Reads project-config.yaml, working-log.md, and
+  the architect-work/ files to surface per project:
+
+    - playbook in use
+    - last activity (latest working-log entry: date + title)
+    - biggest signal (from the latest log entry's 'Biggest signal:' section)
+    - active blockers (any '- 🚫 ...' bullets across architect-work/)
+    - next 3 immediate tasks (from architect-task-list.md 'Immediate' section)
+    - totals: open questions / immediate tasks / evidence still missing
+
+  Empty / sparse projects show only the last-touched date and totals.
+
+  With no argument: shows a block per project (portfolio view).
+  With a project name: shows just that one project's block.
+
+  list-projects stays minimal (one line per project, name + playbook).
+  Use status when you want the richer per-project state summary.
+
+Examples:
+  architect status
+  architect status smoke-test-2026-05-22
+EOF
+      return
+      ;;
   esac
 
   cat <<EOF
@@ -102,10 +131,11 @@ Commands:
   new <project-name> [--playbook <name>]    Scaffold a new project under workspace/<project-name>/.
   list-playbooks                            Show available playbooks with one-line descriptions.
   list-projects                             Show projects currently in workspace/ and their playbooks.
+  status [project-name]                     Show a richer per-project status (last activity, counts, latest log).
   playbook <name>                           Print key sections of a playbook's brief.
   --version                                 Show the Open Architect capability version.
   --help [command]                          Show this help, or help for a specific command.
-Ho
+
 Examples:
   architect init
   architect new customer-platform --playbook quick-solution-design
@@ -220,6 +250,388 @@ cmd_list_projects() {
   echo "Total: ${#projects[@]}"
 }
 
+format_wrap() {
+  # word-wrap text at $2 columns, indenting each line with $3
+  local text="$1"
+  local width="${2:-62}"
+  local indent="${3:-    }"
+  echo "$text" | awk -v width="$width" -v indent="$indent" '
+    BEGIN { line = "" }
+    {
+      n = split($0, words, /[[:space:]]+/)
+      for (i = 1; i <= n; i++) {
+        w = words[i]
+        if (w == "") continue
+        if (line == "") {
+          line = indent w
+        } else if (length(line) + 1 + length(w) <= width) {
+          line = line " " w
+        } else {
+          print line
+          line = indent w
+        }
+      }
+    }
+    END { if (line != "") print line }
+  '
+}
+
+get_latest_log_signal() {
+  local log_file="$1"
+  if [[ ! -f "$log_file" ]]; then return; fi
+  awk '
+    BEGIN { entry = 0; capture = 0; out = "" }
+    /^##[[:space:]]+[0-9]{4}-[0-9]{2}-[0-9]{2}/ {
+      if (entry) exit
+      entry = 1
+      next
+    }
+    entry == 0 { next }
+    /^##[[:space:]]/ { exit }
+    /^Biggest signal[[:space:]]*:/ {
+      capture = 1
+      rest = $0
+      sub(/^Biggest signal[[:space:]]*:[[:space:]]*/, "", rest)
+      if (rest != "") out = out " " rest
+      next
+    }
+    capture == 1 {
+      if ($0 ~ /^(What I did|What I found|See also)[[:space:]]*:/) exit
+      if ($0 ~ /^[[:space:]]*$/) {
+        if (out != "") exit
+        next
+      }
+      line = $0
+      sub(/^[[:space:]]*-[[:space:]]+/, "", line)
+      sub(/[[:space:]]+$/, "", line)
+      out = out " " line
+    }
+    END {
+      sub(/^[[:space:]]+/, "", out)
+      # strip markdown bold and links for cleaner display
+      while (match(out, /\*\*[^*]+\*\*/)) {
+        before = substr(out, 1, RSTART - 1)
+        match_text = substr(out, RSTART, RLENGTH)
+        after = substr(out, RSTART + RLENGTH)
+        inner = substr(match_text, 3, RLENGTH - 4)
+        out = before inner after
+      }
+      while (match(out, /\[[^]]+\]\([^)]+\)/)) {
+        before = substr(out, 1, RSTART - 1)
+        match_text = substr(out, RSTART, RLENGTH)
+        after = substr(out, RSTART + RLENGTH)
+        close_bracket = index(match_text, "]")
+        label = substr(match_text, 2, close_bracket - 2)
+        out = before label after
+      }
+      print out
+    }
+  ' "$log_file"
+}
+
+get_blockers() {
+  local proj_dir="$1"
+  local aw_dir="$proj_dir/architect-work"
+  if [[ ! -d "$aw_dir" ]]; then return; fi
+  local files=("open-questions.md" "architect-task-list.md" "answers-and-confirmations.md" "evidence-requests.md")
+  # The blocker glyph is the prohibited sign U+1F6AB (UTF-8 bytes E2 9B 94? no, E2 9D...).
+  # Use the literal in a bash script — bash source is UTF-8 and grep handles it.
+  local glyph
+  glyph=$'\xf0\x9f\x9a\xab'   # UTF-8 bytes for U+1F6AB (🚫)
+  for f in "${files[@]}"; do
+    local path="$aw_dir/$f"
+    [[ ! -f "$path" ]] && continue
+    while IFS= read -r line; do
+      # Extract content after "- 🚫 "
+      content="${line#*$glyph }"
+      # Strip markdown bold/links
+      content="$(echo "$content" | sed -E 's/\*\*([^*]+)\*\*/\1/g; s/\[([^]]+)\]\([^)]+\)/\1/g')"
+      # Trim
+      content="$(echo "$content" | sed -E 's/^[[:space:]]+//; s/[[:space:]]+$//')"
+      # Truncate at word boundary near 110 chars
+      if (( ${#content} > 110 )); then
+        cut="${content:0:107}"
+        # back off to last space
+        cut="${cut% *}"
+        content="$cut..."
+      fi
+      printf '%s\n' "$content"
+    done < <(grep -E "^[[:space:]]*-[[:space:]]+${glyph}[[:space:]]+" "$path" 2>/dev/null || true)
+  done
+}
+
+get_next_immediate_tasks() {
+  local task_file="$1"
+  local count="${2:-3}"
+  if [[ ! -f "$task_file" ]]; then return; fi
+  awk -v limit="$count" '
+    BEGIN { in_imm = 0; sub_sec = ""; emitted = 0 }
+    /^## / {
+      sect = $0
+      sub(/^##[[:space:]]+/, "", sect)
+      sub(/[[:space:]]+$/, "", sect)
+      in_imm = (sect == "Immediate" ? 1 : 0)
+      sub_sec = ""
+      next
+    }
+    in_imm == 0 { next }
+    /^### / {
+      sub_sec = $0
+      sub(/^###[[:space:]]+/, "", sub_sec)
+      sub(/[[:space:]]*\([^)]+\)[[:space:]]*$/, "", sub_sec)
+      sub(/[[:space:]]+$/, "", sub_sec)
+      next
+    }
+    /^[[:space:]]*-[[:space:]]+/ {
+      content = $0
+      sub(/^[[:space:]]*-[[:space:]]+/, "", content)
+      # strip leading non-ASCII emoji + whitespace
+      while (substr(content, 1, 1) != "" && substr(content, 1, 1) ~ /[^\x20-\x7e]/) {
+        content = substr(content, 2)
+      }
+      sub(/^[[:space:]]+/, "", content)
+      if (content == "" || content == "...") next
+      # Strip markdown bold and links
+      while (match(content, /\*\*[^*]+\*\*/)) {
+        before = substr(content, 1, RSTART - 1)
+        m = substr(content, RSTART, RLENGTH)
+        after = substr(content, RSTART + RLENGTH)
+        content = before substr(m, 3, RLENGTH - 4) after
+      }
+      while (match(content, /\[[^]]+\]\([^)]+\)/)) {
+        before = substr(content, 1, RSTART - 1)
+        m = substr(content, RSTART, RLENGTH)
+        after = substr(content, RSTART + RLENGTH)
+        close_bracket = index(m, "]")
+        content = before substr(m, 2, close_bracket - 2) after
+      }
+      # Truncate at word boundary near 100 chars
+      if (length(content) > 100) {
+        cut = substr(content, 1, 97)
+        space_pos = 0
+        for (i = length(cut); i > 50; i--) {
+          if (substr(cut, i, 1) == " ") { space_pos = i; break }
+        }
+        if (space_pos > 0) cut = substr(cut, 1, space_pos - 1)
+        content = cut "..."
+      }
+      printf "%s\t%s\n", sub_sec, content
+      emitted++
+      if (emitted >= limit) exit
+    }
+  ' "$task_file"
+}
+
+count_non_placeholder_bullets() {
+  local file="$1"
+  local include="${2:-}"
+  local exclude="${3:-Update Log}"
+  if [[ ! -f "$file" ]]; then echo 0; return; fi
+  awk -v inc="$include" -v exc="$exclude" '
+    BEGIN { active = (inc == "" ? 1 : 0) }
+    /^## / {
+      sect = $0
+      sub(/^##[[:space:]]+/, "", sect)
+      sub(/[[:space:]]+$/, "", sect)
+      if (inc != "") active = (sect == inc ? 1 : 0)
+      if (exc != "" && sect == exc) active = 0
+      next
+    }
+    active && /^[[:space:]]*[-*][[:space:]]+/ {
+      content = $0
+      sub(/^[[:space:]]*[-*][[:space:]]+/, "", content)
+      sub(/[[:space:]]+$/, "", content)
+      if (content != "..." && content != "") count++
+    }
+    END { print count + 0 }
+  ' "$file"
+}
+
+get_project_playbook() {
+  local config="$1"
+  if [[ ! -f "$config" ]]; then echo "(no project-config.yaml)"; return; fi
+  local line
+  line="$(grep -E '^[[:space:]]*playbook:[[:space:]]*[^[:space:]]' "$config" 2>/dev/null | head -1 || true)"
+  if [[ -z "$line" ]]; then echo "(no playbook set)"; return; fi
+  local val
+  val="$(echo "$line" | sed -E 's/^[[:space:]]*playbook:[[:space:]]*//' | awk '{print $1}')"
+  [[ -z "$val" ]] && val='(no playbook set)'
+  echo "$val"
+}
+
+get_project_last_touched() {
+  local dir="$1"
+  if [[ ! -d "$dir" ]]; then echo ""; return; fi
+  local newest
+  newest="$(find "$dir" -type f -printf '%T@\n' 2>/dev/null | sort -nr | head -1 || true)"
+  if [[ -z "$newest" ]]; then echo ""; return; fi
+  date -d "@${newest%.*}" +%Y-%m-%d 2>/dev/null || echo ""
+}
+
+get_latest_log_entry() {
+  local log_file="$1"
+  if [[ ! -f "$log_file" ]]; then return; fi
+  awk '
+    /^##[[:space:]]+[0-9]{4}-[0-9]{2}-[0-9]{2}/ {
+      line = $0
+      date_token = ""
+      title = ""
+      if (match(line, /[0-9]{4}-[0-9]{2}-[0-9]{2}/)) {
+        date_token = substr(line, RSTART, RLENGTH)
+        title = substr(line, RSTART + RLENGTH)
+      }
+      # Strip leading separator(s): whitespace, hyphen, en-dash, em-dash, etc.
+      # Multi-byte separators (em-dash is 3 bytes in UTF-8) are stripped by
+      # consuming all leading non-alphanumeric, non-backtick bytes.
+      sub(/^[^A-Za-z0-9`]+/, "", title)
+      sub(/[[:space:]]+$/, "", title)
+      print date_token "|" title
+      exit
+    }
+  ' "$log_file"
+}
+
+show_project_status_block() {
+  local proj_name="$1"
+  local proj_dir="$WORKSPACE_DIR/$proj_name"
+  local playbook
+  playbook="$(get_project_playbook "$proj_dir/project-config.yaml")"
+  local last_touched
+  last_touched="$(get_project_last_touched "$proj_dir")"
+
+  local log_entry
+  log_entry="$(get_latest_log_entry "$proj_dir/architect-work/working-log.md")"
+
+  local rule="----------------------------------------------------------------------"
+  local blocker_glyph=$'\xf0\x9f\x9a\xab'   # 🚫 (U+1F6AB) — UTF-8 bytes
+  local bullet=$'\xe2\x80\xa2'              # • (U+2022)
+  local dot_sep=$'\xc2\xb7'                 # · (U+00B7)
+
+  echo "$rule"
+  echo "$proj_name  [$playbook]"
+  echo ""
+
+  if [[ -n "$log_entry" ]]; then
+    local log_date="${log_entry%%|*}"
+    local log_title="${log_entry#*|}"
+    echo "  Last activity: $log_date — $log_title"
+  else
+    if [[ -n "$last_touched" ]]; then
+      echo "  Last touched:  $last_touched  (no working-log entries yet)"
+    else
+      echo "  Last touched:  (no files yet)"
+    fi
+  fi
+
+  # Biggest signal from latest log entry
+  local signal
+  signal="$(get_latest_log_signal "$proj_dir/architect-work/working-log.md")"
+  if [[ -n "$signal" ]]; then
+    echo ""
+    echo "  Biggest signal:"
+    format_wrap "$signal" 64 "    "
+  fi
+
+  # Blockers
+  local blockers
+  blockers="$(get_blockers "$proj_dir")"
+  if [[ -n "$blockers" ]]; then
+    local blocker_count
+    blocker_count="$(echo "$blockers" | wc -l)"
+    echo ""
+    echo "  ${blocker_glyph} Blockers (${blocker_count}):"
+    local first_line
+    while IFS= read -r b; do
+      first_line=1
+      while IFS= read -r wrapped; do
+        if [[ -n "$first_line" ]]; then
+          # Replace leading spaces with bullet prefix
+          printf '    %s %s\n' "$bullet" "${wrapped#      }"
+          first_line=''
+        else
+          echo "$wrapped"
+        fi
+      done < <(format_wrap "$b" 62 "      ")
+    done <<< "$blockers"
+  fi
+
+  # Next 3 immediate tasks
+  local tasks
+  tasks="$(get_next_immediate_tasks "$proj_dir/architect-work/architect-task-list.md" 3)"
+  if [[ -n "$tasks" ]]; then
+    local task_count
+    task_count="$(echo "$tasks" | wc -l)"
+    echo ""
+    echo "  Next $task_count immediate tasks:"
+    local idx=1
+    local first_line
+    while IFS=$'\t' read -r sub_sec content; do
+      local combined
+      if [[ -n "$sub_sec" ]]; then
+        combined="${sub_sec}: ${content}"
+      else
+        combined="$content"
+      fi
+      first_line=1
+      while IFS= read -r wrapped; do
+        if [[ -n "$first_line" ]]; then
+          printf '    %d. %s\n' "$idx" "${wrapped#       }"
+          first_line=''
+        else
+          echo "$wrapped"
+        fi
+      done < <(format_wrap "$combined" 62 "       ")
+      ((idx++))
+    done <<< "$tasks"
+  fi
+
+  local oq im ev
+  oq="$(count_non_placeholder_bullets "$proj_dir/architect-work/open-questions.md" "")"
+  im="$(count_non_placeholder_bullets "$proj_dir/architect-work/architect-task-list.md" "Immediate" "")"
+  ev="$(count_non_placeholder_bullets "$proj_dir/architect-work/evidence-requests.md" "Still Missing" "")"
+  echo ""
+  echo "  Totals: ${oq} open questions ${dot_sep} ${im} immediate ${dot_sep} ${ev} evidence requests"
+}
+
+cmd_status() {
+  if [[ ! -d "$WORKSPACE_DIR" ]]; then
+    echo "No workspace yet. Run \`architect init\` to create it."
+    return
+  fi
+  local name="${1:-}"
+  if [[ -n "$name" ]]; then
+    local proj_dir="$WORKSPACE_DIR/$name"
+    if [[ ! -d "$proj_dir" ]]; then
+      echo "Warning: project '$name' not found in workspace/." >&2
+      echo "Run \`architect list-projects\` to see available projects." >&2
+      return
+    fi
+    show_project_status_block "$name"
+    echo "----------------------------------------------------------------------"
+    return
+  fi
+
+  local projects=()
+  while IFS= read -r dir; do
+    projects+=("$dir")
+  done < <(find "$WORKSPACE_DIR" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort)
+
+  if [[ ${#projects[@]} -eq 0 ]]; then
+    echo "No projects in workspace/ yet."
+    echo "Create one with: architect new <project-name> --playbook <playbook-name>"
+    return
+  fi
+
+  echo "Open Architect ${OA_VERSION} — portfolio status"
+  echo ""
+  for p in "${projects[@]}"; do
+    show_project_status_block "$p"
+    echo ""
+  done
+  echo "----------------------------------------------------------------------"
+  echo "Total: ${#projects[@]} project(s)"
+}
+
 cmd_playbook() {
   local pb="${1:-}"
   if [[ -z "$pb" ]]; then
@@ -330,6 +742,7 @@ case "${1:-}" in
   new)             shift; cmd_new "$@" ;;
   list-playbooks)  cmd_list_playbooks ;;
   list-projects)   cmd_list_projects ;;
+  status)          shift; cmd_status "${1:-}" ;;
   playbook)        shift; cmd_playbook "${1:-}" ;;
   version|--version|-v) echo "Open Architect ${OA_VERSION}" ;;
   help|--help|-h)  shift || true; usage "${1:-}" ;;

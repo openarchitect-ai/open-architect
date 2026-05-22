@@ -7,7 +7,7 @@ project-specific architecture artifacts:
 
 - `templates/` define the shape of architecture objects
 - `patterns/` describe reusable design approaches and tradeoffs
-- `architecture/` contains live project artifacts
+- the sibling `workspace/<project-name>/` folder contains live project artifacts
 - `examples/` shows worked reference implementations
 
 ## Folder Structure

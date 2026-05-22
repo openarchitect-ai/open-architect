@@ -23,7 +23,7 @@ Use this folder for:
 - `agents/` define the executable runtime profiles that may invoke those skills
 - `playbooks/` define the engagement shape — which skills to use, in what order, against which gates
 - `runtime/` stores live queue and gate state when multi-agent execution is enabled
-- `architecture/` contains the actual project artifacts produced by people or agents
+- the sibling `workspace/<project-name>/` folder (gitignored) contains the actual project artifacts produced by people or agents
 
 Skills should focus on implementation work such as discovery, framing,
 modeling, linking, decision-making, transition planning, and review.
@@ -71,6 +71,13 @@ Supporting documents:
 
 - `roadmap.md`
 - `role-skill-matrix.md`
+
+Cross-cutting scanning skills (not bound to a single role; run on-demand
+across a project or the capability library):
+
+- `project-recap.md` — read-only project state briefing for re-entry / handover
+- `gap-radar.md` — proactive scan of a project for gaps, contradictions, modernity gaps
+- `capability-radar.md` — drift / consistency scan of the `.architect/` capability library itself (maintainer-focused)
 
 ## Levels
 

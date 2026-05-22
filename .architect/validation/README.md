@@ -59,6 +59,18 @@ VALIDATION_SUMMARY validator=<name> status=<status> checked=<n> errors=<n> warni
   declares `runtime.execution_mode: single-agent-guided` but
   `.architect/runtime/` appears to contain active orchestration state
   instead of neutral templates.
+- `Validate-Capability.ps1`
+  Mechanical drift checker for the `.architect/` capability library itself.
+  Walks every markdown file under `.architect/` (and `AGENTS.md` + the root
+  `README.md`) and verifies that each relative markdown link resolves to a
+  file that exists. Implements the mechanical subset of the
+  [`capability-radar`](../skills/capability-radar.md) checks; the broader
+  concept-level drift checks (currency, glossary completeness, cross-doc
+  consistency) are documented in
+  [`../guidance/capability-radar-checklists.md`](../guidance/capability-radar-checklists.md)
+  and run via the radar skill.
+  Run this before commits that rename or move files; exit code is non-zero
+  if any broken link is found.
 
 Schema contracts live under `../schemas/` and are intended to complement, not
 replace, these validators.
@@ -134,6 +146,15 @@ powershell -ExecutionPolicy Bypass -File .architect\validation\Validate-Architec
 
 You can pass a different relative or absolute folder path to reuse the same
 validator for live project artifacts later.
+
+To validate the capability library for broken markdown links:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .architect\validation\Validate-Capability.ps1
+```
+
+This is the lightest of the validators and is well suited for use as a
+pre-commit gate or CI check after renames / moves in `.architect/`.
 
 To make warnings fail too:
 

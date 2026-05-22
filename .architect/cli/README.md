@@ -64,10 +64,41 @@ one-line description per playbook (parsed from each playbook's
 ### `architect list-projects`
 
 Lists projects currently in `workspace/`, showing each project's chosen
-playbook (read from `project-config.yaml`).
+playbook (read from `project-config.yaml`). Minimal — one line per
+project.
 
 ```bash
 ./architect.sh list-projects
+```
+
+### `architect status [project-name]`
+
+Richer per-project status summary. Reads `project-config.yaml`,
+`architect-work/working-log.md`, and the topical `architect-work/`
+files. Per project, an actively-worked block shows:
+
+- playbook in use
+- **last activity** — date + title of the latest `working-log.md` entry
+- **biggest signal** — captured from the latest log entry's
+  `Biggest signal:` section
+- **active blockers** — any `- 🚫 ...` bullets found across the four
+  topical architect-work files
+- **next 3 immediate tasks** — top bullets from the
+  `## Immediate` section of `architect-task-list.md`, prefixed with
+  their sub-section (`Ask:` / `Confirm:` / `Request:` / `Decide:`)
+- **totals** — open-question / immediate-task / evidence-still-missing
+  counts
+
+Empty / sparse projects skip the enrichment and show only last-touched
+date and totals — keeping output compact.
+
+With no argument: portfolio view (block per project). With a project
+name: deep view of one project. Use this when `list-projects` is too
+thin.
+
+```bash
+./architect.sh status
+./architect.sh status my-project
 ```
 
 ### `architect playbook <playbook-name>`

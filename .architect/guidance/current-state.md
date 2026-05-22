@@ -364,6 +364,10 @@ populates it on demand.
   - **TOGAF** — the cleanest 1:1 since OA's templates are TOGAF-adjacent; covers ADM-phase → artifact mapping, ABB/SBB building blocks, and Architecture Repository concepts
   - **BIZBOK** — business-architect vocabulary; capability maps, value streams, information maps, organization maps, course-of-action mapping
   - **Cloud Well-Architected** — combined AWS + Azure + GCP pillar set; review findings persisted as `gap` / `risk` / `decision` artifacts rather than living only in vendor tooling
+- Added capability-maintenance discipline so the `.architect/` library can stay coherent across changes:
+  - `guidance/capability-maintenance.md` — maintainer playbook listing ripple effects per change type (new skill, new pattern, new playbook, new template kind, rename, new compliance profile, new convention, version bump, new vocabulary bridge)
+  - `skills/capability-radar.md` + `guidance/capability-radar-checklists.md` — cross-cutting scanning skill for drift inside `.architect/` (analog of `gap-radar` pointed at the capability library), covering mechanical reference checks, concept completeness, currency, cross-doc consistency, structural drift, and vocabulary drift
+  - `validation/Validate-Capability.ps1` — mechanical link checker that implements the radar's mechanical subset; non-zero exit on broken links
 
 ## Current Structure
 

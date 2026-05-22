@@ -34,6 +34,25 @@ shape demands it; major bump to 1.0 will signal the contract is frozen.
 
 ### Added
 
+- **Capability maintenance + drift detection.** Three new artifacts
+  keep the `.architect/` library internally consistent as it evolves:
+  - [`guidance/capability-maintenance.md`](./guidance/capability-maintenance.md) — the maintainer playbook ("when you add a skill, here are the 5 files to also update")
+  - [`skills/capability-radar.md`](./skills/capability-radar.md) + [`guidance/capability-radar-checklists.md`](./guidance/capability-radar-checklists.md) — a cross-cutting scanning skill for drift in the capability library itself (analog of `gap-radar` but pointed at `.architect/`)
+  - [`validation/Validate-Capability.ps1`](./validation/Validate-Capability.ps1) — mechanical link checker that implements the radar's mechanical subset; walks every markdown file under `.architect/` plus `AGENTS.md` and root README, verifies every relative link resolves. Non-zero exit on broken links — suitable for pre-commit / CI use.
+- **`architect status [project-name]` CLI command** — richer
+  per-project status summary. Reads `project-config.yaml`,
+  `architect-work/working-log.md`, and the topical architect-work files
+  to surface, per actively-worked project: playbook, last activity
+  (latest working-log entry), biggest signal (parsed from the log
+  entry's `Biggest signal:` section), active blockers (`- 🚫 ...`
+  bullets across architect-work), next 3 immediate tasks (top bullets
+  from the `Immediate` section of architect-task-list, labeled with
+  their Ask/Confirm/Request/Decide sub-section), and totals. Empty /
+  sparse projects show only last-touched date and totals. With no
+  argument: portfolio view. With a project name: deep view of one
+  project. `list-projects` stays minimal (one line per project);
+  `status` is the richer view. Implemented in both PowerShell and Bash
+  CLIs. Documented in `.architect/cli/README.md`.
 - **Working log convention** — a fifth `architect-work/` file,
   `working-log.md`, capturing a chronological plain-language narrative
   of the project (newest entry on top). Distinct from the four topical

@@ -60,6 +60,30 @@ validation, and multi-agent execution scaffold — everything that defines
 `.architect/CHANGELOG.md`. Contrast with the [Workspace](#workspace),
 which holds real project work.
 
+### Capability Maintenance
+
+The maintainer-facing discipline of keeping the capability library
+internally consistent as it evolves. When you add, rename, move, or
+remove anything in `.architect/`, several related files need to update
+in lockstep (CHANGELOG, current-state, glossary, README, skill
+"Read First" lists, playbook references). The ripple-effects-per-change
+guide lives at `.architect/guidance/capability-maintenance.md`. Drift
+detection is supported by the [Capability Radar](#capability-radar)
+skill and `Validate-Capability.ps1`.
+
+### Capability Radar
+
+A cross-cutting scanning skill that scans `.architect/` for drift,
+inconsistencies, broken references, and stale documentation across the
+capability library itself. Analog of [Gap Radar](#gap-radar) but
+pointed at `.architect/` rather than `workspace/<project>/`. Runs the
+mechanical subset (broken markdown links, missing file references)
+that `Validate-Capability.ps1` also implements, plus concept-level
+checks (glossary completeness, CHANGELOG currency, cross-doc
+consistency, structural drift). See
+`.architect/skills/capability-radar.md` and the checklists at
+`.architect/guidance/capability-radar-checklists.md`.
+
 ### Capability Version
 
 The Open Architect capability version recorded in `.architect/VERSION`,

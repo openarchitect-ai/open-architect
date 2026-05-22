@@ -59,6 +59,16 @@ Recommended approach:
 
 ## Field Guidance
 
+The fields below describe the schema used by both
+`workspace-defaults.yaml` (workspace-level defaults) and per-project
+`project-config.yaml`. As described in [The Two Files](#the-two-files)
+at the top of this guide, workspace-defaults holds only `project`
+metadata, `conventions`, and `runtime` defaults. Engagement-specific
+blocks — `compliance`, `roles`, `templates`, `skills`, `governance`,
+and `project.playbook` — live exclusively in the per-project file.
+A project's `project-config.yaml` may also override individual
+`conventions:` or `runtime:` fields when the engagement requires it.
+
 ### `project`
 
 - `name`: project or workspace name
@@ -206,6 +216,7 @@ Suggested architect-assist conventions:
 - `response_status_labels: true`
 - `response_task_grouping: ask-confirm-request-decide`
 - `response_bottom_line: true`
+- `response_structured_choices: true`
 - `architect_work_auto_capture: true`
 - `architect_work_auto_update_mode: approval-before-write`
 - `architect_work_auto_update_scope: architect-work-only`
@@ -215,6 +226,11 @@ Suggested architect-assist conventions:
 - `ask_before_scope_changes: true`
 - `ask_before_status_changes: true`
 - `ask_before_owner_creation: true`
+- `allow_agent_auto_approval: false`
+- `default_agent_output_status: draft`
+- `stop_on_decision_changes: true`
+- `stop_on_governance_status_changes: true`
+- `evidence_required_for_approval: true`
 
 Suggested ownership convention for live project artifacts:
 
@@ -361,6 +377,14 @@ If `conventions.response_bottom_line` is `true`:
 
 - include a short `Bottom Line` takeaway at the end of substantial responses
 
+If `conventions.response_structured_choices` is `true`:
+
+- when a decision has **2-4 discrete, mutually-exclusive options with non-trivial trade-offs**, surface it via the host's structured-choice UI (e.g. `AskUserQuestion` in Claude Code) in addition to the prose explanation
+- use it for: immediate next-step choices at end of response, `Decide` architect tasks with pickable options, and option-comparison tables in the body
+- skip for: yes/no confirmations, open-ended exploration, scope-clarifying questions mid-task, decisions the user can't make unilaterally
+- where the host has no structured-choice primitive (most non-Claude AI tools today), fall back to prose options
+- see [`response-display.md`](./response-display.md) for the full convention
+
 If `conventions.architect_work_auto_capture` is `true`:
 
 - identify follow-up material that belongs in `architect-work/`
@@ -372,6 +396,26 @@ If `conventions.architect_work_auto_capture` is `true`:
   - `working-log.md` — chronological, plain-language narrative of what happened on the project (newest entry on top)
 - surface those proposed updates as part of the response when useful
 - when a skill runs (`project-recap`, `baseline-discovery`, `gap-radar`, `solution-modeler`, `decision-recorder`, etc.) it should propose a `working-log.md` entry summarizing the run in plain language so the project's story remains readable to someone joining cold
+
+### Item formatting convention
+
+Items inside `open-questions.md`, `answers-and-confirmations.md`,
+`evidence-requests.md`, and `architect-task-list.md` are written as
+**Markdown bullets** (`- ...`), matching the `- ...` placeholders in
+the scaffolded templates. Status-label emoji and bold come *after* the
+bullet marker, never instead of it:
+
+- ✅ Correct: `- 🚫 **Existing Mulesoft inventory** — what's deployed today`
+- ❌ Wrong: `🚫 **Existing Mulesoft inventory** — what's deployed today`
+
+The bullet form is what `architect status` and any future validators
+count. Paragraph or emoji-prefixed-only items will be invisible to
+those tools.
+
+The `working-log.md` file is the exception — its entries are dated H2
+headings (`## YYYY-MM-DD — title`) followed by free-form prose under
+`What I did:` / `What I found:` / `Biggest signal:` / `See also:`
+labels, because the log is narrative, not categorical.
 
 If `conventions.architect_work_auto_update_mode` is `approval-before-write`:
 
