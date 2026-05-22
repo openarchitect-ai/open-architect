@@ -32,6 +32,10 @@ shape demands it; major bump to 1.0 will signal the contract is frozen.
 
 ## [Unreleased]
 
+### Changed
+
+- **Root `README.md` restructured** to reflect the workflow accumulated this release. Adds a new "How Open Architect works" section anchored by a Mermaid workflow diagram (`architect new` → `project-recap` → `baseline-discovery` → modeling skills → `diagram-author` → `gap-radar` / `architecture-review` → `change-coordinator` → loop). Signature capabilities re-grouped: scanning skills (`project-recap` + `gap-radar` + `capability-radar`) presented together; new "Workflow discipline" subsection covering working-log + change-register + `architect status`; new "Diagrams as code" subsection covering the 9 starter views. Getting Started extended with `architect status` and the six-file architect-work scaffold. Project status, What's In The Repo, and Contributing list refreshed to match current state.
+
 ### Added
 
 - **Playbook v1 refresh + regulated-playbook freeze-enforcement guidance.**

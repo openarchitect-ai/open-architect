@@ -364,6 +364,7 @@ populates it on demand.
   - **TOGAF** — the cleanest 1:1 since OA's templates are TOGAF-adjacent; covers ADM-phase → artifact mapping, ABB/SBB building blocks, and Architecture Repository concepts
   - **BIZBOK** — business-architect vocabulary; capability maps, value streams, information maps, organization maps, course-of-action mapping
   - **Cloud Well-Architected** — combined AWS + Azure + GCP pillar set; review findings persisted as `gap` / `risk` / `decision` artifacts rather than living only in vendor tooling
+- Restructured root `README.md` to reflect the end-to-end workflow that now exists. New "How Open Architect works" section with a Mermaid diagram of the engagement loop (recap → discover → model → visualize → review → change-handle → status briefing → loop back). Re-grouped signature capabilities (scanning skills together; new Workflow discipline subsection for working-log + change-register + `architect status`; new Diagrams-as-code subsection); refreshed Project status, What's in the repo, and Contributing.
 - Refreshed the four v1 playbooks (`inventory-only`, `quick-solution-design`, `migration-wave`, `full-togaf-adm`) to match v2-v6 structural depth:
   - backfilled `Sample Backlog Of Open Questions` and `Recommended Diagrams` sections in all four
   - backfilled `Decision Points` in `inventory-only`
