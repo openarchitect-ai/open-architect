@@ -360,6 +360,10 @@ populates it on demand.
   - slimmed it to workspace-level concerns only: `project:` metadata, default method, `conventions:` block, and minimal `runtime:` defaults
   - removed engagement-specific blocks (compliance scope, roles enabled, templates enabled, skills enabled, governance review checkpoints) — those now live exclusively in each project's `workspace/<project-name>/project-config.yaml`
   - updated skills, validator, agent task artifact, AGENTS.md, and documentation to reference the new path
+- Extended vocabulary bridges with three new mappings under `guidance/vocabulary-bridges/`:
+  - **TOGAF** — the cleanest 1:1 since OA's templates are TOGAF-adjacent; covers ADM-phase → artifact mapping, ABB/SBB building blocks, and Architecture Repository concepts
+  - **BIZBOK** — business-architect vocabulary; capability maps, value streams, information maps, organization maps, course-of-action mapping
+  - **Cloud Well-Architected** — combined AWS + Azure + GCP pillar set; review findings persisted as `gap` / `risk` / `decision` artifacts rather than living only in vendor tooling
 
 ## Current Structure
 

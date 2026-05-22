@@ -51,6 +51,12 @@ When the skill runs, group findings as:
 
 Always end with a `Bottom Line` that names the 1–3 highest-leverage findings.
 
+The skill should also propose a `working-log.md` entry summarizing the
+sweep in plain language (what was scanned, what was skipped, the
+biggest signal, and the 1-3 highest-leverage findings). The working-log
+is the project's chronological narrative; the radar report itself is
+structured for review.
+
 ## 1. Completeness Checks (Per Template Kind)
 
 ### Application

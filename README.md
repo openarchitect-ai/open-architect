@@ -72,7 +72,7 @@ The differentiators above sit on a substantial, opinionated foundation:
 - **Skill library — ~25 reusable procedures.** Bounded operational skills that an architect (or an agent) can invoke: `project-bootstrapper`, `stakeholder-objective-framer`, `baseline-discovery`, `requirement-normalizer`, `solution-modeler`, `decision-recorder`, `architecture-review`, `transition-planner`, `risk-compliance-assessor`, `option-evaluator`, `evidence-curator`, `architecture-coordinator`, and more. Each skill has a clear input, output, and read-first context. → [`.architect/skills/`](.architect/skills/)
 - **Role library — 11 architecture roles** with explicit boundaries (chief architect, enterprise architect, solution architect, business architect, data architect, integration architect, domain architect, security architect, technology architect, architecture governance lead, business analyst). Roles describe perspective and accountability; skills describe what they do. → [`.architect/roles/`](.architect/roles/)
 - **Compliance layer.** Jurisdiction (EU/EEA, UK, US, California, Canada), sector (financial services, healthcare, education, payments, public sector, critical infrastructure, software products, life sciences & pharma, consumer digital), and regulation profiles (GDPR, UK GDPR, EU AI Act, NIS2, DORA, Cyber Resilience Act, EU Data Act, HIPAA Security Rule, FTC Safeguards, SEC cyber disclosure, PCI DSS, CCPA/CPRA, FedRAMP, CMMC, and more), wired into modeling skills. → [`.architect/compliance/`](.architect/compliance/)
-- **Vocabulary bridges** for teams that think in C4, ArchiMate-Lite, or DDD — concept maps to the Open Architect templates and patterns. → [`.architect/guidance/vocabulary-bridges/`](.architect/guidance/vocabulary-bridges/)
+- **Vocabulary bridges** for teams that already think in TOGAF, ArchiMate-Lite, C4, DDD, BIZBOK, or Cloud Well-Architected (AWS / Azure / GCP) — concept maps to the Open Architect templates and patterns, so teams adopt the workspace without abandoning their vocabulary. → [`.architect/guidance/vocabulary-bridges/`](.architect/guidance/vocabulary-bridges/)
 
 ---
 
@@ -84,7 +84,7 @@ The differentiators above sit on a substantial, opinionated foundation:
 | Preparing for a review gate or after a stretch of intensive modeling | `gap-radar` |
 | Starting a new engagement | pick a playbook from the [catalog](.architect/playbooks/README.md) |
 | Standing up AI capability inside an engagement | the [AI patterns](.architect/patterns/ai/README.md) (referenced by `ai-platform-bootstrap` and gap-radar) |
-| Using C4 / ArchiMate-Lite / DDD vocabulary | [`guidance/vocabulary-bridges/`](.architect/guidance/vocabulary-bridges/) |
+| Using TOGAF / ArchiMate-Lite / C4 / DDD / BIZBOK / Cloud Well-Architected vocabulary | [`guidance/vocabulary-bridges/`](.architect/guidance/vocabulary-bridges/) |
 | Not sure which playbook fits | `./architect.sh list-playbooks` then `./architect.sh playbook <name>` |
 
 ---
@@ -220,7 +220,7 @@ Useful contribution areas:
 
 - Worked examples across industries (finance, healthcare, public sector, AI platforms, manufacturing OT/IT)
 - Tier 2 AI patterns (inference caching, FinOps, tenant isolation, AI Act Article 50 disclosure, hallucination handling, red-teaming, human-in-the-loop review)
-- Additional vocabulary bridges (BIZBOK, Wardley Mapping, AWS Well-Architected, Google Cloud Architecture Framework)
+- Additional vocabulary bridges (Wardley Mapping, ISO/IEC/IEEE 42010, or others — the [current set](.architect/guidance/vocabulary-bridges/README.md) covers TOGAF, ArchiMate-Lite, C4, DDD, BIZBOK, and Cloud Well-Architected)
 - Schema precision and runnable validators (especially Gap Radar checks as executable validation)
 - Method tailoring guides (TOGAF tailoring, DDD-aligned engagement, lean architecture, lightweight RACI)
 - New playbooks for engagement shapes not yet in the catalog (the [current 24](.architect/playbooks/README.md) cover discovery, solution/design, modernization, platform bootstrap, enterprise cycle, driver-specific, M&A, and practice setup — gaps include hybrid/edge, OT/IT convergence, sustainability-driven architecture, AI red-team programs)

@@ -20,9 +20,12 @@ abandoning the way they already think.
 
 | Bridge | Use when |
 |---|---|
+| [TOGAF](./togaf.md) | teams are TOGAF-certified or stakeholders expect ADM-phase deliverables; the cleanest 1:1 mapping since Open Architect's templates are deliberately TOGAF-adjacent |
+| [ArchiMate-Lite](./archimate-lite.md) | teams use ArchiMate (or simplified ArchiMate) as their primary modeling vocabulary; close 1:1 match to Open Architect templates |
 | [C4](./c4.md) | teams use C4 for visual architecture communication; useful as the visual face of Open Architect's structured backbone |
-| [ArchiMate-Lite](./archimate-lite.md) | teams use ArchiMate (or simplified ArchiMate) as their primary modeling vocabulary; the closest 1:1 match to Open Architect templates |
-| [DDD](./ddd.md) | teams use Domain-Driven Design; bounded contexts, ubiquitous language, and tactical patterns map well to Open Architect's solution + application-service + data-object concepts |
+| [DDD](./ddd.md) | teams use Domain-Driven Design; bounded contexts, ubiquitous language, and tactical patterns map well to `solution` + `application-service` + `data-object` |
+| [BIZBOK](./bizbok.md) | business architects use BIZBOK; capability maps, value streams, information maps, and organization maps lead the engagement |
+| [Cloud Well-Architected](./cloud-well-architected.md) | teams run AWS / Azure / GCP Well-Architected reviews as a quality gate and want findings persisted as architecture artifacts |
 
 ## How To Use A Bridge
 

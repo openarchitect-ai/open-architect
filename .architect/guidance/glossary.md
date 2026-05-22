@@ -386,8 +386,9 @@ verification evidence rather than only intention or design-time assertion.
 ### Vocabulary Bridge
 
 A guidance document that maps an external architecture vocabulary (such as
-C4, ArchiMate-Lite, or DDD) to Open Architect concepts, so teams using that
-vocabulary can adopt the workspace without abandoning their existing models.
+TOGAF, ArchiMate-Lite, C4, DDD, BIZBOK, or a Cloud Well-Architected
+framework) to Open Architect concepts, so teams using that vocabulary
+can adopt the workspace without abandoning their existing models.
 Vocabulary bridges live under `.architect/guidance/vocabulary-bridges/`.
 
 ## W
@@ -396,6 +397,20 @@ Vocabulary bridges live under `.architect/guidance/vocabulary-bridges/`.
 
 A delivery increment that realizes part of a transition architecture or closes
 one or more architecture gaps.
+
+### Working Log
+
+A chronological, plain-language record of what happened on a project,
+newest entry on top. Lives at
+`workspace/<project-name>/architect-work/working-log.md`. Distinct from
+the four topical files (`open-questions.md`,
+`answers-and-confirmations.md`, `evidence-requests.md`,
+`architect-task-list.md`), which organize by category. The working
+log organizes by time so the project's story can be read linearly —
+useful for handover, audit defense, or re-entry after time away.
+Skills propose entries when they run (`project-recap`,
+`baseline-discovery`, `gap-radar`, etc.); the architect approves
+before write per `architect_work_auto_update_mode`.
 
 ### Workspace
 

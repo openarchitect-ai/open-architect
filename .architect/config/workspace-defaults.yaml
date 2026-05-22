@@ -43,6 +43,7 @@ conventions:
   response_status_labels: true
   response_task_grouping: ask-confirm-request-decide  # ask-confirm-request-decide | flat
   response_bottom_line: true
+  response_structured_choices: true             # use host structured-choice UI for 2-4 discrete options; see config/response-display.md
   architect_work_auto_capture: true
   architect_work_auto_update_mode: approval-before-write  # suggest-only | approval-before-write | auto-update
   architect_work_auto_update_scope: architect-work-only   # architect-work-only | broader

@@ -53,6 +53,38 @@ When presenting follow-up work, group tasks as:
 - `Request`
 - `Decide`
 
+## Structured Choices
+
+When the response confronts the user with a decision that has **2-4
+discrete, mutually-exclusive options with non-trivial trade-offs**,
+surface that decision via the host's structured-choice UI (e.g. the
+`AskUserQuestion` tool in Claude Code) in addition to the prose
+explanation. Use it in these three situations:
+
+1. **Immediate next-step choices** — when the response ends with a
+   branching choice the user makes now ("commit or review first?",
+   "approach A or B?"). Replace the closing prose question with the
+   picker; keep the explanation above it intact.
+2. **`Decide` tasks with immediate options** — when an Architect Task
+   in the `Decide` group is something the user can pick right now (not
+   a decision for a future architecture board). Surface it as a picker
+   in addition to the task bullet. External-stakeholder decisions stay
+   as bullets only.
+3. **Option comparisons in the body** — when the response presents an
+   options-comparison table (e.g. approaches A/B/C with trade-offs),
+   add a picker right after the table.
+
+Do **not** use the picker for:
+
+- yes/no confirmations or "should I proceed?" prompts
+- open-ended exploration ("what could we do about X?")
+- scope-clarifying questions mid-task (stay in prose)
+- recording an external/stakeholder decision the user can't pick
+  unilaterally
+
+Agents whose host has no structured-choice primitive should fall back
+to prose options.
+
 ## Allowed Exceptions
 
 You may use a lighter format only when:

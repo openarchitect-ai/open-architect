@@ -70,7 +70,7 @@ Beyond the metamodel, the workspace gives you:
 - **Gap Radar skill** at [`skills/gap-radar.md`](./skills/gap-radar.md) — proactive scan that catches what an experienced architect would catch on a fresh read. Checklists live in [`guidance/gap-radar-checklists.md`](./guidance/gap-radar-checklists.md).
 - **Project Recap skill** at [`skills/project-recap.md`](./skills/project-recap.md) — read-only re-entry / handover orientation. Protocol in [`guidance/project-recap-protocol.md`](./guidance/project-recap-protocol.md).
 - **AI patterns** under [`patterns/ai/`](./patterns/ai/README.md) — RAG, prompt lifecycle, continuous evaluation, model version promotion gates, guardrail stack, agentic bounded loops, embedding lifecycle, vendor portability.
-- **Vocabulary bridges** under [`guidance/vocabulary-bridges/`](./guidance/vocabulary-bridges/README.md) — for teams who think in C4, ArchiMate-Lite, or DDD.
+- **Vocabulary bridges** under [`guidance/vocabulary-bridges/`](./guidance/vocabulary-bridges/README.md) — for teams who think in TOGAF, ArchiMate-Lite, C4, DDD, BIZBOK, or Cloud Well-Architected (AWS / Azure / GCP).
 - **Compliance layer** under [`compliance/`](./compliance/) — jurisdiction, sector, and control obligations for GDPR, UK GDPR, EU AI Act, NIS2, DORA, HIPAA Security Rule, PCI DSS, FedRAMP, CMMC, and more.
 
 ---

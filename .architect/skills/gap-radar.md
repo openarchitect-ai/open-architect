@@ -116,6 +116,7 @@ finding involves a specific artifact, include a clickable reference using
 - [ ] modernity findings reference an applicable pattern, standard, or principle if one exists in the workspace
 - [ ] the bottom line is short and ranks the highest-leverage 1–3 items
 - [ ] proposed `architect-work/` updates are surfaced but not written, unless the architect has confirmed
+- [ ] a proposed `working-log.md` entry is drafted summarizing the sweep
 - [ ] no architecture artifacts are modified by this skill
 
 ## Boundaries

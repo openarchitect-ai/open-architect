@@ -32,7 +32,43 @@ shape demands it; major bump to 1.0 will signal the contract is frozen.
 
 ## [Unreleased]
 
-Nothing yet.
+### Added
+
+- **Working log convention** — a fifth `architect-work/` file,
+  `working-log.md`, capturing a chronological plain-language narrative
+  of the project (newest entry on top). Distinct from the four topical
+  files, which organize by category. Skills (`project-recap`,
+  `baseline-discovery`, `gap-radar`) now propose a working-log entry
+  when they run. Template lives at
+  `cli/templates/architect-work/working-log.md`; CLI scaffold copies it
+  for every new project. Documented in `config/agent.config.md`,
+  `guidance/glossary.md`, the affected skill files, and
+  `guidance/project-recap-protocol.md` and
+  `guidance/gap-radar-checklists.md`.
+- **Three vocabulary bridges** under `guidance/vocabulary-bridges/`:
+  TOGAF (the cleanest 1:1 since OA's templates are TOGAF-adjacent; covers
+  ADM-phase → artifact mapping, building blocks, repository concepts),
+  BIZBOK (business-architect vocabulary; capability maps, value streams,
+  information maps), and Cloud Well-Architected (combined AWS + Azure +
+  GCP pillars; review findings persisted as gaps / risks / decisions).
+- **Structured-choice convention** added to the display contract.
+  Responses surface 2-4 discrete-option decisions via the host's
+  structured-choice UI (e.g. `AskUserQuestion` in Claude Code) instead
+  of prose options, for immediate next-step choices, `Decide` tasks
+  with pickable options, and option-comparison tables. Updated
+  `AGENTS.md`, `.architect/config/response-display.md`, and added
+  `response_structured_choices: true` to workspace defaults.
+
+### Changed
+
+- Split workspace-level defaults from engagement config: renamed
+  `.architect/project-config.yaml` to
+  `.architect/config/workspace-defaults.yaml`. Slimmed to workspace-only
+  concerns (conventions, default method, runtime defaults). Engagement-
+  specific blocks (compliance scope, roles enabled, templates enabled,
+  skills enabled, governance review checkpoints) now live exclusively in
+  `workspace/<project>/project-config.yaml`. Updated skills, validator,
+  agent task artifact, AGENTS.md, and documentation accordingly.
 
 ---
 

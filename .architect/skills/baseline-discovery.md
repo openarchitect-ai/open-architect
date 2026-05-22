@@ -42,6 +42,7 @@ work starts from explicit baseline facts.
 - baseline architecture artifacts across the relevant domains
 - summaries of what is known, unknown, or uncertain
 - a first set of traceable relationships between baseline objects
+- a proposed `architect-work/working-log.md` entry summarizing what was discovered, surfaced pending architect approval per `architect_work_auto_update_mode`
 
 ## Output Checklist
 
@@ -49,6 +50,7 @@ work starts from explicit baseline facts.
 - key manual steps and operational dependencies are visible
 - important uncertainties are explicit
 - baseline objects are linked strongly enough to support later impact analysis
+- a working-log entry is proposed (or written, if explicitly approved)
 
 ## Typical Collaboration
 

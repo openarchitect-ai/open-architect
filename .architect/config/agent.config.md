@@ -364,8 +364,14 @@ If `conventions.response_bottom_line` is `true`:
 If `conventions.architect_work_auto_capture` is `true`:
 
 - identify follow-up material that belongs in `architect-work/`
-- classify it into the appropriate working files
+- classify it into the appropriate working files:
+  - `open-questions.md` — unresolved questions, grouped by domain
+  - `answers-and-confirmations.md` — confirmed facts and current working interpretation
+  - `evidence-requests.md` — what's been received and what's still missing
+  - `architect-task-list.md` — Ask / Confirm / Request / Decide tasks
+  - `working-log.md` — chronological, plain-language narrative of what happened on the project (newest entry on top)
 - surface those proposed updates as part of the response when useful
+- when a skill runs (`project-recap`, `baseline-discovery`, `gap-radar`, `solution-modeler`, `decision-recorder`, etc.) it should propose a `working-log.md` entry summarizing the run in plain language so the project's story remains readable to someone joining cold
 
 If `conventions.architect_work_auto_update_mode` is `approval-before-write`:
 

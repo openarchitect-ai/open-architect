@@ -139,6 +139,7 @@ and include these sections in this order:
 - Use clickable `file_path:line_number` references.
 - Do not propagate answers, close drift, or update artifacts. Recap is read-only.
 - Surface proposed `architect-work/` updates as suggestions; write only after architect confirmation per `architect_work_auto_update_mode`.
+- Propose a `working-log.md` entry summarizing the recap in plain language (what was read, what was found, the biggest signal). The working-log is the project's chronological narrative; the recap output itself is structured for review.
 
 ## What The Recap Must Not Do
 

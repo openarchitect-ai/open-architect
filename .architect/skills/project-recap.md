@@ -68,7 +68,14 @@ This is the right first skill to run when re-entering a project. Use
 
 8. **Surface follow-ups, do not act.**
    Propose `architect-work/` updates (open-questions, evidence-requests,
-   task-list) as suggestions only. Do not modify architecture artifacts.
+   task-list, working-log) as suggestions only. Do not modify
+   architecture artifacts.
+
+9. **Propose a working-log entry.**
+   Draft a chronological, plain-language entry for
+   `architect-work/working-log.md` summarizing this recap: what was
+   read, what was found, the biggest signal. Surface it as a proposed
+   addition pending architect approval per `architect_work_auto_update_mode`.
 
 ## Outputs
 
@@ -98,6 +105,7 @@ When a recap entry references a specific artifact or note, use clickable
 - [ ] ownership entries reflect truthfulness state honestly (no invented owners)
 - [ ] 1–3 highest-leverage items are named
 - [ ] architect tasks are grouped Ask / Confirm / Request / Decide
+- [ ] a proposed `working-log.md` entry is drafted
 - [ ] no architecture artifacts are modified
 
 ## Boundaries

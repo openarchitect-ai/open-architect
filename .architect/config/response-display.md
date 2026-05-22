@@ -100,6 +100,44 @@ When `response_task_grouping: ask-confirm-request-decide`, group tasks as:
 
 This makes follow-up actions much easier for architects to use in real work.
 
+## Structured Choices
+
+When the response confronts the user with a decision that has **2-4
+discrete, mutually-exclusive options with non-trivial trade-offs**,
+surface that decision via the host's structured-choice UI (e.g.
+`AskUserQuestion` in Claude Code) in addition to the prose explanation.
+The structured picker is much faster to scan and reply to than
+"option A or B?" in prose.
+
+Use it in these three situations:
+
+1. **Immediate next-step choices** — when the response ends with a
+   branching choice the user makes now ("commit or review first?",
+   "approach A or B?"). The picker replaces the closing prose question;
+   the explanation above it stays intact.
+2. **`Decide` tasks with immediate options** — when an Architect Task
+   in the `Decide` group is something the user can pick right now (not
+   a decision deferred to an architecture board or stakeholder
+   workshop). Surface it as a picker in addition to the task bullet.
+3. **Option comparisons in the body** — when the response presents an
+   options-comparison table (e.g. approaches A/B/C with trade-offs),
+   add a picker right after the table so the user can select inline.
+
+Skip the picker for:
+
+- yes/no confirmations or "should I proceed?" prompts
+- open-ended exploration ("what could we do about X?")
+- scope-clarifying questions mid-task
+- decisions the user can't make unilaterally (record those as
+  `Ask` / `Confirm` / `Request` instead)
+
+You can also ask **multiple structured questions at once** (typically
+2-4 in one prompt) when a decision has multiple axes — e.g. "which
+options?" and "in what order?" together.
+
+Where the host has no structured-choice primitive (most non-Claude AI
+tools today), fall back to prose options.
+
 ## Bottom Line
 
 When `response_bottom_line: true`, end with a short takeaway when the response is longer than a quick answer.
