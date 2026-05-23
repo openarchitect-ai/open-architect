@@ -11,7 +11,7 @@ task:
     project_root: workspace/example-project
     artifact_paths:
       - application/sol-0001-example-solution.yaml
-      - application/req-0001-example-requirement.yaml
+      - business/req-0001-example-requirement.yaml
 
   input_artifacts:
     - .architect/config/workspace-defaults.yaml

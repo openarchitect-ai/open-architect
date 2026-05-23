@@ -18,7 +18,6 @@ Own business framing clarity and requirement quality.
 ## Writable Paths
 
 - `business/`
-- requirement artifacts in `application/`
 - related review packets or clarification notes assigned by the coordinator
 
 ## Must Not Do By Default

@@ -32,8 +32,8 @@ lives. (See "Template folder vs artifact folder" below.)
 | Folder | Holds artifacts of kind | Mental model |
 |---|---|---|
 | `architect-work/` | The six categorical-state files (open-questions, answers-and-confirmations, evidence-requests, architect-task-list, working-log, change-register) | Living project state, not artifact instances |
-| `business/` | `stakeholder` (STK-), `objective` (OBJ-), `architecture-vision` (VIS-), `business-capability` (BC-), `business-process` (BP-), `organization` (ORG-), `principle` (PRN-) | "Why" and "for whom" — the business framing layer |
-| `application/` | `application` (APP-), `application-service` (AS-), `interface` (IF-), `requirement` (REQ-), `solution` (SOL-) | "What and how" — the application/service architecture layer |
+| `business/` | `stakeholder` (STK-), `objective` (OBJ-), `architecture-vision` (VIS-), `business-capability` (BC-), `business-process` (BP-), `organization` (ORG-), `principle` (PRN-), `requirement` (REQ-) | "Why", "for whom", and "what's required" — the business framing layer (requirements scope the solution but aren't part of it) |
+| `application/` | `application` (APP-), `application-service` (AS-), `interface` (IF-), `solution` (SOL-) | "What and how" — the application/service architecture layer (design outputs) |
 | `data/` | `data-object` (DO-) | Data shape and ownership |
 | `technology/` | `technology-component` (TC-), `technology-standard` (TS-), `environment` (ENV-) | Stack and hosting |
 | `governance/` | `decision` (DEC-), `risk` (RSK-), `compliance-assessment` (CMP-) | Decisions, risks, regulatory posture |
@@ -44,22 +44,20 @@ lives. (See "Template folder vs artifact folder" below.)
 ### Template folder vs artifact folder
 
 The OA capability library at `.architect/templates/<folder>/` organizes
-the *YAML templates themselves* — and that folder structure does not
-always match where the *project artifact* lives. The most prominent
-case: `architecture-vision.yaml` lives in `.architect/templates/governance/`
-(because vision is governance-adjacent at the capability-library level),
-but project `VIS-*` artifacts go under `workspace/<project>/business/`
-(because vision is a business-framing artifact at the engagement
-level).
+the *YAML templates themselves*. For all kinds except one, the
+template's folder matches the project artifact's folder. The single
+exception is `architecture-vision`:
 
 | Template kind | Template at | Project artifact at |
 |---|---|---|
 | `architecture-vision` | `.architect/templates/governance/` | `workspace/<project>/business/` |
-| `principle` | `.architect/templates/business/` | `workspace/<project>/business/` |
 | All others | Same folder name as project-side | Same folder name as template-side |
 
-This is the only mismatch worth memorizing. When in doubt, look at
-the "Holds artifacts of kind" column above.
+The exception exists because vision is governance-adjacent at the
+capability-library level (sits with `decision`, `risk`,
+`compliance-assessment`) but is a business-framing artifact at the
+engagement level (sits with `stakeholder`, `objective`, `principle`).
+When in doubt, look at the "Holds artifacts of kind" column above.
 
 ## ID numbering
 
