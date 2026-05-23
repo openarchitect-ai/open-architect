@@ -38,7 +38,7 @@ for the procedure.
   - Data objects: `DO-XXXX`
   - Transitions: `TA-XXXX`
   - Risks: `RSK-XXXX` (note any risk-state transitions, e.g. `mitigated` → `materialized`)
-  - Compliance: `CA-XXXX`
+  - Compliance: `CMP-XXXX`
   - Technology / environments: `TC-XXXX` / `ENV-XXXX`
   - Timeline / cost: <rough magnitude or "none">
 - **Decision threshold met?** yes | no — if yes, which signal(s): touches >1 solution / regulatory or compliance posture change / material timeline or cost / crosses a review gate / sponsor request. (Not applicable for `propagation-closure` — that's catch-up work, not new scope.)

@@ -132,13 +132,10 @@ Lowercase. Hyphens between words, no underscores or camelCase. Examples:
 
 ### Filename stability under change-coordinator
 
-When a content rewrite under `change-coordinator` changes an
-artifact's `display_name`, **keep the filename stable**. Update
-`display_name` and the `aliases:` field instead.
-
-See [`capability-maintenance.md`](./capability-maintenance.md)
-§"Renaming a project artifact's display_name" for the full rule and
-its rationale.
+Filenames stay stable when `display_name` changes — see
+[`capability-maintenance.md`](./capability-maintenance.md)
+§"Renaming a project artifact's display_name" for the rule and
+rationale.
 
 ## Name fields: `name`, `display_name`, `aliases`
 

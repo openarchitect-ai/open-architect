@@ -27,11 +27,14 @@ workspace/<project-name>/
     answers-and-confirmations.md
     evidence-requests.md
     architect-task-list.md
+    working-log.md
+    change-register.md
 ```
 
-If you want a faster start, create the four files up front even if they are
+If you want a faster start, create the six files up front even if they are
 mostly empty. That makes it easier for the assistant to suggest where new
-information should go.
+information should go. The `architect new` CLI scaffolds all six from the
+templates in [`cli/templates/architect-work/`](../cli/templates/architect-work/).
 
 ## Suggested File Roles
 
@@ -81,7 +84,37 @@ Good contents:
 - validation tasks
 - scoping and sequencing tasks
 
+### `working-log.md`
+
+Use this as the chronological, plain-language record of what happened on
+the project — newest entry on top. While the four topical files above
+organize by category (questions, answers, evidence, tasks), the working
+log organizes by time so the project's story can be read linearly.
+
+Add an entry when a skill runs, a scope or playbook change lands, a
+sponsor or stakeholder decision is confirmed, or anything else worth
+remembering. Skip routine edits — git history already captures those.
+
+### `change-register.md`
+
+Use this as the chronological log of requirement and scope changes —
+newest entry on top. Sponsor-readable: someone reviewing this file
+should be able to see what's changed and what the impact was without
+reading every requirement YAML.
+
+A change-register entry is opened when a requirement is added, modified,
+removed, or superseded, or when a propagation-closure is recorded for a
+prior change. See
+[`../guidance/requirement-change-handling.md`](../guidance/requirement-change-handling.md)
+for the procedure.
+
 ## Starter Templates
+
+The four starter shapes below are kept here for quick reference. The
+live, authoritative starter templates for all six files (including
+`working-log.md` and `change-register.md`) are in
+[`../cli/templates/architect-work/`](../cli/templates/architect-work/)
+and are what `architect new` writes into a new project.
 
 Use these as simple starter shapes.
 

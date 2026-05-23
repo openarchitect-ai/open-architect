@@ -65,7 +65,7 @@ When you observe a requirement change:
    - **Data objects (`DO-XXXX`)** — does this add or remove a data-shape constraint?
    - **Transitions (`TA-XXXX`)** — does this change the wave plan or cutover?
    - **Risks (`RSK-XXXX`)** — does this introduce a new risk, close an existing one, or transition a risk's state (e.g. `mitigated` → `materialized`)?
-   - **Compliance assessments (`CA-XXXX`)** — does this change the obligation scope?
+   - **Compliance assessments (`CMP-XXXX`)** — does this change the obligation scope?
    - **Technology components / environments (`TC-*`, `ENV-*`)** — does this require a stack or hosting change?
    - **Timeline / cost** — rough magnitude (none / minor / material)
 
@@ -89,7 +89,7 @@ When you observe a requirement change:
    - **Sweep upstream first** — refresh `VIS-*` / `OBJ-*` / `PRN-*` text that references the changing requirement. These are the artifacts most likely to be missed because they're not in the relationship-traversal path.
    - Update affected downstream artifacts (solutions, interfaces, applications, services, data objects, transitions, risks, compliance assessments, technology components, environments)
    - Mark every touched artifact's `metadata.last_reviewed` to today's date so `gap-radar` surfaces them
-   - **Filename stability** — if a content rewrite changes an artifact's `display_name`, **keep the filename stable** and update the `aliases:` field with the prior name. The filename is a stable identifier; the display name is the human-readable label. Renaming the file forces every cross-reference to be tracked down and adds no value over the alias. (Rare exception: when the artifact's *ID* changes — e.g. supersession produces a new artifact — the new file gets a new filename.)
+   - **Filename stability** — when a rewrite changes `display_name`, keep the filename stable and add the prior name to `aliases:`. See [`capability-maintenance.md`](./capability-maintenance.md) §"Renaming a project artifact's display_name" for the full rule (and the rare ID-change exception).
 7. **Add the change-register entry.** One row per change in `architect-work/change-register.md`, newest on top. Use the template entry shape. For propagation-closure entries: reference the original CHG ID and the source of the finding (e.g. *"Surfaced by `architecture-review` 2026-05-24"*).
 8. **Add a working-log entry.** Plain-language narrative for the architect's chronological view; cross-references the change-register entry.
 9. **Run a post-change `architecture-review` pass** when the change promoted to a `decision` artifact OR touched more than three downstream artifacts. The review walks the cluster of touched artifacts to catch propagation misses *while the change is fresh*, before the next gate or a future review surfaces them as BLOCKERs. Findings from this pass either close out in the same engagement turn (small fixes) or open `propagation-closure` entries (substantive misses). This step is what prevents the two-step pattern: change lands → propagation gap discovered three turns later → BLOCKER + propagation-closure entry.

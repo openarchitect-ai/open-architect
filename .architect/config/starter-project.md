@@ -61,6 +61,10 @@ Recommended contents:
   Missing inputs you need such as API specs, file samples, mappings, or ownership details.
 - `architect-task-list.md`
   Your practical follow-up tasks from each working session.
+- `working-log.md`
+  Chronological, plain-language record of what happened on the project — what skills ran, what scope or playbook changes landed, what was confirmed. Newest entry on top.
+- `change-register.md`
+  Sponsor-readable log of requirement and scope changes — what was added, modified, removed, or superseded, with impact and decision-threshold notes. Newest entry on top.
 
 You do not have to fill them all immediately, but creating the files early
 usually makes the project feel more tangible and easier to maintain.
