@@ -13,8 +13,8 @@ follow-up needed to keep architecture requirements actionable over time.
 
 ## Read First
 
-- `.architect/templates/business/requirement.yaml`
-- `.architect/examples/customer-onboarding-modernization/business/req-1001-customer-activation-reliability.yaml`
+- `.architect/templates/requirements/requirement.yaml`
+- `.architect/examples/customer-onboarding-modernization/requirements/req-1001-customer-activation-reliability.yaml`
 
 ## Inputs
 

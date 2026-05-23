@@ -29,9 +29,9 @@ traceability.
 - `governance/dec-1001-adopt-customer-activation-event-api.yaml`
 - `governance/rsk-1001-delayed-downstream-event-adoption.yaml`
 
-### Business
+### Requirements
 
-- `business/req-1001-customer-activation-reliability.yaml`
+- `requirements/req-1001-customer-activation-reliability.yaml`
 
 ### Application
 

@@ -32,7 +32,8 @@ lives. (See "Template folder vs artifact folder" below.)
 | Folder | Holds artifacts of kind | Mental model |
 |---|---|---|
 | `architect-work/` | The six categorical-state files (open-questions, answers-and-confirmations, evidence-requests, architect-task-list, working-log, change-register) | Living project state, not artifact instances |
-| `business/` | `stakeholder` (STK-), `objective` (OBJ-), `architecture-vision` (VIS-), `business-capability` (BC-), `business-process` (BP-), `organization` (ORG-), `principle` (PRN-), `requirement` (REQ-) | "Why", "for whom", and "what's required" — the business framing layer (requirements scope the solution but aren't part of it) |
+| `business/` | `stakeholder` (STK-), `objective` (OBJ-), `architecture-vision` (VIS-), `business-capability` (BC-), `business-process` (BP-), `organization` (ORG-), `principle` (PRN-) | "Why" and "for whom" — the business framing layer |
+| `requirements/` | `requirement` (REQ-) | "What's required of the solution" — functional, NFR, regulatory, and architectural requirements. Cross-cutting between business framing and design; modeled as its own domain (mirrors TOGAF's Requirements Management as a continuous cross-phase activity) |
 | `application/` | `application` (APP-), `application-service` (AS-), `interface` (IF-), `solution` (SOL-) | "What and how" — the application/service architecture layer (design outputs) |
 | `data/` | `data-object` (DO-) | Data shape and ownership |
 | `technology/` | `technology-component` (TC-), `technology-standard` (TS-), `environment` (ENV-) | Stack and hosting |

@@ -13,12 +13,12 @@ constraints, assumptions, and quality expectations.
 
 ## Read First
 
-- `.architect/templates/business/requirement.yaml`
+- `.architect/templates/requirements/requirement.yaml`
 - `.architect/guidance/conventions.md`
 - `.architect/guidance/modeling-conventions.md`
 - `.architect/guidance/evidence-and-quality.md`
 - `.architect/guidance/lifecycle-and-dates.md`
-- `.architect/examples/customer-onboarding-modernization/business/req-1001-customer-activation-reliability.yaml`
+- `.architect/examples/customer-onboarding-modernization/requirements/req-1001-customer-activation-reliability.yaml`
 
 ## Inputs
 
