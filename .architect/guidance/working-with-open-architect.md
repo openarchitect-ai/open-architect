@@ -91,16 +91,16 @@ Describe what changed; the AI proposes the writes; you approve.
 ### Example: you complete a task
 
 ```
-(you) "I sent the Mulesoft inventory request to IT ops today."
+(you) "I sent the integration platform inventory request to IT ops today."
 
 (AI)  "Proposed updates — approve?
 
        architect-task-list.md
-         - Move 'Request Mulesoft inventory' from Immediate to Waiting On Others
+         - Move 'Request integration platform inventory' from Immediate to Waiting On Others
        evidence-requests.md
          - Update Requested with the date sent
        working-log.md
-         - New entry: 'Mulesoft inventory request sent'"
+         - New entry: 'Integration platform inventory request sent'"
 
 (you) "yes"
 ```

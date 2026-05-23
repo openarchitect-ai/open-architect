@@ -6,19 +6,19 @@ template:
 
 spec:
   id: TC-0001
-  name: mulesoft-runtime
-  display_name: MuleSoft Runtime
+  name: kafka-event-platform
+  display_name: Apache Kafka Event Platform
   aliases:
-    - Integration Runtime
-  summary: Shared integration runtime platform used to host and operate enterprise APIs and mediation services.
+    - Event Streaming Platform
+  summary: Shared event streaming platform used to publish, subscribe, store, and process enterprise event streams.
   description: >
-    Integration runtime platform used to host and operate enterprise APIs,
-    events, and mediation services.
+    Event streaming platform used to publish, store, and process enterprise
+    event flows across producing and consuming systems.
 
   classification:
     technology_domain: integration
     component_type: runtime-platform
-    vendor: MuleSoft
+    vendor: Apache Software Foundation
     deployment_model: managed-cloud
     criticality: high
 
@@ -30,7 +30,7 @@ spec:
   ownership:
     technical_owner: Integration Platform Team
     service_owner: Enterprise Platforms
-    vendor_owner: MuleSoft Account Team
+    vendor_owner: Confluent Account Team
 
   metadata:
     source_of_truth:
@@ -42,11 +42,11 @@ spec:
     confidence: high
     references:
       - type: confluence
-        title: MuleSoft Runtime
-        url: https://confluence.example.com/display/EA/mulesoft-runtime
+        title: Apache Kafka Event Platform
+        url: https://confluence.example.com/display/EA/kafka-event-platform
       - type: standard
-        title: Integration Platform Standard
-        url: https://example.com/standards/integration-platform
+        title: Event Streaming Platform Standard
+        url: https://example.com/standards/event-streaming-platform
     change_log:
       - date: 2026-05-20
         summary: Initial technology component template created for the AI-native workspace.
@@ -82,9 +82,9 @@ spec:
       - IF-0001
       - IF-0002
     workloads:
-      - API mediation
-      - system integration
-      - event orchestration
+      - event publishing
+      - event subscription
+      - stream processing
 
   deployment:
     environments:

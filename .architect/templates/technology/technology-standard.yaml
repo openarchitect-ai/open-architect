@@ -92,7 +92,7 @@ spec:
 
   preferred_technologies:
     approved:
-      - MuleSoft Runtime
+      - Apache Kafka Event Platform
       - Azure API Management
     tolerated:
       - Legacy ESB during retirement period

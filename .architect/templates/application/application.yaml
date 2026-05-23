@@ -123,7 +123,7 @@ spec:
       - TC-0001
       - TC-0002
     hosting_platform: Salesforce Cloud
-    integration_platform: MuleSoft
+    integration_platform: Apache Kafka
 
   dependencies:
     upstream_applications:

@@ -1,7 +1,7 @@
 template:
   kind: data-object
-  version: 1.1
-  schema_version: 1.1
+  version: 1.2
+  schema_version: 1.2
   description: Template for a single data object entry in the enterprise architecture metamodel.
 
 spec:
@@ -125,6 +125,20 @@ spec:
         type: string
         required: false
         description: Preferred contact email for the customer.
+    excluded_attributes:
+      # Negative-space documentation. Lists attributes that could plausibly
+      # appear in this data object but are deliberately NOT modeled, with
+      # the reason and the governing artifact reference. Use this when a
+      # decision, regulation, or risk-control explicitly prohibits an
+      # attribute from being present. The schema-review checkpoint should
+      # reject any PR that reintroduces a listed excluded attribute without
+      # an accompanying decision update.
+      - name: national_id
+        reason: Out of scope under data-minimisation principles; not required for the customer-management use cases this object serves.
+        reference: DEC-0001
+      - name: household_relationships
+        reason: Modelled in a separate household data object; keeping it out of the canonical customer prevents duplicate ownership.
+        reference: DEC-0001
 
   relationships_model:
     parent_objects:

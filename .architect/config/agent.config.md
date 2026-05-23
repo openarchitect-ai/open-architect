@@ -339,8 +339,8 @@ Items inside `open-questions.md`, `answers-and-confirmations.md`,
 the scaffolded templates. Status-label emoji and bold come *after* the
 bullet marker, never instead of it:
 
-- ✅ Correct: `- 🚫 **Existing Mulesoft inventory** — what's deployed today`
-- ❌ Wrong: `🚫 **Existing Mulesoft inventory** — what's deployed today`
+- ✅ Correct: `- 🚫 **Existing integration platform inventory** — what's deployed today`
+- ❌ Wrong: `🚫 **Existing integration platform inventory** — what's deployed today`
 
 The bullet form is what `architect status` and any future validators
 count. Paragraph or emoji-prefixed-only items will be invisible to

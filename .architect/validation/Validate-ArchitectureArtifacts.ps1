@@ -203,10 +203,11 @@ function Write-Summary {
         [string]$Status,
         [int]$Checked,
         [int]$Errors,
-        [int]$Warnings
+        [int]$Warnings,
+        [int]$Skipped = 0
     )
 
-    Write-Host ("VALIDATION_SUMMARY validator=artifacts status={0} checked={1} errors={2} warnings={3}" -f $Status, $Checked, $Errors, $Warnings)
+    Write-Host ("VALIDATION_SUMMARY validator=artifacts status={0} checked={1} skipped={2} errors={3} warnings={4}" -f $Status, $Checked, $Skipped, $Errors, $Warnings)
 }
 
 function Get-PropertyValue {
@@ -843,16 +844,31 @@ if ($artifactFiles.Count -eq 0) {
     throw "Artifact root '$resolvedArtifactRoot' does not contain any YAML artifact files."
 }
 
-foreach ($file in $artifactFiles) {
-    $lines = Get-Content $file.FullName
+# Files whose basename matches this list are known not to be project
+# artifacts and are skipped without error. Everything else under the
+# artifact root is treated as an artifact candidate and must carry a
+# top-level `spec:` block. The `template:` block on a project artifact
+# is recommended (for provenance and template-drift tracking) but
+# optional — see guidance/artifact-conventions.md §"Template version
+# field".
+$nonArtifactFilenames = @(
+    'project-config.yaml',
+    'workspace-defaults.yaml',
+    'manifest.yaml',
+    'provenance.yaml',
+    'active-work.yaml',
+    'agent-queue.yaml',
+    'review-gates.yaml'
+)
+$skippedCount = 0
 
-    # Skip non-artifact YAMLs. Architecture artifacts have a top-level
-    # `template:` section naming their kind. Files like project-config.yaml,
-    # publication manifests, and provenance metadata don't and are out of
-    # scope for this validator.
-    if (-not ($lines | Where-Object { $_ -match '^template:\s*$' } | Select-Object -First 1)) {
+foreach ($file in $artifactFiles) {
+    if ($nonArtifactFilenames -contains $file.Name) {
+        $skippedCount++
         continue
     }
+
+    $lines = Get-Content $file.FullName
 
     if (-not ($lines | Where-Object { $_ -match '^spec:\s*$' } | Select-Object -First 1)) {
         Add-Error $file.FullName 'missing top-level spec section'
@@ -1129,21 +1145,21 @@ if ($errors.Count -gt 0) {
     foreach ($errorLine in $errors) {
         Write-Host ("- {0}: {1}" -f $errorLine.Path, $errorLine.Message) -ForegroundColor Red
     }
-    Write-Summary -Status 'failed' -Checked $artifactInventory.Count -Errors $errors.Count -Warnings $warnings.Count
+    Write-Summary -Status 'failed' -Checked $artifactInventory.Count -Errors $errors.Count -Warnings $warnings.Count -Skipped $skippedCount
     exit 1
 }
 
 if ($FailOnWarning -and $warnings.Count -gt 0) {
     Write-Host ("Artifact validation produced {0} warnings and was configured to fail on warning." -f $warnings.Count) -ForegroundColor Red
-    Write-Summary -Status 'failed-on-warning' -Checked $artifactInventory.Count -Errors $errors.Count -Warnings $warnings.Count
+    Write-Summary -Status 'failed-on-warning' -Checked $artifactInventory.Count -Errors $errors.Count -Warnings $warnings.Count -Skipped $skippedCount
     exit 1
 }
 
 if ($warnings.Count -gt 0) {
     Write-Host ("Artifact validation passed for {0} YAML artifacts under {1} with {2} warnings." -f $artifactInventory.Count, $resolvedArtifactRoot, $warnings.Count) -ForegroundColor Yellow
-    Write-Summary -Status 'passed-with-warnings' -Checked $artifactInventory.Count -Errors $errors.Count -Warnings $warnings.Count
+    Write-Summary -Status 'passed-with-warnings' -Checked $artifactInventory.Count -Errors $errors.Count -Warnings $warnings.Count -Skipped $skippedCount
 }
 else {
     Write-Host ("Artifact validation passed for {0} YAML artifacts under {1}." -f $artifactInventory.Count, $resolvedArtifactRoot) -ForegroundColor Green
-    Write-Summary -Status 'passed' -Checked $artifactInventory.Count -Errors $errors.Count -Warnings $warnings.Count
+    Write-Summary -Status 'passed' -Checked $artifactInventory.Count -Errors $errors.Count -Warnings $warnings.Count -Skipped $skippedCount
 }

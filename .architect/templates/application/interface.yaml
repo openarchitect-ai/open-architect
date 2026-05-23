@@ -162,7 +162,7 @@ spec:
     downstream_interfaces:
       - IF-0002
     technologies:
-      - MuleSoft
+      - Apache Kafka
       - Azure API Management
 
   governance:
