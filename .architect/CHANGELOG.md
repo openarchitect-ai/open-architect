@@ -209,6 +209,41 @@ shape demands it; major bump to 1.0 will signal the contract is frozen.
 
 ### Changed
 
+- **Change-coordinator propagation pattern tightened** (Tier-1 fix from
+  2026-05-24 smoke-test findings INC-15 / INC-19 / INC-20). The smoke
+  test produced two BLOCKER findings from the same root cause: the
+  change-coordinator workflow's impact assessment focused on downstream
+  artifacts and didn't enumerate upstream artifacts (vision, objectives)
+  that carry restate-the-decision text, and the change-register had no
+  clean entry type for catch-up work when a propagation miss was
+  discovered later. Closes both halves of the gap:
+  - [`guidance/requirement-change-handling.md`](./guidance/requirement-change-handling.md):
+    impact assessment now explicitly sweeps upstream (`VIS-*` / `OBJ-*`
+    / `PRN-*`) and downstream (extended set including `APP-*` / `AS-*`
+    / `IF-*` / `DO-*` / `TC-*` / `ENV-*`). New rule of thumb: *if an
+    artifact's text references the change by name or number, it's in
+    the impact list*. New §"Five change types" replaces the four-type
+    classification — adds `propagation-closure` for catch-up work that
+    completes a prior CHG's impact list rather than recording new scope.
+    New Step 9: run a post-change `architecture-review` pass when the
+    change promoted to a `decision` OR touched >3 artifacts, to catch
+    propagation misses while the change is fresh. Filename-stability
+    rule added: `display_name` rewrites keep filename, update `aliases:`.
+    Cheat sheet refreshed.
+  - [`patterns/governance/requirement-change-protocol.md`](./patterns/governance/requirement-change-protocol.md):
+    reflects five-type classification + upstream-sweep requirement +
+    post-change-review pass as a first-class protocol component.
+  - [`cli/templates/architect-work/change-register.md`](./cli/templates/architect-work/change-register.md):
+    Type enum extended to include `propagation-closure`; impact-assessment
+    rows extended with Vision / Objectives / Principles / Applications /
+    Data objects / Technology rows; new `Original CHG` field
+    (propagation-closure only); new `Post-change review` field.
+  - [`skills/change-coordinator.md`](./skills/change-coordinator.md):
+    Steps and Output Checklist updated to enforce the upstream sweep,
+    filename stability, and the post-change-review pass.
+  - [`guidance/capability-maintenance.md`](./guidance/capability-maintenance.md):
+    new section "Renaming a project artifact's display_name" codifies
+    the keep-filename-update-aliases rule.
 - **Root `README.md` restructured** to reflect the workflow accumulated this release. Adds a new "How Open Architect works" section anchored by a Mermaid workflow diagram (`architect new` → `project-recap` → `baseline-discovery` → modeling skills → `diagram-author` → `gap-radar` / `architecture-review` → `change-coordinator` → loop). Signature capabilities re-grouped: scanning skills (`project-recap` + `gap-radar` + `capability-radar`) presented together; new "Workflow discipline" subsection covering working-log + change-register + `architect status`; new "Diagrams as code" subsection covering the 9 starter views. Getting Started extended with `architect status` and the six-file architect-work scaffold. Project status, What's In The Repo, and Contributing list refreshed to match current state.
 - **`AGENTS.md`** now mandates that AI agents read
   `config/bindings.md` and `config/response-display.md` on every

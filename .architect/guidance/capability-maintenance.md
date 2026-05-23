@@ -134,6 +134,28 @@ When you add `.architect/templates/<domain>/<new-kind>.yaml`:
 - [ ] `current-state.md` Completed entry
 - [ ] Run `Validate-Capability.ps1` to catch any missed references
 
+### Renaming a project artifact's display_name (workspace-side, not capability-side)
+
+When a content rewrite under `change-coordinator` changes an artifact's
+`display_name` (e.g. `pseudonymized-engineer-identity` →
+`anonymized-engineer-identity` after a regulatory pivot), **keep the
+filename stable**:
+
+- [ ] Update `display_name` to the new label in the artifact YAML
+- [ ] Add the prior name to the artifact's `aliases:` field so cross-document searches still resolve
+- [ ] Update `metadata.change_log` with the rename rationale and the originating CHG-* entry
+- [ ] **Do NOT rename the file.** The filename is a stable identifier; renaming forces every cross-reference (relationships, working-log, change-register, README listings) to be hunted down and updated, and adds no value over the alias
+
+**Rare exception:** when the artifact's *ID* changes (e.g. supersession
+produces a new artifact with a new ID), the new file naturally gets a
+new filename — but the old file is *kept* (status `superseded`), not
+renamed.
+
+This convention applies to artifacts under `workspace/<project>/`. For
+`.architect/` capability-library files, use the "Renaming or moving a
+file" checklist above — those filenames are referenced by path
+throughout the library and renaming has different ripple effects.
+
 ### Adding a new compliance profile
 
 When you add `.architect/compliance/regulations/<new-reg>/`:

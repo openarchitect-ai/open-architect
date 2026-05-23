@@ -32,11 +32,22 @@ The protocol orchestrates five OA components:
 2. **`architect-work/change-register.md`** — aggregated, sponsor-readable view of all scope changes on this engagement
 3. **`decision` artifacts (via `decision-recorder`)** — promoted from changes that cross the decision threshold
 4. **The `change-coordinator` skill** — runs the procedure
-5. **`gap-radar`'s requirement-drift check** — surfaces requirement changes that haven't been propagated to downstream artifacts
+5. **`gap-radar`'s requirement-drift check + the post-change `architecture-review` pass** — surface requirement changes that haven't been propagated to downstream OR upstream artifacts
 
-The four change types (`new` / `modified` / `removed` / `superseded`)
-are the protocol's primary classification. *Conflict* is a trigger
-that produces one of the four — not a fifth type.
+**Five change types** classify register entries:
+`new` / `modified` / `removed` / `superseded` are primary scope-change
+classifications. `propagation-closure` records catch-up work when a
+later turn surfaces an artifact the original CHG's impact assessment
+missed — distinct from a new `modified` because no fresh
+requirement-level change occurred; the artifact is *catching up* to a
+change that already landed. *Conflict* is a trigger that produces one
+of the first four types, not a sixth.
+
+The protocol's impact assessment **sweeps upstream and downstream**.
+Upstream artifacts (`VIS`, `OBJ`, `PRN`) routinely carry
+restate-the-decision content that goes stale silently when downstream
+artifacts change; relationship-traversal alone misses these, so the
+protocol requires explicit upstream inspection.
 
 ## Decision Threshold
 

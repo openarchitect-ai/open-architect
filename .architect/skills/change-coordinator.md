@@ -36,17 +36,28 @@ lifecycle skills.
 
 ## Steps
 
-1. **Recognize and classify** the change as `new` / `modified` / `removed` / `superseded`. Conflict is a trigger; resolve to one of these four.
-2. **Capture the source.** Sponsor request / regulator / technical / customer / other. Record this in the change-register entry — it builds a pattern over time.
-3. **Run impact assessment.** For each downstream artifact category, identify what's touched: `solution`, `decision`, `interface`, `transition-architecture`, `risk`, `compliance-assessment`, plus rough timeline / cost magnitude. Fill the impact-assessment fields in the change-register entry even when "none" — explicit nones are better than blanks.
-4. **Evaluate the decision threshold.** Promote to a `decision` artifact if **any**: touches > 1 solution, alters regulatory or compliance posture, materially affects timeline / cost, crosses a review gate, sponsor explicitly requests. Otherwise the `metadata.change_log` line plus register entry is sufficient.
+1. **Recognize and classify** the change as `new` / `modified` / `removed` / `superseded` / `propagation-closure`. Conflict is a trigger; resolve to one of the first four. `propagation-closure` is reserved for catch-up work on a prior CHG's missed artifact — not for new scope.
+2. **Capture the source.** Sponsor request / regulator / technical / customer / `architecture-review` finding / `gap-radar` finding / other. Record this in the change-register entry — it builds a pattern over time.
+3. **Run impact assessment — sweep UPSTREAM and DOWNSTREAM.** Restate-the-decision text lives in upstream artifacts too; relationship traversal alone misses these.
+   - *Upstream:* `architecture-vision` (`VIS-*`), `objective` (`OBJ-*`), `principle` (`PRN-*` if enabled).
+   - *Downstream:* `solution` (`SOL-*`), `decision` (`DEC-*`), `application` / `application-service` / `interface` (`APP-*`/`AS-*`/`IF-*`), `data-object` (`DO-*`), `transition-architecture` (`TA-*`), `risk` (`RSK-*`), `compliance-assessment` (`CA-*`), `technology-component` / `environment` (`TC-*`/`ENV-*`), plus rough timeline / cost magnitude.
+   - **Rule of thumb:** if an artifact's text *references* the changing requirement, decision, or scope by name or by number, it's in the impact list. Don't rely on relationships alone — text drift is the most common silent miss.
+   - Fill the impact-assessment fields in the change-register entry even when "none" — explicit nones are better than blanks.
+4. **Evaluate the decision threshold.** Promote to a `decision` artifact if **any**: touches > 1 solution, alters regulatory or compliance posture, materially affects timeline / cost, crosses a review gate, sponsor explicitly requests. Otherwise the `metadata.change_log` line plus register entry is sufficient. (Not applicable for `propagation-closure` entries — those are catch-up work, not new scope.)
 5. **Check freeze-gate status** against `project-config.conventions.requirement_freeze_enforcement`:
    - `off` — proceed
    - `advisory` (default) — proceed but flag post-baseline landing
    - `strict` — pause; route to sponsor / coordinator for explicit re-opening before applying
-6. **Apply the change to artifacts.** Update the `requirement` YAML and its `metadata.change_log`. If the threshold was met, draft the `decision` via [`decision-recorder`](./decision-recorder.md). Update affected downstream artifacts. Mark their `metadata.last_reviewed` so `gap-radar` surfaces them as needing re-review.
-7. **Add the change-register entry.** One row in `architect-work/change-register.md`, newest on top, populated with type, source, requirements touched, impact assessment, threshold evaluation, freeze-gate status, reversibility, and confirmation state.
+6. **Apply the change to artifacts — upstream first, then downstream.**
+   - Update the `requirement` YAML and its `metadata.change_log`.
+   - If the threshold was met, draft the `decision` via [`decision-recorder`](./decision-recorder.md).
+   - **Sweep upstream:** refresh `VIS-*` / `OBJ-*` / `PRN-*` text that references the change. These go stale silently — do them first to avoid forgetting.
+   - Update affected downstream artifacts.
+   - Mark every touched artifact's `metadata.last_reviewed` so `gap-radar` surfaces them as needing re-review.
+   - **Filename stability:** if a content rewrite changes an artifact's `display_name`, keep the filename stable and update `aliases:` with the prior name. See [`capability-maintenance.md`](../guidance/capability-maintenance.md) §"Renaming a project artifact's display_name".
+7. **Add the change-register entry.** One row in `architect-work/change-register.md`, newest on top, populated with type, source, requirements touched, impact assessment (upstream + downstream), threshold evaluation, freeze-gate status, reversibility, and confirmation state. For `propagation-closure` entries: reference the original CHG ID and the surface that found the gap (e.g. *"Surfaced by `architecture-review` 2026-05-24"*).
 8. **Add a working-log entry.** Plain-language narrative cross-referencing the register entry.
+9. **Run a post-change `architecture-review` pass** when the change either promoted to a `decision` artifact OR touched more than three downstream artifacts. The pass walks the touched-artifact cluster *while the change is fresh* to catch propagation misses before they become BLOCKERs at the next gate. Findings either close out in the same turn (small fixes) or open `propagation-closure` entries (substantive misses). This step is what prevents the two-step pattern: change lands → propagation gap discovered three turns later → BLOCKER + late propagation-closure entry.
 
 ## Outputs
 
@@ -59,15 +70,17 @@ lifecycle skills.
 
 ## Output Checklist
 
-- [ ] the change is classified into exactly one of `new` / `modified` / `removed` / `superseded`
+- [ ] the change is classified into exactly one of `new` / `modified` / `removed` / `superseded` / `propagation-closure`
 - [ ] the source is captured
-- [ ] impact assessment is filled (explicit "none" beats blank)
-- [ ] decision threshold is explicitly evaluated against all five signals
+- [ ] impact assessment is filled — **both upstream (vision, objectives, principles) and downstream** — with explicit "none" beating blank
+- [ ] decision threshold is explicitly evaluated against all five signals (or marked not-applicable for `propagation-closure`)
 - [ ] freeze-gate mode is checked
 - [ ] if threshold met, a `decision` artifact is drafted (not just promised)
-- [ ] downstream artifacts have `metadata.last_reviewed` updated
+- [ ] every touched artifact (upstream + downstream) has `metadata.last_reviewed` updated
+- [ ] filename stability honored: `display_name` rewrites keep filename + update `aliases:`
 - [ ] change-register entry is added (newest on top)
 - [ ] working-log entry is added
+- [ ] if threshold met OR >3 artifacts touched: post-change `architecture-review` pass was run, and its outcome is recorded in the register entry's `post-change review:` field
 - [ ] no requirement is silently changed without a register entry
 
 ## Boundaries
