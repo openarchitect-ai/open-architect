@@ -134,6 +134,21 @@ When you add `.architect/templates/<domain>/<new-kind>.yaml`:
 - [ ] `current-state.md` Completed entry
 - [ ] Run `Validate-Capability.ps1` to catch any missed references
 
+### Folder placement, ID numbering, filename conventions for project artifacts
+
+When scaffolding project artifacts under `workspace/<project>/`, see
+[`artifact-conventions.md`](./artifact-conventions.md) for:
+- which folder each template kind's artifact lives in (note the
+  template-folder-vs-artifact-folder mismatch for `architecture-vision`
+  and `principle`)
+- the ID numbering convention (4-digit, start at `1001`, sequential per-kind)
+- the filename convention (`<id>-<slug>.yaml`, lowercase, hyphens)
+- the `aliases:` and template-version-field conventions
+
+That doc is the authoritative reference for the project-artifact side
+of OA hygiene. This file (`capability-maintenance.md`) covers the
+capability-library side — the `.architect/` library itself.
+
 ### Renaming a project artifact's display_name (workspace-side, not capability-side)
 
 When a content rewrite under `change-coordinator` changes an artifact's
