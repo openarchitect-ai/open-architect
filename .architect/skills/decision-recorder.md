@@ -58,7 +58,13 @@ Capture architecture decisions in a structured, reviewable, and traceable form.
 
 1. State the decision topic in one sentence.
 2. Describe the problem and the drivers clearly.
-3. Capture the options considered, not just the chosen answer.
+3. Capture the options considered, not just the chosen answer. Use the
+   template's `options_considered` block to fold the option evaluation
+   inline — this is the default. Invoke `option-evaluator` as a
+   separate skill (producing its own artifact) only when the comparison
+   itself is a deliverable for an external audience before the decision
+   lands; see [`option-evaluator.md`](./option-evaluator.md) §"When to
+   invoke as a separate skill vs fold into a decision".
 4. Reference the relevant reusable patterns that informed the option set.
 5. Record the accepted decision and why it won.
 6. Link the decision to the constrained or standardized artifacts.

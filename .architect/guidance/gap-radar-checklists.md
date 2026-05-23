@@ -558,6 +558,18 @@ where applicable.
   `project-config.yaml` to gate which obligations fire.
 - The skill should explicitly say which checks were **skipped because not in
   scope** so the architect can see the boundary of the scan.
+- **Distinguish "missing because deferred" from "missing because of drift".**
+  Some artifacts are not yet present because their stage hasn't run — e.g.
+  views named textually in `SOL.views_recommended` but the `views/` folder
+  is empty because `diagram-author` hasn't been invoked yet; APP/AS/IF
+  artifacts named conceptually in `SOL` but not yet modeled because the
+  structural-artifact sprint hasn't run. Those are **not drift findings**.
+  Drift means the artifact should exist now *and* something changed upstream
+  or downstream without follow-through. When reporting completeness gaps,
+  prefer:
+  - **`deferred`** — stage-not-yet-run miss; downgrade severity to `info` and note the expected stage
+  - **`drift`** — change-coordinator or update missed propagating; full severity per the check
+  - **`missing`** — neither applies; genuine completeness gap, full severity
 
 ## Extension Points
 
