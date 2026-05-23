@@ -339,6 +339,8 @@ See [`.architect/guidance/current-state.md`](.architect/guidance/current-state.m
 
 ## Contributing
 
+For the contribution path — how to set up locally, run validators, write commits and PRs, and where different kinds of work go — see [`CONTRIBUTING.md`](CONTRIBUTING.md). For what's being worked on and what's coming next, see [`ROADMAP.md`](ROADMAP.md).
+
 Useful contribution areas (the list reflects current gaps):
 
 - **Worked examples across industries** — only `customer-onboarding-modernization` exists today. AI platform, M&A, regulated finance, healthcare, public sector, and OT/IT manufacturing examples would each move adoption materially.
