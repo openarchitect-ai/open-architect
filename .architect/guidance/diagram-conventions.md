@@ -144,6 +144,47 @@ metadata:
       url: ./views/context-customer-master-modernization.md
 ```
 
+## Negative-Space Documentation Entities
+
+Diagrams normally render only elements that resolve to an existing
+artifact ID — diagram-only "entities" (boxes with no backing artifact)
+are otherwise a quality smell. There is one sanctioned exception:
+**negative-space-documentation entities**, which surface what is
+*deliberately structurally excluded* in a way readers cannot miss.
+
+A negative-space-documentation entity may appear in a diagram when:
+
+- the absence carries architectural intent (a constraint, regulatory
+  restriction, decision exclusion) that prose alone would let a reader
+  miss
+- the entity *traces* to an existing `excluded_attributes` block, or
+  to a governing artifact (typically a `decision` that prohibits the
+  field, relationship, or component)
+- the diagram's "Related Artifacts" footer lists every artifact the
+  exclusion traces to, making the trace-back explicit
+- the entity is **visually distinguished** so it reads as a
+  documentation device, not a real element. Use one of:
+  - dashed border / dotted lines
+  - italic label
+  - explicit `EXCLUDED_BY_<DECISION-ID>` prefix in the entity name
+  - a comment block annotating the entity as documentation, not data
+
+Example shape (ERD):
+
+```text
+EXCLUDED_BY_DEC_0005 {
+  string engineer_identifier "NEVER PRESENT — DEC-0005 Option X"
+  string precise_eta          "NEVER PRESENT — DEC-0005 Option X"
+  string location             "NEVER PRESENT — DEC-0005 Option X"
+}
+```
+
+This is the diagram-side equivalent of the `excluded_attributes`
+block in `data-object.yaml` v1.2 — same negative-space-documentation
+pattern, one structural layer up. Prefer it over silently omitting
+the constraint; the reader sees the architecture-as-code from the
+view alone, not just from the YAML.
+
 ## Role Guidance
 
 - `solution-architect`: context, container, interaction, and deployment views

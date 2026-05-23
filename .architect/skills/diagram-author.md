@@ -36,11 +36,11 @@ with no backing artifact) are a quality smell.
 
 1. **Clarify the question and the audience.** Diagrams that don't answer a specific question for a specific audience are decoration. Write the question down in one sentence before drawing.
 2. **Pick the notation.** Use the selection matrix in [`diagram-conventions.md`](../guidance/diagram-conventions.md). Default to Mermaid for context, container, ERD, transition, capability, and value-stream views; default to PlantUML for sequence and deployment views.
-3. **Identify the artifacts in scope.** Resolve every element you plan to show to an existing artifact ID. Do not invent diagram-only entities.
+3. **Identify the artifacts in scope.** Resolve every element you plan to show to an existing artifact ID. Do not invent diagram-only entities. One sanctioned exception: **negative-space-documentation entities** that surface a structural exclusion (e.g. an `excluded_attributes` block, or a field a decision prohibits). See [`diagram-conventions.md`](../guidance/diagram-conventions.md) §"Negative-Space Documentation Entities" for the rules — the entity must trace to a governing artifact and be visually distinguished as a documentation device.
 4. **Open the relevant starter from [`diagram-starter-views/`](../guidance/diagram-starter-views/README.md).** Copy into `workspace/<project-name>/views/` (or `.architect/examples/<name>/views/` for worked examples) with the convention's filename pattern.
 5. **Replace placeholders with real artifact IDs and `display_name` values.** Keep the diagram skeleton; fill in the data.
 6. **Add a "Related Artifacts" footer.** Every diagram lists the artifact IDs it references so reviewers can navigate.
-7. **Link back from artifacts.** Add `metadata.references` entries with `type: diagram` on at least the primary artifacts the view is *about*. This makes the diagram findable from the artifact side, not only the view side.
+7. **Link back from artifacts — or defer the sweep.** Add `metadata.references` entries with `type: diagram` on the primary artifacts the view is *about*. This makes the diagram findable from the artifact side, not only the view side. **Scoping note:** for multi-view sets touching many artifacts (a 4-view set referencing 17+ artifacts is a common shape), the back-link sweep is its own sub-task and should be **deferred to a dedicated follow-up turn** rather than tailing the view-production turn — bundling N artifact edits into a view-authoring turn creates a giant compound change that is hard to review. Defer with a clear note in the proposed working-log entry and an entry on the architect-task-list naming the artifacts in scope.
 8. **Stop at view fidelity, not completeness.** Diagrams omit detail by design. If everything ends up in the diagram, the question wasn't focused enough.
 
 ## Outputs
@@ -56,8 +56,9 @@ with no backing artifact) are a quality smell.
 - [ ] every element resolves to an existing artifact ID
 - [ ] the "Related Artifacts" section lists the IDs
 - [ ] the file is in the correct location with a conventional filename
-- [ ] the relevant artifacts reference the diagram via `metadata.references`
+- [ ] the relevant artifacts reference the diagram via `metadata.references` — **OR** the back-link sweep is explicitly deferred to a follow-up turn (working-log note + architect-task-list entry naming the artifacts)
 - [ ] the diagram omits detail that doesn't serve the question (not exhaustive)
+- [ ] any negative-space-documentation entities trace to a governing artifact and are visually distinguished (see [`diagram-conventions.md`](../guidance/diagram-conventions.md) §"Negative-Space Documentation Entities")
 - [ ] a working-log entry is proposed
 
 ## Boundaries
@@ -82,7 +83,7 @@ This skill **may**:
 
 ## Quality Checks
 
-- **Diagram-only entities** (boxes with no backing artifact) are a red flag — every element should trace to an ID.
+- **Diagram-only entities** (boxes with no backing artifact) are a red flag — every element should trace to an ID. The one sanctioned exception is a **negative-space-documentation entity** that visualizes a structural exclusion and traces to a governing artifact; see [`diagram-conventions.md`](../guidance/diagram-conventions.md) §"Negative-Space Documentation Entities" for when this is legitimate vs. a smell.
 - **Mixed notations** in one diagram (C4 + UML in the same view) usually mean the question isn't focused.
 - **Stale views** that haven't been updated after a relevant decision or transition change should be flagged.
 - **Everything-in-one-diagram** is showing nothing. Split into multiple focused views.
