@@ -21,7 +21,7 @@ Recommended files:
 - `diagram-conventions.md`
 - `handoff-contracts.md`
 - `traceability-rules.md`
-- `id-and-naming-rules.md`
+- `artifact-conventions.md`
 - `human-review-packet.md`
 - `agent-test-scenarios.md`
 - `role-boundaries.md`

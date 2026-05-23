@@ -36,8 +36,8 @@ lives. (See "Template folder vs artifact folder" below.)
 | `application/` | `application` (APP-), `application-service` (AS-), `interface` (IF-), `requirement` (REQ-), `solution` (SOL-) | "What and how" — the application/service architecture layer |
 | `data/` | `data-object` (DO-) | Data shape and ownership |
 | `technology/` | `technology-component` (TC-), `technology-standard` (TS-), `environment` (ENV-) | Stack and hosting |
-| `governance/` | `decision` (DEC-), `risk` (RSK-), `compliance-assessment` (CA-) | Decisions, risks, regulatory posture |
-| `change/` | `transition-architecture` (TA-), `initiative` (INIT-), `roadmap` (RM-), `gap` (GAP-), `work-package` (WP-) | Movement from baseline to target |
+| `governance/` | `decision` (DEC-), `risk` (RSK-), `compliance-assessment` (CMP-) | Decisions, risks, regulatory posture |
+| `change/` | `transition-architecture` (TA-), `initiative` (INI-), `roadmap` (RMP-), `gap` (GAP-), `work-package` (WP-) | Movement from baseline to target |
 | `views/` | Diagram source files (`.md` with Mermaid, `.puml` for PlantUML) | Renderable views — see [`diagram-conventions.md`](./diagram-conventions.md) |
 | `publications/<date>-<gate>/` | Composed publication packages (see [`publication-package-shape.md`](./publication-package-shape.md)) | Sponsor-facing output |
 
@@ -75,7 +75,10 @@ Examples: `STK-1001`, `DEC-1001`, `SOL-1004`, `RSK-1002`.
 
 - **Always 4 digits**, zero-padded. `STK-1001`, not `STK-1` or `STK-01`.
 - **Start at `1001`** for new project artifacts. The worked example at `.architect/examples/customer-onboarding-modernization/` uses this convention.
-- **Sequential per-kind, within a project.** Each kind has its own counter: `STK-1001`, `STK-1002`, …; `DEC-1001`, `DEC-1002`, …. The numbering doesn't have to be gap-free (deleted-during-draft artifacts leave a gap), but it should be monotonically increasing — never re-use a retired ID.
+- **Sequential per-kind, within a project.** Each kind has its own counter: `STK-1001`, `STK-1002`, …; `DEC-1001`, `DEC-1002`, …. The numbering doesn't have to be gap-free (deleted-during-draft artifacts leave a gap), but it should be monotonically increasing.
+- **Never re-use a retired ID.** Even if an artifact is deleted, its ID is burned — don't assign that number to a different artifact later.
+- **Don't renumber existing artifacts to make sequences look tidy.** Gaps in the per-kind sequence are fine. Renumbering for cosmetic reasons breaks every cross-reference that points at the old IDs.
+- **Preserve linked IDs even if filenames or titles change.** When `change-coordinator` rewrites an artifact's content or display_name, the ID stays — see [Filename stability under change-coordinator](#filename-stability-under-change-coordinator).
 - **No cross-project ID reuse needed.** Each project gets its own `1001` counter per kind; `STK-1001` in project A is a different stakeholder from `STK-1001` in project B. IDs are project-scoped, not workspace-global.
 
 ### Why start at 1001 and not 0001?
@@ -106,10 +109,10 @@ Examples: `STK-1001`, `DEC-1001`, `SOL-1004`, `RSK-1002`.
 | environment | `ENV-` |
 | decision | `DEC-` |
 | risk | `RSK-` |
-| compliance-assessment | `CA-` |
+| compliance-assessment | `CMP-` |
 | transition-architecture | `TA-` |
-| initiative | `INIT-` |
-| roadmap | `RM-` |
+| initiative | `INI-` |
+| roadmap | `RMP-` |
 | gap | `GAP-` |
 | work-package | `WP-` |
 
@@ -137,9 +140,21 @@ See [`capability-maintenance.md`](./capability-maintenance.md)
 §"Renaming a project artifact's display_name" for the full rule and
 its rationale.
 
-## `aliases:` convention
+## Name fields: `name`, `display_name`, `aliases`
 
-Every artifact template carries an `aliases:` list field. Use it for:
+Each artifact carries three name-shaped fields with distinct
+purposes:
+
+- **`name`** is the canonical, machine-friendly label — lowercase,
+  kebab-case, stable. Used for cross-references and tooling. Once
+  assigned, treat it like the ID: don't rename for cosmetic reasons.
+- **`display_name`** is the human-readable, presentation-friendly
+  label. This is what shows up in diagrams, briefings, and
+  publication packages. May be rewritten by change-coordinator;
+  prior values flow into `aliases`.
+- **`aliases`** is a searchable list of alternate labels.
+
+Use `aliases` for:
 
 - Prior display names from change-coordinator content rewrites
 - Synonyms the engagement uses informally (e.g. *"Customer Master"* aliased to *"Customer Entity"*)
@@ -179,6 +194,26 @@ When a project artifact *does* carry a `template:` block:
 - Don't bump `schema_version` on the project side — it tracks
   breaking-shape changes to the template itself (capability-library
   work, not project-side).
+
+## Agent procedure: creating a new artifact
+
+Before writing a new artifact, an agent (or architect working
+through one) should:
+
+1. **Check whether an artifact already exists for the same concern.**
+   Search by display_name and aliases. Don't write a duplicate.
+2. **Choose the correct prefix for the kind** — see the
+   [Kind-prefix reference](#kind-prefix-reference) table above.
+3. **Assign the next stable numeric ID within that kind.** Look at
+   the highest existing ID for the kind in this project, and use the
+   next integer. Don't reuse retired IDs; don't backfill gaps.
+4. **Use a descriptive but concise filename suffix.** Slug the
+   display_name; keep it short enough to scan in a file tree.
+
+If uniqueness cannot be determined safely (the existing artifact
+inventory is ambiguous, or the concern overlaps with an existing
+artifact in a non-obvious way), **stop and ask for review** instead
+of guessing.
 
 ## What this guide does *not* cover
 

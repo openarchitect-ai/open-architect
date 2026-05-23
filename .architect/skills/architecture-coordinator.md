@@ -24,7 +24,7 @@ work coherent.
 - the active playbook named in `project.playbook` under `.architect/playbooks/<playbook-name>/playbook.md`
 - `.architect/guidance/handoff-contracts.md`
 - `.architect/guidance/traceability-rules.md`
-- `.architect/guidance/id-and-naming-rules.md`
+- `.architect/guidance/artifact-conventions.md`
 - `.architect/guidance/human-review-packet.md`
 - `.architect/guidance/role-boundaries.md`
 - `.architect/guidance/agent-test-scenarios.md`
